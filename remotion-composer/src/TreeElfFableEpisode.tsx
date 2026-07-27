@@ -179,7 +179,9 @@ export const TreeElfFableEpisode: React.FC<TreeElfFableEpisodeProps> = (props) =
   const source = (relative: string) => `${props.assetRoot}/${relative}`;
   const musicFade = (frame: number) => {
     const second = frame / fps;
-    const speaking = props.captions.some((caption) => second >= caption.start - 0.08 && second <= caption.end + 0.1);
+    const speaking = props.captions.some(
+      (caption) => second >= caption.startMs / 1000 - 0.08 && second <= caption.endMs / 1000 + 0.1,
+    );
     const envelope = interpolate(
       frame,
       [0, fps, Math.max(fps + 1, durationInFrames - 2 * fps), durationInFrames],
