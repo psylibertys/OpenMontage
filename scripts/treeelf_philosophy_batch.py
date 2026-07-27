@@ -38,6 +38,7 @@ from scripts.treeelf_philosophy_episode import (
     build_exact_captions,
     generate_narration,
     prepare_episode,
+    stage_remotion,
     utc_now,
     validate_episode,
 )
@@ -405,9 +406,57 @@ def cleanup_batch_local_storage(
     return result
 
 
+def stage_local_batch(
+    batch: dict[str, Any],
+    batch_config_path: Path,
+    series: dict[str, Any],
+    *,
+    projects_dir: Path = PROJECTS_DIR,
+) -> dict[str, Any]:
+    """Stage every episode sequentially so music diversity is batch-aware."""
+
+    manifest_path = _manifest_path(batch, projects_dir)
+    if not manifest_path.is_file():
+        raise FileNotFoundError("Run prepare before stage-local")
+    manifest = load_json(manifest_path)
+    if manifest.get("status") not in {"local_pending", "gpu_finalized", "local_staged"}:
+        raise ValueError("Batch must have complete local GPU assets before stage-local")
+    used_music_paths: list[str] = []
+    results: list[dict[str, Any]] = []
+    for _, config in _load_episodes(batch, batch_config_path):
+        staged = stage_remotion(
+            config,
+            series,
+            projects_dir=projects_dir,
+            used_music_paths=used_music_paths,
+        )
+        selection = load_json(Path(staged["music_selection"]))
+        selected_path = str(selection.get("selected", {}).get("path", ""))
+        if selected_path:
+            used_music_paths.append(selected_path)
+        results.append({
+            "project_id": config["project_id"],
+            "music_path": selected_path,
+            "props": staged["props"],
+            "public_dir": staged["public_dir"],
+        })
+    manifest["status"] = "local_staged"
+    manifest["local_staged_at"] = utc_now()
+    manifest["next_action"] = "render, QC, and deliver every staged episode"
+    for episode in manifest.get("episodes", []):
+        episode["status"] = "local_staged"
+    dump_json(manifest_path, manifest)
+    return {
+        "batch_id": batch["batch_id"],
+        "status": "local_staged",
+        "episodes": results,
+        "used_music_paths": used_music_paths,
+    }
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="TreeElf rolling GPU asset batch")
-    parser.add_argument("command", choices=("validate", "prepare", "gpu-plan", "generate-gpu", "status", "finalize-gpu", "cleanup-local"))
+    parser.add_argument("command", choices=("validate", "prepare", "gpu-plan", "generate-gpu", "stage-local", "status", "finalize-gpu", "cleanup-local"))
     parser.add_argument("--config", type=Path, default=DEFAULT_BATCH_CONFIG)
     parser.add_argument("--series", type=Path, default=DEFAULT_SERIES_CONFIG)
     parser.add_argument("--dry-run", action="store_true")
@@ -453,6 +502,8 @@ def main() -> None:
             yes=args.yes,
             retention_days=args.retention_days,
         )
+    elif args.command == "stage-local":
+        result = stage_local_batch(batch, args.config, series, projects_dir=PROJECTS_DIR)
     else:
         path = _manifest_path(batch)
         result = load_json(path) if path.is_file() else {"batch_id": batch["batch_id"], "status": "not_prepared"}

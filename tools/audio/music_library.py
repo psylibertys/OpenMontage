@@ -199,13 +199,20 @@ class MusicLibrary(BaseTool):
     def execute(self, inputs: dict[str, Any]) -> ToolResult:
         start = time.time()
         library_dir = self._library_dir(inputs)
+        track_paths = self._list_tracks(library_dir)
         catalog_rows = catalog_tracks_for_library(library_dir)
+        rows_by_relative_path: dict[str, dict[str, Any]] = {}
+        for row in catalog_rows:
+            rows_by_relative_path[str(row.get("relative_path", ""))] = row
+            for alias in row.get("aliases", []):
+                rows_by_relative_path[str(alias)] = row
 
         tracks: list[dict[str, Any]] = []
         total_duration = 0.0
         have_any_duration = False
-        for row in catalog_rows:
-            path = Path(row["path"])
+        for path in track_paths:
+            relative = path.relative_to(library_dir).as_posix()
+            row = rows_by_relative_path.get(relative, {})
             duration = row.get("duration_seconds")
             if duration is None:
                 duration = self._probe_duration(path)

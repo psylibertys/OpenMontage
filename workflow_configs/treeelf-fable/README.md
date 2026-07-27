@@ -38,7 +38,7 @@ fable 不使用“具象/抽象/风格融合比例”。每张图都按三层写
 - 画面门禁：`visual_qc.json` 必须确认每张正文图和封面背景通过；残肢、身份漂移、乱码字、人物封面或需要修复的图不得进入 Remotion。涉及主角或 Flux 人物一致性的 scene 必须勾选 `identity_stable_when_applicable`。
 - QC 模板：`visual_qc.json` 会直接写入每张图的 `image_path`、`caption_excerpt`、`story_event`、`fable_law` 和 `art_style_logic`，审核时优先按模板逐项看图。
 - Wan 门禁：Wan 是开头语义事件资产，不随 Whisper 校准自动重生；`stage-local` 会写出 `wan_retarget_report.json` 说明校准后如何重定位。若生成了 Wan，对应 scene 的 `wan_motion_safety` 必须为 `approved`。
-- 音乐门禁：fable 必须有背景音乐，并写出 `music_selection.json` 与 `audio_mix_qc.json`。默认采用旁白优先 B3 混音基准：Remotion `musicVolume = 0.30`；Remotion 讲话段 duck 到更低氛围层，最终仍以试听确认“有氛围但不压旁白”。
+- 音乐门禁：fable 必须有背景音乐，并写出 `music_selection.json` 与 `audio_mix_qc.json`。选曲读取 `workflow_configs/treeelf-music/catalog-v1.json`、人工覆盖和心哲灵/fable 共用使用账本；同批与近期音乐降权。项目副本标准化到 -18 LUFS / -2 dBTP，中央原曲保持不变。默认采用旁白优先 B3 混音基准：Remotion `musicVolume = 0.30`；Remotion 讲话段 duck 到更低氛围层，最终仍以试听确认“有氛围但不压旁白”。
 - 封面门禁：ComfyUI 只出无人无字背景；最终中文标题、英文副标题和“树精灵”由 Remotion 添加。
 - 提示词门禁：创意提示词里的审美类“不要/避免/no/avoid”会阻止新批次 `prepare`；技术护栏如无字、无 logo、无水印保留为集中规则。
 

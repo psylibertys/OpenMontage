@@ -63,7 +63,7 @@ description: Produce and maintain the reusable TreeElf Chinese philosophy/psycho
 - 静态图必须有可见而克制的推、移、纵向漂移或视差；连续静态镜头不得使用相同运动。
 - 字幕为较小白字、黑色描边、透明底，不用黑色字幕框；默认使用较高的短视频平台安全区，`safe_bottom >= 360`，避免被底部标题、进度条和互动按钮干扰。
 - 背景音乐锁定旁白优先的 B3 混音基准：Remotion `musicVolume = 0.30`，并按讲话状态更强 ducking；讲话时音乐应退到低氛围层，不压旁白。
-- 背景音乐不再长期固定同一首。`stage-remotion` 按标题、正文情绪和意象关键词从中央本地纯音乐库自动选曲，优先器乐/氛围背景，写入 `artifacts/music_selection.json`；没有合适匹配时才回落到 episode JSON 的 `music_source`。
+- 背景音乐不再长期固定同一首。`stage-remotion` 通过 `workflow_configs/treeelf-music/catalog-v1.json` 按标题、正文情绪和意象关键词从中央本地纯音乐库自动选曲；心哲灵与 fable 共用跨批次使用账本，同批与近期曲目会降权。项目音乐副本标准化到 -18 LUFS / -2 dBTP，中央原曲不修改；选择、匹配原因、SHA、标准化结果写入 `artifacts/music_selection.json`。
 - 音乐是否可听，以导出文件的人耳试听和响度结果判断，不以时间线参数代替。
 - 独立平台封面与成片首帧使用同一封面；首帧只有 1 帧，不形成可感知片头。
 
@@ -140,6 +140,7 @@ COMFYUI_SERVER_URL=http://127.0.0.1:18188 \
 
 3. 根据旁白真实时长和精确字幕边界调整正文 scene 时间，不得让镜头时长只依赖模板占位值。`stage-remotion` 生成的 `remotion_props.json` 必须记录 `timelinePolicy`，并为每个 scene 写入 `caption_range` 与 `script_excerpt`；视觉切换应尽量发生在一句或一个语义单元讲完之后，尤其开场钩子不要在语义尚未落地时过早切图。信息页仍保留人工配置时间，除非 episode JSON 额外提供可审核的语义锚点。
 4. 默认让 `stage-remotion` 按文案内容自动选背景音乐；若某篇需要指定音乐，再将批准的本地音乐写入 `music_source` 或 `music.preferred_keywords`。
+   批量本地暂存应调用 `scripts/treeelf_philosophy_batch.py stage-local`，由批次入口顺序传递已用音乐，避免单独逐篇运行时丢失同批去重上下文。
 5. 暂存 Remotion 资产和 props：
 
 ```bash
