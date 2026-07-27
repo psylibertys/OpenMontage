@@ -28,6 +28,14 @@ tests/qa/output/
 # Project workspaces (generated assets, renders — all regenerable)
 projects/
 
+# Local production caches and personal source assets
+.cache/
+.remotion/
+配音/
+
+# Locally licensed font files; do not redistribute without an explicit license
+fronts/
+
 # Corpus directories (downloaded stock clips, thumbnails, embeddings —
 # regenerable from source APIs via corpus_builder). Explicit rule even
 # though most corpora live under projects/ since agents sometimes

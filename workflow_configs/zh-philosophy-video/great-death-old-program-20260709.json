@@ -1,0 +1,162 @@
+{
+  "project_id": "great-death-old-program-20260709",
+  "title": "大死一番：敢诛己心者，皆是改命人",
+  "cover_title": "诛己改命",
+  "cover_lines": [
+    "诛己改命"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 126,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "旧身份可以退出自我定义",
+    "自动程序会伪装成命运",
+    "辨认声音并重写地图"
+  ],
+  "core_message": "看见童年和评价系统留下的自动程序，旧声音就不再拥有审判你的权力。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-09_大死一番_诛己心.md",
+  "tags": [
+    "心哲灵",
+    "东方智慧",
+    "禅宗",
+    "大死一番",
+    "原生家庭",
+    "自主性"
+  ],
+  "raw_script": "大死一番，你卡在同一个坑里多久了？\n\n明明道理都懂，碰到父母一句否定，立刻退回小时候。明明想换一种活法，一到关键选择，脑子里又响起那句：你不行，别折腾。\n\n七岁看老是一面镜子。大多数人照了一眼，就认了。\n\n禅宗讲“大死一番，绝后再苏”。它指向的并非身体死亡，而是让旧的心理结构死一次：那些被家庭、学校、评价系统装进去的身份、恐惧和规矩，先从“我是谁”里退出来。\n\n荣格有一个常被引用的意思：未被察觉的潜意识会操纵人生，人却把它叫作命运。\n\n换成人话就是，你以为自己在做选择，其实很多时候，是童年留下的自动程序在替你按按钮。\n\n那个骂你的声音，是你小时候装进去的复读机。\n\n所以“诛己心”的重点不在恨自己，也不在控诉父母。它要你分辨：脑子里哪个声音来自我，哪个声音只是旧环境留下的回声。\n\n禅宗还有一句更狠，叫“逢佛杀佛”。连你最崇拜的权威都要穿透，何况一句“你从小就这样”。\n\n但这里有个关键：大死一番承认过去的影响。家庭、环境、创伤经验都会留下痕迹。它说的是，痕迹可以被看见；被看见之后，它就不再自动拥有审判你的权力。\n\n你想逆天改命，可你手里拿的，常常正是“天”给你的地图。\n\n真正的改命，先从烧掉那张地图开始。\n\n当你开始辨认脑子里哪个声音是自己的、哪个是别人装进去的，你就已经不再活在别人的判决书上了。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "soundtrack",
+      "neo-classical",
+      "ambient",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "大死一番，你卡在同一个坑里多久了？\n\n明明道理都懂，碰到父母一句否定，立刻退回小时候。明明想换一种活法，一到关键选择，脑子里又响起那句：你不行，别折腾。\n\n七岁看老是一面镜子。大多数人照了一眼，就认了。",
+      "queries": [
+        {
+          "query": "adult criticized by parent family tension",
+          "description": "一句否定让成年人退回童年"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "禅宗讲“大死一番，绝后再苏”。它指向的并非身体死亡，而是让旧的心理结构死一次：那些被家庭、学校、评价系统装进去的身份、恐惧和规矩，先从“我是谁”里退出来。\n\n荣格有一个常被引用的意思：未被察觉的潜意识会操纵人生，人却把它叫作命运。",
+      "queries": [
+        {
+          "query": "child shadow behind adult psychological memory",
+          "description": "童年经验留下的影子"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "旧声音"
+          ],
+          "subtitle": "不等于你的声音"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "换成人话就是，你以为自己在做选择，其实很多时候，是童年留下的自动程序在替你按按钮。\n\n那个骂你的声音，是你小时候装进去的复读机。\n\n所以“诛己心”的重点不在恨自己，也不在控诉父母。它要你分辨：脑子里哪个声音来自我，哪个声音只是旧环境留下的回声。",
+      "queries": [
+        {
+          "query": "old tape recorder repeating voice dark",
+          "description": "旧环境留下的复读机"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Reframe",
+      "text": "禅宗还有一句更狠，叫“逢佛杀佛”。连你最崇拜的权威都要穿透，何况一句“你从小就这样”。\n\n但这里有个关键：大死一番承认过去的影响。家庭、环境、创伤经验都会留下痕迹。它说的是，痕迹可以被看见；被看见之后，它就不再自动拥有审判你的权力。",
+      "queries": [
+        {
+          "query": "burning old map symbolic freedom",
+          "description": "烧掉别人给的旧地图"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "真正的改命"
+          ],
+          "subtitle": "先烧掉旧地图"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "Landing",
+      "text": "你想逆天改命，可你手里拿的，常常正是“天”给你的地图。\n\n真正的改命，先从烧掉那张地图开始。\n\n当你开始辨认脑子里哪个声音是自己的、哪个是别人装进去的，你就已经不再活在别人的判决书上了。",
+      "queries": [
+        {
+          "query": "person choosing own road sunrise",
+          "description": "离开别人的判决书"
+        }
+      ]
+    }
+  ]
+}

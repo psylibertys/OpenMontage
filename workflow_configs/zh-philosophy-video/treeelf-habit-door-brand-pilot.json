@@ -1,0 +1,519 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-habit-door-brand-pilot-20260724",
+  "title": "别培养整套习惯｜树精灵栏目定型样片",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-23_别培养整套习惯.md",
+  "profile": "tiktok",
+  "target_duration_seconds": 90,
+  "render_runtime": "remotion",
+  "composition_mode": "templated",
+  "retention_policy": "production-planning/treeelf-habit-door-brand-pilot-20260724-retention.json",
+  "voice_selection": {
+    "workflow_template": "qwen3_tts_voice_design",
+    "sample_text": "闹钟一响，昨晚那个准备晨跑的自己忽然失联。床上的自己接到通知：请立刻完成起床、换衣、下楼、跑步、拉伸，一整栋习惯大楼现在就要开业。难怪他顺手按掉闹钟，工程量听着就像要剪彩。真正容易固定的，不是整栋楼，而是进门的第一个动作。先让那扇门认得你，剩下的路，交给已经进门的人。",
+    "shared_direction": "20岁左右普通话女声，清晰、温暖、乐观、阳光；语速中等，自然、有亲和力，不使用播音腔。有趣或轻微幽默处自然轻笑，尤其是‘一整栋习惯大楼现在就要开业’和‘工程量听着就像要剪彩’，但轻笑不能吞字、拖长或夸张；思辨内容保持清楚可信。",
+    "inference": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "max_new_tokens": 2048
+    },
+    "candidates": [
+      {
+        "id": "A01",
+        "name": "清澈邻家",
+        "seed": 41001,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。声音干净亲近，像聪明朋友面对面分享，不使用播音腔。有趣处自然轻笑，轻笑短而克制，不能吞字；思辨句保持清楚可信。"
+      },
+      {
+        "id": "A02",
+        "name": "明亮知性",
+        "seed": 41002,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。吐字明亮，带年轻的知性与思辨感，但不成熟老成、不严肃、不使用播音腔。反差和隐喻处带自然轻笑，重点概念仍稳定可信。"
+      },
+      {
+        "id": "A03",
+        "name": "温暖陪伴",
+        "seed": 41003,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。语气温柔、有安全感，像愿意陪人把事情想明白的朋友；转折处清醒明确。有趣处轻轻笑一下，不拖长、不撒娇、不影响发音。"
+      },
+      {
+        "id": "A04",
+        "name": "活泼灵动",
+        "seed": 41004,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。能量略高、句尾轻盈、反应灵动，但不快、不吵、不幼态。习惯大楼开业和剪彩的反差处自然轻笑，随后迅速回到清楚叙述。"
+      },
+      {
+        "id": "A05",
+        "name": "清醒思辨",
+        "seed": 41005,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。逻辑清楚、克制明亮，重点概念有适度强调，不使用播音腔。幽默处只露出轻微笑意，整体保持年轻而可信的思辨气质。"
+      },
+      {
+        "id": "A06",
+        "name": "轻松幽默",
+        "seed": 41006,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。松弛、有交流感，能自然听懂文字里的隐喻和反差；大楼开业与剪彩处有可听见但不过量的轻笑。笑后吐字仍完整，结论不轻浮。"
+      },
+      {
+        "id": "A07",
+        "name": "柔和坚定",
+        "seed": 41007,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。音色柔和、语气稳定，建议和落点有温柔的力量，不使用播音腔。有趣处自然轻笑但不削弱结论，最后一句平稳坚定。"
+      },
+      {
+        "id": "A08",
+        "name": "青春阳光",
+        "seed": 41008,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。年轻积极、明亮自然，不甜腻、不幼态、不像广告配音。轻微幽默处自然笑一下，思辨段落保持从容和可信度。"
+      },
+      {
+        "id": "A09",
+        "name": "松弛自然",
+        "seed": 41009,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。像面对面聊天，呼吸与停顿自然，表演感最低，不使用播音腔。遇到大楼开业和剪彩的句子时自然轻笑，像真实聊天中的短暂笑意。"
+      },
+      {
+        "id": "A10",
+        "name": "清甜克制",
+        "seed": 41010,
+        "instruct": "20岁左右普通话女声，清晰、温暖、乐观、阳光，语速中等。音色清甜但不过分可爱，表达克制、清楚、有思考感。幽默处轻笑短促自然，不能撒娇或吞字，保持哲思内容的可信度。"
+      }
+    ],
+    "additional_tests": [
+      {
+        "id": "A11",
+        "name": "仅共同条件",
+        "seed": 41011,
+        "instruct": "20岁左右的普通话女声；清晰、温暖、乐观、阳光；语速中等，不略慢；自然、有亲和力，不使用播音腔；有趣或轻微幽默的位置带自然轻笑；轻笑不能吞字、拖长或变成夸张表演；思辨和研究内容仍保持清楚、可信。"
+      }
+    ],
+    "selection_protocol": {
+      "round_one": "A01-A10使用相同试听文案匿名盲选前三",
+      "round_two": "前三分别生成30秒常规稿与90秒压力稿",
+      "final": "批准一个主声线和一个备用声线",
+      "persistence": "先复用VoiceDesign指令与seed；出现明显身份漂移才建立VoiceClone声包"
+    }
+  },
+  "cover_selection": {
+    "workflow_template": "krea2_low_vram",
+    "steps": 4,
+    "chinese_title": "先开门",
+    "english_title": "OPEN ONE DOOR",
+    "brand": "树精灵",
+    "output_size": [
+      1080,
+      1920
+    ],
+    "directions": [
+      {
+        "id": "C01",
+        "name": "门缝晨光",
+        "seed": 52001,
+        "philosophy": [
+          "以一条极窄的光缝组织整张画面，让空间的大部分保持安静，视觉意义从克制而非堆积中生长。每一道边缘都像经过反复校准，呈现顶尖设计师耐心打磨后的精确。",
+          "材质以深色木门、温暖晨光和细微空气颗粒构成，冷暗与暖亮只在门缝处相遇。色彩必须像经过无数次试色，既不煽情也不平淡。",
+          "尺度关系刻意悬殊：巨大的门占据画面，人的动作只通过一只刚要推门的手暗示。节奏来自静止空间里唯一即将发生的变化。",
+          "构图为上方和中部文字留下稳定呼吸区，视觉母题藏在门尚未完全打开的瞬间。最终画面应有博物馆级的克制和大师级执行感。"
+        ],
+        "subtle_reference": "不是完成整栋习惯大楼，而是先让入口认得你。",
+        "krea_prompt": "Vertical 9:16 cinematic editorial photograph, an enormous dark wooden door seen close and frontal, opened only two centimeters, a precise blade of warm sunrise entering a quiet interior, one young hand just touching the handle, monumental negative space in upper center reserved for typography, charcoal black and honey gold palette, tactile wood grain, subtle airborne dust, restrained philosophical mood, meticulous museum-poster composition, no text, no letters, no logo, no signage, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "top",
+          "text_align": "center",
+          "gradient_direction": "top",
+          "text_color": "#F7F0E2",
+          "accent_color": "#D9A94E",
+          "overlay_opacity": 0.28
+        }
+      },
+      {
+        "id": "C02",
+        "name": "习惯大楼",
+        "seed": 52002,
+        "philosophy": [
+          "把建筑当成心理压力的比例尺：楼体庞大、入口微小，让复杂目标与简单动作在同一画面里发生冲突。几何边线需像建筑制图般严谨。",
+          "混凝土灰、薄雾蓝和一处暖橙门灯形成有限色谱，材料诚实而不冰冷。所有光比都应经过精细推敲，避免廉价科幻感。",
+          "重复窗格制造密集节奏，唯独底部入口保持清晰，观看路径因此从压迫的整体返回可行动的局部。尺度与秩序应体现深厚专业判断。",
+          "上部天空承担标题留白，楼体稍偏一侧，画面像一件经过无数轮删减才成立的建筑海报。"
+        ],
+        "subtle_reference": "整栋楼不必今天开业，先走进一扇门。",
+        "krea_prompt": "Vertical 9:16 architectural art photograph, a monumental modern concrete building rising beyond the frame with hundreds of quiet repeated windows, one tiny warmly lit entrance at ground level, a single young person approaching that entrance, low-angle perspective, fog blue and concrete gray with one amber accent, generous clean sky in upper third reserved for typography, exact geometric composition, refined editorial poster realism, no text, no letters, no logo, no signage, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "top",
+          "text_align": "left",
+          "gradient_direction": "top",
+          "text_color": "#F4F0E8",
+          "accent_color": "#F0A74A",
+          "overlay_opacity": 0.22
+        }
+      },
+      {
+        "id": "C03",
+        "name": "脚落地",
+        "seed": 52003,
+        "philosophy": [
+          "用日常动作的极近景代替宏大励志：床沿、一只脚和清晨地面成为全部叙事。画面中的真实触感必须由细致光线和材质完成。",
+          "低饱和蓝灰承载刚醒来的迟钝，一束柔暖侧光提示行动已经开始。色彩转换要细微，像摄影师在现场耐心等待的自然时刻。",
+          "主体位于画面下部，大片墙面和薄暗空气形成安静节奏。简单动作被放大到足以承载意义，但不戏剧化。",
+          "标题落在上方负空间，所有边距和视觉重量经过大师级校准，让生活瞬间具有海报般凝练的力量。"
+        ],
+        "subtle_reference": "闹钟响后，只要求脚先放到地上。",
+        "krea_prompt": "Vertical 9:16 intimate cinematic photograph, close view of a young woman's bare foot just touching a cool wooden floor beside an unmade bed at dawn, quiet blue-gray bedroom, one soft warm ray of morning light, human and believable, subject kept in lower third, large calm wall negative space above reserved for typography, tactile linen and wood, refined editorial realism, no text, no letters, no logo, no signage, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "top",
+          "text_align": "right",
+          "gradient_direction": "top",
+          "text_color": "#FFF8EA",
+          "accent_color": "#E9B873",
+          "overlay_opacity": 0.24
+        }
+      },
+      {
+        "id": "C04",
+        "name": "第一张多米诺",
+        "seed": 52004,
+        "philosophy": [
+          "将连锁行动压缩成一个尚未发生的临界点：一枚多米诺被指尖轻触，其余秩序向远处延伸。精密排列体现耐心而非机械炫技。",
+          "象牙白物件置于墨黑背景，一枚暖黄色首牌成为唯一色彩信号。表面、阴影和间距需要像产品摄影般精确。",
+          "斜向队列制造节奏与深度，但画面保留足够静区，让观看者停留在‘开始’而不是‘结果’。",
+          "构图必须像经过无数次微调的科学图谱，同时保有人类动作的温度和顶级工艺感。"
+        ],
+        "subtle_reference": "稳定第一个触发节点，而不是同时控制全部动作。",
+        "krea_prompt": "Vertical 9:16 museum-quality conceptual still life, a fingertip gently touching the first warm ochre domino tile, a long precise sequence of ivory dominoes receding through a matte black space, nothing has fallen yet, controlled side light, scientific precision with human warmth, strong diagonal rhythm, clean negative space in center-left reserved for typography, premium editorial photography, no text, no letters, no logo, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "center",
+          "text_align": "left",
+          "gradient_direction": "center",
+          "text_color": "#FAF4E8",
+          "accent_color": "#DFA64B",
+          "overlay_opacity": 0.3
+        }
+      },
+      {
+        "id": "C05",
+        "name": "门禁识别",
+        "seed": 52005,
+        "philosophy": [
+          "把习惯入口表现成温柔的识别系统：门框、微光圆环和靠近的手形成简洁关系，科技感服务于日常隐喻。",
+          "色彩以深青绿、乳白和柔金为主，发光元素必须克制、柔和，不落入霓虹界面俗套。材质经过细密处理。",
+          "圆环重复带来识别与记忆的节奏，空间保持清洁，所有视觉信息集中在一次接近。",
+          "画面需像来自虚构学科的精密观察图，但每个像素都具备高级编辑设计的耐心与手艺。"
+        ],
+        "subtle_reference": "让入口通过每天的重复认得你。",
+        "krea_prompt": "Vertical 9:16 sophisticated conceptual photograph, minimalist dark teal doorway with a subtle warm circular recognition light, a young hand approaching the sensor, gentle analog-futurist design, cream and muted gold details, quiet architectural negative space on right reserved for typography, soft film grain, meticulously crafted editorial poster, no interface text, no text, no letters, no logo, no signage, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "center",
+          "text_align": "right",
+          "gradient_direction": "center",
+          "text_color": "#F2F1E8",
+          "accent_color": "#D6B36A",
+          "overlay_opacity": 0.32
+        }
+      },
+      {
+        "id": "C06",
+        "name": "入口地图",
+        "seed": 52006,
+        "philosophy": [
+          "以抽象地图表现复杂流程，把密集路径压到背景，只让一个入口节点清晰发光。信息通过空间关系而非说明文字传达。",
+          "纸张纤维、墨线和一点朱砂色建立手工与分析并存的材质感。每条路径都应像经过耐心绘制。",
+          "大量细线形成复杂节奏，入口周围突然变得空旷，视觉层级由密到疏，暗示行动的简化。",
+          "作品要像一张虚构心理学图谱，既有科学秩序，也有手作海报的温度与大师级完成度。"
+        ],
+        "subtle_reference": "道路很多，今天只需要确认入口。",
+        "krea_prompt": "Vertical 9:16 abstract cartographic artwork on warm fibrous paper, hundreds of fine charcoal pathways and architectural traces fading into the background, one simple vermilion doorway-shaped node glowing near lower third, expansive quiet zone above and left reserved for typography, analytical visual language, handmade ink precision, museum editorial quality, no text, no letters, no logo, no map labels, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "top",
+          "text_align": "left",
+          "gradient_direction": "top",
+          "text_color": "#2A2520",
+          "accent_color": "#B84632",
+          "overlay_opacity": 0.08
+        }
+      },
+      {
+        "id": "C07",
+        "name": "钥匙与空房",
+        "seed": 52007,
+        "philosophy": [
+          "一把小钥匙置于巨大空房中央，用极端尺度差表达微小动作与广阔可能。空间必须保持真正的安静。",
+          "石灰墙面、旧木地板和铜钥匙构成朴素材质，光线像经过长时间观察后留下的自然结果。",
+          "窗光切出缓慢矩形节奏，钥匙处于精确视觉焦点，空白不是缺失，而是意义的容器。",
+          "最终画面应像一件被顶尖摄影师与设计师共同反复打磨的静默作品。"
+        ],
+        "subtle_reference": "最小入口动作是一把钥匙，不是整套建筑工程。",
+        "krea_prompt": "Vertical 9:16 poetic architectural photograph, a tiny brass key lying alone on a vast old wooden floor in an empty limewashed room, soft rectangular morning window light, extreme scale contrast, quiet warm gray and aged brass palette, large clean upper wall reserved for typography, contemplative editorial poster, painstaking natural texture, no text, no letters, no logo, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "top",
+          "text_align": "center",
+          "gradient_direction": "top",
+          "text_color": "#2C2720",
+          "accent_color": "#9F6F31",
+          "overlay_opacity": 0.1
+        }
+      },
+      {
+        "id": "C08",
+        "name": "红线入口",
+        "seed": 52008,
+        "philosophy": [
+          "用一根连续红线穿过杂乱结构，最终绕出一扇简单门形。意义来自路径的持续，而非装饰性符号。",
+          "背景为深墨蓝，线条使用饱和但不刺目的朱红，表面带微弱纸纹。每个转折必须显得经过人工精确控制。",
+          "复杂线团集中在下部，门形在中上部出现，节奏由纠缠变为清晰，给标题留出呼吸区域。",
+          "整体像实验室记录与现代版画之间的珍贵样本，呈现耗时打磨的专业完成度。"
+        ],
+        "subtle_reference": "不必整理整团线，先认出通向行动的入口。",
+        "krea_prompt": "Vertical 9:16 abstract editorial print, one continuous vermilion red thread travels through a dense controlled tangle in the lower half and resolves into a simple open doorway outline, deep ink-blue textured background, precise handmade line, quiet upper negative space reserved for typography, analytical yet humane visual system, master-level printmaking finish, no text, no letters, no logo, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "top",
+          "text_align": "right",
+          "gradient_direction": "top",
+          "text_color": "#F5EEDF",
+          "accent_color": "#E0523D",
+          "overlay_opacity": 0.18
+        }
+      },
+      {
+        "id": "C09",
+        "name": "晨跑门槛",
+        "seed": 52009,
+        "philosophy": [
+          "让门槛成为室内与清晨之间唯一明确界面，一只穿好鞋的脚刚刚跨出，叙事停在最小可行动瞬间。",
+          "室内偏冷，门外偏暖，色温差替代口号。鞋面、地砖和晨雾需要真实而细腻。",
+          "低机位把门槛横线变成稳定节拍，人物只出现局部，避免励志广告式英雄化。",
+          "画面应有纪录片的可信与高级杂志封面的精确，所有留白都经过耐心安排。"
+        ],
+        "subtle_reference": "晨跑的第一步不是跑完，而是跨过门槛。",
+        "krea_prompt": "Vertical 9:16 low-angle cinematic photograph, one sneakered foot of a young woman crossing a simple apartment threshold into soft sunrise mist, cool interior behind and warm quiet street ahead, realistic human scale, no triumphant pose, strong horizontal threshold line, upper middle negative space reserved for typography, refined documentary editorial color, no text, no letters, no logo, no signage, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "center",
+          "text_align": "center",
+          "gradient_direction": "center",
+          "text_color": "#FFF7E8",
+          "accent_color": "#E8A75A",
+          "overlay_opacity": 0.26
+        }
+      },
+      {
+        "id": "C10",
+        "name": "打开一格",
+        "seed": 52010,
+        "philosophy": [
+          "把日程与习惯抽象成精密网格，只打开其中一个小格，让局部行动抵抗整套计划的压迫。",
+          "米白底、炭黑线和一格明黄形成严格有限色彩，印刷质感应细腻而不复古做旧。",
+          "重复网格制造制度性节奏，一个开启的格子打破秩序却不破坏平衡，视觉层级清晰。",
+          "每一根线和边距都必须像瑞士式编排经过无数校正，但不借用任何具体设计师风格。"
+        ],
+        "subtle_reference": "今天不运行完整系统，只打开第一格。",
+        "krea_prompt": "Vertical 9:16 precision graphic still life, a large field of matte ivory square compartments in a strict grid, only one small compartment door open revealing warm yellow light, charcoal outlines, subtle paper and painted wood texture, balanced asymmetry, generous top-left negative space reserved for typography, meticulously crafted modern editorial design, no text, no letters, no numbers, no logo, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "top",
+          "text_align": "left",
+          "gradient_direction": "top",
+          "text_color": "#24221E",
+          "accent_color": "#D69E21",
+          "overlay_opacity": 0.06
+        }
+      },
+      {
+        "id": "C11",
+        "name": "纸上开门",
+        "seed": 52011,
+        "philosophy": [
+          "从一张完整白纸上切出可开启的小门，让二维表面产生真实入口。概念应通过材质和阴影自然成立。",
+          "颜色几乎全白，只用柔灰阴影与一点青绿色背光。克制色谱要求对明度进行极其细致的控制。",
+          "纸面纤维提供缓慢细节，小门的折痕成为唯一动作，大片空白为文字和呼吸服务。",
+          "最终作品像耗费数小时手工切割和布光的摄影装置，简洁但绝不廉价。"
+        ],
+        "subtle_reference": "入口不一定宏大，它可以只是今天切开的一个小口。",
+        "krea_prompt": "Vertical 9:16 handcrafted paper installation photographed in a studio, one small doorway precisely cut and gently opened in a vast sheet of warm white paper, subtle teal light glowing behind it, exquisite paper fibers and soft cast shadow, monumental clean negative space for typography, quiet conceptual art, painstaking museum-quality craft, no text, no letters, no logo, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "center",
+          "text_align": "right",
+          "gradient_direction": "center",
+          "text_color": "#272B29",
+          "accent_color": "#3A8D82",
+          "overlay_opacity": 0.04
+        }
+      },
+      {
+        "id": "C12",
+        "name": "进门以后",
+        "seed": 52012,
+        "philosophy": [
+          "从门内回望刚跨进来的年轻身影，不展示远方终点，只确认人已经进入空间。叙事建立在方向反转上。",
+          "逆光勾勒轮廓，室内为深棕与墨绿，门外晨光柔和不过曝。光线与材质必须达到电影静帧的细腻。",
+          "人物很小，门框提供稳定竖向节奏，画面中心上方留给标题，空间深度带来继续前进的想象。",
+          "每个构图关系都应经过大师级推敲，让收束感来自安静事实：人已经进门。"
+        ],
+        "subtle_reference": "剩下的路，交给已经进门的人。",
+        "krea_prompt": "Vertical 9:16 cinematic interior view looking toward an open doorway, a young woman has just stepped inside and is seen as a small warm backlit silhouette, deep walnut brown and muted forest green interior, soft morning exterior light, strong architectural frame, generous upper-center space reserved for typography, contemplative film still with editorial precision, no text, no letters, no logo, no signage, no watermark, no pseudo typography",
+        "layout": {
+          "title_position": "top",
+          "text_align": "center",
+          "gradient_direction": "top",
+          "text_color": "#F4EEE2",
+          "accent_color": "#C9A15B",
+          "overlay_opacity": 0.3
+        }
+      }
+    ]
+  },
+  "style_frames": [
+    {
+      "id": "S01",
+      "seed": 53001,
+      "steps": 4,
+      "prompt": "Vertical 9:16 cinematic scene for a Chinese philosophy short video, dawn bedroom, a young Chinese woman around twenty sits on the bed and places one foot on the wooden floor after the alarm, natural unperformed posture, clear warm morning light against cool blue shadows, restrained optimism, sophisticated editorial cinematography, medium close low angle, consistent teal charcoal and honey palette, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no subtitles, no logo, no watermark"
+    },
+    {
+      "id": "S02",
+      "seed": 53102,
+      "steps": 4,
+      "prompt": "Vertical 9:16 cinematic metaphor scene for a Chinese philosophy short video, a vast quiet modern concrete building with one small warm doorway, a young Chinese woman around twenty approaching the entrance, monumental wide shot, dawn fog, charcoal teal concrete and honey light, reflective but lightly humorous visual tone, realistic editorial film still, bare unmarked architecture, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no subtitles, no logo, no signage, no watermark"
+    },
+    {
+      "id": "S03",
+      "seed": 53103,
+      "steps": 4,
+      "prompt": "Vertical 9:16 intimate cinematic scene for a Chinese philosophy short video, close-up of a young Chinese woman's hand placing a plain unmarked wooden cutting board on a kitchen counter immediately after closing a plain unmarked laptop, simple trigger action, warm practical light, quiet lived-in home, refined tactile realism, restrained optimistic palette of charcoal teal cream and honey, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no subtitles, no logo, no watermark"
+    }
+  ],
+  "motion_tests": [
+    {
+      "id": "M01",
+      "reference_style_frame": "S01",
+      "seed": 54001,
+      "duration_seconds": 4,
+      "prompt": "The young woman naturally lowers her foot from the bed onto the wooden floor, toes make gentle contact, her posture wakes slightly, curtain moves subtly in the morning air, warm sunlight slowly grows, locked low camera with a very subtle push-in, realistic restrained motion, no sudden movement, no morphing, no camera shake"
+    }
+  ],
+  "article_visual_assets": {
+    "text_policy": "ComfyUI只生成无字图片和视频；标题、字幕、标签、Logo全部由Remotion添加。",
+    "images": [
+      {
+        "id": "P00",
+        "seed": 55000,
+        "steps": 4,
+        "prompt_review": {
+          "pre": "清晨闹钟与床沿人物。",
+          "critique": "需明确主体层级、镜头、光线，并禁止手机界面文字。",
+          "post": "手机闹钟近景、人物中景、冷暖晨光、浅景深；无可读界面和任何文字。"
+        },
+        "prompt": "Vertical 9:16 cinematic editorial photograph, extreme close foreground of a plain unbranded smartphone vibrating softly on a dark wooden bedside table at dawn, its screen glowing only with abstract blurred light and absolutely no readable interface, in the middle distance a young Chinese woman around twenty sits sleepily on the edge of an unmade bed, natural unperformed posture, cool teal pre-sunrise shadows crossed by one gentle honey ray, 50mm lens, shallow depth of field, tactile linen and wood, restrained intimate realism, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no clock digits, no captions, no subtitles, no logo, no watermark"
+      },
+      {
+        "id": "P01",
+        "seed": 55001,
+        "steps": 4,
+        "prompt_review": {
+          "pre": "习惯大楼举行荒诞剪彩。",
+          "critique": "建筑剪彩容易生成招牌和文字，改用无字红绳与拖鞋构成笑点。",
+          "post": "巨大无标识建筑、低位红绳、门外拖鞋；极广角、克制荒诞、无文字。"
+        },
+        "prompt": "Vertical 9:16 monumental cinematic editorial photograph, a vast severe modern concrete building rising beyond the top of frame at foggy dawn, one tiny warm doorway at ground level, an excessively formal plain red ceremonial ribbon stretched across the entrance with no writing or emblems, a pair of ordinary bedroom slippers stopped outside the ribbon as the only humorous human trace, extreme wide low-angle composition, charcoal teal concrete, pale fog and one honey doorway light, restrained deadpan surrealism, realistic material detail, bare unmarked architecture, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no subtitles, no logo, no signage, no watermark"
+      },
+      {
+        "id": "P02",
+        "seed": 55002,
+        "steps": 4,
+        "prompt_review": {
+          "pre": "手触门把手，门出现第一条光缝。",
+          "critique": "动作与空间关系需明确，避免人物脸和复杂背景分散重点。",
+          "post": "手、黄铜把手、深木门、两厘米暖光缝；85mm特写，无标识。"
+        },
+        "prompt": "Vertical 9:16 intimate cinematic extreme close-up, a young Chinese woman's natural hand just making contact with a simple aged brass door handle on a massive dark walnut door, the door still almost closed with a precise two-centimeter blade of warm morning light at the edge, hand relaxed rather than dramatic, 85mm lens, shallow depth of field, tactile wood grain and soft skin detail, low-key charcoal teal shadows with honey light, locked composition designed for realistic image-to-video motion, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no subtitles, no logo, no signage, no watermark"
+      },
+      {
+        "id": "P03",
+        "seed": 55003,
+        "steps": 4,
+        "prompt_review": {
+          "pre": "刷牙后伸手拿床头书。",
+          "critique": "同一画面连接浴室和床头容易混乱；用后景牙刷与前景素封面书建立线索。",
+          "post": "前景手与无字书，后景牙刷虚化，暖光路径，生活化近景。"
+        },
+        "prompt": "Vertical 9:16 lived-in cinematic close-up, a young Chinese woman's hand reaching naturally for a plain unmarked clothbound book on a bedside table immediately after brushing her teeth, the book cover completely blank, in the softly blurred background through an open bathroom doorway sits one plain toothbrush in an unmarked cup, warm bathroom practical light creating a visual path toward the book, 50mm lens, shallow depth of field, paper and fabric texture, quiet realistic home, charcoal teal cream and honey palette, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no subtitles, no logo, no branding, no watermark"
+      },
+      {
+        "id": "P04",
+        "seed": 55004,
+        "steps": 4,
+        "prompt_review": {
+          "pre": "门禁仍在现场审批。",
+          "critique": "审批隐喻容易生成表单伪字；使用空白文件夹、红灯和犹豫背影表达。",
+          "post": "极简门禁、单一红色等待灯、空白审批夹、人物背影；所有表面无字。"
+        },
+        "prompt": "Vertical 9:16 restrained cinematic metaphor photograph, minimalist concrete building access gate seen from slightly behind a solitary young Chinese woman, one small red waiting indicator blocks a closed plain door, beside the gate sits a neat stack of completely blank paper folders with no marks, forms or writing, the woman pauses without exaggerated emotion, medium shot at eye level, cool overcast light, charcoal teal concrete with one red accent, medium depth of field, realistic editorial atmosphere rather than science fiction, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no subtitles, no logo, no signage, no watermark"
+      },
+      {
+        "id": "P05",
+        "seed": 55005,
+        "steps": 4,
+        "prompt_review": {
+          "pre": "人物已进门，继续向内走。",
+          "critique": "不能变成成功终点或胜利姿态；强调背影、门框和延伸走廊。",
+          "post": "人物刚越过门槛，背影向暖光走廊前行，门保持打开；无字结尾关键帧。"
+        },
+        "prompt": "Vertical 9:16 cinematic interior view from just inside a deep walnut doorway, a young Chinese woman has already crossed the threshold and is seen from behind taking her first calm step into a long warm corridor, natural posture with no triumphant gesture, the open door remains behind her and cool dawn light meets gentle honey interior light, strong architectural doorframe composition, 35mm lens, deep perspective, subtle film grain, muted forest green walnut brown cream and honey palette, contemplative editorial realism, pure full-bleed photograph with no graphic layout, absolutely no text, no Chinese characters, no English letters, no numbers, no captions, no subtitles, no logo, no signage, no watermark"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "reference": "P02",
+        "seed": 56001,
+        "duration_seconds": 4,
+        "prompt_review": {
+          "pre": "手压把手，门开一条缝。",
+          "critique": "限制动作幅度，防止手指畸变、门体融化和相机漂移。",
+          "post": "手指轻压、门开两厘米、暖光增强；锁定特写，微推近。"
+        },
+        "prompt": "The same natural hand gently closes around the brass handle, fingers press down once, the heavy dark wooden door opens only two centimeters and a narrow warm light blade slowly becomes brighter, movement remains small and physically believable, locked 85mm close-up camera with an almost imperceptible push-in, stable hand anatomy, stable door geometry, realistic light change, no new objects, no sudden movement, no morphing, no melting, no camera shake, no text, no captions, no logo"
+      },
+      {
+        "id": "W02",
+        "reference": "S03",
+        "seed": 56002,
+        "duration_seconds": 4,
+        "prompt_review": {
+          "pre": "合上电脑后摆下菜板。",
+          "critique": "S03已是菜板接近台面，应只完成短动作，避免电脑键盘和手部变形。",
+          "post": "菜板平稳落台、手松开、电脑保持关闭；固定镜头。"
+        },
+        "prompt": "The same hand lowers the plain wooden cutting board the final few centimeters until it rests flat on the kitchen counter, fingers release naturally and withdraw slightly, the plain unmarked laptop in the background remains closed and stable, warm practical light shifts subtly across the wood, locked close camera, realistic restrained household motion, stable fingers, stable board shape, no extra hands, no sudden motion, no morphing, no melting, no camera shake, no text, no captions, no logo"
+      },
+      {
+        "id": "W03",
+        "reference": "S02",
+        "seed": 56003,
+        "duration_seconds": 4,
+        "prompt_review": {
+          "pre": "人物走向巨大建筑的暖门。",
+          "critique": "极广景人物易漂移；限定为两三步、建筑完全稳定、薄雾轻移。",
+          "post": "人物稳走三步接近门口，建筑不变，镜头微推近。"
+        },
+        "prompt": "The same distant young woman walks three calm steady steps toward the small warm doorway, her scale and silhouette remain consistent, thin dawn fog drifts gently across the wet concrete floor, the monumental concrete building stays perfectly rigid and unchanged, doorway light remains stable, very slow subtle camera push-in from the existing extreme wide composition, realistic restrained motion, no sudden acceleration, no body morphing, no duplicated person, no architectural warping, no camera shake, no text, no captions, no logo"
+      },
+      {
+        "id": "W04",
+        "reference": "P05",
+        "seed": 56004,
+        "duration_seconds": 4,
+        "prompt_review": {
+          "pre": "人物进入走廊继续前行。",
+          "critique": "结尾要平静而非胜利；限定两步、背影、门框稳定和轻微跟进。",
+          "post": "人物向内走两步，门保持打开，衣角与光线自然变化，稳步跟进。"
+        },
+        "prompt": "The same woman seen from behind takes two calm natural steps deeper into the warm corridor, her shoulders relax slightly, clothing moves only with her walk, the open doorway and architectural frame behind her remain stable, cool dawn light behind gently blends with honey corridor light, slow restrained steadicam follow forward, realistic walking rhythm, no triumphant gesture, no face turn, no body morphing, no duplicated limbs, no doorway warping, no camera shake, no text, no captions, no logo"
+      }
+    ],
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ]
+  }
+}

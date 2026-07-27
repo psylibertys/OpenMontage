@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "batch_id": "treeelf-batch-YYYYMMDD-a",
+  "queue_depth": 2,
+  "episode_configs": [
+    "episode-01.json",
+    "episode-02.json",
+    "episode-03.json",
+    "episode-04.json",
+    "episode-05.json"
+  ]
+}

@@ -21,6 +21,8 @@ import time
 from pathlib import Path
 from typing import Any, Optional
 
+from lib.treeelf_music import catalog_tracks_for_library
+
 from tools.base_tool import (
     BaseTool,
     Determinism,
@@ -115,6 +117,14 @@ class MusicLibrary(BaseTool):
                         "path": {"type": "string"},
                         "size_bytes": {"type": "integer"},
                         "duration_seconds": {"type": ["number", "null"]},
+                        "track_id": {"type": ["string", "null"]},
+                        "sha256": {"type": ["string", "null"]},
+                        "tags": {"type": "array", "items": {"type": "string"}},
+                        "risk_flags": {"type": "array", "items": {"type": "string"}},
+                        "selection_status": {"type": ["string", "null"]},
+                        "rights_status": {"type": ["string", "null"]},
+                        "integrated_lufs": {"type": ["number", "null"]},
+                        "true_peak_dbfs": {"type": ["number", "null"]},
                     },
                 },
             },
@@ -189,13 +199,16 @@ class MusicLibrary(BaseTool):
     def execute(self, inputs: dict[str, Any]) -> ToolResult:
         start = time.time()
         library_dir = self._library_dir(inputs)
-        track_paths = self._list_tracks(library_dir)
+        catalog_rows = catalog_tracks_for_library(library_dir)
 
         tracks: list[dict[str, Any]] = []
         total_duration = 0.0
         have_any_duration = False
-        for path in track_paths:
-            duration = self._probe_duration(path)
+        for row in catalog_rows:
+            path = Path(row["path"])
+            duration = row.get("duration_seconds")
+            if duration is None:
+                duration = self._probe_duration(path)
             if duration is not None:
                 have_any_duration = True
                 total_duration += duration
@@ -205,8 +218,18 @@ class MusicLibrary(BaseTool):
                     "path": str(path),
                     "size_bytes": path.stat().st_size,
                     "duration_seconds": duration,
+                    "track_id": row.get("id"),
+                    "sha256": row.get("sha256"),
+                    "tags": row.get("tags", []),
+                    "risk_flags": row.get("risk_flags", []),
+                    "selection_status": row.get("selection_status"),
+                    "rights_status": row.get("rights_status"),
+                    "integrated_lufs": row.get("integrated_lufs"),
+                    "true_peak_dbfs": row.get("true_peak_dbfs"),
                 }
             )
+
+        tracks.sort(key=lambda row: row["name"].lower())
 
         return ToolResult(
             success=True,

@@ -1,0 +1,132 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-universal-ranking-20260725",
+  "title": "别把人生塞进同一张榜",
+  "cover_title": "万能榜单",
+  "profile": "tiktok",
+  "voice_selection": {
+    "inference": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "max_new_tokens": 2048
+    }
+  },
+  "article_visual_assets": {
+    "text_policy": "ComfyUI only generates text-free images and video; all readable text is added locally in Remotion.",
+    "style_source": "art-Styles.md",
+    "style_fusion": [
+      "Bauhaus geometric design",
+      "quilted textile craft",
+      "marquetry wood inlay",
+      "surreal photography"
+    ],
+    "cross_episode_repeat_policy": "Avoid heavy reuse of the previous episode's red thread, employee badge, dark-blue printmaking, empty-audience and lone-window-cup motifs; reasonable recurrence remains allowed when semantically necessary.",
+    "images": [
+      {
+        "id": "C01",
+        "kind": "cover_background",
+        "seed": 72001,
+        "steps": 8,
+        "prompt_review": "Bauhaus × marquetry cover; path difference is carried by fresh textile geometry and independent motion rhythms; title-safe negative space.",
+        "prompt": "Vertical 9:16 premium editorial cover background, a monumental blank ranking board tries to compress several distinct room-shaped worlds into one narrow column, each world made from elegant marquetry wood inlay and restrained Bauhaus geometry, kitchen warmth, recovery calm and theatrical energy expressed only through shapes and materials, palette of cobalt blue, saffron yellow, moss green, coral and warm walnut, strong architectural negative space in the upper center for later typography, sophisticated art-direction, object-led composition carries the emotional residue, absolutely no text, no letters, no numbers, no logos, no watermark, no pseudo typography"
+      },
+      {
+        "id": "P00",
+        "kind": "realistic_surreal",
+        "seed": 71000,
+        "steps": 8,
+        "prompt_review": "Opening phone-comparison scene in surreal photography, visually distinct from prior bedroom imagery.",
+        "prompt": "Vertical 9:16 surreal cinematic photography, young East Asian woman reclining on a sunlit sofa scrolling a blank-screen phone while an enormous translucent ranking staircase silently grows through the apartment ceiling, everyday reality bending with calm absurdity, coral morning light, cobalt shadows, 35mm lens, tactile realistic interior, screen surface remains blank and light-led, no text, no letters, no numbers, no logo, no watermark, no captions, no pseudo typography"
+      },
+      {
+        "id": "P01",
+        "kind": "bauhaus_abstract",
+        "seed": 71001,
+        "steps": 8,
+        "prompt_review": "Separate life contexts represented through Bauhaus spatial logic rather than red lines or badge frames.",
+        "prompt": "Vertical 9:16 Bauhaus-inspired abstract architectural composition, three clearly separate rooms coexist without hierarchy: a warm circular kitchen, a quiet green recovery chamber and a vibrant triangular stage, clean geometric forms, primary structures softened by saffron, moss, cobalt and coral, one oversized blank vertical measuring slab intrudes but fails to align the rooms, crisp modernist balance, paths are carried by textile islands and shadow rhythm, status pressure is expressed through polished rectangular machinery, no text, no letters, no numbers, no logo, no watermark, no captions"
+      },
+      {
+        "id": "P02",
+        "kind": "realistic_surreal",
+        "seed": 71002,
+        "steps": 8,
+        "prompt_review": "Kitchen, rehabilitation and stage shown as incomparable realities in one surreal photographic set.",
+        "prompt": "Vertical 9:16 surreal editorial photograph of one impossible building cut open into three adjacent but independent spaces: someone cooking dinner, someone gently recovering in physical therapy, and a performer under stage light, each space has its own scale and atmosphere, a blank glossy scoreboard floats awkwardly in the corridor unable to judge them, cinematic practical lighting, sophisticated realistic textures, display surfaces remain blank and object-like, no text, no letters, no numbers, no logo, no watermark, no captions"
+      },
+      {
+        "id": "P03",
+        "kind": "quilted_abstract",
+        "seed": 71003,
+        "steps": 8,
+        "prompt_review": "Quilted craft turns different lives into equal but non-comparable patches.",
+        "prompt": "Vertical 9:16 contemporary quilted textile artwork, many distinct life paths represented as tactile fabric islands with different stitches, densities and rhythms, none centered and none ranked, a rigid metallic ladder-shaped shadow crosses the quilt but the soft patchwork refuses to become uniform, museum-quality textile craft, cobalt, saffron, moss, cream and coral fabric, visible fibers and stitching, life paths are expressed through varied fabric islands and stitch rhythms, no text, no letters, no numbers, no logos, no captions"
+      },
+      {
+        "id": "P04",
+        "kind": "realistic",
+        "seed": 71004,
+        "steps": 8,
+        "prompt_review": "Two legitimate but incomparable lives shown with dignity, not staged as a contest.",
+        "prompt": "Vertical 9:16 cinematic diptych photography blended into one frame, on the left a young East Asian adult quietly caring for an older family member at home, on the right another young East Asian adult working late in a small startup studio, both treated with equal dignity and different lighting rhythms, a neutral seam keeps their worlds separate, warm human realism, 50mm lens, ranking pressure appears as a blank measuring slab or shrunken screen-like object, no text, no letters, no numbers, no logo, no watermark, no captions"
+      },
+      {
+        "id": "P05",
+        "kind": "marquetry_cubist",
+        "seed": 71005,
+        "steps": 8,
+        "prompt_review": "Marquetry and cubist fragmentation visualize how a public standard flattens difference.",
+        "prompt": "Vertical 9:16 marquetry wood-inlay artwork fused with restrained cubist fragmentation, varied human-scale rooms and organic paths are cut into elegant walnut, maple, ebony and dyed blue veneers, a single polished rectangular ranking machine casts identical square shadows over every form, dynamic but refined museum craft, tactile wood grain, saffron and moss accents, paths are carried by textile islands and shadow rhythm, status pressure is expressed through polished rectangular machinery, no text, no letters, no numbers, no logo, no watermark, no captions"
+      },
+      {
+        "id": "P06",
+        "kind": "surreal_landing",
+        "seed": 71006,
+        "steps": 8,
+        "prompt_review": "Closing image restores separate rooms; ranking screen becomes small and irrelevant.",
+        "prompt": "Vertical 9:16 poetic surreal photography at dusk, several small illuminated rooms float like calm islands across a wide interior sky, each room follows its own activity and rhythm, a once-imposing blank electronic ranking screen has shrunk to a tiny unplugged object on the floor, spacious hopeful composition, soft cobalt atmosphere with saffron windows and moss details, cinematic realism, no text, no letters, no numbers, no logo, no watermark, no captions"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "reference": "P00",
+        "seed": 73001,
+        "duration_seconds": 4,
+        "prompt_review": "Slow surreal growth, camera remains calm and editorially composed.",
+        "prompt": "The woman scrolls once and pauses; the translucent staircase quietly extends upward through the ceiling while morning dust drifts, subtle slow push-in, stable anatomy, cinematic restrained motion, keep phone screen blank, no text"
+      },
+      {
+        "id": "W02",
+        "reference": "P01",
+        "seed": 73002,
+        "duration_seconds": 4,
+        "prompt_review": "Bauhaus rooms move independently while the measuring slab fails to align them.",
+        "prompt": "Bauhaus geometric rooms animate with different gentle rhythms: kitchen circle rotates, recovery chamber breathes, stage triangle opens; the blank measuring slab attempts alignment then slides away, clean paper-mechanical motion, locked camera, no text"
+      },
+      {
+        "id": "W03",
+        "reference": "P03",
+        "seed": 73003,
+        "duration_seconds": 4,
+        "prompt_review": "Textile motion reveals resistance to flattening without reusing a red-thread symbol.",
+        "prompt": "Quilted fabric islands softly rise with their own breathing rhythms; the rigid ladder-shaped shadow passes over them but bends and fragments across varied textures, tactile stop-motion textile feel, stable composition, no text"
+      },
+      {
+        "id": "W04",
+        "reference": "P06",
+        "seed": 73004,
+        "duration_seconds": 4,
+        "prompt_review": "Hopeful closing motion that returns each life to its own room.",
+        "prompt": "The floating rooms drift gently farther apart into a balanced constellation, warm windows pulse independently, the tiny unplugged screen dims completely, very slow cinematic pullback, peaceful hopeful motion, no text"
+      }
+    ],
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ]
+  }
+}

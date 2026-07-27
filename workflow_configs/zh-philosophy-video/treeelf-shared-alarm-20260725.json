@@ -1,0 +1,116 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-shared-alarm-20260725",
+  "title": "争论最凶时双方可能在怕同一件事",
+  "cover_title": "共同警报",
+  "profile": "tiktok",
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "style_source": "art-Styles.md",
+    "style_fusion": [
+      "Constructivism",
+      "stained glass",
+      "bio-luminous art",
+      "surreal documentary photography"
+    ],
+    "cross_episode_repeat_policy": "Do not heavily reuse the previous episodes' red thread, employee badge, wood marquetry rooms, quilt circles, Bauhaus ranking slab or floating-room constellation.",
+    "images": [
+      {
+        "id": "C01",
+        "seed": 82001,
+        "steps": 8,
+        "prompt_review": "Stained-glass cover: opposed directions, shared alarm source, safe title area.",
+        "prompt": "Vertical 9:16 premium stained-glass editorial cover background, two opposing currents of deep ultramarine and warm amber glass move away from each other while both originate from the same luminous teal alarm core near the lower center, intricate lead lines, violet accents, dramatic transmitted light, generous dark negative space in the upper center for later typography, symbolic but humane, object-led composition carries the emotional residue, no text, no letters, no numbers, no logo, no watermark, no pseudo typography"
+      },
+      {
+        "id": "P00",
+        "seed": 81000,
+        "steps": 8,
+        "prompt_review": "Opening argument rendered as surreal documentary photography without readable interfaces.",
+        "prompt": "Vertical 9:16 surreal documentary photograph, two young East Asian adults in the same night bus sit far apart scrolling blank-screen phones, each about to type an angry comment, their reflections in opposite windows reveal the same tense worried eyes, cool urban realism with amber practical lights and subtle teal pulse, 35mm lens, candid restrained emotion, interface glow remains abstract and unreadable, no text, no letters, no numbers, no logo, no watermark, no captions"
+      },
+      {
+        "id": "P01",
+        "seed": 81001,
+        "steps": 8,
+        "prompt_review": "Constructivist conflict diagram with one underlying alarm machine.",
+        "prompt": "Vertical 9:16 constructivist abstract poster without typography, two powerful geometric arrow systems in ultramarine and amber race in opposite directions, beneath them one shared black industrial alarm mechanism vibrates at the foundation, sharp diagonal tension, steel texture, modern social design, teal and violet accents, shared alarm is represented through objects, UI glow and room traces, no text, no letters, no numbers, no logo, no watermark, no captions, no pseudo typography"
+      },
+      {
+        "id": "P02",
+        "seed": 81002,
+        "steps": 8,
+        "prompt_review": "Stained glass joins different feared losses through one luminous fracture.",
+        "prompt": "Vertical 9:16 contemporary stained-glass artwork, one side protects a small home, family table and old tree, the other protects clean water, civic gathering and green habitat, the symbolic worlds face opposite directions yet the same luminous fracture glows beneath both, sophisticated vitrail craftsmanship, ultramarine, amber, teal and violet glass, meaning is carried by layout, light and object rhythm, no letters, no numbers, no logos, no captions"
+      },
+      {
+        "id": "P03",
+        "seed": 81003,
+        "steps": 8,
+        "prompt_review": "Bioluminescent anatomy visualizes shared existential alarm without flattening political differences.",
+        "prompt": "Vertical 9:16 bio-luminous conceptual illustration, two human figures face opposite directions with different outer color fields, inside both bodies an identical delicate bioluminescent nervous alarm blooms around chest and throat, organic branching light, dark spacious background, scientific-poetic precision, teal and violet glow with amber highlights, no text, no letters, no numbers, no logo, no watermark, no captions"
+      },
+      {
+        "id": "P04",
+        "seed": 81004,
+        "steps": 8,
+        "prompt_review": "Realistic confrontation where loudness hides information loss.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, two East Asian adults arguing across a community meeting table, gestures intense but not violent, scattered blank papers and an untouched glass of water between them, expressions reveal fear beneath certainty, mixed cool daylight and amber practical light, 50mm lens, honest social realism, papers function as blank workflow surfaces, no text, no letters, no numbers, no logo, no watermark, no captions"
+      },
+      {
+        "id": "P05",
+        "seed": 81005,
+        "steps": 8,
+        "prompt_review": "Constructivist abstraction: alarm grows while information shrinks.",
+        "prompt": "Vertical 9:16 constructivist mixed-media abstraction, two oversized opposing megaphone forms expand until they nearly fill the frame while small precise evidence shapes are pushed into the margins, beneath both megaphones one shared teal vibration field, industrial paper and metal textures, ultramarine amber violet palette, dynamic diagonal composition, no text, no letters, no numbers, no logo, no watermark, no captions"
+      },
+      {
+        "id": "P06",
+        "seed": 81006,
+        "steps": 8,
+        "prompt_review": "Closing surreal photograph: pause, ask what might be lost, regain control.",
+        "prompt": "Vertical 9:16 poetic surreal photograph, a hand pauses just before touching a blank phone comment field, between finger and screen appears a small translucent doorway opening onto two different landscapes lit by the same dawn, calm breathing space after conflict, subtle teal light, warm amber horizon, realistic hand and phone, elegant minimal composition, interface glow remains abstract and unreadable, no text, no letters, no numbers, no logo, no watermark, no captions"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "reference": "P00",
+        "seed": 83001,
+        "duration_seconds": 4,
+        "prompt_review": "Quiet tension in bus reflections.",
+        "prompt": "Night bus moves gently, city reflections slide across windows, both people pause before typing and their reflected worried eyes briefly align, restrained documentary camera drift, blank phone screens, stable anatomy, no text"
+      },
+      {
+        "id": "W02",
+        "reference": "P02",
+        "seed": 83002,
+        "duration_seconds": 4,
+        "prompt_review": "Stained-glass light reveals a shared fracture.",
+        "prompt": "Colored sunlight travels slowly through the stained glass, the two symbolic worlds remain distinct while one luminous fracture pulses beneath both, subtle handcrafted glass shimmer, locked composition, no text"
+      },
+      {
+        "id": "W03",
+        "reference": "P03",
+        "seed": 83003,
+        "duration_seconds": 4,
+        "prompt_review": "Bioluminescent alarm breathes in two bodies with the same rhythm.",
+        "prompt": "The two figures remain facing opposite directions while identical inner bioluminescent nervous patterns pulse slowly in sync, outer color fields move differently, controlled organic light motion, no text"
+      },
+      {
+        "id": "W04",
+        "reference": "P06",
+        "seed": 83004,
+        "duration_seconds": 4,
+        "prompt_review": "The pause opens a calmer route before the comment is sent.",
+        "prompt": "The finger stops before the blank screen, the translucent doorway gently opens and dawn light expands into the room, slow breathing camera, peaceful decisive ending, keep all interfaces blank, no text"
+      }
+    ],
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ]
+  }
+}

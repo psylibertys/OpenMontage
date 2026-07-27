@@ -1,0 +1,317 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-love-frequency-scale-20260725",
+  "title": "别用频率给爱情打分",
+  "cover_title": "爱的刻度",
+  "cover_english_title": "BEYOND FREQUENCY",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-23_别用频率给爱情打分.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐/single_instrumental_20260423_100116__001-Ambient-纯音乐-侧链压缩-梦幻-赞歌感-390579271184502.mp3",
+  "duration_seconds": 80,
+  "canvas_design_direction": "workflow_configs/zh-philosophy-video/design-directions/treeelf-batch-20260725-b.md#双人刻度别用频率给爱情打分",
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic domestic photography",
+      "translucent resin sculpture",
+      "paper wave relief",
+      "woven geometric textile"
+    ],
+    "target_ratios": {
+      "realistic": 0.4,
+      "abstract": 0.45,
+      "remotion_cards": 0.15
+    },
+    "cross_episode_repeat_policy": "Avoid red thread, literal hearts, thermometers, calendar marks, score gauges, torn photos, cyanotype evidence fields and repeated glass vessels.",
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "seed": 95301,
+        "steps": 8,
+        "prompt_review": "Two rhythms meet without becoming one score.",
+        "prompt": "Vertical 9:16 premium editorial cover background, two translucent resin wave surfaces with different rhythms meet gently in a quiet central zone, wine red and deep night blue with warm cream light, luxurious material detail, generous upper negative space for later typography, warmth is carried by material glow and hand-scale composition, temperature is expressed by color density and material transition, no text, no letters, no numbers, no logo, no watermark, no pseudo typography"
+      },
+      {
+        "id": "P00",
+        "role": "realistic",
+        "seed": 95302,
+        "steps": 8,
+        "prompt_review": "Ordinary closeness changes under real-life pressure.",
+        "prompt": "Vertical 9:16 cinematic domestic documentary photograph, a young East Asian couple quietly prepares a late dinner together after a long day, affectionate familiarity without staged romance, one tired and one attentive, warm kitchen practical light, candid 50mm realism, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P01",
+        "role": "abstract",
+        "seed": 95303,
+        "steps": 8,
+        "prompt_review": "One rigid pulse cannot describe a whole relationship.",
+        "prompt": "Vertical 9:16 museum-grade paper wave relief, one narrow regular pulse passes beside a broad irregular field of layered cream and burgundy paper, intricate hand-cut edges and soft shadows, the larger field remains richer than the pulse, relationship rhythm is shown through wave spacing and material balance, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P02",
+        "role": "realistic",
+        "seed": 95304,
+        "steps": 8,
+        "prompt_review": "Stress affects contact without proving love is absent.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, an East Asian couple sits at opposite ends of a sofa after separate demanding workdays, feet lightly touch in the middle while both rest silently, nuanced connection without smiling performance, night-blue room and warm lamp, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P03",
+        "role": "abstract",
+        "seed": 95305,
+        "steps": 8,
+        "prompt_review": "Two different rhythms coexist in one fabric.",
+        "prompt": "Vertical 9:16 master-crafted woven geometric textile artwork, two distinct wave patterns in burgundy and indigo cross through a cream field without merging into a single repeated beat, visible fibers and subtle tension, asymmetrical gallery composition, warmth is carried by material glow and hand-scale compositions, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P04",
+        "role": "realistic",
+        "seed": 95306,
+        "steps": 8,
+        "prompt_review": "Health and energy are part of the shared context.",
+        "prompt": "Vertical 9:16 observational documentary photograph, a young East Asian woman rests with a warm compress while her partner quietly brings water and adjusts the curtain, respectful everyday care, soft morning light, natural body language, the bottles function as quiet translucent material shapes, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P05",
+        "role": "abstract",
+        "seed": 95307,
+        "steps": 8,
+        "prompt_review": "Many factors touch the same visible signal.",
+        "prompt": "Vertical 9:16 translucent resin sculpture, several differently shaped clear and colored planes gently influence one suspended flexible membrane, complex optical caustics in burgundy cream and blue, precise museum installation photography, calibration appears through subtle scale and alignment, blank material samples carry the archive metaphor through texture, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P06",
+        "role": "realistic",
+        "seed": 95308,
+        "steps": 8,
+        "prompt_review": "Desire differences need conversation rather than verdict.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, a young East Asian couple talks calmly at a small breakfast table with open relaxed posture and direct attentive eye contact, intimate but nonsexual everyday setting, gentle daylight, candid 85mm depth, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P07",
+        "role": "abstract",
+        "seed": 95309,
+        "steps": 8,
+        "prompt_review": "Frequency and intensity occupy separate visual dimensions.",
+        "prompt": "Vertical 9:16 elegant abstract paper sculpture, sparse tall folds and dense low folds create two independent spatial qualities across one cream surface, burgundy edge light and deep blue shadows, meticulous handmade precision, measurement appears through quiet calibration objects and spatial rhythm, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P08",
+        "role": "realistic",
+        "seed": 95310,
+        "steps": 8,
+        "prompt_review": "Closeness also appears through coordinated ordinary action.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, an East Asian couple folds clean laundry together in a sunlit room, hands coordinate naturally while conversation continues, quiet warmth and lived-in detail, the pose remains candid and emotionally specific, fabric reads through color and weave texture, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P09",
+        "role": "abstract",
+        "seed": 95311,
+        "steps": 8,
+        "prompt_review": "A warning light becomes an invitation to look closer.",
+        "prompt": "Vertical 9:16 translucent resin artwork, a small warm glow travels through a branching non-electrical material network and softly reveals many surrounding layers rather than triggering an alarm, refined optical depth, night blue background, signal feeling is carried by human-scale light and material texture, meaning is embedded in objects, spacing and light, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P10",
+        "role": "realistic",
+        "seed": 95312,
+        "steps": 8,
+        "prompt_review": "A question replaces accusation.",
+        "prompt": "Vertical 9:16 intimate documentary photograph, close view of two East Asian adults seated face to face with one person speaking gently and the other listening, hands open on the table, soft side light and honest micro-expressions, tension stays quiet and observational, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P11",
+        "role": "abstract",
+        "seed": 95313,
+        "steps": 8,
+        "prompt_review": "The third space between two people becomes visible.",
+        "prompt": "Vertical 9:16 woven textile and paper relief artwork, two independent curved forms create a luminous unoccupied space between them, neither form dominates or dissolves, burgundy indigo and cream fibers, exquisite gallery craft, warmth is carried by material glow and hand-scale composition, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P12",
+        "role": "realistic",
+        "seed": 95314,
+        "steps": 8,
+        "prompt_review": "Connection remains visible without measurement.",
+        "prompt": "Vertical 9:16 cinematic wide photograph, a young East Asian couple walks home carrying groceries at slightly different paces while naturally adjusting to each other at a crosswalk, dusk city ambience, understated companionship, street setting reads through light, glass and silhouettes, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P13",
+        "role": "abstract",
+        "seed": 95315,
+        "steps": 8,
+        "prompt_review": "Two rhythms continue with room to negotiate.",
+        "prompt": "Vertical 9:16 minimalist closing artwork, two soft translucent resin waves continue side by side with changing distance and a calm shared light between them, deep blue burgundy and cream palette, abundant breathing room, master-level optical craft, warmth is carried by material glow and hand-scale compositions, no text, no letters, no numbers, no logo, no watermark"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "reference": "P00",
+        "seed": 95401,
+        "duration_seconds": 4,
+        "prompt_review": "Shared dinner preparation reveals quiet connection.",
+        "prompt": "One partner places a bowl while the other slowly stirs, they exchange a brief natural glance, warm practical light shifts gently, subtle documentary camera drift, stable hands and faces, no text"
+      },
+      {
+        "id": "W02",
+        "reference": "P05",
+        "seed": 95402,
+        "duration_seconds": 4,
+        "prompt_review": "Multiple factors softly alter one visible signal.",
+        "prompt": "The surrounding resin planes shift at different slow rates and the flexible membrane responds with complex gentle ripples, precise museum camera movement, stable material geometry, meaning is embedded in objects, spacing and light, no text"
+      }
+    ],
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "video",
+        "src": "video/W02.mp4",
+        "from": 30,
+        "to": 36,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P06.png",
+        "from": 36,
+        "to": 42,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      },
+      {
+        "id": "S12",
+        "kind": "still",
+        "src": "images/P11.png",
+        "from": 65,
+        "to": 70,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S13",
+        "kind": "still",
+        "src": "images/P12.png",
+        "from": 70,
+        "to": 75,
+        "motion": "push-left"
+      },
+      {
+        "id": "S14",
+        "kind": "still",
+        "src": "images/P13.png",
+        "from": 75,
+        "to": 80,
+        "motion": "drift-up"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "type": "comparison",
+        "from": 24,
+        "to": 33,
+        "eyebrow": "研究提醒",
+        "left": "亲密频率",
+        "operator": "≠",
+        "right": "爱情强度"
+      },
+      {
+        "id": "I02",
+        "type": "questions",
+        "from": 59,
+        "to": 68,
+        "eyebrow": "把判决换成对话",
+        "items": [
+          "最近我们的亲密变少了",
+          "你感觉发生了什么？"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

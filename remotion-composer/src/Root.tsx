@@ -16,6 +16,13 @@ import { ProductReveal, ProductRevealProps } from "./components/ProductReveal";
 import { CaptionOverlay, WordCaption } from "./components/CaptionOverlay";
 import { CollageBurst, CollageBurstProps } from "./CollageBurst";
 import { LyricOverlay, LyricOverlayProps } from "./LyricOverlay";
+import { TreeElfCover, TreeElfCoverProps } from "./TreeElfCover";
+import { TreeElfHabitVideo, TreeElfHabitVideoProps } from "./TreeElfHabitVideo";
+import { TreeElfHobbyVideo, TreeElfHobbyVideoProps } from "./TreeElfHobbyVideo";
+import { TreeElfRankingVideo, TreeElfRankingVideoProps } from "./TreeElfRankingVideo";
+import { TreeElfSharedAlarmVideo, TreeElfSharedAlarmVideoProps } from "./TreeElfSharedAlarmVideo";
+import { TreeElfPhilosophyEpisode, TreeElfPhilosophyEpisodeProps } from "./TreeElfPhilosophyEpisode";
+import { TreeElfFableEpisode, TreeElfFableEpisodeProps } from "./TreeElfFableEpisode";
 
 // ---------------------------------------------------------------------------
 // Theme System — prevents every video from looking like dark fintech
@@ -129,7 +136,7 @@ const calculateMetadata: CalculateMetadataFunction<ExplainerProps> = async ({
   }
   const lastEnd = Math.max(...cuts.map((c) => c.out_seconds || 0));
   // Add 1 second padding for final fade
-  return { durationInFrames: Math.ceil((lastEnd + 1) * 30) };
+  return { durationInFrames: Math.max(1, Math.ceil(lastEnd * 30)) };
 };
 
 export const Root: React.FC = () => {
@@ -329,6 +336,103 @@ export const Root: React.FC = () => {
           fadeOutSeconds: 1.5,
           overlay: true,
         } as EndTagProps}
+      />
+      <Composition
+        id="TreeElfCover"
+        component={TreeElfCover}
+        durationInFrames={1}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          backgroundSrc: "",
+          chineseTitle: "先开门",
+          englishTitle: "OPEN ONE DOOR",
+          brand: "树精灵",
+          titlePosition: "center",
+          textAlign: "center",
+          textColor: "#F7F2E8",
+          accentColor: "#D9B56D",
+          overlayOpacity: 0.34,
+          gradientDirection: "center",
+        } as TreeElfCoverProps}
+      />
+      <Composition
+        id="TreeElfHabitVideo"
+        component={TreeElfHabitVideo}
+        durationInFrames={2676}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{captions: []} as TreeElfHabitVideoProps}
+      />
+      <Composition
+        id="TreeElfHobbyVideo"
+        component={TreeElfHobbyVideo}
+        durationInFrames={2575}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{captions: []} as TreeElfHobbyVideoProps}
+      />
+      <Composition
+        id="TreeElfRankingVideo"
+        component={TreeElfRankingVideo}
+        durationInFrames={2826}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{} as TreeElfRankingVideoProps}
+      />
+      <Composition
+        id="TreeElfSharedAlarmVideo"
+        component={TreeElfSharedAlarmVideo}
+        durationInFrames={2442}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{} as TreeElfSharedAlarmVideoProps}
+      />
+      <Composition
+        id="TreeElfPhilosophyEpisode"
+        component={TreeElfPhilosophyEpisode}
+        durationInFrames={2400}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          assetRoot: "",
+          brand: "树精灵",
+          durationSeconds: 80,
+          scenes: [],
+          infoCards: [],
+          captions: [],
+          musicVolume: 0.38,
+        } as TreeElfPhilosophyEpisodeProps}
+        calculateMetadata={async ({props}) => ({
+          durationInFrames: Math.max(1, Math.ceil(props.durationSeconds * 30)),
+        })}
+      />
+      <Composition
+        id="TreeElfFableEpisode"
+        component={TreeElfFableEpisode}
+        durationInFrames={2400}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          assetRoot: "treeelf-fable/example",
+          title: "寓言",
+          totalSeconds: 80,
+          scenes: [],
+          captions: [],
+          musicVolume: 0.38,
+          transitionFrames: 10,
+        } as TreeElfFableEpisodeProps}
+        calculateMetadata={async ({props}) => ({
+          durationInFrames: Math.max(1, Math.ceil(props.totalSeconds * 30)),
+          defaultOutName: `${props.title || "treeelf-fable"}.mp4`,
+        })}
       />
     </>
   );

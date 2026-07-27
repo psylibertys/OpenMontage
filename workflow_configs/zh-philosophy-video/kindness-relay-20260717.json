@@ -1,0 +1,150 @@
+{
+  "project_id": "kindness-relay-20260717",
+  "title": "为什么一个陌生人的善意，会被转交给下一个人",
+  "cover_title": "善意接力",
+  "cover_lines": [
+    "善意接力"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 75,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "合作可能级联",
+    "微善意不是道德奖章",
+    "先守住一个日常接口"
+  ],
+  "core_message": "微小善意不必拯救社会，但有时会把合作基线带进下一轮互动。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-17_为什么一个陌生人的善意会被转交给下一个人.md",
+  "tags": [
+    "心哲灵",
+    "社会心理学",
+    "合作级联",
+    "广义互惠"
+  ],
+  "raw_script": "你对陌生人说的一句谢谢，可能影响一个根本没见过你的人吗？走廊里点个头，收银台认真道谢，通勤时留出一点空间，这些动作比手机解锁还短。可有些善意只停留五秒，却可能多走一站。\n\n一项匿名公共品实验让参与者每轮决定投入多少钱，再不断更换队友。研究者发现，人会把上一组接触到的合作或不合作倾向，带进与新人的下一轮互动。这叫合作行为级联：合作不一定沿原路退回，也可能被转交。\n\n可以把它记成“善意接力”：收到友善信号，更新下一段互动的合作基线，再可能把接力棒交给第三人。你递出的不是道德奖章，只是一张“这里可以合作”的临时通行证。\n\n但边界必须讲清：公共品实验研究的是匿名金钱贡献，不能等同于微笑传播。微善意传播仍是研究议程，直接研究还很少，传播还会受文化、权力关系和情境影响。\n\n所以，别做文明工程总监。先选一个每天重复的社交接口：确认同事的贡献，向服务人员明确道谢，或者安全地让一次行。它替代不了制度和公平，也不要求别人必须回应。更准确的判断是：合作有时会进入下一轮选择。别期待一个微笑拯救社会，先让接力棒别总在你这里掉线。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "calming",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "你对陌生人说的一句谢谢，可能影响一个根本没见过你的人吗？走廊里点个头，收银台认真道谢，通勤时留出一点空间，这些动作比手机解锁还短。可有些善意只停留五秒，却可能多走一站。",
+      "queries": [
+        {
+          "query": "strangers kindness coffee shop thank you",
+          "description": "陌生人之间短暂道谢"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "一项匿名公共品实验让参与者每轮决定投入多少钱，再不断更换队友。研究者发现，人会把上一组接触到的合作或不合作倾向，带进与新人的下一轮互动。这叫合作行为级联：合作不一定沿原路退回，也可能被转交。",
+      "queries": [
+        {
+          "query": "people cooperating in public space",
+          "description": "合作行为在人群中传递"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "善意接力"
+          ],
+          "subtitle": "合作有时会进入下一轮"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "可以把它记成“善意接力”：收到友善信号，更新下一段互动的合作基线，再可能把接力棒交给第三人。你递出的不是道德奖章，只是一张“这里可以合作”的临时通行证。\n\n但边界必须讲清：公共品实验研究的是匿名金钱贡献，不能等同于微笑传播。微善意传播仍是研究议程，直接研究还很少，传播还会受文化、权力关系和情境影响。",
+      "queries": [
+        {
+          "query": "relay baton handoff close up",
+          "description": "善意接力棒隐喻"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "别让接力棒",
+            "在你这里掉线"
+          ],
+          "subtitle": "从一个日常接口开始"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "所以，别做文明工程总监。先选一个每天重复的社交接口：确认同事的贡献，向服务人员明确道谢，或者安全地让一次行。它替代不了制度和公平，也不要求别人必须回应。更准确的判断是：合作有时会进入下一轮选择。别期待一个微笑拯救社会，先让接力棒别总在你这里掉线。",
+      "queries": [
+        {
+          "query": "city commuters respectful interaction",
+          "description": "通勤里的微小善意"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-love-was-not-wrong-20260725",
+  "asset_id": "4349d6ca-8534-4546-887b-877319e9b1ee",
+  "title": "关系结束不等于爱过是错",
+  "cover_title": "爱过无错",
+  "cover_english_title": "LOVE WAS NOT WRONG",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-22_关系结束不等于爱过是错.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐/single_instrumental_20260423_100116__001-Ambient-纯音乐-侧链压缩-梦幻-赞歌感-390579271184502.mp3",
+  "duration_seconds": 80.28,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic documentary photography",
+      "double exposure",
+      "Sumi-e and Chinese ink",
+      "ice sculpture and transparent material art"
+    ],
+    "target_ratios": {
+      "realistic": 0.4,
+      "abstract": 0.45,
+      "remotion_cards": 0.15
+    },
+    "cross_episode_repeat_policy": "Avoid the recent red thread, bus reflections, stained glass, constructivist arrows, bioluminescent nervous systems, wooden-room marquetry, quilt circles and floating constellations as prominent motifs.",
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "seed": 94001,
+        "steps": 8,
+        "prompt_review": "Transparent seasonal fruit preserves the reality of past sweetness without breakup clichés.",
+        "prompt": "Vertical 9:16 premium editorial cover background, a single translucent summer fruit cast in clear ice is slowly releasing warm golden color into cool open air, the fruit remains whole and precious rather than broken, elegant transparent material art, deep blue-gray negative space across the upper center for later typography, quiet emotional clarity, object-led composition carries the emotional residue, no text, no letters, no numbers, no logo, no watermark, no pseudo typography"
+      },
+      {
+        "id": "P00",
+        "role": "realistic",
+        "seed": 94100,
+        "steps": 8,
+        "prompt_review": "After a relationship ends, ordinary traces remain without tears, rain or torn photos.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, an East Asian woman around thirty quietly clearing a shared breakfast table in soft morning light, two cups but only one chair now occupied, her expression thoughtful and composed rather than crying, lived-in apartment, candid 50mm realism, emotional restraint, atmosphere comes from warm light and material translucency, memory appears as intact layered translucent surfaces, separation is shown through quiet distance and changed posture, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P01",
+        "role": "abstract",
+        "seed": 94101,
+        "steps": 8,
+        "prompt_review": "Double exposure separates the ending from the reality of what was once lived.",
+        "prompt": "Vertical 9:16 refined double-exposure artwork, a quiet human profile contains two nonliteral seasons at once, a warm summer orchard remains visible inside while the outer winter landscape has changed, clean silhouette, photographic depth, subtle paper grain, the warm memory is intact and not erased by the cold present, warmth is carried by material glow and hand-scale compositions, relationship is implied through objects, light and distance, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P02",
+        "role": "abstract",
+        "seed": 94102,
+        "steps": 8,
+        "prompt_review": "Ink movement gives impermanence a Chinese visual language without using a repeated object motif.",
+        "prompt": "Vertical 9:16 contemporary Chinese ink wash painting, one flowing ink landscape gradually changes density from lush summer washes into spare winter emptiness, the same paper holds both phases without rupture, expressive water blooms, mineral blue and muted ochre accents, large breathing space, philosophical and modern, marks appear as abstract material traces, authority is implied through composition and material weight, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P03",
+        "role": "realistic",
+        "seed": 94103,
+        "steps": 8,
+        "prompt_review": "A real act of sorting belongings visualizes what ended and what remains.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, an East Asian woman sorts ordinary household objects into a donation box while keeping one handmade ceramic bowl on the shelf, late afternoon window light, calm deliberate hands, nuanced acceptance, authentic apartment details, 35mm social realism, emotion remains contained in posture, light and texture, intimacy appears through restraint, space and material warmth, labels become blank material planes, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P04",
+        "role": "abstract",
+        "seed": 94104,
+        "steps": 8,
+        "prompt_review": "Transparent material shows possession ending while experience remains held in the person.",
+        "prompt": "Vertical 9:16 transparent material sculpture, a clear glass vessel is open and the vessel is dry and translucent, holding memory through surface and light, yet a warm amber refraction remains permanently suspended through the glass walls, sophisticated optical caustics on a dark stone surface, museum installation photography, spacious and precise, glaze transitions stay fluid and continuous, warmth is carried by material glow and hand-scale compositions, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P05",
+        "role": "realistic",
+        "seed": 94105,
+        "steps": 8,
+        "prompt_review": "A grounded walk forward avoids forced happiness or instant recovery.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, an East Asian woman walks alone through a public botanical garden between late summer and early autumn zones, unhurried posture, neither smiling broadly nor devastated, soft side light, honest transitional mood, shallow 50mm depth, natural colors, the relationship is implied through traces and spatial absence, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P06",
+        "role": "abstract",
+        "seed": 94106,
+        "steps": 8,
+        "prompt_review": "The closing image keeps value without demanding permanence.",
+        "prompt": "Vertical 9:16 minimalist mixed-media artwork led by double exposure, an open palm holds a field of warm summer light that continues to illuminate the skin while the source landscape has receded beyond the frame, delicate film grain and translucent layers, quiet dignity, abundant negative space, connection is expressed through script-specific material and spatial rhythm, warmth is carried by material glow and hand-scale compositions, no text, no letters, no numbers, no logo, no watermark"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "reference": "P00",
+        "seed": 94201,
+        "duration_seconds": 4,
+        "prompt_review": "Restrained morning movement opens the story.",
+        "prompt": "Soft morning light moves across the table, steam fades from the second cup, the woman makes one small deliberate clearing motion, subtle documentary camera drift, stable anatomy, no text"
+      },
+      {
+        "id": "W02",
+        "reference": "P02",
+        "seed": 94202,
+        "duration_seconds": 4,
+        "prompt_review": "Ink seasons transform without erasing one another.",
+        "prompt": "Ink washes breathe gently through the paper, warm dense summer marks recede into spare winter space while faint traces remain, slow capillary motion, locked composition, marks appear as abstract material traces, authority is implied through composition and material weight, no text"
+      },
+      {
+        "id": "W03",
+        "reference": "P04",
+        "seed": 94203,
+        "duration_seconds": 4,
+        "prompt_review": "Amber refraction remains after the vessel is emptied.",
+        "prompt": "Light moves slowly through the empty glass vessel, amber caustics remain suspended in the walls and shift across dark stone, precise museum camera movement, glaze transitions stay fluid and continuous, no text"
+      },
+      {
+        "id": "W04",
+        "reference": "P06",
+        "seed": 94204,
+        "duration_seconds": 4,
+        "prompt_review": "Held summer light becomes a calm closing motion.",
+        "prompt": "Warm light in the open palm pulses once like a steady breath, the distant landscape slowly recedes while illumination stays on the skin, restrained cinematic motion, stable hand anatomy, no text"
+      }
+    ],
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 7.2,
+        "playbackRate": 0.56
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 7.2,
+        "to": 15.0,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "video",
+        "src": "video/W02.mp4",
+        "from": 15.0,
+        "to": 22.5,
+        "playbackRate": 0.54
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 22.5,
+        "to": 31.0,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 31.0,
+        "to": 39.0,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S06",
+        "kind": "video",
+        "src": "video/W03.mp4",
+        "from": 39.0,
+        "to": 47.0,
+        "playbackRate": 0.52
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 47.0,
+        "to": 56.0,
+        "motion": "push-right"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 56.0,
+        "to": 64.0,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 64.0,
+        "to": 73.5,
+        "motion": "push-left"
+      },
+      {
+        "id": "S10",
+        "kind": "video",
+        "src": "video/W04.mp4",
+        "from": 73.5,
+        "to": 80.28,
+        "playbackRate": 0.59
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "type": "comparison",
+        "from": 31.0,
+        "to": 38.5,
+        "eyebrow": "把两件事分开",
+        "left": "无法继续拥有",
+        "operator": "≠",
+        "right": "从未得到"
+      },
+      {
+        "id": "I02",
+        "type": "questions",
+        "from": 64.0,
+        "to": 72.0,
+        "eyebrow": "别让痛苦篡改历史",
+        "items": [
+          "这段关系结束了什么？",
+          "它又真实留下了什么？"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

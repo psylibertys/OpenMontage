@@ -1,0 +1,151 @@
+{
+  "project_id": "sync-tax-teamwork-20260718",
+  "title": "为什么团队越同步，复杂任务反而可能做差",
+  "cover_title": "同步之税",
+  "cover_lines": [
+    "同步之税"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 75,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "同步不等于绩效",
+    "复杂任务需要认知分工",
+    "用三问保留纠错入口"
+  ],
+  "core_message": "团队同步只能说明一起动，不说明方向正确；复杂协作需要对齐，也需要分工和不同信息。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-18_为什么团队越同步复杂任务反而可能做差.md",
+  "tags": [
+    "心哲灵",
+    "脑间同步",
+    "团队协作",
+    "认知分工"
+  ],
+  "raw_script": "最顺的会议，可能也是最危险的会议。大家点头很快，方案通过很快，唯一没上桌的，是一条真正不同的信息。\n\n2026年一项研究让33对同性陌生人合作玩俄罗斯方块：一人只旋转，一人只横移，全程不能说话。fNIRS记录显示，合作时脑间同步高于单人和静息。脑间同步指脑活动的时间变化更对齐，不等于意见一致，更不是读心。\n\n但同步没有显著预测消除行数，只在combo指标上呈小幅负相关；研究者刺激右颞顶联合区，也没建立同步改变绩效的因果关系。\n\n把团队想成一辆双人驾驶的车。联动灯亮了，只说明两套操作正在互相影响，不说明路线正确。这就是“同步税”：你们忙着对齐，却把联动信号错当成协作成绩单。\n\n所以重要决策结束前，别只问“大家同意吗”，再问三句：谁负责哪一部分？谁掌握不同信息？什么结果会推翻方案？这三问给分工和纠错留个入口。\n\n这不意味着越吵越聪明。分歧本身不产出信息。复杂协作需要的是：该对齐时对齐，该不同处有人看路。同步能说明你们一起动，不能说明正往对的方向动。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "focused",
+      "minimal",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "最顺的会议，可能也是最危险的会议。大家点头很快，方案通过很快，唯一没上桌的，是一条真正不同的信息。",
+      "queries": [
+        {
+          "query": "team meeting everyone nodding office",
+          "description": "顺滑会议里的点头"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "2026年一项研究让33对同性陌生人合作玩俄罗斯方块：一人只旋转，一人只横移，全程不能说话。fNIRS记录显示，合作时脑间同步高于单人和静息。脑间同步指脑活动的时间变化更对齐，不等于意见一致，更不是读心。\n\n但同步没有显著预测消除行数，只在combo指标上呈小幅负相关；研究者刺激右颞顶联合区，也没建立同步改变绩效的因果关系。",
+      "queries": [
+        {
+          "query": "drivers steering car together metaphor",
+          "description": "双人驾驶隐喻"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "同步之税"
+          ],
+          "subtitle": "一起动，不等于方向对"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "把团队想成一辆双人驾驶的车。联动灯亮了，只说明两套操作正在互相影响，不说明路线正确。这就是“同步税”：你们忙着对齐，却把联动信号错当成协作成绩单。",
+      "queries": [
+        {
+          "query": "team brainstorming different opinions",
+          "description": "不同信息上桌"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "谁分工",
+            "谁有不同信息",
+            "什么会推翻"
+          ],
+          "subtitle": "复杂决策三问"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "所以重要决策结束前，别只问“大家同意吗”，再问三句：谁负责哪一部分？谁掌握不同信息？什么结果会推翻方案？这三问给分工和纠错留个入口。\n\n这不意味着越吵越聪明。分歧本身不产出信息。复杂协作需要的是：该对齐时对齐，该不同处有人看路。同步能说明你们一起动，不能说明正往对的方向动。",
+      "queries": [
+        {
+          "query": "team aligned but checking direction",
+          "description": "该对齐时对齐，该不同处看路"
+        }
+      ]
+    }
+  ]
+}

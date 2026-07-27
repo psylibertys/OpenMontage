@@ -130,6 +130,8 @@ class DashscopeImage(BaseTool):
     )
 
     def get_status(self) -> ToolStatus:
+        if os.environ.get("DASHSCOPE_IMAGE_ENABLED", "").lower() in {"0", "false", "no", "off"}:
+            return ToolStatus.UNAVAILABLE
         if os.environ.get("DASHSCOPE_API_KEY"):
             return ToolStatus.AVAILABLE
         return ToolStatus.UNAVAILABLE

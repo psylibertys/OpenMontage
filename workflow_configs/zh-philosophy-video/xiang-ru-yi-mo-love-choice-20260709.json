@@ -1,0 +1,169 @@
+{
+  "project_id": "xiang-ru-yi-mo-love-choice-20260709",
+  "title": "相濡以沫：恋爱不是最优解选择题",
+  "cover_title": "相忘江湖",
+  "cover_lines": [
+    "相忘江湖"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 131,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "相濡以沫之后还有相忘江湖",
+    "选择悖论放大后悔",
+    "从谁更好退回关系是否滋养"
+  ],
+  "core_message": "恋爱不是寻找最优商品；先判断关系是滋养你的江湖，还是让你抓住出口的干涸车辙。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-09_相濡以沫_恋爱选择.md",
+  "tags": [
+    "心哲灵",
+    "庄子",
+    "恋爱选择",
+    "选择悖论"
+  ],
+  "raw_script": "你正在恋爱，却突然被另一个人击中。\n\n你还爱身边的人，但新出现的那个人，让你开始怀疑：如果爱情也有最优解，我是不是选错了？\n\n最折磨人的地方，不是选 A 还是选 B。\n\n是你开始怀疑自己：我是不是变心了？是不是贪心？是不是对不起谁？\n\n庄子讲过一个很狠的画面。\n\n泉水干了，两条鱼困在陆地上，互相吐一点湿气，靠一点泡沫活着。\n\n这就是“相濡以沫”。\n\n但庄子后面还有半句：不如相忘于江湖。\n\n意思很冷静：两条鱼最好的状态，不是把彼此困在干涸的车辙里互相拯救。\n\n它们该回到江河湖海里。\n\n心理学里有一个概念叫选择悖论。\n\n选择越多，人不一定越幸福，反而更容易焦虑、后悔、自我归责。\n\n因为你一旦把爱情理解成购物，就会永远担心：还有没有更好的？\n\n每一次心动，都会变成一次对当前关系的审判。\n\n但这里真正的陷阱是：你把江湖问题，缩成了车辙里的单选题。\n\n选 A，怕错过。\n\n选 B，怕伤害。\n\n继续纠结，谁都没有真正被看见。\n\n所以这件事的第一步，未必是马上做决定。\n\n先从“谁更好”里退出来，问一个更准确的问题：\n\n我是在一段滋养我的关系里看见了新的心动，还是在一段干涸的关系里抓住了新的出口？\n\n前者需要诚实。\n\n后者需要空间。\n\n都不需要你立刻把自己判成坏人。\n\n相忘于江湖，不是教你薄情。\n\n它是在提醒你：爱不是两条鱼互相吐泡沫，证明谁更伟大。\n\n爱至少应该让人重新接近水。\n\n江湖就在三米外。\n\n你先游出去，你就知道答案了。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "neo-classical",
+      "ambient",
+      "soundtrack",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "你正在恋爱，却突然被另一个人击中。\n\n你还爱身边的人，但新出现的那个人，让你开始怀疑：如果爱情也有最优解，我是不是选错了？\n\n最折磨人的地方，不是选 A 还是选 B。\n\n是你开始怀疑自己：我是不是变心了？是不是贪心？是不是对不起谁？",
+      "queries": [
+        {
+          "query": "conflicted person between two romantic choices",
+          "description": "关系中的选择困境"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "庄子讲过一个很狠的画面。\n\n泉水干了，两条鱼困在陆地上，互相吐一点湿气，靠一点泡沫活着。\n\n这就是“相濡以沫”。\n\n但庄子后面还有半句：不如相忘于江湖。\n\n意思很冷静：两条鱼最好的状态，不是把彼此困在干涸的车辙里互相拯救。\n\n它们该回到江河湖海里。",
+      "queries": [
+        {
+          "query": "couple distant relationship dry emotional",
+          "description": "干涸关系中的互相拯救"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "相濡以沫"
+          ],
+          "subtitle": "不如相忘于江湖"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "心理学里有一个概念叫选择悖论。\n\n选择越多，人不一定越幸福，反而更容易焦虑、后悔、自我归责。\n\n因为你一旦把爱情理解成购物，就会永远担心：还有没有更好的？\n\n每一次心动，都会变成一次对当前关系的审判。\n\n但这里真正的陷阱是：你把江湖问题，缩成了车辙里的单选题。",
+      "queries": [
+        {
+          "query": "two fish shallow water drought metaphor",
+          "description": "相濡以沫的车辙意象"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "谁更好？"
+          ],
+          "subtitle": "还是这段关系是否滋养？"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Reframe",
+      "text": "选 A，怕错过。\n\n选 B，怕伤害。\n\n继续纠结，谁都没有真正被看见。\n\n所以这件事的第一步，未必是马上做决定。\n\n先从“谁更好”里退出来，问一个更准确的问题：\n\n我是在一段滋养我的关系里看见了新的心动，还是在一段干涸的关系里抓住了新的出口？",
+      "queries": [
+        {
+          "query": "crossroads relationship decision alone",
+          "description": "从单选题退回真实问题"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-3",
+          "title_lines": [
+            "爱"
+          ],
+          "subtitle": "至少应该让人重新接近水"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "Landing",
+      "text": "前者需要诚实。\n\n后者需要空间。\n\n都不需要你立刻把自己判成坏人。\n\n相忘于江湖，不是教你薄情。\n\n它是在提醒你：爱不是两条鱼互相吐泡沫，证明谁更伟大。\n\n爱至少应该让人重新接近水。\n\n江湖就在三米外。\n\n你先游出去，你就知道答案了。",
+      "queries": [
+        {
+          "query": "open lake water freedom peaceful",
+          "description": "重新接近江湖与滋养"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-transparent-30s-test-20260726",
+  "title": "一被看见就变透明的人｜30秒测试",
+  "cover_title": "被看见",
+  "cover_english_title": "Seen",
+  "source_script_md": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-fable/transparent-30s-test/transparent-30s-script.md",
+  "estimated_duration_seconds": 30,
+  "protagonist": {
+    "type": "成年女性",
+    "description": "年轻女性寓言主角，短黑卷发，白色棉衬衫与浅苔绿色背心，安静、敏感、温柔克制；本篇所有画面保持同一身份、服装和雨后苔绿色调"
+  },
+  "visual_brief": {
+    "fable_law": "每当别人认真看向主角，她的身体会逐渐透明；用于讨好世界的衣服、表情和动作仍然清晰可见。",
+    "central_metaphor": "被喜欢的外壳留下，被真实看见的自己先消失，再慢慢允许存在。",
+    "emotional_core": ["害怕被看见", "渴望被接纳", "温柔松动", "微光般的勇气"],
+    "symbolic_objects": ["透明手腕", "满衣柜", "雨夜木桌", "掌心之间的距离", "胸口深处的影子"],
+    "protagonist_identity": "年轻女性寓言主角，短黑卷发，白色棉衬衫与浅苔绿色背心，安静、敏感、温柔克制。",
+    "art_style_logic": "电影绘本质感承载真实发生的寓言事件；雨夜反光和半透明材质适合表达被看见时的脆弱，温暖木桌与苔绿色让结尾保留被接住的微光。",
+    "technical_guardrails": ["text-free generated image", "no readable text", "no letters", "no logo", "no watermark", "no pseudo typography"]
+  },
+  "character_pack": {
+    "enabled": true,
+    "master_prompt": "vertical 9:16 full-body character key art of a young adult woman, short black curly hair, white cotton shirt with pale moss-green vest, quiet sensitive presence, gentle hopeful eyes, cinematic storybook illustration, rain-after-moss color palette, tactile paper texture, warm restrained light",
+    "reference_prompts": [
+      "front view of the exact same young adult woman, short black curly hair, white cotton shirt with pale moss-green vest, neutral pose, plain softly lit background, gentle hopeful eyes, cinematic storybook texture",
+      "left three-quarter view of the exact same young adult woman, short black curly hair, white cotton shirt with pale moss-green vest, neutral pose, plain softly lit background, consistent silhouette and clothing",
+      "right profile view of the exact same young adult woman, short black curly hair, white cotton shirt with pale moss-green vest, neutral pose, plain softly lit background, quiet sensitive presence",
+      "back three-quarter view of the exact same young adult woman, short black curly hair, white cotton shirt with pale moss-green vest, neutral pose, plain softly lit background, consistent clothing and silhouette"
+    ]
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01",
+      "weight": 1,
+      "summary": "认真目光让主角开始透明",
+      "workflow": "krea2_low_vram",
+      "story_event": "主角坐在安静房间里，被一束认真目光照到，指尖和手腕开始变得半透明。",
+      "fable_law": "被认真看见时，真实身体逐渐透明，衣服和礼貌姿态仍然清晰。",
+      "art_style_logic": "雨后苔绿色和电影绘本纸感让超现实变化像日常里真实发生的事件。",
+      "prompt": "vertical 9:16 cinematic storybook illustration, young woman in white cotton shirt and pale moss-green vest sitting in a quiet room, her fingertips and wrist becoming translucent under a soft attentive gaze, clothing and polite posture remain clear, rain-after-moss color palette, tactile paper texture, warm restrained light"
+    },
+    {
+      "id": "beat-02",
+      "weight": 1,
+      "summary": "衣柜越来越满，镜子里的人越来越少",
+      "workflow": "krea2_low_vram",
+      "story_event": "主角站在满衣柜和镜子之间，层层衣物像安全壳一样包围她，镜中身体轮廓越来越淡。",
+      "fable_law": "讨好世界的外壳持续留下，真实身体持续变淡。",
+      "art_style_logic": "满衣柜的具象重量和镜中透明轮廓形成寓言反差，适合用克制魔法现实表现。",
+      "prompt": "vertical 9:16 cinematic storybook illustration, young woman standing between an overfilled wardrobe and a mirror, layers of coats and sweaters surround her like protective shells, her reflection is faint and translucent, moss green and warm wood palette, tactile paper texture, quiet magical realism"
+    },
+    {
+      "id": "beat-03",
+      "weight": 1,
+      "summary": "雨夜餐桌上她没有藏起透明手腕",
+      "workflow": "krea2_low_vram",
+      "story_event": "雨夜靠窗木桌旁，主角把透明的手腕慢慢放平在桌面，对面的人安静陪伴，两只手之间保持一点距离。",
+      "fable_law": "透明没有被修补，真实的空白被允许留在桌面上。",
+      "art_style_logic": "雨水反光、木桌和掌心距离把被接纳的瞬间变成可见的寓言证据。",
+      "prompt": "vertical 9:16 cinematic storybook illustration, rainy evening by a window, young woman slowly placing her translucent wrist flat on a wooden table, another calm hand rests nearby with a small respectful distance, rain reflections pass through her fingers, warm wood and moss green palette, tactile paper texture, intimate restrained composition"
+    },
+    {
+      "id": "beat-04",
+      "weight": 1,
+      "summary": "胸口深处出现允许被光照到的影子",
+      "workflow": "krea2_low_vram",
+      "story_event": "回家后的镜子前，主角脱下外套，透明胸口深处出现一小块缓慢起伏的影子。",
+      "fable_law": "她没有立刻变回原样，但真实的核心第一次被光照到并留在原处。",
+      "art_style_logic": "微光、镜面和半透明身体把结尾的心理松动转化成安静的画面。",
+      "prompt": "vertical 9:16 cinematic storybook illustration, young woman at home before a softly fogged mirror, removing her outer coat, inside her translucent chest a small gently moving shadow catches warm light, quiet room, rain-after-moss color palette, tactile paper texture, tender hopeful ending"
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 human-free symbolic cover background, rainlit wooden table with a translucent hand-shaped light ripple and two close palm shadows separated by a small respectful distance, refined paper texture, moss green and warm wood palette, generous clean negative space for later Remotion typography, calm editorial composition aligned with TreeElf philosophy covers",
+  "hero_wan": {
+    "enabled": false,
+    "scene_id": "",
+    "prompt": ""
+  },
+  "music_source": "",
+  "captions_path": ""
+}

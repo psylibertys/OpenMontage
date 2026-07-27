@@ -1,0 +1,149 @@
+{
+  "project_id": "fear-being-seen-20260718",
+  "title": "为什么我们害怕被看见",
+  "cover_title": "害怕看见",
+  "cover_lines": [
+    "害怕看见"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 75,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "怕被看见后离开",
+    "成片会剪掉真实部分",
+    "先给安全的人看十秒花絮"
+  ],
+  "core_message": "完美人设能换来掌声，也会剪掉真实镜头；靠近是慢慢确认谁能看见一点花絮。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-18_为什么我们害怕被看见.md",
+  "tags": [
+    "心哲灵",
+    "亲密关系",
+    "真实表达",
+    "完美人设"
+  ],
+  "raw_script": "有些人每次靠近别人，都像在参加一场不能 NG 的试镜。\n\n说合适的话，做合适的表情，连难过都要挑一个“不麻烦别人”的版本。演得越好，心里反而越没底：他喜欢的是我，还是我交上去的成片？\n\n我们怕的不是被看见，是被看见以后，对方转身走了。于是大脑想了个保险办法：先把自己修好，再允许别人靠近。\n\n可完美人设像一部只准保留高光的成片。它能换来掌声，也把真实镜头全剪掉了。别人说喜欢你，你还是会怀疑：他根本没看过那些被剪掉的部分。\n\n不用突然直播全部后台。先找一个曾经尊重过你边界的人，只给他看十秒花絮：“我其实有点紧张。”“这件事我也没想明白。”然后看他会不会尊重、保密、不急着纠正你。\n\n真正的靠近，不是让所有人进入后台。是慢慢确认，谁看过一点花絮，还愿意坐在这里。\n\n关系不是试镜。安全的人，不要求你每次都一条过。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "calming",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "有些人每次靠近别人，都像在参加一场不能 NG 的试镜。\n\n说合适的话，做合适的表情，连难过都要挑一个“不麻烦别人”的版本。演得越好，心里反而越没底：他喜欢的是我，还是我交上去的成片？",
+      "queries": [
+        {
+          "query": "person nervous backstage audition",
+          "description": "像不能NG的试镜"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "我们怕的不是被看见，是被看见以后，对方转身走了。于是大脑想了个保险办法：先把自己修好，再允许别人靠近。\n\n可完美人设像一部只准保留高光的成片。它能换来掌声，也把真实镜头全剪掉了。别人说喜欢你，你还是会怀疑：他根本没看过那些被剪掉的部分。",
+      "queries": [
+        {
+          "query": "film editing timeline deleted clips",
+          "description": "真实镜头被剪掉"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "害怕看见"
+          ],
+          "subtitle": "怕的是看见后离开"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "不用突然直播全部后台。先找一个曾经尊重过你边界的人，只给他看十秒花絮：“我其实有点紧张。”“这件事我也没想明白。”然后看他会不会尊重、保密、不急着纠正你。",
+      "queries": [
+        {
+          "query": "close friends quiet conversation vulnerability",
+          "description": "向安全的人露出一点真实"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "十秒花絮"
+          ],
+          "subtitle": "先给安全的人看一点真实"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "真正的靠近，不是让所有人进入后台。是慢慢确认，谁看过一点花絮，还愿意坐在这里。\n\n关系不是试镜。安全的人，不要求你每次都一条过。",
+      "queries": [
+        {
+          "query": "two people sitting calmly together",
+          "description": "安全靠近的关系"
+        }
+      ]
+    }
+  ]
+}

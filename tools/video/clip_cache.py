@@ -61,6 +61,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import tempfile
 import time
@@ -144,6 +145,11 @@ class CacheEntry:
     license: str = ""
     creator: str = ""
     source_tags: str = ""
+    query: str = ""
+    width: int = 0
+    height: int = 0
+    duration_seconds: float = 0.0
+    last_project_id: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -166,6 +172,11 @@ class CacheEntry:
             license=str(d.get("license", "") or ""),
             creator=str(d.get("creator", "") or ""),
             source_tags=str(d.get("source_tags", "") or ""),
+            query=str(d.get("query", "") or ""),
+            width=int(d.get("width", 0) or 0),
+            height=int(d.get("height", 0) or 0),
+            duration_seconds=float(d.get("duration_seconds", 0.0) or 0.0),
+            last_project_id=str(d.get("last_project_id", "") or ""),
         )
 
 
@@ -312,8 +323,74 @@ class ClipCache:
             raise
 
     # ------------------------------------------------------------------
-    # Public API — try_link, ingest, stats
+    # Public API — search, try_link, ingest, stats
     # ------------------------------------------------------------------
+
+    def search(
+        self,
+        query: str,
+        *,
+        orientation: str | None = None,
+        exclude_clip_ids: Optional[set[str]] = None,
+        min_score: float = 0.3,
+        limit: int = 10,
+    ) -> list[tuple[float, CacheEntry]]:
+        """Search cached clips by the query metadata recorded at ingest time.
+
+        This deliberately stays lightweight: it is the fast, offline first
+        pass used before a stock-provider API call. The richer CLIP corpus
+        remains available for documentary-scale semantic retrieval.
+        """
+        query_tokens = _search_tokens(query)
+        if not query_tokens:
+            return []
+        exclude = exclude_clip_ids or set()
+        with self._locked():
+            entries = self._read_manifest()
+
+        ranked: list[tuple[float, CacheEntry]] = []
+        for entry in entries.values():
+            if entry.clip_id in exclude:
+                continue
+            blob_path = self.cache_dir / entry.file_name
+            if not blob_path.is_file():
+                continue
+            if not _orientation_matches(entry, orientation):
+                continue
+            candidate_tokens = _search_tokens(f"{entry.query} {entry.source_tags}")
+            if not candidate_tokens:
+                continue
+            overlap = query_tokens & candidate_tokens
+            coverage = len(overlap) / len(query_tokens)
+            precision = len(overlap) / len(candidate_tokens)
+            score = 0.8 * coverage + 0.2 * precision
+            if entry.query.strip().lower() == query.strip().lower():
+                score = 1.0
+            if score >= min_score:
+                ranked.append((round(score, 4), entry))
+        ranked.sort(key=lambda item: (item[0], item[1].last_access_at), reverse=True)
+        return ranked[: max(1, limit)]
+
+    def link_best(
+        self,
+        query: str,
+        dest: Path,
+        *,
+        orientation: str | None = None,
+        exclude_clip_ids: Optional[set[str]] = None,
+        min_score: float = 0.3,
+    ) -> tuple[CacheEntry, float] | None:
+        """Link the best relevant local-library clip into ``dest``."""
+        for score, entry in self.search(
+            query,
+            orientation=orientation,
+            exclude_clip_ids=exclude_clip_ids,
+            min_score=min_score,
+            limit=10,
+        ):
+            if self.try_link(entry.clip_id, dest):
+                return entry, score
+        return None
 
     def try_link(self, clip_id: str, dest: Path) -> bool:
         """Hard-link (or copy) a cached clip into ``dest`` if present.
@@ -401,7 +478,28 @@ class ClipCache:
             if clip_id in entries and (
                 self.cache_dir / entries[clip_id].file_name
             ).exists():
-                entries[clip_id].last_access_at = time.time()
+                entry = entries[clip_id]
+                entry.last_access_at = time.time()
+                for field_name in (
+                    "source",
+                    "source_id",
+                    "source_url",
+                    "license",
+                    "creator",
+                    "source_tags",
+                    "query",
+                    "last_project_id",
+                ):
+                    value = metadata.get(field_name)
+                    if value not in (None, ""):
+                        setattr(entry, field_name, str(value))
+                for field_name in ("width", "height"):
+                    value = metadata.get(field_name)
+                    if value not in (None, "", 0):
+                        setattr(entry, field_name, int(value))
+                duration = metadata.get("duration_seconds")
+                if duration not in (None, "", 0):
+                    entry.duration_seconds = float(duration)
                 self._write_manifest(entries)
                 return True
 
@@ -438,6 +536,11 @@ class ClipCache:
                 license=str(metadata.get("license", "") or ""),
                 creator=str(metadata.get("creator", "") or ""),
                 source_tags=str(metadata.get("source_tags", "") or ""),
+                query=str(metadata.get("query", "") or ""),
+                width=int(metadata.get("width", 0) or 0),
+                height=int(metadata.get("height", 0) or 0),
+                duration_seconds=float(metadata.get("duration_seconds", 0.0) or 0.0),
+                last_project_id=str(metadata.get("last_project_id", "") or ""),
             )
             self._write_manifest(entries)
             return True
@@ -518,6 +621,32 @@ class ClipCache:
 # ----------------------------------------------------------------------
 # Module-level helpers
 # ----------------------------------------------------------------------
+
+
+_SEARCH_STOP_WORDS = {
+    "a", "an", "and", "at", "background", "calm", "cinematic", "for",
+    "in", "of", "on", "person", "people", "scene", "shot", "the", "to",
+    "video", "with",
+}
+
+
+def _search_tokens(value: str) -> set[str]:
+    """Normalize English/CJK query text into a small comparable token set."""
+    raw_tokens = re.findall(r"[a-z0-9]+|[\u3400-\u9fff]+", value.lower())
+    return {token for token in raw_tokens if len(token) > 1 and token not in _SEARCH_STOP_WORDS}
+
+
+def _orientation_matches(entry: CacheEntry, orientation: str | None) -> bool:
+    if not orientation or not entry.width or not entry.height:
+        return True
+    if orientation == "landscape":
+        return entry.width >= entry.height
+    if orientation == "portrait":
+        return entry.height >= entry.width
+    if orientation == "square":
+        ratio = entry.width / entry.height
+        return 0.8 <= ratio <= 1.25
+    return True
 
 
 def _link_or_copy(src: Path, dst: Path) -> bool:

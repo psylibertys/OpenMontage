@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文哲思视频"
+  short_description: "把中文文案生成带配音字幕素材的哲思短视频自动工作流"
+  default_prompt: "Use $zh-philosophy-video to turn my Chinese script into a narrated philosophy explainer video."

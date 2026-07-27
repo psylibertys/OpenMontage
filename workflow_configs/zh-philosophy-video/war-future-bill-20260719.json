@@ -1,0 +1,150 @@
+{
+  "project_id": "war-future-bill-20260719",
+  "title": "战争的真正代价",
+  "cover_title": "未来账单",
+  "cover_lines": [
+    "未来账单"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "停火不是账单清零",
+    "地雷、通胀、教育和流失继续付款",
+    "问谁的未来在买单"
+  ],
+  "core_message": "战争真正昂贵的部分，是爆炸停止之后，一个地方还要用几十年重新买回生活。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-19_战争的真正代价.md",
+  "tags": [
+    "心哲灵",
+    "战争",
+    "未来",
+    "人性代价"
+  ],
+  "raw_script": "战争最贵的东西，可能不是导弹。\n\n是导弹停下以后，未来还在替它付钱。\n\n我们常把战争的账单，算成武器、坦克、飞机和被炸毁的建筑。\n\n但爆炸停止，只是停止增加眼前的破坏，不是账单清零。\n\n田地里留下的地雷和战争遗留物，会让土地很多年无法耕种。\n\n企业倒下，投资离开，通胀把普通人的积蓄一点点吃掉。\n\n学校被毁，留下的孩子错过几年教育；有能力离开的人开始离开，一个地方恢复未来的力量也跟着流失。\n\n所以一场战争的真正代价，是一个国家要用接下来几十年，重新买回它原本已经拥有的生活。\n\n重建一间教室，重新种一块田，让一代人重新相信明天会稳定到来。\n\n这些都不会随着停火协议签字，立刻回来。\n\n所以我们谈论战争时，不能只问谁赢得了眼前。\n\n还要问：最后一声爆炸之后，是谁的未来，要继续替它付款？",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "cinematic",
+      "somber",
+      "ambient",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "战争最贵的东西，可能不是导弹。\n\n是导弹停下以后，未来还在替它付钱。\n\n我们常把战争的账单，算成武器、坦克、飞机和被炸毁的建筑。",
+      "queries": [
+        {
+          "query": "destroyed school war aftermath empty classroom",
+          "description": "学校被毁后的未来损失"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "但爆炸停止，只是停止增加眼前的破坏，不是账单清零。\n\n田地里留下的地雷和战争遗留物，会让土地很多年无法耕种。\n\n企业倒下，投资离开，通胀把普通人的积蓄一点点吃掉。\n\n学校被毁，留下的孩子错过几年教育；有能力离开的人开始离开，一个地方恢复未来的力量也跟着流失。",
+      "queries": [
+        {
+          "query": "ruined city rebuilding aftermath",
+          "description": "爆炸后重建城市"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "未来账单"
+          ],
+          "subtitle": "停火不等于清零"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "所以一场战争的真正代价，是一个国家要用接下来几十年，重新买回它原本已经拥有的生活。\n\n重建一间教室，重新种一块田，让一代人重新相信明天会稳定到来。",
+      "queries": [
+        {
+          "query": "inflation empty wallet crisis",
+          "description": "普通人的积蓄被通胀吃掉"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "谁的未来",
+            "继续付款"
+          ],
+          "subtitle": "别只问谁赢了眼前"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "这些都不会随着停火协议签字，立刻回来。\n\n所以我们谈论战争时，不能只问谁赢得了眼前。\n\n还要问：最后一声爆炸之后，是谁的未来，要继续替它付款？",
+      "queries": [
+        {
+          "query": "person looking at sunrise ruined city",
+          "description": "未来继续付款的收束"
+        }
+      ]
+    }
+  ]
+}

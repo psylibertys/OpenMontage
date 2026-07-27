@@ -1,0 +1,237 @@
+{
+  "project_id": "why-unmanaged-not-free-20260716",
+  "title": "为什么没人管你，还是不自由",
+  "cover_title": "方向自由",
+  "cover_lines": ["方向自由"],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 110,
+  "tone": "克制、清醒、有思考感",
+  "target_audience": "关注自由、自主性、自我成长和心理机制的中文观众",
+  "key_points": [
+    "没人拦你只完成了自由的一半",
+    "行动空间与方向自主是两个维度",
+    "选项属于环境，理由才可能属于你",
+    "结构限制不能只靠反省解决"
+  ],
+  "core_message": "先拿回一个行动的理由，再谈拿回整个人生。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": ["ambient", "calming", "piano", "克制", "纯音乐"]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [248, 246, 231],
+    "accent_color_rgb": [214, 179, 90],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "没人拦你，只完成了自由的一半。",
+      "queries": [
+        {
+          "query": "person standing alone on open road uncertain direction cinematic",
+          "description": "道路完全开放，但人物不知道该往哪里走。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "half-freedom-card",
+          "title_lines": ["自由的一半"],
+          "subtitle": "没人拦你，还不等于你在主导"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Autopilot Scenes",
+      "text": "休息日没有安排，手却一直沿着推荐流往下滑；明明可以拒绝，想到别人会失望，你又答应。没有命令，行动仍像被推着走。",
+      "queries": [
+        {
+          "query": "person scrolling phone endlessly at home night tired",
+          "description": "休息日被推荐流接管。"
+        },
+        {
+          "query": "hesitant person agreeing reluctantly social pressure",
+          "description": "明明可以拒绝，却因害怕别人失望而答应。"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Two Freedom Questions",
+      "text": "Berlin 区分两个自由问题：有没有人干涉我，以及谁在主导我。自我决定理论从心理层面问：行动是否出于自己认同的理由。自主不等于独立；认同建议里的理由，接受建议也可以是自主的。",
+      "queries": [
+        {
+          "query": "person at crossroads choosing path thoughtful cinematic",
+          "description": "两个自由问题的分岔路。"
+        },
+        {
+          "query": "open door person making deliberate choice calm",
+          "description": "有行动空间，也需要自己认同的理由。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "freedom-questions-card",
+          "title_lines": ["有没有人干涉", "谁在主导我"],
+          "subtitle": "两个自由问题"
+        },
+        {
+          "id": "autonomy-card",
+          "title_lines": ["自主", "不等于独立"],
+          "subtitle": "关键是行动理由是否被自己认同"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Two Dimensions",
+      "text": "两套理论并非同源，这里只借它们拆开两个维度：行动空间回答“我能不能做”；方向自主回答“我为什么这样做”。",
+      "queries": [
+        {
+          "query": "split path space and compass direction metaphor",
+          "description": "行动空间与方向自主的双维度隐喻。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "two-dimensions-card",
+          "title_lines": ["行动空间", "方向自主"],
+          "subtitle": "我能不能做 / 我为什么这样做"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "Options And Reasons",
+      "text": "选项属于环境，理由才可能属于你。",
+      "queries": [
+        {
+          "query": "hand holding compass on open road sunrise",
+          "description": "环境给出道路，方向感来自手中的指南针。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "options-reasons-card",
+          "title_lines": ["选项属于环境"],
+          "subtitle": "理由才可能属于你"
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "label": "Hidden Control",
+      "text": "但自由的反面不只有命令。为了避免内疚、证明自己、满足评价而行动，表面自愿，体验仍可能受控。推荐流和习惯线索，也会替你跳过选择。",
+      "queries": [
+        {
+          "query": "person looking in mirror self criticism dark room",
+          "description": "内疚、证明自己和评价压力形成内部控制。"
+        },
+        {
+          "query": "social media algorithm phone control strings metaphor",
+          "description": "推荐流和习惯线索替人跳过选择。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "hidden-control-card",
+          "title_lines": ["表面自愿", "体验受控"],
+          "subtitle": "自由的反面不只有命令"
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "label": "Three Questions",
+      "text": "检查今天的一个动作，只问三句：我能说出理由吗？这个理由是我认同的，还是只为避免羞耻？如果没人评价，我还愿意保留它吗？",
+      "queries": [
+        {
+          "query": "person journaling reflective questions quiet desk",
+          "description": "在安静桌前检查一个具体行动的理由。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "three-questions-card",
+          "title_lines": ["理由三问"],
+          "subtitle": "能说出 / 真认同 / 无评价仍保留"
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "label": "Structural Boundary",
+      "text": "这不意味着结构限制都能靠反省解决。时间、资源和权力关系，仍会压缩真实选择。",
+      "queries": [
+        {
+          "query": "worker constrained by time money power system documentary",
+          "description": "时间、资源和权力关系构成真实限制。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "boundary-card",
+          "title_lines": ["反省不是万能"],
+          "subtitle": "结构仍会压缩真实选择"
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "label": "Landing",
+      "text": "先拿回一个行动的理由，再谈拿回整个人生。",
+      "queries": [
+        {
+          "query": "person walking toward sunrise with clear direction calm",
+          "description": "从一个行动开始，重新获得方向。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "landing-card",
+          "title_lines": ["先拿回理由"],
+          "subtitle": "再谈拿回整个人生"
+        }
+      ]
+    }
+  ]
+}

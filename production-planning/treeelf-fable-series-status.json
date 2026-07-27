@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "series": "treeelf-fable",
+  "source_dir": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言",
+  "final_output_dir": "/Users/treeelf/Movies/treeelf-fable",
+  "updated": "2026-07-25",
+  "items": [
+    {
+      "source": "2026-07-21_一句话被说到长出家具.md",
+      "status": "completed",
+      "project_id": "treeelf-fable-words-grow-furniture-20260725",
+      "output": "/Users/treeelf/Movies/treeelf-fable/一句话被说到长出家具_v1.mp4",
+      "cover": "/Users/treeelf/Movies/treeelf-fable/一句话被说到长出家具_封面_v1.png",
+      "completed": "2026-07-25"
+    },
+    {
+      "source": "2026-07-21_一被看见就变透明的人.md",
+      "status": "completed",
+      "updated_at": "2026-07-25T16:42:24.414898+00:00",
+      "project_id": "treeelf-fable-transparent-20260725-b01",
+      "batch_id": "treeelf-fable-batch-20260725-01",
+      "output": "/Users/treeelf/Movies/treeelf-fable/一被看见就变透明的人_v1.mp4",
+      "completed": "2026-07-26",
+      "cover": "/Users/treeelf/Movies/treeelf-fable/一被看见就变透明的人_封面_v1.png"
+    },
+    {
+      "source": "2026-07-21_下午三点以前不能生活的人.md",
+      "status": "completed",
+      "updated_at": "2026-07-25T16:42:24.584882+00:00",
+      "project_id": "treeelf-fable-waiting-before-three-20260725-b01",
+      "batch_id": "treeelf-fable-batch-20260725-01",
+      "output": "/Users/treeelf/Movies/treeelf-fable/下午三点以前不能生活的人_v1.mp4",
+      "completed": "2026-07-26",
+      "cover": "/Users/treeelf/Movies/treeelf-fable/下午三点以前不能生活的人_封面_v1.png"
+    },
+    {
+      "source": "2026-07-21_住进墙里的人.md",
+      "status": "completed",
+      "updated_at": "2026-07-25T16:42:24.721363+00:00",
+      "project_id": "treeelf-fable-wallpaper-room-20260725-b01",
+      "batch_id": "treeelf-fable-batch-20260725-01",
+      "output": "/Users/treeelf/Movies/treeelf-fable/住进墙里的人_v1.mp4",
+      "completed": "2026-07-26",
+      "cover": "/Users/treeelf/Movies/treeelf-fable/住进墙里的人_封面_v1.png"
+    },
+    {
+      "source": "2026-07-21_在两座桥之间停住的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-21_影子落在别处的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-21_把今天寄给明天的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-21_收藏了一屋种子的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-21_边界每天移动的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-21_长得很慢的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-23_把一场雨写进全年天气的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-23_把自己修成门锁的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-23_被蒲公英叫醒的人.md",
+      "status": "completed",
+      "project_id": "treeelf-fable-dandelion-awakening-20260725",
+      "output": "/Users/treeelf/Movies/zh-philosophy-video/被蒲公英叫醒的人_v1.mp4",
+      "completed": "2026-07-25"
+    },
+    {
+      "source": "2026-07-24_一坐下椅子就开始走的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-24_替世界守夜却忘了关灯的人.md",
+      "status": "pending"
+    },
+    {
+      "source": "2026-07-24_身后有一间未开灯的仓库的人.md",
+      "status": "pending"
+    }
+  ]
+}

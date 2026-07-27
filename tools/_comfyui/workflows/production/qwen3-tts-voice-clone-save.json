@@ -1,0 +1,134 @@
+{
+  "18": {
+    "inputs": {
+      "filename": "my_custom_voice",
+      "voice_clone_prompt": [
+        "16",
+        0
+      ],
+      "audio": [
+        "15",
+        0
+      ],
+      "ref_text": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "FB_Qwen3TTSSaveVoice",
+    "_meta": {
+      "title": "💾 Qwen3-TTS SaveVoice"
+    }
+  },
+  "6": {
+    "inputs": {
+      "positive": "Hi, I’m using a woman’s voice to talk to you right now. It’s smooth, it’s clear and it sounds pretty natural. Kinda cool, right?"
+    },
+    "class_type": "easy positive",
+    "_meta": {
+      "title": "2. Reference Audio Text (Must Match Voice Sample Audio)"
+    }
+  },
+  "16": {
+    "inputs": {
+      "model_choice": "1.7B",
+      "device": "auto",
+      "precision": "bf16",
+      "attention": "auto",
+      "x_vector_only": false,
+      "unload_model_after_generate": false,
+      "ref_audio": [
+        "15",
+        0
+      ],
+      "ref_text": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "FB_Qwen3TTSVoiceClonePrompt",
+    "_meta": {
+      "title": "🎭 Qwen3-TTS VoiceClonePrompt"
+    }
+  },
+  "19": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true,
+      "anything": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM V2",
+    "_meta": {
+      "title": "LayerUtility: Purge VRAM V2"
+    }
+  },
+  "5": {
+    "inputs": {
+      "positive": "Welcome to Pixaroma Radio. This is Alison speaking. Today we’re testing a cloned female voice inside ComfyUI. Pretty cool, right?"
+    },
+    "class_type": "easy positive",
+    "_meta": {
+      "title": "3. Speech Text"
+    }
+  },
+  "8": {
+    "inputs": {
+      "filename_prefix": "audio/voice",
+      "quality": "V0",
+      "audio": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "SaveAudioMP3",
+    "_meta": {
+      "title": "Save Audio (MP3) (DEPRECATED)"
+    }
+  },
+  "15": {
+    "inputs": {
+      "audio": "WomanVoiceSample.mp3"
+    },
+    "class_type": "LoadAudio",
+    "_meta": {
+      "title": "1. Load Voice Sample (10–20s)"
+    }
+  },
+  "14": {
+    "inputs": {
+      "model_choice": "1.7B",
+      "device": "auto",
+      "precision": "bf16",
+      "language": "English",
+      "seed": 913204171250330,
+      "max_new_tokens": 2048,
+      "top_p": 0.8,
+      "top_k": 20,
+      "temperature": 1,
+      "repetition_penalty": 1.05,
+      "x_vector_only": false,
+      "attention": "auto",
+      "unload_model_after_generate": false,
+      "custom_model_path": "",
+      "target_text": [
+        "5",
+        0
+      ],
+      "ref_audio": [
+        "15",
+        0
+      ],
+      "ref_text": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "FB_Qwen3TTSVoiceClone",
+    "_meta": {
+      "title": "🎭 Qwen3-TTS VoiceClone"
+    }
+  }
+}

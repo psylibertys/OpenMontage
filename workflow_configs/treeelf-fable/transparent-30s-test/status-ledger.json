@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "series": "treeelf-fable-transparent-30s-test",
+  "items": [
+    {
+      "source": "transparent-30s-script.md",
+      "status": "completed",
+      "updated_at": "2026-07-25T18:04:17.180067+00:00",
+      "project_id": "treeelf-fable-transparent-30s-test-20260726",
+      "batch_id": "treeelf-fable-batch-transparent-30s-test-20260726",
+      "output": "/Users/treeelf/Movies/treeelf-fable/一被看见就变透明的人｜30秒测试_v2.mp4",
+      "cover": "/Users/treeelf/Movies/treeelf-fable/一被看见就变透明的人｜30秒测试_封面_v2.png",
+      "completed": "2026-07-26"
+    }
+  ]
+}

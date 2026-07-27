@@ -1,0 +1,150 @@
+{
+  "project_id": "archetype-character-mirror-20260718",
+  "title": "为什么我们总被同一种角色吸引",
+  "cover_title": "角色之镜",
+  "cover_lines": [
+    "角色之镜"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 75,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "角色模式会反复出现",
+    "原型像共同的梦与期待",
+    "用三问看见自己羡慕什么"
+  ],
+  "core_message": "反复吸引你的角色像一面镜子，它不替你下结论，只提醒你正在寻找某种力量。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-18_为什么我们总被同一种角色吸引.md",
+  "tags": [
+    "心哲灵",
+    "荣格",
+    "原型",
+    "自我认识"
+  ],
+  "raw_script": "电影换了一部又一部，演员换了好几批，你最喜欢的却总是同一种人：替大家扛事的英雄、关键时刻出现的导师，或者坏得很有魅力的反派。故事变了，那面镜子没怎么变。\n\n荣格把这种反复出现的角色模式叫“原型”。他认为，它不只来自个人经历，也可能连着人类共同的梦、恐惧和期待。今天，也有神经科学家尝试靠近这面镜子，但还没有看清镜子究竟从哪里来。\n\n一项关于喜欢角色的调查里，受访者更想成为那些和自己态度相近、又拥有自己欣赏特质的角色。\n\n所以下次又被同一种角色吸住，别急着给自己贴标签。问三句：我羡慕他什么？我希望他替我做什么？现实里，我什么时候最需要这股力量？\n\n镜子不会替你下结论。它只是让那个反复路过的身影停一下，好让你多问一句：我到底在寻找什么？",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "cinematic",
+      "ambient",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "电影换了一部又一部，演员换了好几批，你最喜欢的却总是同一种人：替大家扛事的英雄、关键时刻出现的导师，或者坏得很有魅力的反派。故事变了，那面镜子没怎么变。",
+      "queries": [
+        {
+          "query": "person watching movie theater face close up",
+          "description": "被同一种角色吸引"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "荣格把这种反复出现的角色模式叫“原型”。他认为，它不只来自个人经历，也可能连着人类共同的梦、恐惧和期待。今天，也有神经科学家尝试靠近这面镜子，但还没有看清镜子究竟从哪里来。",
+      "queries": [
+        {
+          "query": "mirror reflection mysterious person",
+          "description": "角色之镜"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "角色之镜"
+          ],
+          "subtitle": "你到底在寻找什么"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "一项关于喜欢角色的调查里，受访者更想成为那些和自己态度相近、又拥有自己欣赏特质的角色。",
+      "queries": [
+        {
+          "query": "person writing questions journal",
+          "description": "用三问理解吸引"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "我羡慕什么",
+            "希望他替我做什么"
+          ],
+          "subtitle": "从喜欢看见自己"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "所以下次又被同一种角色吸住，别急着给自己贴标签。问三句：我羡慕他什么？我希望他替我做什么？现实里，我什么时候最需要这股力量？\n\n镜子不会替你下结论。它只是让那个反复路过的身影停一下，好让你多问一句：我到底在寻找什么？",
+      "queries": [
+        {
+          "query": "movie screen audience introspective",
+          "description": "故事像镜子"
+        }
+      ]
+    }
+  ]
+}

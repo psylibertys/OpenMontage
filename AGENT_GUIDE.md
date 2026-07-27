@@ -14,6 +14,33 @@ This skill teaches you to run discovery, classify the user's setup, present capa
 
 **Skip onboarding** when the user arrives with a specific, actionable request (e.g., "Make a 60-second explainer about black holes"). Go directly to Rule Zero.
 
+## ComfyUI and AutoDL Entry Point
+
+When a request mentions ComfyUI, AutoDL, Qwen3-TTS, Krea, Z-Image, Flux character consistency, SeedVR2, Wan image-to-video, InfiniteTalk, Wan Animate, SCAIL, LoRA, voice cloning, lip sync, or the course workflows, the agent MUST read both of these files completely before inspecting, planning, installing, downloading, starting an instance, or generating assets:
+
+1. `production-planning/COMFYUI_AGENT_CONTEXT.md` — project-specific source of truth for the active workflow catalog, approved routing decisions, AutoDL connection, deployment state, asset lifecycle, validation status, and next action;
+2. `.agents/skills/comfyui/SKILL.md` — generic ComfyUI API-format, node, model, output, and provenance rules.
+
+Do not infer live instance state from an old conversation or historical planning document. After reading the context, perform the documented read-only live checks before any consequential action. The Python registries remain authoritative for the exact active template set; the context document explains how this project has chosen to use them.
+
+### AutoDL batch asset lifecycle (HARD RULE)
+
+- Never delete server assets during an active generation batch.
+- Reusable server assets — models, custom nodes, voice packs, approved character/reference packs, and reusable input caches — remain on AutoDL across batches.
+- Before shutdown, copy every non-reusable deliverable needed by the project to the Mac project workspace, verify size and SHA-256, then delete only the corresponding non-reusable remote inputs, outputs, and temporary files.
+- After every batch finishes successfully and the backup/verification/cleanup audit passes, proactively shut down the AutoDL instance. If any transfer, hash, cleanup, or queue check fails, do not shut down; report the blocker.
+- For the current AutoDL instance documented in `production-planning/COMFYUI_AGENT_CONTEXT.md`, the user has granted standing approval to shut it down with `ssh autodl-comfyui 'sync; shutdown -h now'` after all gates pass. Treat the resulting SSH disconnect as expected, verify SSH is down, and report the result. This method was confirmed by the user to put the AutoDL console into the powered-off state; do not substitute a Pro API that does not manage this instance.
+- After the user starts the current instance in GPU mode, use `production-planning/scripts/start-autodl-comfyui-session.sh` to keep ComfyUI in a monitored SSH foreground session, expose it only through local port `18188`, and require the health check before production.
+- Before each production batch, create and review a project-specific retention policy from `production-planning/AUTODL_BATCH_RETENTION_TEMPLATE.json`. At batch end, preview `scripts/finalize_autodl_comfyui_batch.py` with `--dry-run`; only after the list is reviewed may it be run with `--yes --shutdown`. Never reuse another project's retention decision.
+
+## TreeElf Project Knowledge Access
+
+When a TreeElf task reads scripts from `treeElfNotes/07产出/`, uses the Pixaroma ComfyUI course, or needs StudioBinder cinematography guidance, read `docs/treeelf-knowledge-sources.md` before making content or production decisions.
+
+Course access is a project capability, not a delegation requirement. The current OpenMontage agent and stage agents may directly read the authorized Obsidian directories and query course knowledge with the shared route identity `openmontage-project-agent`. Do not spawn or call `treeelf-video-producer` merely to obtain course information; that Agent is an optional user-facing production role.
+
+The project identity is restricted to the `cinematography` and `ai_visual_tools` course domains. It must use the controlled retrieval script and stable aliases documented in the knowledge map, never a physical Qdrant collection or another Agent's identity. Obsidian course directories are read-only, and visual evidence is verified only after the current Agent actually opens the referenced asset.
+
 ## Reference Video Entry Point
 
 When the user provides a **video URL or local video file as inspiration** — for example:

@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "batch_id": "treeelf-fable-batch-YYYYMMDD-01",
+  "queue_depth": 2,
+  "episode_configs": [
+    "episode-01.json",
+    "episode-02.json",
+    "episode-03.json"
+  ]
+}

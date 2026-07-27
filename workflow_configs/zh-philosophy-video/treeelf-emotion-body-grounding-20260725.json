@@ -1,0 +1,318 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-emotion-body-grounding-20260725",
+  "title": "困难情绪先落回身体",
+  "cover_title": "落回身体",
+  "cover_english_title": "RETURN TO THE BODY",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-24_困难情绪先落回身体.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐/single_instrumental_20260423_100116__001-Ambient-纯音乐-侧链压缩-梦幻-赞歌感-390579271184502.mp3",
+  "duration_seconds": 80,
+  "canvas_design_direction": "workflow_configs/zh-philosophy-video/design-directions/treeelf-batch-20260725-b.md#身体地形困难情绪先落回身体",
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "tactile documentary photography",
+      "topographic paper sculpture",
+      "ceramic glaze art",
+      "biomorphic felt sculpture"
+    ],
+    "target_ratios": {
+      "realistic": 0.4,
+      "abstract": 0.45,
+      "remotion_cards": 0.15
+    },
+    "cross_episode_repeat_policy": "Avoid red thread, luminous nervous systems, meditation halos, translucent resin waves, cyanotype fields, literal brains, hearts and repeated weather icons.",
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "seed": 95501,
+        "steps": 8,
+        "prompt_review": "A soft terrain records pressure and recovery.",
+        "prompt": "Vertical 9:16 premium editorial cover background, a warm human hand gently presses one soft moss-green biomorphic felt terrain that slowly rises around the fingers, tactile clay-red undertones, fog-gray negative space in the upper center for later typography, exhibition-quality material photography, grounded material light and tactile surface carry the recovery feeling, no text, no letters, no numbers, no logo, no watermark, no pseudo typography"
+      },
+      {
+        "id": "P00",
+        "role": "realistic",
+        "seed": 95502,
+        "steps": 8,
+        "prompt_review": "Emotion begins as a recognizable bodily state.",
+        "prompt": "Vertical 9:16 tactile documentary photograph, a young East Asian woman sits on the edge of a bed after a difficult phone call, one hand rests naturally on her upper abdomen while both feet feel the floor, quiet morning room, honest tension without crying performance, soft 50mm light, the difficult call is implied through posture and room tension, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P01",
+        "role": "abstract",
+        "seed": 95503,
+        "steps": 8,
+        "prompt_review": "Pressure becomes a temporary topography.",
+        "prompt": "Vertical 9:16 topographic paper sculpture, layered fog-gray contours compress into one clay-red basin then widen into moss-green breathing space, meticulous hand-cut fibers and gentle raking light, scientific observation without labels, topographic contours read as felt pressure rather than geography, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P02",
+        "role": "realistic",
+        "seed": 95504,
+        "steps": 8,
+        "prompt_review": "Feet and support bring attention back to contact.",
+        "prompt": "Vertical 9:16 cinematic documentary close-up, bare feet of an East Asian adult make grounded contact with a textured wooden floor beside a soft rug, weight shifts gently and toes relax, natural window light, tactile realism, gesture remains ordinary and lived-in, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P03",
+        "role": "abstract",
+        "seed": 95505,
+        "steps": 8,
+        "prompt_review": "Heat and tightness move like glaze rather than a fixed identity.",
+        "prompt": "Vertical 9:16 museum ceramic glaze artwork, warm clay-red glaze pools densely at one edge then thins into translucent moss and fog-gray gradients across a curved vessel surface, intricate mineral crystals and controlled kiln texture, glaze transitions stay fluid and continuous, curved vessel surface carries the sensation through material detail, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P04",
+        "role": "realistic",
+        "seed": 95506,
+        "steps": 8,
+        "prompt_review": "Naming sensation stays concrete and nonjudgmental.",
+        "prompt": "Vertical 9:16 observational documentary photograph, a young East Asian woman quietly notices the rise of her shoulders and loosens one hand around a ceramic mug, everyday kitchen table, gentle overcast daylight, calm concentration rather than meditation performance, everyday objects remain quiet and texture-led, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P05",
+        "role": "abstract",
+        "seed": 95507,
+        "steps": 8,
+        "prompt_review": "A felt form shows compression and elastic return.",
+        "prompt": "Vertical 9:16 biomorphic felt sculpture, one dense charcoal-red form is compressed between softer moss fibers while nearby shapes rebound at different rates, intricate wool texture and gallery lighting, organic but not anatomical, wool pressure and rebound express sensation through fiber, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P06",
+        "role": "realistic",
+        "seed": 95508,
+        "steps": 8,
+        "prompt_review": "A longer exhale changes posture before thoughts resolve.",
+        "prompt": "Vertical 9:16 cinematic side-profile photograph, an East Asian woman exhales slowly beside an open window and her shoulders settle slightly, ordinary clothing and lived-in room, cool air moving one curtain edge, restrained naturalism, breath appears as ordinary posture settling beside a window, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P07",
+        "role": "abstract",
+        "seed": 95509,
+        "steps": 8,
+        "prompt_review": "Breath creates spacing in layered terrain.",
+        "prompt": "Vertical 9:16 refined topographic paper relief, close contour layers gradually gain wider intervals from bottom to top as if making room for breath, fog gray moss green and muted terracotta palette, impeccable handmade edges and soft shadow, widening contour intervals express breathing through space, direction is shown by gradual spacing and light movement, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P08",
+        "role": "realistic",
+        "seed": 95510,
+        "steps": 8,
+        "prompt_review": "A stable surface can support difficult feeling.",
+        "prompt": "Vertical 9:16 tactile documentary photograph, close view of an East Asian woman's forearms resting with real weight on a solid wooden table while a friend sits nearby out of focus, grounded contact and quiet companionship, warm natural side light, forearms rest with real weight on the wooden table, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P09",
+        "role": "abstract",
+        "seed": 95511,
+        "steps": 8,
+        "prompt_review": "Sensation changes at its own speed.",
+        "prompt": "Vertical 9:16 ceramic glaze macro artwork, several mineral color pools migrate at visibly different densities across a gently curved surface, moss green fog white and clay red, masterful kiln detail and subtle highlights, different glaze densities show sensation changing at its own speed, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P10",
+        "role": "realistic",
+        "seed": 95512,
+        "steps": 8,
+        "prompt_review": "A small physical action returns choice.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, a young East Asian woman walks slowly around a quiet apartment carrying a glass of water, one deliberate grounded step, posture becoming more balanced, late afternoon natural light, recovery is shown through steadier posture and deliberate steps, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P11",
+        "role": "abstract",
+        "seed": 95513,
+        "steps": 8,
+        "prompt_review": "The body can hold complexity without solving it immediately.",
+        "prompt": "Vertical 9:16 biomorphic mixed-material sculpture led by felt, several distinct soft forms rest together in a shallow clay basin without fusing, varied pressure marks and resilient fibers, sophisticated museum installation, soft forms carry bodily complexity through abstract material presence, soft forms carry complexity through body-scale material presence, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P12",
+        "role": "realistic",
+        "seed": 95514,
+        "steps": 8,
+        "prompt_review": "The person reconnects with the surrounding room.",
+        "prompt": "Vertical 9:16 cinematic wide documentary photograph, an East Asian woman opens a balcony door and stands with both feet grounded while ordinary neighborhood sounds enter, composed but not magically healed, early evening light, authentic domestic scale, neighborhood presence is implied by light, air and balcony space, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P13",
+        "role": "abstract",
+        "seed": 95515,
+        "steps": 8,
+        "prompt_review": "The closing terrain remains alive and workable.",
+        "prompt": "Vertical 9:16 minimalist topographic felt and paper artwork, a previously compressed basin has softened into a varied open landscape with gentle rises still present, moss green clay red and fog-gray fibers, abundant quiet space and exquisite craft, open terrain remains varied and alive, no text, no letters, no numbers, no logo, no watermark"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "reference": "P00",
+        "seed": 95601,
+        "duration_seconds": 4,
+        "prompt_review": "A small grounding shift begins in the body.",
+        "prompt": "The woman takes one slow breath, her feet settle more fully on the floor and morning light moves softly across the room, restrained documentary camera drift, stable hands and face, no text"
+      },
+      {
+        "id": "W02",
+        "reference": "P05",
+        "seed": 95602,
+        "duration_seconds": 4,
+        "prompt_review": "Compressed felt slowly regains form.",
+        "prompt": "The dense felt form releases a little pressure and surrounding fibers rise at different natural rates, subtle raking light travels over wool texture, locked gallery composition, stable material geometry, no text"
+      }
+    ],
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "video",
+        "src": "video/W02.mp4",
+        "from": 30,
+        "to": 36,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P06.png",
+        "from": 36,
+        "to": 42,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      },
+      {
+        "id": "S12",
+        "kind": "still",
+        "src": "images/P11.png",
+        "from": 65,
+        "to": 70,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S13",
+        "kind": "still",
+        "src": "images/P12.png",
+        "from": 70,
+        "to": 75,
+        "motion": "push-left"
+      },
+      {
+        "id": "S14",
+        "kind": "still",
+        "src": "images/P13.png",
+        "from": 75,
+        "to": 80,
+        "motion": "drift-up"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "type": "questions",
+        "from": 22,
+        "to": 31,
+        "eyebrow": "先不解释故事",
+        "items": [
+          "哪里最紧？",
+          "哪里最热？",
+          "哪里最沉？"
+        ]
+      },
+      {
+        "id": "I02",
+        "type": "comparison",
+        "from": 55,
+        "to": 64,
+        "eyebrow": "落回身体",
+        "left": "先稳定一点",
+        "operator": "→",
+        "right": "再决定下一步"
+      }
+    ],
+    "captions": []
+  }
+}

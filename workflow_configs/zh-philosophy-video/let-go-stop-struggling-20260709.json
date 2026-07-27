@@ -1,0 +1,163 @@
+{
+  "project_id": "let-go-stop-struggling-20260709",
+  "title": "放下：停止和自己较劲的四步",
+  "cover_title": "停止较劲",
+  "cover_lines": [
+    "停止较劲"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 120,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "认知解离让想法与自我拉开距离",
+    "放下四步",
+    "行动打断反刍循环"
+  ],
+  "core_message": "放下不是更用力地停止思考，而是看见念头、停止辩论并转向一个小行动。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-09_放下_停止较劲.md",
+  "tags": [
+    "心哲灵",
+    "放下",
+    "禅宗",
+    "ACT",
+    "停止较劲"
+  ],
+  "raw_script": "告诉自己“别想了”，然后又想了半小时“我为什么还在想”；明明一件事已经过去，脑子却像钟摆一样来回撞。\n\n所有安慰，在放不下面前都很轻。但“放下”有方法。\n\n禅宗讲放下：念头可以出现，你停止和它打架。就像你一直举着一个杯子，关键不在于把杯子研究明白，关键是先看见：原来我一直在举着。\n\n现代心理学里，ACT 有个词叫认知解离。翻成人话就是：想法是想法，你是看见想法的人。你和脑子里的那句话之间，可以有一点距离。\n\n所以放下可以分四步。\n\n第一步，见钟摆。拿纸写下今天反复冒出来的三句话，比如“我是不是搞砸了”“他是不是讨厌我”。别分析，先看见。\n\n第二步，认钟摆。把句子改成：“我注意到，我正在想……”这一下很小，但它会把你从念头里面拎出来。\n\n第三步，断钟摆。给它十秒钟位置，承认它在，然后停止辩论。越想证明自己不该想，大脑越需要盯着它；盯着，本身就在召回它。\n\n第四步，转身。立刻做一个小动作：洗杯子、下楼倒垃圾、回一条必须回的信息。先动的原因很具体：动作会打断“想、停住、更想”的循环。\n\n这里有个反直觉：放下不需要更大的力气。你以为松手会掉下去，其实底下是地面。\n\n下次脑子里那个声音又问“我为什么还放不下”，别跟它辩论。你只需要说：我看见自己在举杯子了。然后做下一件重要的小事。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "calming",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "告诉自己“别想了”，然后又想了半小时“我为什么还在想”；明明一件事已经过去，脑子却像钟摆一样来回撞。\n\n所有安慰，在放不下面前都很轻。但“放下”有方法。",
+      "queries": [
+        {
+          "query": "person awake in bed overthinking night",
+          "description": "念头像钟摆一样来回撞"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "禅宗讲放下：念头可以出现，你停止和它打架。就像你一直举着一个杯子，关键不在于把杯子研究明白，关键是先看见：原来我一直在举着。\n\n现代心理学里，ACT 有个词叫认知解离。翻成人话就是：想法是想法，你是看见想法的人。你和脑子里的那句话之间，可以有一点距离。",
+      "queries": [
+        {
+          "query": "hand holding cup too long metaphor",
+          "description": "一直举着杯子的隐喻"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "见钟摆",
+            "认钟摆"
+          ],
+          "subtitle": "先看见，再拉开距离"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "所以放下可以分四步。\n\n第一步，见钟摆。拿纸写下今天反复冒出来的三句话，比如“我是不是搞砸了”“他是不是讨厌我”。别分析，先看见。\n\n第二步，认钟摆。把句子改成：“我注意到，我正在想……”这一下很小，但它会把你从念头里面拎出来。",
+      "queries": [
+        {
+          "query": "pendulum swinging close up",
+          "description": "反复念头的钟摆"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Reframe",
+      "text": "第三步，断钟摆。给它十秒钟位置，承认它在，然后停止辩论。越想证明自己不该想，大脑越需要盯着它；盯着，本身就在召回它。\n\n第四步，转身。立刻做一个小动作：洗杯子、下楼倒垃圾、回一条必须回的信息。先动的原因很具体：动作会打断“想、停住、更想”的循环。",
+      "queries": [
+        {
+          "query": "person washing cup small mindful action",
+          "description": "转身做一个小动作"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "断钟摆",
+            "转身"
+          ],
+          "subtitle": "停止辩论，做一个小动作"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "Landing",
+      "text": "这里有个反直觉：放下不需要更大的力气。你以为松手会掉下去，其实底下是地面。\n\n下次脑子里那个声音又问“我为什么还放不下”，别跟它辩论。你只需要说：我看见自己在举杯子了。然后做下一件重要的小事。",
+      "queries": [
+        {
+          "query": "open hands releasing object calm",
+          "description": "松手并不需要更大的力气"
+        }
+      ]
+    }
+  ]
+}

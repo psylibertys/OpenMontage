@@ -1,0 +1,149 @@
+{
+  "project_id": "past-self-old-script-20260719",
+  "title": "乔·迪斯本萨博士问：你是否与过去纠缠不清",
+  "cover_title": "旧剧续播",
+  "cover_lines": [
+    "旧剧续播"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "过去会借手重活",
+    "旧剧本自动续播",
+    "在熟悉反应里做一次不同选择"
+  ],
+  "core_message": "过去不只在记忆里，也在熟练反应里；未来从第一次没有照旧开始。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-19_你是否与过去纠缠不清.md",
+  "tags": [
+    "心哲灵",
+    "过去自我",
+    "纠缠",
+    "改变"
+  ],
+  "raw_script": "你以为自己只是偶尔想起过去。\n\n更可能的是，过去正在每天借你的手，再活一遍。\n\n乔·迪斯本萨把这叫作：你与过去的自己纠缠在一起。\n\n这里的过去，不只躲在记忆里。\n\n它躲在你反复的想法里，躲在你每次熟练的选择里，也躲在那些连反应都一模一样的时刻里。\n\n你遇到新的人，却用旧的方式后退。\n\n你经过新的机会，心里却先播放上一次失败的结局。\n\n日历已经翻页，旧剧本还在自动续播。\n\n乔的意思是，如果过去的你和现在的你始终相同，那么未来很可能也只是过去的续集。\n\n所以解开纠缠，不是把记忆全部删掉。\n\n而是在一个原本会照旧反应的时刻，做一次不同的选择。\n\n想逃开时，先多停十秒。\n\n想说出那句熟悉的话时，换一种回应。\n\n未来不是换了一本日历。\n\n未来是今天的你，第一次没有照旧。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "calming",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "你以为自己只是偶尔想起过去。\n\n更可能的是，过去正在每天借你的手，再活一遍。\n\n乔·迪斯本萨把这叫作：你与过去的自己纠缠在一起。\n\n这里的过去，不只躲在记忆里。",
+      "queries": [
+        {
+          "query": "person alone remembering past at night",
+          "description": "偶尔想起过去"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "它躲在你反复的想法里，躲在你每次熟练的选择里，也躲在那些连反应都一模一样的时刻里。\n\n你遇到新的人，却用旧的方式后退。\n\n你经过新的机会，心里却先播放上一次失败的结局。\n\n日历已经翻页，旧剧本还在自动续播。",
+      "queries": [
+        {
+          "query": "person facing new opportunity hesitation",
+          "description": "新机会前播放旧失败"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "旧剧续播"
+          ],
+          "subtitle": "过去正在借你的手再活一遍"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "乔的意思是，如果过去的你和现在的你始终相同，那么未来很可能也只是过去的续集。\n\n所以解开纠缠，不是把记忆全部删掉。\n\n而是在一个原本会照旧反应的时刻，做一次不同的选择。",
+      "queries": [
+        {
+          "query": "person pausing before reacting conversation",
+          "description": "照旧反应前停十秒"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "多停十秒"
+          ],
+          "subtitle": "第一次没有照旧"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "想逃开时，先多停十秒。\n\n想说出那句熟悉的话时，换一种回应。\n\n未来不是换了一本日历。\n\n未来是今天的你，第一次没有照旧。",
+      "queries": [
+        {
+          "query": "calendar page turning new day",
+          "description": "未来不是换一本日历"
+        }
+      ]
+    }
+  ]
+}

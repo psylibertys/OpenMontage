@@ -1,0 +1,162 @@
+{
+  "project_id": "name-emotion-accurately-20260716",
+  "title": "先给情绪一个准确名字",
+  "cover_title": "情绪定位",
+  "cover_lines": [
+    "情绪定位"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 98,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "情感标注是识别而非消灭情绪",
+    "烦是总警报不是地图",
+    "承认、细分、定位指向"
+  ],
+  "core_message": "准确命名情绪能把模糊警报变成可区分的信息，再为下一步行动提供方向。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-16_先给情绪一个准确名字.md",
+  "tags": [
+    "心哲灵",
+    "情感标注",
+    "情绪粒度",
+    "情绪调节"
+  ],
+  "raw_script": "情绪上来以后，为什么“别想了”和“想开点”都没用？争执后你只会说“烦死了”，一边急着分对错，身体还在紧绷。先别急着解决，先提高情绪的分辨率。\n\n心理学把这叫“情感标注”：用词语识别当下情绪。2007 年一项功能磁共振任务中，参与者给情绪图片贴词语标签。相较其他编码条件，情感标注与杏仁核反应降低、右腹外侧前额叶活动增加相关。这提示一条可能路径，不能推出一次命名会让情绪反应消失。\n\n“烦”是一声总警报，不是一张地图。害怕可能需要更多安全信息，失望可能要调整预期，愤怒可能在提醒你检查边界。名字不同，候选动作也不同。\n\n试试情绪定位三步法。第一步，先承认“我很烦”。第二步，再问：它更接近害怕、失望、羞耻，还是愤怒？第三步，这份情绪指向谁、哪件事，或哪个需要？答案可以暂时不确定。命名是把模糊警报变成可区分信息，不包办问题解决。\n\n如果你正处在危险、严重症状或创伤反应中，命名不能替代安全支持和专业帮助。\n\n今天只把“烦”往前拆一层：先识别警报类型，再决定下一步。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "calming",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "情绪上来以后，为什么“别想了”和“想开点”都没用？争执后你只会说“烦死了”，一边急着分对错，身体还在紧绷。先别急着解决，先提高情绪的分辨率。",
+      "queries": [
+        {
+          "query": "person tense after argument emotional",
+          "description": "争执后只会说烦死了"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "心理学把这叫“情感标注”：用词语识别当下情绪。2007 年一项功能磁共振任务中，参与者给情绪图片贴词语标签。相较其他编码条件，情感标注与杏仁核反应降低、右腹外侧前额叶活动增加相关。这提示一条可能路径，不能推出一次命名会让情绪反应消失。",
+      "queries": [
+        {
+          "query": "person labeling emotions journal",
+          "description": "用词语识别当下情绪"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "烦"
+          ],
+          "subtitle": "是一声总警报，不是一张地图"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "“烦”是一声总警报，不是一张地图。害怕可能需要更多安全信息，失望可能要调整预期，愤怒可能在提醒你检查边界。名字不同，候选动作也不同。",
+      "queries": [
+        {
+          "query": "fire alarm warning light metaphor",
+          "description": "烦像一声总警报"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Reframe",
+      "text": "试试情绪定位三步法。第一步，先承认“我很烦”。第二步，再问：它更接近害怕、失望、羞耻，还是愤怒？第三步，这份情绪指向谁、哪件事，或哪个需要？答案可以暂时不确定。命名是把模糊警报变成可区分信息，不包办问题解决。",
+      "queries": [
+        {
+          "query": "writing fear disappointment shame anger",
+          "description": "把烦往前拆一层"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "承认",
+            "细分",
+            "指向"
+          ],
+          "subtitle": "情绪定位三步法"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "Landing",
+      "text": "如果你正处在危险、严重症状或创伤反应中，命名不能替代安全支持和专业帮助。\n\n今天只把“烦”往前拆一层：先识别警报类型，再决定下一步。",
+      "queries": [
+        {
+          "query": "calm person breathing with notebook",
+          "description": "先定位再决定下一步"
+        }
+      ]
+    }
+  ]
+}

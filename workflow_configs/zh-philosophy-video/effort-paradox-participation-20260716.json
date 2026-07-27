@@ -1,0 +1,171 @@
+{
+  "project_id": "effort-paradox-participation-20260716",
+  "title": "太省力的生活为什么不一定满足",
+  "cover_title": "有价努力",
+  "cover_lines": [
+    "有价努力"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 107,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "努力在选择前是成本、投入后可能增加价值",
+    "省力和值得是两套账",
+    "保留关键参与而非故意受苦"
+  ],
+  "core_message": "工具可以减少重复成本，但要保留一个有意义的判断或参与，才能留下能力感与所有感。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-16_太省力的生活为什么不一定满足.md",
+  "tags": [
+    "心哲灵",
+    "努力悖论",
+    "价值感",
+    "能力感",
+    "工具"
+  ],
+  "raw_script": "工具已经替你完成大部分工作，为什么成果反而没那么像自己的？一键生成文本很快，你却说不清核心判断；爱好只剩买装备和看别人完成，参与感变薄。效率能减少成本，不能替你生成所有感。\n\n2018 年，Inzlicht 等人的理论综述梳理了“努力悖论”：做选择时，人和动物常常回避费力选项；投入之后，努力又可能增加结果的价值，人有时还会因为需要投入而选它。这篇综述汇总了多类证据，不能推出越辛苦就越有意义。\n\n可以用两套账理解它：选择之前，努力是成本；经历之后，投入可能留下能力感、所有感和过程线索。省力和值得，是两套账。工具削减重复成本；它若连选择、修改和学习也全部代劳，我们可能一起失去参与生成的价值线索。\n\n下次使用工具时，只保留一段有意义的参与：自己定一个方向、改一个核心判断，或学会一个新步骤。你无需故意增加难度，只要别把所有参与一起外包。\n\n无意义劳动、剥削和过劳，不会因为辛苦就更有价值。对残障者、照护者和过劳者，省力工具可能是参与生活的必要条件。保留参与，不等于增加负担。\n\n把重复劳动交给工具，把一个关键判断留给自己。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "lo-fi",
+      "ambient",
+      "folk",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "工具已经替你完成大部分工作，为什么成果反而没那么像自己的？一键生成文本很快，你却说不清核心判断；爱好只剩买装备和看别人完成，参与感变薄。效率能减少成本，不能替你生成所有感。",
+      "queries": [
+        {
+          "query": "person using ai tool generated text detached",
+          "description": "工具代劳后成果不像自己的"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "2018 年，Inzlicht 等人的理论综述梳理了“努力悖论”：做选择时，人和动物常常回避费力选项；投入之后，努力又可能增加结果的价值，人有时还会因为需要投入而选它。这篇综述汇总了多类证据，不能推出越辛苦就越有意义。",
+      "queries": [
+        {
+          "query": "hobby equipment shopping without practicing",
+          "description": "爱好只剩装备与观看"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "省力",
+            "值得"
+          ],
+          "subtitle": "是两套账"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "可以用两套账理解它：选择之前，努力是成本；经历之后，投入可能留下能力感、所有感和过程线索。省力和值得，是两套账。工具削减重复成本；它若连选择、修改和学习也全部代劳，我们可能一起失去参与生成的价值线索。",
+      "queries": [
+        {
+          "query": "craftsperson making object hands close up",
+          "description": "投入留下能力感和所有感"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "重复劳动"
+          ],
+          "subtitle": "交给工具"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Reframe",
+      "text": "下次使用工具时，只保留一段有意义的参与：自己定一个方向、改一个核心判断，或学会一个新步骤。你无需故意增加难度，只要别把所有参与一起外包。\n\n无意义劳动、剥削和过劳，不会因为辛苦就更有价值。对残障者、照护者和过劳者，省力工具可能是参与生活的必要条件。保留参与，不等于增加负担。",
+      "queries": [
+        {
+          "query": "assistive technology helping participation",
+          "description": "省力工具也可能是参与的必要条件"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-3",
+          "title_lines": [
+            "关键判断"
+          ],
+          "subtitle": "留给自己"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "Landing",
+      "text": "把重复劳动交给工具，把一个关键判断留给自己。",
+      "queries": [
+        {
+          "query": "person finishing meaningful project satisfied",
+          "description": "参与生成价值感"
+        }
+      ]
+    }
+  ]
+}

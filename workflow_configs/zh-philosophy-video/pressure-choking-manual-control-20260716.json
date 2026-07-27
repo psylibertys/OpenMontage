@@ -1,0 +1,158 @@
+{
+  "project_id": "pressure-choking-manual-control-20260716",
+  "title": "为什么越想表现好，越容易失常",
+  "cover_title": "手动接管",
+  "cover_lines": [
+    "手动接管"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 98,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "工作记忆带宽会被担忧占用",
+    "显性监控会拆坏自动技能",
+    "按任务类型重新放置注意力"
+  ],
+  "core_message": "压力下的失常有两条常见路径：难题被担忧抢占带宽，熟练动作被意识手动接管。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-16_为什么越想表现好越容易失常.md",
+  "tags": [
+    "心哲灵",
+    "压力窒息",
+    "工作记忆",
+    "显性监控"
+  ],
+  "raw_script": "最熟的动作，也可能被过度认真拆坏。\n\n演练很多次的开场，见到评委后突然逐字检查；平时自动完成的动作，到了比赛却开始盯着手、脚和呼吸。\n\n认知心理学把重要情境中表现低于已有能力的现象叫“压力窒息”。Beilock 和 Carr 对熟练技能和数学问题的实验提示：失常不只一条路径。\n\n面对陌生难题，计算和推理需要工作记忆。担忧结果、自我评价，会和任务争夺有限带宽。\n\n面对高度熟练的动作，问题可能相反。原本自动运行的程序，被意识重新拆成一步一步，显性监控打断了流畅执行。\n\n难题怕带宽被抢，熟练动作怕被手动接管。\n\n所以，关键时刻需要的未必是更多控制，而是把控制放回正确层级。\n\n复杂推理时，把中间步骤写出来，让纸面分担工作记忆；熟练动作时，把注意放到外部目标、节奏或结果线索，别逐个关节发指令。\n\n这不意味着所有失常都由这两种机制解释。实验任务不能替代对疲劳、准备程度、环境干扰或长期焦虑的判断，一个注意技巧也不能保证发挥稳定。\n\n先判断任务类型，再决定注意力该放在哪里。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "soundtrack",
+      "ambient",
+      "post-rock",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "最熟的动作，也可能被过度认真拆坏。\n\n演练很多次的开场，见到评委后突然逐字检查；平时自动完成的动作，到了比赛却开始盯着手、脚和呼吸。\n\n认知心理学把重要情境中表现低于已有能力的现象叫“压力窒息”。Beilock 和 Carr 对熟练技能和数学问题的实验提示：失常不只一条路径。",
+      "queries": [
+        {
+          "query": "nervous speaker on stage forgetting words",
+          "description": "关键场合突然失常"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "面对陌生难题，计算和推理需要工作记忆。担忧结果、自我评价，会和任务争夺有限带宽。\n\n面对高度熟练的动作，问题可能相反。原本自动运行的程序，被意识重新拆成一步一步，显性监控打断了流畅执行。\n\n难题怕带宽被抢，熟练动作怕被手动接管。",
+      "queries": [
+        {
+          "query": "working memory overload stress abstract",
+          "description": "担忧抢占有限带宽"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "难题"
+          ],
+          "subtitle": "怕带宽被抢"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "所以，关键时刻需要的未必是更多控制，而是把控制放回正确层级。\n\n复杂推理时，把中间步骤写出来，让纸面分担工作记忆；熟练动作时，把注意放到外部目标、节奏或结果线索，别逐个关节发指令。",
+      "queries": [
+        {
+          "query": "hands controlling machine manual override",
+          "description": "意识手动接管自动程序"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "熟练动作"
+          ],
+          "subtitle": "怕被手动接管"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "这不意味着所有失常都由这两种机制解释。实验任务不能替代对疲劳、准备程度、环境干扰或长期焦虑的判断，一个注意技巧也不能保证发挥稳定。\n\n先判断任务类型，再决定注意力该放在哪里。",
+      "queries": [
+        {
+          "query": "athlete focusing on target not body",
+          "description": "把注意放回外部目标"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-3",
+          "title_lines": [
+            "先判断任务类型"
+          ],
+          "subtitle": "再决定注意力放哪里"
+        }
+      ]
+    }
+  ]
+}

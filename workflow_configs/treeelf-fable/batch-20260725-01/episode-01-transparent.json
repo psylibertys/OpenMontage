@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-transparent-20260725-b01",
+  "title": "一被看见就变透明的人",
+  "cover_title": "被看见",
+  "cover_english_title": "Seen",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-21_一被看见就变透明的人.md",
+  "estimated_duration_seconds": 150,
+  "protagonist": {
+    "type": "成年女性",
+    "description": "一位年轻成年女性，黑色微卷短发，参差狗啃刘海，柔和乐观的眼神，没有眼下阴影；夏天薄棉白衬衫和浅绿色背心，雨后青苔色点缀。她的身体会在被认真注视时变得半透明，但衣服、微笑和得体动作仍清晰。"
+  },
+  "character_pack": {
+    "enabled": true,
+    "master_prompt": "vertical 9:16 full-body character key art of a young adult woman, black short curly hair with uneven choppy baby bangs, soft optimistic eyes, no under-eye shadows, light summer white cotton shirt with pale moss-green vest, gentle posture, rain-after-moss color accents, cinematic storybook illustration, strong tactile paper texture, hand-painted film still mood, airy and sunny, no text, no letters, no logo",
+    "reference_prompts": [
+      "front view of the exact same young adult woman, black short curly hair with uneven choppy baby bangs, soft optimistic eyes, no under-eye shadows, light summer white cotton shirt with pale moss-green vest, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "left three-quarter view of the exact same young adult woman, black short curly hair with uneven choppy baby bangs, soft optimistic eyes, no under-eye shadows, light summer white cotton shirt with pale moss-green vest, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "right profile view of the exact same young adult woman, black short curly hair with uneven choppy baby bangs, soft optimistic eyes, no under-eye shadows, light summer white cotton shirt with pale moss-green vest, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "back three-quarter view of the exact same young adult woman, black short curly hair with uneven choppy baby bangs, light summer white cotton shirt with pale moss-green vest, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo"
+    ]
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01",
+      "weight": 1.1,
+      "summary": "被注视时身体从指尖开始透明，只剩合适的衣服和动作。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman sitting in a quiet chair as her fingertips become faint transparent glass, her summer clothes remain solid and clear, soft rainy window light, strong visible paper grain, realistic storybook texture, gentle but uncanny mood",
+        "vertical 9:16 cinematic storybook illustration of the same young woman half transparent in a chair, only her neat clothing and practiced smile remain crisp, negative space like quiet air inside the clothes, soft optimistic warmth, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-02",
+      "weight": 1.0,
+      "summary": "她用更多衣服和得体表情讨人喜欢，镜子里的人越来越少。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman before an overfilled wardrobe, many light summer layers hanging around her, her reflection in a mirror is faint and incomplete, warm indoor light, strong illustrated paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman in a misty bathroom mirror, towel floating around a nearly transparent shoulder outline, water droplets passing through, rainlike reflections, delicate paper texture"
+      ]
+    },
+    {
+      "id": "beat-03",
+      "weight": 1.0,
+      "summary": "一个安静的晚饭对象让她更透明，她准备更多合适反应。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman walking to a rainy dinner wearing light layered summer clothes, holding a small prepared smile like a fragile mask, restaurant window glow, moss green accents, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman seated by a rain-streaked restaurant window, becoming more transparent under a calm attentive gaze from an unseen companion, no male figure visible, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-04",
+      "weight": 1.2,
+      "summary": "透明手腕露出，她没有补动作，而是把手放在桌面上。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration, close view of the same young woman's nearly transparent wrist emerging from a sleeve on a wooden restaurant table, rainy reflections pass through the bones, no text, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman calmly placing her transparent hand flat on the wooden table, no hiding gesture, rain outside the window, quiet bravery, strong tactile paper texture"
+      ]
+    },
+    {
+      "id": "beat-05",
+      "weight": 0.9,
+      "summary": "她仍未完全变回，但胸口深处有一小块允许被光照到的影子。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman at home removing an outer layer before a mirror, her transparent chest contains a small slowly breathing shadow like a heart touched by light, hopeful, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of a quiet wardrobe and mirror, the same young woman partly visible with a small warm shadow inside her chest, soft morning hope, moss green and rain glow, strong paper texture"
+      ]
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 cinematic storybook cover background, a young woman with black short curly hair and choppy baby bangs gently placing a transparent hand on a rainlit wooden table, soft optimistic eyes, no under-eye shadows, strong tactile paper texture, film still composition, airy moss green and warm wood palette, leave clean space for Chinese title, no text, no letters, no logo",
+  "hero_wan": {
+    "enabled": true,
+    "scene_id": "scene-001",
+    "prompt": "the woman's fingertips slowly become translucent while the camera gently pushes in, rainlight flickers softly, identity and clothing remain stable, no morphing, no extra limbs"
+  },
+  "music_source": "",
+  "captions_path": "",
+  "narration_text": "只要有人认真看她，她的身体就会变透明。\n\n最先消失的是指尖。\n\n接着是手腕、肩膀和脸。\n\n最后，椅子上只剩一套轮廓完整的衣服，里面像装着一块安静的空气。\n\n奇怪的是，她穿在身上的东西从不会消失。\n\n得体的衬衫还在。\n\n准备好的表情还在。\n\n那些为了让别人舒服而练习多年的动作，也会留在原地，替透明的身体点头、微笑、把话题接得恰到好处。\n\n因此，很少有人发现她的异样。\n\n她们总能看见一个合适的人。\n\n只有她知道，每得到一次喜欢，自己的手就会更淡一点。\n\n她开始穿更多衣服。\n\n工作时是一件不会出错的外套。\n\n见朋友时是一件永远有耐心的毛衣。\n\n回到家，她还会披上一件看起来什么都能承受的睡袍。\n\n衣柜越来越满。\n\n镜子里的人却越来越少。\n\n有时，她洗完澡站在雾气前，只能看见毛巾悬在半空。水珠穿过肩膀的轮廓，落在地上，像一场没有淋到任何人的雨。\n\n后来，她认识了一个常和她一起吃晚饭的人。\n\n对方看她时很安静。\n\n越是安静，她就越透明。\n\n于是每次见面前，她都会再加一层衣服。准备更多恰当的反应，把每一个可能露出的缺口仔细盖好。\n\n一个下雨的晚上，她们仍坐在那张靠窗的桌边。\n\n她像往常一样伸手去拿杯子，袖口却滑了下来。\n\n桌面上露出一截几乎完全透明的手腕。\n\n她立刻想把手收回去。\n\n可那只手已经淡得找不到袖口。\n\n她停在那里，没有补上新的动作。\n\n没有整理衣服，也没有用另一个熟练的表情遮住空白。\n\n她只是把那只透明的手，慢慢放平在桌面上。\n\n窗外的雨继续落。\n\n桌子另一边的人没有移开目光，也没有伸手修补什么。\n\n只是把自己掌心向下放在桌面，停在离她很近的地方。\n\n两只手之间还隔着一点距离。\n\n雨水的反光从窗边移过来，穿过她的指骨，在木桌上留下很浅的波纹。\n\n那天晚上，她仍然没有变回原来的样子。\n\n回家后，衣柜也依旧塞得很满。\n\n只是她脱下最外面那件外套时，镜子里透明的胸口深处，第一次看见一小块缓慢起伏的影子。\n\n它没有躲起来。\n\n像一颗终于允许被光照到的心脏。"
+}

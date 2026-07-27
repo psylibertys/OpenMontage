@@ -1,0 +1,208 @@
+{
+  "project_id": "lichen-slow-growth-20260720",
+  "title": "地衣比励志大师更会过日子",
+  "cover_title": "慢也生长",
+  "cover_lines": ["慢也生长"],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "安静、克制、温柔但清醒",
+  "target_audience": "抖音/小红书/视频号上关注自我成长、心理机制、生命智慧和心哲灵表达的中文观众",
+  "key_points": ["地衣不是独自活着", "强大也包括合作与暂停", "慢也可以是真正的生长"],
+  "core_message": "真正的强大不一定是单打独斗和永不休息，也可以是会合作、会暂停、慢慢生长。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s4",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": ["ambient", "calming", "nature", "piano", "纯音乐"]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [248, 246, 231],
+    "accent_color_rgb": [157, 191, 117],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 42,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "一块长得像墙皮的地衣，可能比很多励志大师更会过日子。",
+      "queries": [
+        {
+          "query": "lichen growing on rock close up nature macro",
+          "description": "地衣贴在石头上的微距画面。"
+        },
+        {
+          "query": "lichen on old wall texture close up",
+          "description": "像墙皮一样不起眼的地衣质感。"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Not Alone",
+      "text": "它从不喊“你要靠自己”，因为它压根儿就不是自己活着。\n一块地衣里，藻类负责把阳光变成能量，真菌负责搭房子，再加上一些细菌帮忙。",
+      "queries": [
+        {
+          "query": "lichen symbiosis forest rock macro",
+          "description": "地衣共生的自然微距。"
+        },
+        {
+          "query": "moss lichen forest bark sunlight close up",
+          "description": "树皮、阳光和地衣的共生感。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "symbiosis-card",
+          "title_lines": ["它不是", "独自活着"],
+          "subtitle": "强大也可以来自合作"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Resilient Life",
+      "text": "三个生命王国挤在巴掌大的地方，没有抢董事长，反而合作成了自然界最能熬的生命之一。\n它没有根，也不挑房子。树皮、石头、墙面，甚至环境恶劣的冻土，都能成为落脚处。",
+      "queries": [
+        {
+          "query": "lichen growing on tree bark sunlight forest",
+          "description": "地衣在树皮上稳定生长。"
+        },
+        {
+          "query": "arctic tundra lichen landscape",
+          "description": "寒冷冻土中的地衣生命力。"
+        },
+        {
+          "query": "lichen on stone wall ancient texture",
+          "description": "石墙上的地衣，表现不挑环境。"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Pause",
+      "text": "实在熬不动了，它也不硬撑。\n它会把身体调到近乎暂停，一睡就是几个月、几年，甚至几十年。条件合适了，再醒过来继续生长。",
+      "queries": [
+        {
+          "query": "dry lichen on rock dormant nature close up",
+          "description": "干燥地衣进入近乎暂停的状态。"
+        },
+        {
+          "query": "rain on moss lichen close up nature",
+          "description": "雨水让地衣恢复生机。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "pause-card",
+          "title_lines": ["熬不动", "就暂停"],
+          "subtitle": "暂停不是失败"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "Slow Growth",
+      "text": "而且它长得极慢，有些地衣一年还长不到一毫米。\n可就是这点慢吞吞的生命，会最先爬上灾难后的裸岩，一点点把石头变成后来者可以落脚的土。",
+      "queries": [
+        {
+          "query": "lichen pioneer species bare rock nature",
+          "description": "裸岩上最先出现的地衣。"
+        },
+        {
+          "query": "slow growth nature lichen rock macro",
+          "description": "慢慢铺开的地衣纹理。"
+        },
+        {
+          "query": "volcanic rock lichen first life",
+          "description": "灾难后裸岩上的早期生命。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "slow-card",
+          "title_lines": ["一年不到", "一毫米"],
+          "subtitle": "但它仍在改变世界"
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "label": "Human Landing",
+      "text": "所以真正的强大，可能不是永远单打独斗、永不休息、一天逆袭。\n而是知道该和谁合作，什么时候暂停，以及今天只长一毫米也算生长。",
+      "queries": [
+        {
+          "query": "person walking slowly in forest morning calm",
+          "description": "人在森林中慢慢前行，安静恢复。"
+        },
+        {
+          "query": "hands working together planting small plant",
+          "description": "合作、照料和慢慢生长。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "growth-card",
+          "title_lines": ["慢也", "生长"],
+          "subtitle": "强大不只有一种速度"
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "label": "Ending",
+      "text": "下次你觉得自己太慢，不妨想想地衣。\n它没赢过时间，它只是很会跟时间做朋友。",
+      "queries": [
+        {
+          "query": "lichen forest sunlight calm close up",
+          "description": "阳光下的地衣，作为温柔收束。"
+        },
+        {
+          "query": "quiet forest path morning light slow life",
+          "description": "慢下来和时间做朋友的意境。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "time-card",
+          "title_lines": ["和时间", "做朋友"],
+          "subtitle": "慢一点，也在生长"
+        }
+      ]
+    }
+  ]
+}

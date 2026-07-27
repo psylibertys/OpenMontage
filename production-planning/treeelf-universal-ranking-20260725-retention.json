@@ -1,0 +1,21 @@
+{
+  "project_id": "treeelf-universal-ranking-20260725",
+  "decision": "review_before_each_batch",
+  "retain_infrastructure": [
+    "/root/ComfyUI-Easy-Install/ComfyUI",
+    "/root/autodl-tmp/comfyui-models",
+    "/root/autodl-tmp/comfyui-runtime/validation"
+  ],
+  "retain_project_assets": [
+    "Qwen3-TTS A07 reusable voice design profile",
+    "approved reusable input caches addressed by SHA-256"
+  ],
+  "backup_then_delete_runtime_types": [
+    "input",
+    "output",
+    "temp"
+  ],
+  "backup_then_delete_voice_files": [],
+  "delete_gate": "Mac backup exists and local/remote size and SHA-256 match",
+  "shutdown_gate": "queue empty, backup verified, cleanup verified, no pending failures"
+}

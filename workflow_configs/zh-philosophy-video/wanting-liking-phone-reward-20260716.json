@@ -1,0 +1,159 @@
+{
+  "project_id": "wanting-liking-phone-reward-20260716",
+  "title": "想刷不等于刷了会快乐",
+  "cover_title": "想要错觉",
+  "cover_lines": [
+    "想要错觉"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 95,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "wanting与liking可以分离",
+    "线索会点燃获得冲动",
+    "双评分后优先处理线索"
+  ],
+  "core_message": "想要很强不代表奖励很好；把打开前的冲动与结束后的满足分开评分，才能看清两条曲线。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-16_想刷不等于刷了会快乐.md",
+  "tags": [
+    "心哲灵",
+    "欲望",
+    "奖赏",
+    "wanting",
+    "liking"
+  ],
+  "raw_script": "刷的时候没多开心，手为什么还会一次次点开？理智说“也没什么好看”，拇指已经替你投了下一票。\n\n奖赏研究会把两件事分开：wanting，是线索点燃的“去获得”；liking，是得到之后的实际愉悦。冲动负责把你推到门口，不负责保证里面好玩。\n\nBerridge 和 Robinson 用这一区分解释成瘾中的诱因显著性：奖励线索会变得很有吸引力，实际喜欢却未必同步增加。放到日常手机使用，只能谨慎借用这一区分，不能据此诊断成瘾，更不能把手机等同毒品。\n\n所以，想要很强，不代表奖励很好。提示点像一位过分勤奋的推销员，催你进门；体验究竟值不值，还得出来以后再打分。\n\n可以做三天双评分：打开前，给冲动打零到十分；结束后，给满足打零到十分。如果长期“很想刷、刷完一般”，先处理线索：关掉非必要提示，把入口移出顺手位置，或给同一线索接一个替代动作。\n\n无聊、社交需要、工作要求和情绪回避也会影响使用。双评分只负责帮你看清两条曲线。\n\n先别批评拇指。让冲动和满足各交一张答卷，再决定要不要进门。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "lo-fi",
+      "electronic",
+      "chillwave",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "刷的时候没多开心，手为什么还会一次次点开？理智说“也没什么好看”，拇指已经替你投了下一票。\n\n奖赏研究会把两件事分开：wanting，是线索点燃的“去获得”；liking，是得到之后的实际愉悦。冲动负责把你推到门口，不负责保证里面好玩。",
+      "queries": [
+        {
+          "query": "person scrolling phone bored at night",
+          "description": "刷着并不快乐却继续点开"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "Berridge 和 Robinson 用这一区分解释成瘾中的诱因显著性：奖励线索会变得很有吸引力，实际喜欢却未必同步增加。放到日常手机使用，只能谨慎借用这一区分，不能据此诊断成瘾，更不能把手机等同毒品。",
+      "queries": [
+        {
+          "query": "pushy salesman doorway metaphor",
+          "description": "冲动像过分勤奋的推销员"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "wanting"
+          ],
+          "subtitle": "去获得"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "所以，想要很强，不代表奖励很好。提示点像一位过分勤奋的推销员，催你进门；体验究竟值不值，还得出来以后再打分。\n\n可以做三天双评分：打开前，给冲动打零到十分；结束后，给满足打零到十分。如果长期“很想刷、刷完一般”，先处理线索：关掉非必要提示，把入口移出顺手位置，或给同一线索接一个替代动作。",
+      "queries": [
+        {
+          "query": "rating scale before and after phone use",
+          "description": "打开前与结束后的双评分"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "liking"
+          ],
+          "subtitle": "实际愉悦"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "无聊、社交需要、工作要求和情绪回避也会影响使用。双评分只负责帮你看清两条曲线。\n\n先别批评拇指。让冲动和满足各交一张答卷，再决定要不要进门。",
+      "queries": [
+        {
+          "query": "phone placed away person relaxed",
+          "description": "让冲动和满足分别交答卷"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-3",
+          "title_lines": [
+            "很想刷"
+          ],
+          "subtitle": "不等于刷完会满足"
+        }
+      ]
+    }
+  ]
+}

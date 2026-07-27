@@ -315,6 +315,15 @@ export interface ExplainerProps {
   cuts: Cut[];
   overlays?: Overlay[];
   captions?: WordCaption[];
+  captionOptions?: {
+    wordsPerPage?: number;
+    fontSize?: number;
+    color?: string;
+    highlightColor?: string;
+    backgroundColor?: string;
+    outlineColor?: string;
+    outlineWidth?: number;
+  };
   audio?: AudioConfig;
 }
 
@@ -780,7 +789,7 @@ const OverlayRenderer: React.FC<{ overlay: Overlay }> = ({ overlay }) => {
 // ---------------------------------------------------------------------------
 
 export const Explainer: React.FC<ExplainerProps> = (props) => {
-  const { cuts, overlays, captions, audio } = props;
+  const { cuts, overlays, captions, captionOptions, audio } = props;
   const { fps, durationInFrames } = useVideoConfig();
 
   // Resolve theme from props — playbook name, theme name, or custom themeConfig
@@ -821,10 +830,13 @@ export const Explainer: React.FC<ExplainerProps> = (props) => {
       {captions && captions.length > 0 && (
         <CaptionOverlay
           words={captions}
-          wordsPerPage={6}
-          fontSize={42}
-          highlightColor={theme.captionHighlightColor}
-          backgroundColor={theme.captionBackgroundColor}
+          wordsPerPage={captionOptions?.wordsPerPage ?? 6}
+          fontSize={captionOptions?.fontSize ?? 42}
+          color={captionOptions?.color}
+          highlightColor={captionOptions?.highlightColor ?? theme.captionHighlightColor}
+          backgroundColor={captionOptions?.backgroundColor ?? theme.captionBackgroundColor}
+          outlineColor={captionOptions?.outlineColor}
+          outlineWidth={captionOptions?.outlineWidth}
         />
       )}
 

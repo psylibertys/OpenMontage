@@ -1,0 +1,149 @@
+{
+  "project_id": "ordinary-coordinate-20260718",
+  "title": "世界上最普通的人为什么不存在",
+  "cover_title": "普通坐标",
+  "cover_lines": [
+    "普通坐标"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 75,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "平均人是拼出来的",
+    "普通依赖维度、人群和时间",
+    "统计师不能兼任价值裁判"
+  ],
+  "core_message": "平均数可以描述人群，但不能替一个人做价值裁判；普通必须先说清坐标。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-18_世界上最普通的人为什么不存在.md",
+  "tags": [
+    "心哲灵",
+    "统计思维",
+    "社会比较",
+    "自我评价"
+  ],
+  "raw_script": "世界上最普通的人，最大的特点是——他不存在。\n\n看到同龄人的收入、婚恋和进度，我们会下结论：我太普通了。\n\nKurzgesagt 把国别、语言、年龄、身高、收入等全球统计特征，缝成一位虚构的“平均人”。\n\n统计量通常一次只描述一个维度。统计师取平均袖长、中位裤长，再配最常见的款式。西装处处“普通”，穿到真人身上却可能哪儿都不合。\n\n普通有三个尺寸条件：哪个维度、哪群人、哪个时间点。三者改变一个，统计师都得重裁。可以把这叫“普通坐标”。\n\n但我们很容易让统计师升职：先让他描述人群，再让他判断自己合不合格。群体中心就这样被穿成了个人价值。\n\n联合国人口预测按年龄、性别和年份变化，长期预测带有不确定性。未来的“平均人”只是预测下的群体画像，不能写成确定的个人命运。\n\n下次“我很普通”冒出来，把话补完整：我在哪个维度，相对哪群人，在什么时间点，接近哪个位置？补不完整，它更像情绪总评，不是统计事实。\n\n这不意味着人人样样特殊，也不意味着平均数没用。平均数可以描述人群，不能替你决定应该成为谁。\n\n让统计师报尺寸，别让他兼任价值裁判。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "minimal",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "世界上最普通的人，最大的特点是——他不存在。\n\n看到同龄人的收入、婚恋和进度，我们会下结论：我太普通了。",
+      "queries": [
+        {
+          "query": "crowd of people city diversity",
+          "description": "人群中的差异"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "Kurzgesagt 把国别、语言、年龄、身高、收入等全球统计特征，缝成一位虚构的“平均人”。\n\n统计量通常一次只描述一个维度。统计师取平均袖长、中位裤长，再配最常见的款式。西装处处“普通”，穿到真人身上却可能哪儿都不合。\n\n普通有三个尺寸条件：哪个维度、哪群人、哪个时间点。三者改变一个，统计师都得重裁。可以把这叫“普通坐标”。",
+      "queries": [
+        {
+          "query": "statistics chart demographic data",
+          "description": "统计维度与人群画像"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "普通坐标"
+          ],
+          "subtitle": "哪个维度 / 哪群人 / 哪个时间"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "但我们很容易让统计师升职：先让他描述人群，再让他判断自己合不合格。群体中心就这样被穿成了个人价值。\n\n联合国人口预测按年龄、性别和年份变化，长期预测带有不确定性。未来的“平均人”只是预测下的群体画像，不能写成确定的个人命运。\n\n下次“我很普通”冒出来，把话补完整：我在哪个维度，相对哪群人，在什么时间点，接近哪个位置？补不完整，它更像情绪总评，不是统计事实。",
+      "queries": [
+        {
+          "query": "person comparing self to others social media",
+          "description": "和同龄人比较"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "平均数"
+          ],
+          "subtitle": "描述人群，不决定你是谁"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "这不意味着人人样样特殊，也不意味着平均数没用。平均数可以描述人群，不能替你决定应该成为谁。\n\n让统计师报尺寸，别让他兼任价值裁判。",
+      "queries": [
+        {
+          "query": "person walking confidently through crowd",
+          "description": "不让平均数裁判自我"
+        }
+      ]
+    }
+  ]
+}

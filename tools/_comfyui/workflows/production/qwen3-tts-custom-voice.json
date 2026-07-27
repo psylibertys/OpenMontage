@@ -1,0 +1,79 @@
+{
+  "6": {
+    "inputs": {
+      "positive": "Male voice. Deep, modern YouTuber narrator. Confident and friendly. Medium pace, clear pronunciation. Slight smile. Close-mic studio sound, clean and crisp. Natural pauses."
+    },
+    "class_type": "easy positive",
+    "_meta": {
+      "title": "3. Voice Direction (Optional)"
+    }
+  },
+  "5": {
+    "inputs": {
+      "positive": "We’re using the Ryan preset for stable narration, then saving straight to MP3. Pretty clean, right?"
+    },
+    "class_type": "easy positive",
+    "_meta": {
+      "title": "1. Speech Text"
+    }
+  },
+  "14": {
+    "inputs": {
+      "speaker": "Ryan",
+      "model_choice": "1.7B",
+      "device": "auto",
+      "precision": "bf16",
+      "language": "English",
+      "seed": 48899982587151,
+      "max_new_tokens": 2048,
+      "top_p": 0.8,
+      "top_k": 20,
+      "temperature": 1,
+      "repetition_penalty": 1.05,
+      "attention": "auto",
+      "unload_model_after_generate": false,
+      "custom_model_path": "",
+      "custom_speaker_name": "",
+      "text": [
+        "5",
+        0
+      ],
+      "instruct": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "FB_Qwen3TTSCustomVoice",
+    "_meta": {
+      "title": "🎵 Qwen3-TTS CustomVoice"
+    }
+  },
+  "19": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true,
+      "anything": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM V2",
+    "_meta": {
+      "title": "LayerUtility: Purge VRAM V2"
+    }
+  },
+  "8": {
+    "inputs": {
+      "filename_prefix": "audio/voice",
+      "quality": "V0",
+      "audio": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "SaveAudioMP3",
+    "_meta": {
+      "title": "Save Audio (MP3) (DEPRECATED)"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-waiting-before-three-20260725-b01",
+  "title": "下午三点以前不能生活的人",
+  "cover_title": "等三点",
+  "cover_english_title": "Before Three",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-21_下午三点以前不能生活的人.md",
+  "estimated_duration_seconds": 150,
+  "protagonist": {
+    "type": "成年女性",
+    "description": "一位年轻成年女性，栗黑色短卷发，轻薄夏季蓝白条纹衬衫和亚麻短裤，柔和乐观但有一点紧张的神情，没有眼下阴影。她的家会在约定前变成候车室。"
+  },
+  "character_pack": {
+    "enabled": true,
+    "master_prompt": "vertical 9:16 full-body character key art of a young adult woman, chestnut-black short curly hair, soft optimistic eyes with slight appointment anxiety, no under-eye shadows, lightweight summer blue-white striped shirt and linen shorts, simple sandals, cinematic storybook illustration, strong tactile paper texture, airy morning light, no text, no letters, no logo",
+    "reference_prompts": [
+      "front view of the exact same young adult woman, chestnut-black short curly hair, soft optimistic eyes, no under-eye shadows, summer blue-white striped shirt and linen shorts, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "left three-quarter view of the exact same young adult woman, chestnut-black short curly hair, soft optimistic eyes, no under-eye shadows, summer blue-white striped shirt and linen shorts, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "right profile view of the exact same young adult woman, chestnut-black short curly hair, soft optimistic eyes, no under-eye shadows, summer blue-white striped shirt and linen shorts, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "back three-quarter view of the exact same young adult woman, chestnut-black short curly hair, lightweight summer blue-white striped shirt and linen shorts, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo"
+    ]
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01",
+      "weight": 1.1,
+      "summary": "日历一出现约定，房间就变成候车室。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman waking in a bedroom that has transformed into a quiet waiting room with blue plastic chairs beside the bed, a timetable on the mirror, no readable text, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman in a kitchen whose window opens onto an endless train platform, morning light, blue plastic chairs intruding into home space, no readable text, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-02",
+      "weight": 1.0,
+      "summary": "她尝试读书、洗衣、做饭，但总被三点的约定打断。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman holding a book open at only two pages, distracted by a silent clock shape on the wall, no readable text, airy summer room, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman pausing with a kitchen knife over vegetables, water half filling a sink, appointment anxiety turning the room into a platform, no readable text, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-03",
+      "weight": 1.0,
+      "summary": "真正约定只占一小时，候车室收走整天。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman sitting alone on a row of blue plastic chairs at 9 a.m. inside her home, long empty platform shadows, no readable text, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman finally wearing a light jacket near late afternoon, surrounded by long blue waiting-room shadows, no readable text, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-04",
+      "weight": 1.2,
+      "summary": "她在候车室里烧水、泡茶、读书，让生活先抵达一点点。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman placing an electric kettle between two rows of blue plastic chairs, tea steam rising into the waiting room, soft hopeful morning, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman reading beside a cardboard-box table with hot tea, steam covering part of a blank timetable, no readable text, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-05",
+      "weight": 0.9,
+      "summary": "候车室退回墙里，第二天第一班抵达的是水烧开的声音。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of blue plastic chairs sliding back into the wall after an appointment ends, the same young woman stands with a small relieved smile, cardboard-box table remains, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of dawn in the same home, a kettle beginning to sing before the waiting room fully forms, the same young woman turns toward it with soft optimism, strong paper texture"
+      ]
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 cinematic storybook cover background, a young woman in light summer blue-white striped shirt sitting among blue plastic waiting-room chairs inside a home, tea steam rising in front of a blank timetable, soft optimistic morning light, strong tactile paper texture, leave clean space for Chinese title, no readable text, no letters, no logo",
+  "hero_wan": {
+    "enabled": true,
+    "scene_id": "scene-001",
+    "prompt": "blue plastic waiting-room chairs quietly appear beside the bed as morning light grows, the woman wakes and turns her head gently, stable identity, no morphing, no readable text"
+  },
+  "music_source": "",
+  "captions_path": "",
+  "narration_text": "她的日历上只要出现一个约定，约定以前的时间就会变成候车室。\n\n如果约在下午三点，她早晨睁开眼，床边就会出现一排蓝色塑料椅。\n\n洗手间的镜子上挂着时刻表。\n\n厨房的窗外没有街道，只有一条看不见尽头的站台。\n\n她并不需要马上出发。\n\n可从醒来的那一刻起，广播般的嗡鸣就悬在屋顶，提醒她还有一件事没有抵达。\n\n她试过读书。\n\n刚翻两页，墙上的钟就响了一下。\n\n她试过洗衣服。\n\n水才放到一半，她又去确认约定的地址。\n\n她也试过做一顿午饭。\n\n菜切到一半，刀便停在案板上。仿佛此刻开始任何事情，都会让下午三点的车在她看不见时开走。\n\n于是她坐回蓝色椅子。\n\n上午九点，候车室里只有她。\n\n十一点，阳光从站台一端移到另一端，她仍旧没有离开座位。\n\n两点四十分，她终于穿好外套。\n\n真正的约定只占一小时，候车室却已经收走了她的一整天。\n\n后来，日历上的约定越来越多。\n\n牙医、快递、会议、维修工，每一个时刻都向前伸出长长的站台。\n\n有时只是傍晚的一通电话，也会让早餐失去味道。\n\n她的生活被切成许多候车室。\n\n车还没有来，别的地方也去不了。\n\n一个周二，她又在蓝色椅子上醒来。\n\n下午三点，门外会有人来检查水表。\n\n她照例坐到椅子上，手里握着钥匙。\n\n十点左右，她忽然起身，把厨房里那只很久没用的水壶拿了过来。\n\n她没有拆掉时刻表，也没有关掉墙上的钟。\n\n只是把水壶放在两排椅子中间，接上电。\n\n水开以后，她泡了一杯茶。\n\n接着，她又拿来那本总是只读两页的书，把脚边一只空纸箱翻过来，当作小桌。\n\n候车室仍然没有消失。\n\n广播的嗡鸣还在，下午三点也还挂在前方。\n\n可茶的热气慢慢升起来，遮住了一小块时刻表。\n\n她在那块雾气后面读完一页，又读完一页。\n\n下午，检查水表的人按时来过。\n\n门关上以后，蓝色椅子开始一把一把退回墙里。\n\n只有那只纸箱没有消失。\n\n第二天，她的日历上还有一个约定。\n\n清晨，候车室再次准时出现。\n\n这一次，第一班抵达的，是水烧开的声音。"
+}

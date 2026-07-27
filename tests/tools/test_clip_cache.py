@@ -47,6 +47,11 @@ def _default_metadata(clip_id: str = "test_001") -> dict:
         "license": "CC0",
         "creator": "test_rig",
         "source_tags": "smoke test metadata",
+        "query": "lonely road at sunrise",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 12.5,
+        "last_project_id": "test-project",
     }
 
 
@@ -94,6 +99,11 @@ def test_cache_entry_round_trip_through_dict():
         license="CC0",
         creator="rig",
         source_tags="smoke test",
+        query="lonely road at sunrise",
+        width=1920,
+        height=1080,
+        duration_seconds=12.5,
+        last_project_id="test-project",
     )
     d = entry.to_dict()
     restored = CacheEntry.from_dict(d)
@@ -140,6 +150,53 @@ def test_ingest_then_hit_round_trip(tmp_path):
     assert dest2.stat().st_size == 5000
     assert cache.hits == 1
     assert cache.misses == 0
+
+
+def test_search_and_link_best_reuses_relevant_landscape_clip(tmp_path):
+    cache = ClipCache(cache_dir=tmp_path / "cache")
+    road = _fake_clip(tmp_path / "road.mp4", 5000)
+    phone = _fake_clip(tmp_path / "phone.mp4", 5000)
+    cache.ingest(
+        "pexels_road",
+        road,
+        {**_default_metadata("pexels_road"), "query": "woman walking alone on open road sunrise"},
+    )
+    cache.ingest(
+        "pexels_phone",
+        phone,
+        {**_default_metadata("pexels_phone"), "query": "scrolling smartphone at night tired"},
+    )
+
+    dest = tmp_path / "project" / "scene.mp4"
+    match = cache.link_best(
+        "walking on open road toward sunrise",
+        dest,
+        orientation="landscape",
+        min_score=0.3,
+    )
+
+    assert match is not None
+    entry, score = match
+    assert entry.clip_id == "pexels_road"
+    assert score >= 0.3
+    assert dest.exists()
+
+
+def test_search_respects_exclusions_and_minimum_score(tmp_path):
+    cache = ClipCache(cache_dir=tmp_path / "cache")
+    road = _fake_clip(tmp_path / "road.mp4", 5000)
+    cache.ingest(
+        "pexels_road",
+        road,
+        {**_default_metadata("pexels_road"), "query": "walking alone on open road sunrise"},
+    )
+
+    assert cache.search("smartphone algorithm", min_score=0.3) == []
+    assert cache.search(
+        "walking open road",
+        exclude_clip_ids={"pexels_road"},
+        min_score=0.3,
+    ) == []
 
 
 def test_cache_hit_is_a_hard_link_not_a_copy_when_possible(tmp_path):

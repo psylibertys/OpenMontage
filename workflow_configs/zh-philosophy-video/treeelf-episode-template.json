@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-episode-YYYYMMDD",
+  "title": "替换为本篇完整标题",
+  "cover_title": "四字标题",
+  "cover_english_title": "SHORT ENGLISH TITLE",
+  "source_script_md": "/absolute/path/to/source.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐/single_instrumental_20260423_100116__001-Ambient-纯音乐-侧链压缩-梦幻-赞歌感-390579271184502.mp3",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": []
+  },
+  "visual_brief": {
+    "note": "prepare 会根据标题和正文自动生成 artifacts/visual_brief.json；需要人工覆盖时，只补 emotional_core、metaphor_candidates 或 script_fragments_for_prompting。"
+  },
+  "duration_seconds": 80,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": ["text-free visual media", "no generated logos", "no generated watermarks", "no pseudo typography"],
+    "style_source": "art-Styles.md",
+    "style_families": ["cinematic documentary photography", "surreal material collage", "minimal geometric composition"],
+    "target_ratios": {"narrative_concrete": 0.15, "abstract_imagery": 0.40, "style_fusion_translation": 0.45},
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Review recent manifests, then extract fresh imagery from this script instead of banning any motif forever.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_plus_longest_semantic_safe",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {"id": "C01", "role": "cover", "visual_mode": "style_fusion_translation", "seed": 91001, "steps": 8, "prompt_review": "semantic_anchor: one cover background that compresses the article's core metaphor into a spacious designed image with a calm title area; style_logic: the selected art languages express the article's emotional temperature and core metaphor rather than decorating the cover.", "prompt": "Vertical 9:16 editorial cover background, the article's core metaphor expressed through tactile materials, quiet spatial tension, generous clean negative space as a calm title area for later Remotion layers, refined magazine-cover composition"},
+      {"id": "P00", "role": "narrative_concrete", "visual_mode": "narrative_concrete", "seed": 91002, "steps": 8, "prompt_review": "semantic_anchor: opening human situation that grounds the viewer in a recognizable scene from the script.", "prompt": "Vertical 9:16 cinematic documentary photograph, one specific everyday human action that embodies the opening problem, restrained emotion, natural light, clear spatial context"},
+      {"id": "P01", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 91003, "steps": 8, "prompt_review": "semantic_anchor: first invisible concept translated into a symbolic material relationship.", "prompt": "Vertical 9:16 poetic abstract artwork, symbolic objects and spatial tension drawn from the script's metaphor, spacious composition, tactile material detail, emotionally precise atmosphere"},
+      {"id": "P02", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 91004, "steps": 8, "prompt_review": "semantic_anchor: the first cognitive mechanism becomes a fused visual language; style_logic: combine documentary realism with one art language that explains the mechanism.", "prompt": "Vertical 9:16 style-fusion image, cinematic documentary structure blended with a script-matched art language, the composition makes the cognitive mechanism visible through material, light and rhythm"},
+      {"id": "P03", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 91005, "steps": 8, "prompt_review": "semantic_anchor: second invisible concept expressed through a fresh symbolic structure.", "prompt": "Vertical 9:16 symbolic mixed-media artwork, one dominant material metaphor from the script, clear emotional temperature, deliberate negative space and refined craft"},
+      {"id": "P04", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 91006, "steps": 8, "prompt_review": "semantic_anchor: a turning point becomes a fused art-language frame; style_logic: each style element corresponds to a script emotion, metaphor or cognitive action.", "prompt": "Vertical 9:16 art-language translation frame, two compatible styles fused into one coherent image, the script's turning point shown through composition, texture, color and symbolic motion potential"},
+      {"id": "P05", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 91007, "steps": 8, "prompt_review": "semantic_anchor: third conceptual image with a distinct metaphor and material.", "prompt": "Vertical 9:16 refined abstract editorial artwork, a distinct script-derived motif and medium, controlled light, precise emotional atmosphere, elegant material presence"},
+      {"id": "P06", "role": "narrative_concrete", "visual_mode": "narrative_concrete", "seed": 91008, "steps": 8, "prompt_review": "semantic_anchor: second Wan reference with a concrete action that can move naturally.", "prompt": "Vertical 9:16 cinematic documentary hero frame, one clear motion-ready human action tied to the script's practice or turning point, natural posture, grounded environment"},
+      {"id": "P07", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 91009, "steps": 8, "prompt_review": "semantic_anchor: a mid-article idea becomes a series-consistent but episode-specific fused style image; style_logic: chosen art language explains the idea rather than decorating it.", "prompt": "Vertical 9:16 conceptual style-fusion artwork, episode-specific motif, blended art languages serving the script idea, sophisticated composition and material rhythm"},
+      {"id": "P08", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 91010, "steps": 8, "prompt_review": "semantic_anchor: another emotional layer translated into symbolic space.", "prompt": "Vertical 9:16 abstract image, symbolic spatial relationship drawn from the article's emotional logic, restrained color palette, readable visual hierarchy, tactile surface"},
+      {"id": "P09", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 91011, "steps": 8, "prompt_review": "semantic_anchor: a key reframe becomes a fused art-language image; style_logic: the art language expresses the reframe's movement.", "prompt": "Vertical 9:16 elegant style-fusion artwork, the key reframe expressed through a blend of material art and cinematic composition, spacious visual rhythm, refined emotional resolution"},
+      {"id": "P10", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 91012, "steps": 8, "prompt_review": "semantic_anchor: a practice instruction or self-check becomes an abstract visual device.", "prompt": "Vertical 9:16 abstract editorial image, one script-derived visual device that makes the practice step feel concrete, calm tension, clear material logic"},
+      {"id": "P11", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 91013, "steps": 8, "prompt_review": "semantic_anchor: late-article integration becomes a fused visual language; style_logic: style choices correspond to integration, looseness or clarity in the script.", "prompt": "Vertical 9:16 contemplative style-fusion artwork, integrated art languages, distinct visual structure and material language, coherent emotional landing"},
+      {"id": "P12", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 91014, "steps": 8, "prompt_review": "semantic_anchor: closing concept expressed as an abstract but understandable image.", "prompt": "Vertical 9:16 abstract closing image, the article's final insight expressed through symbolic scale, material texture and quiet spatial resolution"},
+      {"id": "P13", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 91015, "steps": 8, "prompt_review": "semantic_anchor: final emotional landing translated into a few fused-style visual cues; style_logic: the chosen styles make the conclusion feel earned.", "prompt": "Vertical 9:16 refined style-fusion closing image, script-specific motif, quiet resolution, generous negative space, harmonious material and light language"}
+    ],
+    "videos": [
+      {"id": "W01", "selection_role": "opening_hook", "reference": "P00", "seed": 92001, "duration_seconds": 4, "prompt_review": "semantic_anchor: opening motion deepens the hook without changing the meaning.", "prompt": "Slow natural camera drift, stable structure, one small motivated movement, calm cinematic motion, text-free visual field"},
+      {"id": "W02", "selection_role": "longest_semantic_safe", "reference": "P06", "seed": 92002, "duration_seconds": 4, "prompt_review": "semantic_anchor: selected after exact timing for the longest semantic-safe scene, usually a turning point, core metaphor or emotional landing.", "prompt": "One clear motivated motion drawn from the selected still image, restrained camera movement, stable structure, calm visual rhythm, text-free visual field"}
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {"id": "S01", "kind": "video", "src": "video/W01.mp4", "from": 0, "to": 6, "playbackRate": 0.67},
+      {"id": "S02", "kind": "still", "src": "images/P01.png", "from": 6, "to": 12, "motion": "push-left"},
+      {"id": "S03", "kind": "still", "src": "images/P02.png", "from": 12, "to": 18, "motion": "drift-up"},
+      {"id": "S04", "kind": "still", "src": "images/P03.png", "from": 18, "to": 24, "motion": "pull-back"},
+      {"id": "S05", "kind": "still", "src": "images/P04.png", "from": 24, "to": 30, "motion": "push-right"},
+      {"id": "S06", "kind": "still", "src": "images/P05.png", "from": 30, "to": 36, "motion": "drift-down"},
+      {"id": "S07", "kind": "video", "src": "video/W02.mp4", "from": 36, "to": 42, "playbackRate": 0.67},
+      {"id": "S08", "kind": "still", "src": "images/P07.png", "from": 42, "to": 48, "motion": "push-left"},
+      {"id": "S09", "kind": "still", "src": "images/P08.png", "from": 48, "to": 54, "motion": "drift-up"},
+      {"id": "S10", "kind": "still", "src": "images/P09.png", "from": 54, "to": 60, "motion": "pull-back"},
+      {"id": "S11", "kind": "still", "src": "images/P10.png", "from": 60, "to": 65, "motion": "push-right"},
+      {"id": "S12", "kind": "still", "src": "images/P11.png", "from": 65, "to": 70, "motion": "drift-down"},
+      {"id": "S13", "kind": "still", "src": "images/P12.png", "from": 70, "to": 75, "motion": "push-left"},
+      {"id": "S14", "kind": "still", "src": "images/P13.png", "from": 75, "to": 80, "motion": "drift-up"}
+    ],
+    "info_cards": [
+      {"id": "I01", "type": "comparison", "from": 30, "to": 37, "eyebrow": "核心概念", "left": "前项", "operator": "≠", "right": "后项"},
+      {"id": "I02", "type": "questions", "from": 62, "to": 70, "eyebrow": "停一下，问自己", "items": ["问题一？", "问题二？"]}
+    ],
+    "captions": []
+  }
+}

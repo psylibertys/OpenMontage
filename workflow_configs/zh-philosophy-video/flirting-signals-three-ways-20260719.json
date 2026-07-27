@@ -1,0 +1,149 @@
+{
+  "project_id": "flirting-signals-three-ways-20260719",
+  "title": "女性向男性调情的 3 种方式",
+  "cover_title": "调情信号",
+  "cover_lines": [
+    "调情信号"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "女性可能先发出可接近信号",
+    "眼神、轻松感和兴趣回流",
+    "友好不等于同意"
+  ],
+  "core_message": "调情不是密码本，而是一段双方都愿意推进的互动；轻轻回应，看信号是否持续。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-19_女性向男性调情的3种方式.md",
+  "tags": [
+    "心哲灵",
+    "调情",
+    "关系",
+    "沟通"
+  ],
+  "raw_script": "她没有走过来，却可能已经把第一步走完了。\n\nHealthyGamerGG 的视频提到，在很多求偶互动中，女性先做的不是走过去表白，而是发出一个“你可以接近”的信号。\n\n第一种，是眼神。\n\n她看向你，眼神稍微停一下，像在确认你有没有注意到她，然后移开视线。\n\n第二种，是她主动让这段互动变得轻松。\n\n她会接住你的话，愿意跟你一起笑，也会让你感觉自己不用在她面前参加面试。\n\n第三种，是她会继续表达兴趣。\n\n不是只收下你的注意，而是把注意再送回来，让对话真的有来有回。\n\n但别把这三种信号当成恋爱密码本。\n\n友好不等于同意，一次眼神也不是爱情公证书。\n\n调情更像一支双人舞。\n\n你礼貌地往前一步，看她是否也愿意把互动往前推进。她也向前一步，你们才继续。\n\n所以最好的判断方法，不是用力猜。\n\n是轻轻回应，看信号是否持续；如果没有，就尊重地停下。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "lo-fi",
+      "light",
+      "calming",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "她没有走过来，却可能已经把第一步走完了。\n\nHealthyGamerGG 的视频提到，在很多求偶互动中，女性先做的不是走过去表白，而是发出一个“你可以接近”的信号。\n\n第一种，是眼神。",
+      "queries": [
+        {
+          "query": "man woman eye contact cafe subtle",
+          "description": "短暂停留的眼神"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "她看向你，眼神稍微停一下，像在确认你有没有注意到她，然后移开视线。\n\n第二种，是她主动让这段互动变得轻松。\n\n她会接住你的话，愿意跟你一起笑，也会让你感觉自己不用在她面前参加面试。",
+      "queries": [
+        {
+          "query": "two people talking smiling reciprocal interest",
+          "description": "注意力有来有回"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "调情信号"
+          ],
+          "subtitle": "不是恋爱密码本"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "第三种，是她会继续表达兴趣。\n\n不是只收下你的注意，而是把注意再送回来，让对话真的有来有回。\n\n但别把这三种信号当成恋爱密码本。\n\n友好不等于同意，一次眼神也不是爱情公证书。",
+      "queries": [
+        {
+          "query": "dance partners gentle steps metaphor",
+          "description": "双人舞隐喻"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "轻轻回应"
+          ],
+          "subtitle": "看信号是否持续"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "调情更像一支双人舞。\n\n你礼貌地往前一步，看她是否也愿意把互动往前推进。她也向前一步，你们才继续。\n\n所以最好的判断方法，不是用力猜。\n\n是轻轻回应，看信号是否持续；如果没有，就尊重地停下。",
+      "queries": [
+        {
+          "query": "person walking away politely",
+          "description": "信号没有持续时尊重停下"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "project_id": "worthy-of-love-echo-20260719",
+  "title": "乔·迪斯本萨博士谈感受值得被爱",
+  "cover_title": "爱的资格",
+  "cover_lines": [
+    "爱的资格"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "过去可能还在续费",
+    "宽恕不是宣布对方没错",
+    "分清今天事实和过去回声"
+  ],
+  "core_message": "值得被爱不是等别人发资格证，而是不再让过去的伤害担任今天的审核员。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-19_感受值得被爱.md",
+  "tags": [
+    "心哲灵",
+    "值得被爱",
+    "宽恕",
+    "关系"
+  ],
+  "raw_script": "有时候，伤害你的人早已翻篇，只有你还在替那段过去续费。\n\n乔·迪斯本萨说，对方可能已经换了工作、搬了家，甚至开始了全新的生活。而你还把自己押在原地，一遍遍重放当时的情绪。\n\n所以宽恕不是宣布对方没错，也不是逼自己忘记。\n\n它是你终于决定：这段过去，不再继续掌管我今天的心。\n\n可很多人想被爱时，心里还坐着一位老审核员。\n\n别人一靠近，它就开始翻旧账：你不够好。你会被丢下。你还不配。\n\n于是爱还没进门，你已经先把自己拒绝了。\n\n真正的“值得被爱”，不是等某个人来给你发资格证。\n\n而是不再让过去的伤害，继续担任今天的资格审查员。\n\n下次“我不值得”又出现时，先问一句：\n\n这是今天的事实，还是过去留下的回声？\n\n如果只是回声，就不要再让它替你做今天的决定。\n\n你不需要先变得无可挑剔，才有资格进入一段有爱的关系。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "warm piano",
+      "calming",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "有时候，伤害你的人早已翻篇，只有你还在替那段过去续费。\n\n乔·迪斯本萨说，对方可能已经换了工作、搬了家，甚至开始了全新的生活。而你还把自己押在原地，一遍遍重放当时的情绪。\n\n所以宽恕不是宣布对方没错，也不是逼自己忘记。",
+      "queries": [
+        {
+          "query": "person holding old memory alone window",
+          "description": "替过去续费"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "它是你终于决定：这段过去，不再继续掌管我今天的心。\n\n可很多人想被爱时，心里还坐着一位老审核员。\n\n别人一靠近，它就开始翻旧账：你不够好。你会被丢下。你还不配。",
+      "queries": [
+        {
+          "query": "inner critic mirror self doubt",
+          "description": "心里的老审核员"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "爱的资格"
+          ],
+          "subtitle": "不是别人发的证"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "于是爱还没进门，你已经先把自己拒绝了。\n\n真正的“值得被爱”，不是等某个人来给你发资格证。\n\n而是不再让过去的伤害，继续担任今天的资格审查员。",
+      "queries": [
+        {
+          "query": "couple gentle support conversation",
+          "description": "爱靠近时的资格感"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "今天事实",
+            "过去回声"
+          ],
+          "subtitle": "别让回声替你决定"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "下次“我不值得”又出现时，先问一句：\n\n这是今天的事实，还是过去留下的回声？\n\n如果只是回声，就不要再让它替你做今天的决定。\n\n你不需要先变得无可挑剔，才有资格进入一段有爱的关系。",
+      "queries": [
+        {
+          "query": "person standing in soft morning light",
+          "description": "不再让过去替今天做决定"
+        }
+      ]
+    }
+  ]
+}

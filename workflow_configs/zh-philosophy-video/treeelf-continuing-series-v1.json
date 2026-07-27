@@ -1,0 +1,139 @@
+{
+  "version": "1.1",
+  "series": "树精灵·心哲灵",
+  "profile": "tiktok",
+  "frame": {"width": 1080, "height": 1920, "fps": 30, "duration_seconds": [60, 90]},
+  "voice": {
+    "provider": "ComfyUI",
+    "workflow_template": "qwen3_tts_voice_clone_load",
+    "model": "Qwen3-TTS 1.7B VoiceClone load",
+    "voice_name": "treeelf_voice02_v1",
+    "seed": 2707,
+    "temperature": 0.9,
+    "top_p": 0.95,
+    "top_k": 50,
+    "max_new_tokens": 4096,
+    "instruct": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气，像在自然分享；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+    "remote_persistence": "comfyui-models/qwen-tts/voices; never delete as batch temporary data"
+  },
+  "cover": {
+    "design": "canvas-design art direction",
+    "generator": "ComfyUI Krea 2 Low VRAM",
+    "typography": "Remotion",
+    "count_per_episode": 1,
+    "brand": "树精灵",
+    "generated_text": "forbidden",
+    "cover_image_generator": "excluded"
+  },
+  "visual": {
+    "style_source": "/Users/treeelf/Desktop/psynautCode/OpenMontage/art-Styles.md",
+    "narrative_concrete_ratio": [0.10, 0.20],
+    "abstract_imagery_ratio": [0.35, 0.45],
+    "style_fusion_translation_ratio": [0.40, 0.50],
+    "remotion_card_ratio": [0.15, 0.20],
+    "style_families_per_episode": [2, 4],
+    "prompt_policy": "Creative prompts describe desired semantic anchors, emotions, metaphors, materials, light, composition and art languages in positive terms. Motifs appear only when they grow from the current script's imagery and can explain their meaning.",
+    "technical_guardrails": ["text-free visual media", "no generated logos", "no generated watermarks", "no pseudo typography"],
+    "mode_definitions": {
+      "narrative_concrete": "Use specific scenes to express the sentence: people, places, actions and objects. The priority is making the idea feel like something that truly happened.",
+      "abstract_imagery": "Use symbols, spatial relationships, materials and light to express the sentence. The priority is asking what this sentence feels like psychologically; every abstract element must correspond to a script concept.",
+      "style_fusion_translation": "Use one or more art languages to translate the script's emotions, metaphors and cognitive actions into several style-fused images. The priority is asking what this article would look like as a set of art shots; every style choice must explain its relationship to the script."
+    },
+    "mode_overlap_rule": "Abstract imagery and style-fusion translation are not mutually exclusive. Many style-fusion images can be abstract, but their generation target differs: abstract imagery starts from symbols and then builds the image; style fusion starts from art language and then translates semantics into it.",
+    "rule": "Every abstract element and every art-style term must explain why it fits the script. Vary prominent motifs by re-extracting each episode's imagery rather than permanently banning motifs."
+  },
+  "production_defaults": {
+    "images_per_episode": 15,
+    "minimum_images_per_episode": 15,
+    "cover_images_per_episode": 1,
+    "content_images_per_episode": 14,
+    "minimum_content_images_per_episode": 14,
+    "wan_clips_per_episode": 2,
+    "wan_generation_seconds": 4,
+    "wan_max_generation_seconds": 5,
+    "wan_selection_policy": "Generate two Wan clips by default: W01 serves the opening hook; W02 serves the longest retimed semantic-safe scene. Do not generate Wan for the full on-screen duration when a scene lasts longer than 5 seconds; extend the motion in Remotion instead.",
+    "remotion_info_cards_per_episode": [2, 3],
+    "target_still_visible_seconds": [4.0, 6.0],
+    "image_count_policy": "Start with at least 14 content images. Increase the count when the reviewed timeline would leave ordinary stills visible for more than 6 seconds on average; do not reduce below 14 merely because the episode is shorter.",
+    "reuse_policy": "Each content image is used exactly once, either as one animated still scene or as one Wan reference; never both.",
+    "recommended_batch_size": [5, 8]
+  },
+  "caption": {
+    "color": "#FFFFFF",
+    "background": "none",
+    "outline_color": "rgba(0,0,0,0.92)",
+    "outline_width": 3.5,
+    "font_size": 42,
+    "safe_bottom": 360
+  },
+  "music": {
+    "selected_mix_profile": "B3-narration-first-quieter",
+    "remotion_volume": 0.3,
+    "ducking": "speech-aware",
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "catalog_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/catalog-v1.json",
+    "overrides_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/manual-overrides-v1.json",
+    "usage_ledger_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/usage-ledger-v1.json",
+    "selection_mode": "shared_catalog_by_script_keywords",
+    "selection_policy": "Use the shared catalog, manual overrides, same-batch penalty and cross-series history; exclude lyric, watermark and unreadable files, then use deterministic weighted fallback when no keyword matches.",
+    "normalization": {
+      "target_lufs": -18.0,
+      "true_peak_dbfs": -2.0,
+      "loudness_range_lu": 7.0
+    },
+    "qc": "judge audibility from the exported file, not the timeline alone"
+  },
+  "delivery": {
+    "directory": "/Users/treeelf/Movies/zh-philosophy-video",
+    "filename_policy": "Use a Chinese-readable title filename, optionally prefixed by YYYY-MM-DD from project_id; never overwrite an existing different file.",
+    "require_ffprobe": true,
+    "require_contact_sheet": true,
+    "require_local_whisper": "/Users/treeelf/AI_Models/Whisper",
+    "require_project_movies_sha256_match": true,
+    "mark_source_completed_only_after_delivery": true
+  },
+  "local_storage": {
+    "canonical_episode_assets": "projects/<project_id>/assets",
+    "canonical_final_video": "/Users/treeelf/Movies/zh-philosophy-video",
+    "stage_with": "hardlink_then_copy_fallback",
+    "deliver_with": "hardlink_then_copy_fallback",
+    "immediate_cleanup_after_verified_delivery": [
+      "remotion-composer/public/<project_id>",
+      "projects/<project_id>/renders contents",
+      "narration_raw.mp3",
+      "project background.mp3 when the central source hash matches"
+    ],
+    "delayed_cleanup_days": 7,
+    "delayed_cleanup": [
+      "voice02_segments",
+      "visual review frame directories",
+      "batch remote-final-backup after every episode is delivered"
+    ],
+    "cross_episode_reuse": [
+      "treeelf_voice02_v1",
+      "cover and Remotion templates",
+      "series typography and caption rules",
+      "central music library",
+      "style and provenance records"
+    ],
+    "episode_only_reuse": [
+      "generated article images",
+      "Wan clips",
+      "narration.wav",
+      "platform cover"
+    ]
+  },
+  "gpu": {
+    "preflight": ["GPU present", "/system_stats healthy", "queue empty", "15/15 workflows"],
+    "remote_asset_policy": "retain_until_batch_end",
+    "queue_depth": 2,
+    "model_group_order": ["all Qwen narration", "all Krea images", "all Wan clips"],
+    "shutdown": "After every GPU asset batch: download and verify all assets, review the exact cleanup dry-run, clean only batch temporary assets, then shut down before Whisper or Remotion work."
+  },
+  "gpu_baseline": {
+    "source_project": "treeelf-love-was-not-wrong-20260725",
+    "image_seconds": 12.4,
+    "wan_seconds": 137.72,
+    "narration_segment_seconds": 34.92
+  }
+}

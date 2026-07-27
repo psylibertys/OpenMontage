@@ -1,0 +1,141 @@
+{
+  "version": "1.0",
+  "series": "treeelf-fable-transparent-30s-test",
+  "source_dir": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-fable/transparent-30s-test",
+  "status_ledger": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-fable/transparent-30s-test/status-ledger.json",
+  "delivery_dir": "/Users/treeelf/Movies/treeelf-fable",
+  "pipeline": "cinematic",
+  "render_runtime": "remotion",
+  "composition_mode": "templated",
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "pacing": {
+    "target_seconds_per_image": 5,
+    "normal_range_seconds": [4, 7],
+    "maximum_hold_seconds": 8,
+    "maximum_wan_clips_per_episode": 1,
+    "wan_duration_seconds": 3,
+    "wan_max_generation_seconds": 3,
+    "wan_selection_policy": "opening_fable_event_only_or_none"
+  },
+  "character": {
+    "selection": "story_compatible_random",
+    "allowed_protagonists": ["成年女性", "女孩", "动物", "植物", "物品", "其他非人存在"],
+    "forbidden_protagonists": ["成年男性", "中年男人", "男孩"],
+    "episode_consistency": true,
+    "cross_episode_reuse": false
+  },
+  "visual": {
+    "logic": "story_event + fable_law + art_style_logic",
+    "story_event": "Every image must read as a clear story event with place, action, object and consequence.",
+    "fable_law": "The episode's surreal rule must appear as if it truly happens inside an ordinary world.",
+    "art_style_default": "modern literary picturebook, restrained cinematic magical realism, tactile material texture, calm symbolic composition",
+    "art_style_rule": "Every style choice must explain its relationship to this fable's metaphor or emotional movement.",
+    "technical_guardrails": [
+      "text-free generated image",
+      "no readable text",
+      "no letters",
+      "no logo",
+      "no watermark",
+      "no pseudo typography"
+    ],
+    "prompt_policy": "Creative prompts describe positive story events, fable laws, materials, light, composition and style logic. Aesthetic negatives are warnings; technical guardrails remain centralized."
+  },
+  "cover": {
+    "background_generator": "ComfyUI Krea 2 extra pass",
+    "typography": "Remotion",
+    "human_free": true,
+    "style": "symbolic object/environment cover aligned with zh-philosophy visual language: generous negative space, refined material metaphor, no character portrait",
+    "technical_guardrails": [
+      "text-free generated image",
+      "no readable text",
+      "no letters",
+      "no logo",
+      "no watermark",
+      "no pseudo typography"
+    ]
+  },
+  "voice": {
+    "workflow_template": "qwen3_tts_voice_clone_load",
+    "voice_name": "treeelf_fable_voice_v1",
+    "language": "Chinese",
+    "instruct": "成年女性中文旁白，音色温暖清澈，语速中等、略有从容感，发音清晰自然。整体像在讲一个真实发生过的寓言故事：亲近、安静、有画面感。情绪表达克制而有微光，奇妙或荒诞的句子语气轻轻变亮，关键转折处有自然停顿，结尾保留一点温柔余韵，让寓意慢慢落下。",
+    "clone_load_policy": "正式批量配音与心哲灵固定声线一致：使用已审核保存的 voice_name 声包；instruct 作为声线档案和审核说明，不作为 qwen3_tts_voice_clone_load 的强控制输入。",
+    "max_new_tokens": 4096,
+    "single_generation_per_episode": true,
+    "whisper_role": "local_timing_and_qc_only"
+  },
+  "gpu": {
+    "queue_depth": 2,
+    "max_episodes_per_batch": 12,
+    "model_group_order": [
+      "qwen3_tts_voice_clone_load",
+      "krea2_low_vram",
+      "flux2_klein_4ref",
+      "krea2_extra_pass",
+      "wan22_i2v_q6"
+    ],
+    "ordinary_image_workflow": "krea2_low_vram",
+    "character_consistency_workflow": "flux2_klein_4ref",
+    "cover_workflow": "krea2_extra_pass",
+    "wan_workflow": "wan22_i2v_q6",
+    "shutdown_after_verified_batch": false
+  },
+  "captions": {
+    "font_size": 42,
+    "color": "#FFFFFF",
+    "outline_color": "#000000",
+    "outline_width": 3,
+    "background": "transparent",
+    "safe_bottom": 360,
+    "require_local_whisper": "/Users/treeelf/AI_Models/Whisper"
+  },
+  "music": {
+    "selected_mix_profile": "B3-narration-first-quieter",
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "catalog_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/catalog-v1.json",
+    "overrides_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/manual-overrides-v1.json",
+    "usage_ledger_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/usage-ledger-v1.json",
+    "selection_mode": "shared_catalog_by_fable_content",
+    "selection_policy": "Use the shared catalog, manual overrides, same-batch penalty and cross-series history; exclude lyric, watermark and unreadable files, then use deterministic weighted fallback when no keyword matches.",
+    "normalization": {
+      "target_lufs": -18.0,
+      "true_peak_dbfs": -2.0,
+      "loudness_range_lu": 7.0
+    },
+    "remotion_volume": 0.3,
+    "ducking": "speech-aware"
+  },
+  "quality_gates": {
+    "strict_aesthetic_prompt_review": true,
+    "require_character_review": true,
+    "require_visual_qc_for_stage": true,
+    "require_calibrated_captions_for_stage": true,
+    "require_audio_loudness_qc": true
+  },
+  "batch_assets": {
+    "download_scope": "all_assets_generated_in_current_batch",
+    "isolation": "batch_id_plus_remote_runtime_baseline",
+    "verify": ["size", "sha256"],
+    "never_touch": [
+      "other_project_assets",
+      "historical_batch_assets",
+      "models",
+      "custom_nodes",
+      "long_term_voice_packs",
+      "long_term_reference_packs",
+      "shared_input_cache"
+    ]
+  },
+  "lifecycle": [
+    "pending",
+    "planned",
+    "gpu_queued",
+    "gpu_assets_complete",
+    "local_packaging",
+    "completed"
+  ]
+}

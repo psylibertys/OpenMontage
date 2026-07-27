@@ -1,0 +1,22 @@
+{
+  "project_id": "treeelf-fable-dandelion-awakening-20260725",
+  "execution_status": "active_continuous_production_no_shutdown",
+  "decision": "Preserve the approved recurring actress reference inputs and all Qwen/FLUX/Wan project outputs on the remote runtime during continuous production. Download every final asset into the Mac project and verify it locally. Do not run shared-runtime cleanup while unrelated projects are present.",
+  "retain_infrastructure": [
+    "/root/ComfyUI-Easy-Install/ComfyUI",
+    "/root/autodl-tmp/comfyui-models",
+    "/root/autodl-tmp/comfyui-runtime/validation"
+  ],
+  "retain_project_assets": [
+    "role-ref-01-front-close.png",
+    "role-ref-02-three-quarter.png",
+    "role-ref-03-left-profile.png",
+    "role-ref-04-front-fullbody.png"
+  ],
+  "backup_then_delete_runtime_types": [],
+  "backup_then_delete_voice_files": [],
+  "delete_gate": "Disabled during active shared continuous production; all local deliverables must still exist and pass size and SHA-256 checks.",
+  "shutdown_gate": "disabled by explicit user instruction",
+  "shutdown_policy": "do_not_shutdown_until_user_explicitly_requests_it",
+  "current_blocker": "Shared runtime contains outputs from multiple active projects, so broad cleanup is unsafe. Retain all remote runtime assets."
+}

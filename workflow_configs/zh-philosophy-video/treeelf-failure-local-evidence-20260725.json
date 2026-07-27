@@ -1,0 +1,317 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-failure-local-evidence-20260725",
+  "title": "别让一次失败接管整个人生",
+  "cover_title": "缩小故事",
+  "cover_english_title": "SHRINK THE STORY",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-22_别让一次失败接管整个人生.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐/single_instrumental_20260423_100116__001-Ambient-纯音乐-侧链压缩-梦幻-赞歌感-390579271184502.mp3",
+  "duration_seconds": 80,
+  "canvas_design_direction": "workflow_configs/zh-philosophy-video/design-directions/treeelf-batch-20260725-b.md#证据回收别让一次失败接管整个人生",
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic documentary photography",
+      "cyanotype",
+      "paper bas-relief",
+      "restrained surreal collage"
+    ],
+    "target_ratios": {
+      "realistic": 0.4,
+      "abstract": 0.45,
+      "remotion_cards": 0.15
+    },
+    "cross_episode_repeat_policy": "Do not use red thread, literal rubber stamps, torn photographs, rain crying, thermometers, luminous nervous systems or repeated translucent fruit as prominent motifs.",
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "seed": 95101,
+        "steps": 8,
+        "prompt_review": "A local flaw returns to its true scale through an optical field.",
+        "prompt": "Vertical 9:16 premium editorial cover background, a tiny irregular orange paper fiber seen through one clear optical lens while the surrounding deep indigo field remains vast and calm, meticulous paper relief and cyanotype texture, generous clean negative space in the upper center for later typography, optical scale and handmade paper texture carry the evidence metaphor, material-only composition centered on scale and proportion, no text, no letters, no numbers, no logo, no watermark, no pseudo typography"
+      },
+      {
+        "id": "P00",
+        "role": "realistic",
+        "seed": 95102,
+        "steps": 8,
+        "prompt_review": "A meeting mistake begins as one bounded moment.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, a young East Asian woman pauses after misspeaking in a small team meeting, colleagues remain neutral and continue looking at notes, restrained natural reaction, afternoon office light, candid 50mm realism, colleagues remain neutral and the meeting continues naturally, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P01",
+        "role": "abstract",
+        "seed": 95103,
+        "steps": 8,
+        "prompt_review": "One dark mark is small inside a much larger life field.",
+        "prompt": "Vertical 9:16 museum-grade cyanotype artwork, one dense irregular blue mark occupies a tiny region of an expansive pale handmade paper field, delicate chemical blooms and precise deckled fibers, visual scale communicates local evidence rather than total identity, organic irregular evidence shape, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P02",
+        "role": "realistic",
+        "seed": 95104,
+        "steps": 8,
+        "prompt_review": "The unanswered message triggers a private conclusion.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, an East Asian woman rides home on a quiet evening tram with her phone face down in her lap, thoughtful tension in her hands, other passengers absorbed in ordinary life, soft urban window light, phone screen rests face down as a quiet object, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P03",
+        "role": "abstract",
+        "seed": 95105,
+        "steps": 8,
+        "prompt_review": "A small event tries to cast an oversized identity shadow.",
+        "prompt": "Vertical 9:16 restrained surreal collage, a tiny folded paper object casts an impossibly large but soft-edged shadow across layered archival paper, the shadow remains visibly detached from the object, indigo charcoal and oxidized orange palette, painstaking analog cut edges, object-led composition focused on material evidence, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P04",
+        "role": "realistic",
+        "seed": 95106,
+        "steps": 8,
+        "prompt_review": "A practical correction turns judgment back into action.",
+        "prompt": "Vertical 9:16 observational documentary photograph, the same young East Asian woman calmly rehearses one sentence with a trusted colleague beside a whiteboard turned away from camera, relaxed grounded posture, warm side light, authentic office detail, whiteboard surfaces turned away as blank planes, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P05",
+        "role": "abstract",
+        "seed": 95107,
+        "steps": 8,
+        "prompt_review": "A rough edge is measured without becoming the whole object.",
+        "prompt": "Vertical 9:16 handcrafted paper bas-relief, one imperfect edge is isolated within nested clean contours that gradually restore proportion, subtle shadows, ivory paper with indigo and orange pigment, scientific precision without labels, master-level tactile craft, nested clean contours restore proportion through shape alone, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P06",
+        "role": "realistic",
+        "seed": 95108,
+        "steps": 8,
+        "prompt_review": "Looking for one exception interrupts the absolute story.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, an East Asian woman reviews several ordinary moments of competent work represented by unlabeled printed photographs spread on a table, one hand selects a calm successful scene, overhead natural light, images contain printed photographs appear as blank memory-like images, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P07",
+        "role": "abstract",
+        "seed": 95109,
+        "steps": 8,
+        "prompt_review": "Exceptions open windows in a closed generalization.",
+        "prompt": "Vertical 9:16 sophisticated cyanotype photogram, a dense blue field contains several irregular openings of warm paper light at different scales, botanical-free abstract geometry, airy composition, meticulous exposure gradients, warm paper openings create exception spaces in the field, optical scale and handmade paper texture carry the evidence metaphors, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P08",
+        "role": "realistic",
+        "seed": 95110,
+        "steps": 8,
+        "prompt_review": "Specific language returns the event to one time and place.",
+        "prompt": "Vertical 9:16 cinematic documentary photograph, close view of an East Asian woman taking a slow breath and placing one small blank card beside a meeting notebook, grounded hands and posture, morning window light, intimate 85mm detail, all surfaces blank, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P09",
+        "role": "abstract",
+        "seed": 95111,
+        "steps": 8,
+        "prompt_review": "The totalizing shadow breaks into bounded layers.",
+        "prompt": "Vertical 9:16 abstract paper sculpture, one broad charcoal plane separates into several smaller floating layers with clear breathable gaps, tiny orange core remains stable below, museum lighting, crisp handmade edges and controlled depth, softly separated paper layers create breathable boundaries, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P10",
+        "role": "realistic",
+        "seed": 95112,
+        "steps": 8,
+        "prompt_review": "A minimal repair restores agency.",
+        "prompt": "Vertical 9:16 poetic documentary photograph, a young East Asian woman sends a concise follow-up voice message in a quiet courtyard then lowers the phone, subtle relieved focus rather than triumph, soft daylight and honest skin texture, screen not visible, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P11",
+        "role": "abstract",
+        "seed": 95113,
+        "steps": 8,
+        "prompt_review": "Evidence is refiled into a wider living archive.",
+        "prompt": "Vertical 9:16 refined surreal archival collage, one dark fragment is placed into a spacious grid of many varied blank material samples, asymmetrical editorial balance, deep indigo paper, pale vellum and one orange accent, blank material samples carry the archive metaphor through texture, optical scale and handmade paper texture carry the evidence metaphors, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P12",
+        "role": "realistic",
+        "seed": 95114,
+        "steps": 8,
+        "prompt_review": "Life continues beyond the failed moment.",
+        "prompt": "Vertical 9:16 cinematic wide documentary photograph, the young East Asian woman walks through a bright public square after work among many independent everyday activities, her scale is modest within the larger living city, composed and forward moving, forward movement stays modest and grounded, no text, no letters, no numbers, no logo, no watermark"
+      },
+      {
+        "id": "P13",
+        "role": "abstract",
+        "seed": 95115,
+        "steps": 8,
+        "prompt_review": "The final field keeps one imperfection without surrendering the whole.",
+        "prompt": "Vertical 9:16 minimalist cyanotype and paper relief closing artwork, a vast calm pale field carries one small blue-orange irregularity near the lower third while subtle concentric paper contours continue far beyond it, quiet resolution, exquisite material detail, no text, no letters, no numbers, no logo, no watermark"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "reference": "P00",
+        "seed": 95201,
+        "duration_seconds": 4,
+        "prompt_review": "The meeting continues after one mistake.",
+        "prompt": "The woman pauses for one breath, a colleague gently turns one page and the meeting continues, subtle handheld documentary drift, stable faces and hands, whiteboard surfaces turned away as blank planes, no text"
+      },
+      {
+        "id": "W02",
+        "reference": "P09",
+        "seed": 95202,
+        "duration_seconds": 4,
+        "prompt_review": "Oversized judgment separates into manageable pieces.",
+        "prompt": "The broad charcoal paper plane slowly separates into smaller bounded layers while the orange core stays still, soft museum light shifts across cut edges, restrained vertical camera drift, no text"
+      }
+    ],
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P06.png",
+        "from": 36,
+        "to": 42,
+        "motion": "push-left"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S10",
+        "kind": "video",
+        "src": "video/W02.mp4",
+        "from": 54,
+        "to": 60,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      },
+      {
+        "id": "S12",
+        "kind": "still",
+        "src": "images/P11.png",
+        "from": 65,
+        "to": 70,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S13",
+        "kind": "still",
+        "src": "images/P12.png",
+        "from": 70,
+        "to": 75,
+        "motion": "push-left"
+      },
+      {
+        "id": "S14",
+        "kind": "still",
+        "src": "images/P13.png",
+        "from": 75,
+        "to": 80,
+        "motion": "drift-up"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "type": "comparison",
+        "from": 24,
+        "to": 32,
+        "eyebrow": "把判决改回证据",
+        "left": "这次没做好",
+        "operator": "≠",
+        "right": "我就是不行"
+      },
+      {
+        "id": "I02",
+        "type": "questions",
+        "from": 57,
+        "to": 66,
+        "eyebrow": "把章拿回来",
+        "items": [
+          "有没有一次例外？",
+          "现在能改的最小一步是什么？"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

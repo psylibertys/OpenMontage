@@ -1,0 +1,80 @@
+{
+  "version": "1.1",
+  "series": "treeelf-fable",
+  "pipeline": "cinematic",
+  "render_runtime": "remotion",
+  "composition_mode": "templated",
+  "character_policy": {
+    "series_identity": "每篇重新生成一位主角，不沿用上一集人物",
+    "allowed_protagonists": ["成年女性", "女孩", "动物", "植物", "物品", "其他非人存在"],
+    "forbidden_protagonists": ["成年男性", "中年男人", "男孩"],
+    "gender_rule": "male protagonists are excluded for now; neutral objects, plants and animals are allowed",
+    "species": "human_child_animal_plant_object_or_other_non_human",
+    "selection": "story_compatible_random",
+    "episode_consistency": "本篇确定后，所有镜头保持同一身份、物种、年龄感、发型或外形标志、服装与配色",
+    "cross_episode_reuse": false
+  },
+  "voice_policy": {
+    "reference": "/Users/treeelf/Desktop/psynautCode/OpenMontage/配音/配音01.m4a",
+    "voice_name": "treeelf_fable_voice_v1",
+    "instruct": "成年女性中文旁白，音色温暖清澈，语速中等、略有从容感，发音清晰自然。整体像在讲一个真实发生过的寓言故事：亲近、安静、有画面感。情绪表达克制而有微光，奇妙或荒诞的句子语气轻轻变亮，关键转折处有自然停顿，结尾保留一点温柔余韵，让寓意慢慢落下。",
+    "clone_load_policy": "正式批量配音与心哲灵固定声线一致：使用 qwen3_tts_voice_clone_load 复用已审核保存的 voice_name 声包；声线表现以声包为准。",
+    "instruction_effectiveness_check": "prepare 写出 voice_instruction_report.json；当前 qwen3_tts_voice_clone_load 没有独立 instruct 输入，instruct 只作为声线档案和审核说明，不作为 clone-load 阶段的强控制参数。",
+    "denoise_once": true,
+    "remote_asset": "long_term",
+    "narration_generation": "single_pass_per_episode"
+  },
+  "visual_policy": {
+    "logic": "story_event + fable_law + art_style_logic",
+    "summary": "fable线不使用具象/抽象/风格融合比例；寓言事件必须像真实发生过，艺术风格服务故事。",
+    "cover": "封面由ComfyUI生成无人、无字、无Logo、无水印、无伪字的象征性背景，Remotion负责文字。"
+  },
+  "subtitle_policy": {
+    "font_size_px": 42,
+    "fill": "white",
+    "stroke": "black",
+    "stroke_width_px": 3,
+    "background": "transparent",
+    "local_whisper_model_dir": "/Users/treeelf/AI_Models/Whisper",
+    "stage_local_gate": "正式本地封装必须使用 Whisper 或人工校准后的 captions.json；GPU 阶段可先用初版时间线生成资产，stage-local 前自动同步到校准时间线。"
+  },
+  "quality_gates": {
+    "character_review": "Flux 正文图必须先有四参考图、character_contact_sheet.png 和 approved=true 的 character_review.json。",
+    "visual_qc": "visual_qc.json 必须确认正文图故事匹配、人体可用、无伪字，封面无人无字无logo无水印且有标题安全区；失败图不得进入 Remotion。",
+    "audio_mix_qc": "stage-local 写出 audio_mix_qc.json，检查旁白、音乐文件和 Remotion 音乐音量基准；最终仍需试听确认。",
+    "prompt_review": "新批次 prepare 对审美类否定词硬报警；技术护栏无字、无logo、无水印保留。"
+  },
+  "image_pacing_policy": {
+    "target_seconds_per_source_image": 5,
+    "normal_range_seconds": [4, 7],
+    "maximum_hold_seconds_without_visual_change": 8,
+    "allocation_rule": "旁白真实时长与语义节点共同决定图片数，目标图片数约为旁白秒数除以5，并保证每个独立叙事节点至少有一张图",
+    "remotion_reframing_counts_as_visual_variation_not_new_source_asset": true
+  },
+  "batch_asset_policy": {
+    "download_scope": "all_assets_generated_in_current_batch",
+    "included": [
+      "narration_audio",
+      "scene_image_candidates",
+      "scene_image_repairs",
+      "cover_assets",
+      "wan_video_clips",
+      "generated_previews_and_contact_sheets",
+      "generation_manifests_and_provenance"
+    ],
+    "excluded": [
+      "models",
+      "custom_nodes",
+      "approved_long_term_voice_packs",
+      "approved_long_term_reference_packs",
+      "shared_input_cache",
+      "system_temporary_files",
+      "assets_from_other_projects_or_batches"
+    ],
+    "isolation_rule": "仅按当前批次清单和批次ID下载、校验与清理，不扫描、不移动、不删除其他项目或历史批次资产",
+    "verification": "download_to_mac_then_verify_size_and_sha256_before_remote_cleanup"
+  },
+  "delivery_dir": "/Users/treeelf/Movies/treeelf-fable",
+  "shutdown_after_batch": true,
+  "shutdown_gate": "当前批次ComfyUI队列为空，本轮所有生成素材均已下载到Mac并通过大小与SHA-256校验，当前批次清理审计通过，且无待修复失败项"
+}

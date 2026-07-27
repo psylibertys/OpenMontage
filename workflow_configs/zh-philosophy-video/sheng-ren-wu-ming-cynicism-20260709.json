@@ -1,0 +1,161 @@
+{
+  "project_id": "sheng-ren-wu-ming-cynicism-20260709",
+  "title": "圣人无名：庄子怎么看当代犬儒？",
+  "cover_title": "圣人无名",
+  "cover_lines": [
+    "圣人无名"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 116,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "犬儒常是失望后的防御",
+    "冷嘲防御会固化无助",
+    "从评价系统撤出"
+  ],
+  "core_message": "怀疑保护判断力，嘲讽却会冻结行动力；真正的无名是不靠掌声也不靠反掌声。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-09_圣人无名_犬儒.md",
+  "tags": [
+    "心哲灵",
+    "庄子",
+    "犬儒",
+    "防御机制"
+  ],
+  "raw_script": "圣人无名，你见过那种什么都想嘲讽一下的人吗？\n\n有人听到同事说“我还是想把项目做好”，第一句就是：别装了，最后还不是给老板赚钱。\n\n还有人听到朋友认真谈理想，马上说：你就是没被社会毒打过。\n\n这常常是失望太多次以后，自己给自己打的疫苗。\n\n庄子在《逍遥游》里说：至人无己，神人无功，圣人无名。\n\n“无名”的意思很直接：不再靠别人的评价确认自己。\n\n犬儒看起来什么都不在乎，其实还在跟评价打架。\n\n他嘲笑真诚，说明真诚还刺痛他。\n\n他嘲笑理想，说明理想曾经让他失望。\n\n这可以叫“冷嘲防御模型”：期待，失望，防御，嘲讽，暂时安全，然后更难投入。\n\n如果重复很多次，人会靠近习得性无助：不再判断这次值不值得，直接默认认真也没用。\n\n但这里有个反转。\n\n怀疑能保护判断力，嘲讽会冻结行动力。\n\n你一直骂名利，名利还在占用你的注意力。\n\n你一直骂虚伪，虚伪还在规定你的表情。\n\n你对抗的东西，常常还在控制你。\n\n所以庄子的出口，不是逼你重新热血。\n\n它是把自己从评价系统里撤出来。\n\n下次想嘲一句话时，先把它翻译得更准确。\n\n不要说：真诚都是假的。\n\n改成：我害怕相信真诚以后，又发现自己被利用。\n\n前一句攻击世界，后一句看见防御。\n\n圣人无名，就是不靠掌声活着，也不靠反掌声活着。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "post-rock",
+      "calming",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "圣人无名，你见过那种什么都想嘲讽一下的人吗？\n\n有人听到同事说“我还是想把项目做好”，第一句就是：别装了，最后还不是给老板赚钱。\n\n还有人听到朋友认真谈理想，马上说：你就是没被社会毒打过。\n\n这常常是失望太多次以后，自己给自己打的疫苗。",
+      "queries": [
+        {
+          "query": "sarcastic coworker dismissing idea office meeting",
+          "description": "冷嘲认真与理想的社交场景"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "庄子在《逍遥游》里说：至人无己，神人无功，圣人无名。\n\n“无名”的意思很直接：不再靠别人的评价确认自己。\n\n犬儒看起来什么都不在乎，其实还在跟评价打架。\n\n他嘲笑真诚，说明真诚还刺痛他。\n\n他嘲笑理想，说明理想曾经让他失望。",
+      "queries": [
+        {
+          "query": "disappointed person alone after failure dark room",
+          "description": "失望累积后的防御"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "怀疑",
+            "保护判断力"
+          ],
+          "subtitle": "嘲讽会冻结行动力"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "这可以叫“冷嘲防御模型”：期待，失望，防御，嘲讽，暂时安全，然后更难投入。\n\n如果重复很多次，人会靠近习得性无助：不再判断这次值不值得，直接默认认真也没用。\n\n但这里有个反转。\n\n怀疑能保护判断力，嘲讽会冻结行动力。\n\n你一直骂名利，名利还在占用你的注意力。",
+      "queries": [
+        {
+          "query": "defensive wall emotional protection metaphor",
+          "description": "冷嘲作为心理防御"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Reframe",
+      "text": "你一直骂虚伪，虚伪还在规定你的表情。\n\n你对抗的东西，常常还在控制你。\n\n所以庄子的出口，不是逼你重新热血。\n\n它是把自己从评价系统里撤出来。\n\n下次想嘲一句话时，先把它翻译得更准确。\n\n不要说：真诚都是假的。\n\n改成：我害怕相信真诚以后，又发现自己被利用。",
+      "queries": [
+        {
+          "query": "person walking away from applause spotlight",
+          "description": "退出掌声与反掌声"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "圣人无名"
+          ],
+          "subtitle": "不靠掌声，也不靠反掌声"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "Landing",
+      "text": "前一句攻击世界，后一句看见防御。\n\n圣人无名，就是不靠掌声活着，也不靠反掌声活着。",
+      "queries": [
+        {
+          "query": "calm person standing alone sunrise",
+          "description": "不靠评价确认自己"
+        }
+      ]
+    }
+  ]
+}

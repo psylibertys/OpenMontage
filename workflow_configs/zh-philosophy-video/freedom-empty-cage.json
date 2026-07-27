@@ -1,0 +1,212 @@
+{
+  "project_id": "freedom-empty-cage-workflow",
+  "title": "空旷牢笼：没人管你之后",
+  "cover_title": "空旷牢笼",
+  "cover_lines": ["空旷牢笼"],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "克制、内省、清醒",
+  "target_audience": "抖音/小红书/视频号上关注自我成长、心理机制和哲学解释的中文观众",
+  "key_points": ["没人管不等于自由", "独立不等于自主", "自由需要内部方向感"],
+  "core_message": "自由不只是没有外部约束，还要有能带自己前进的方向感。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s6",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": ["ambient", "calming", "纯音乐", "piano"]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [248, 246, 231],
+    "accent_color_rgb": [214, 179, 90],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "没人管你的时候，你过得怎么样？",
+      "queries": [
+        {
+          "query": "weekend phone scrolling in bed at night lonely",
+          "description": "夜里刷手机、无人安排的失控感。"
+        },
+        {
+          "query": "dark bedroom phone glow tired eyes",
+          "description": "手机冷光照脸，头晕眼花。"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Unstructured Time",
+      "text": "周末没人安排，刷手机到凌晨两点，头晕眼花。\n辞职后有大把时间，反而每天瘫在家里，什么也没干。\n没人拦你，没人催你——但你活得并不自由。",
+      "queries": [
+        {
+          "query": "person lying on sofa unmotivated home day",
+          "description": "瘫在沙发上，有时间但没有行动。"
+        },
+        {
+          "query": "empty apartment messy desk procrastination",
+          "description": "空房间、乱桌面、拖延后的停滞。"
+        },
+        {
+          "query": "lonely person sitting on floor apartment",
+          "description": "没人催促后的孤立感。"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Freedom Misread",
+      "text": "你可能觉得，自由就是没人管你。\n但没人管你之后，问题才刚开始。",
+      "queries": [
+        {
+          "query": "open road alone cloudy sky freedom uncertainty",
+          "description": "开阔但没有方向的路。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "freedom-card",
+          "title_lines": ["没人管你", "不等于自由"],
+          "subtitle": "问题才刚开始"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Berlin Two Freedoms",
+      "text": "政治哲学家 Isaiah Berlin 区分过两种自由。\n一种是消极自由：有没有人拦你？没有。外部约束消失了。\n另一种是积极自由：你能带自己去想去的地方吗？",
+      "queries": [
+        {
+          "query": "person standing at crossroads decision",
+          "description": "两种自由的分叉路。"
+        },
+        {
+          "query": "open door silhouette dark room outside light",
+          "description": "外部限制消失，门打开了。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "berlin-card",
+          "title_lines": ["消极自由", "积极自由"],
+          "subtitle": "没人拦你 / 你能带自己去哪"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "label": "SDT Autonomy",
+      "text": "我们习惯把\"独立\"当成\"自主\"。\n但 SDT 自我决定理论发现：独立不等于自主。\n没人管你之后，行为仍然可能被羞耻、\"应该\"、自我批判驱动——监管者从父母换成了你脑子里的声音。\n你以为自由了，其实还在按旧脚本活。",
+      "queries": [
+        {
+          "query": "person looking in mirror self criticism dark",
+          "description": "镜中自我审判。"
+        },
+        {
+          "query": "office worker alone late night shame stress",
+          "description": "被应该和羞耻驱动的独处。"
+        },
+        {
+          "query": "old script paper typewriter dark desk",
+          "description": "旧脚本隐喻。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "sdt-card",
+          "title_lines": ["独立", "不等于", "自主"],
+          "subtitle": "监管者换成了脑子里的声音"
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "label": "Empty Cage",
+      "text": "这就是\"空旷牢笼\"：没有墙，没有锁，但脚踝缠满细线——算法推送、内化的\"应该\"、选择的恐惧。\n你随时可以走，但一步也迈不出。",
+      "queries": [
+        {
+          "query": "person trapped by phone social media algorithm dark",
+          "description": "算法细线缠住注意力。"
+        },
+        {
+          "query": "feet unable to move dark floor anxiety",
+          "description": "想走但迈不出步。"
+        },
+        {
+          "query": "empty cage open door metaphor",
+          "description": "没有锁的空旷牢笼。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "cage-card",
+          "title_lines": ["空旷牢笼"],
+          "subtitle": "没有墙，没有锁，但迈不出去"
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "label": "Warning And Landing",
+      "text": "Berlin 也警告过：积极自由有被滥用的危险——用\"真正的自由\"强迫别人。\n消极自由不能丢。\n但没有内部方向感的自由，不是自由，是迷失。\n自由不只是墙倒了。自由是你知道自己要往哪走。",
+      "queries": [
+        {
+          "query": "person walking into morning light direction",
+          "description": "从迷失转向方向感。"
+        },
+        {
+          "query": "compass hand road sunrise",
+          "description": "方向感和选择。"
+        },
+        {
+          "query": "person at window sunrise calm",
+          "description": "结尾的清醒和安静。"
+        }
+      ],
+      "cards": [
+        {
+          "id": "landing-card",
+          "title_lines": ["自由不是墙倒了"],
+          "subtitle": "自由是你知道自己要往哪走"
+        }
+      ]
+    }
+  ]
+}

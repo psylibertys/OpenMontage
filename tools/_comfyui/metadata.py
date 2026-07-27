@@ -22,6 +22,28 @@ COMFYUI_SETUP_OFFER: dict[str, Any] = {
 
 
 BUNDLED_MODEL_STACKS: dict[str, list[dict[str, Any]]] = {
+    "krea2-low-vram": [
+        {
+            "role": "diffusion_model",
+            "name": "krea2_turbo_fp8_scaled.safetensors",
+            "quantization": "FP8 scaled",
+            "destination_hint": "ComfyUI/models/diffusion_models/krea2/",
+            "download_url": "https://huggingface.co/Comfy-Org/Krea-2",
+        },
+        {
+            "role": "text_encoder",
+            "name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "quantization": "FP8 scaled",
+            "destination_hint": "ComfyUI/models/text_encoders/",
+            "download_url": "https://huggingface.co/Comfy-Org/Krea-2",
+        },
+        {
+            "role": "vae",
+            "name": "qwen_image_vae.safetensors",
+            "destination_hint": "ComfyUI/models/vae/",
+            "download_url": "https://huggingface.co/Comfy-Org/Krea-2",
+        },
+    ],
     "flux2-txt2img": [
         {
             "role": "diffusion_model",

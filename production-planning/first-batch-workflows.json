@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "format": "comfyui-ui",
+  "remote_directory": "/root/ComfyUI-Easy-Install/ComfyUI/user/default/workflows",
+  "workflows": [
+    {
+      "name": "Qwen3-TTS CustomVoice",
+      "file": "1. Qwen3-TTS CustomVoice.json",
+      "output_node": "8",
+      "output_type": "audio",
+      "validation_order": 1
+    },
+    {
+      "name": "Qwen3-TTS VoiceDesign",
+      "file": "2. Qwen3-TTS VoiceDesign.json",
+      "output_node": "8",
+      "output_type": "audio",
+      "validation_order": 6
+    },
+    {
+      "name": "Z-Image Turbo GGUF txt2img",
+      "file": "5c Z-Image Turbo GGUF txt2img.json",
+      "output_node": "171",
+      "output_type": "image",
+      "validation_order": 2
+    },
+    {
+      "name": "Krea 2 Text to Image - Simple Low Vram",
+      "file": "1d. Krea 2 Text to Image - Simple Low Vram.json",
+      "output_node": "199",
+      "output_type": "image-preview",
+      "validation_order": 3,
+      "notes": "API 导出前确认 PixaromaPreview 是否返回历史产物，必要时增加 SaveImage。"
+    },
+    {
+      "name": "Krea 2 Text to Image + Extra Pass",
+      "file": "2a. Krea 2 Text to Image + Extra Pass.json",
+      "output_node": "199",
+      "output_type": "image-preview",
+      "validation_order": 4,
+      "notes": "API 导出前确认 PixaromaPreview 是否返回历史产物，必要时增加 SaveImage。"
+    },
+    {
+      "name": "Wan 2.2 Image to Video",
+      "file": "Wan 2.2 Image to Video.json",
+      "output_node": "122",
+      "output_type": "video",
+      "validation_order": 5
+    },
+    {
+      "name": "SeedVR2 Upscale",
+      "file": "5 SeedVR2 Upscale.json",
+      "output_node": "6",
+      "output_type": "image",
+      "validation_order": 7
+    }
+  ]
+}

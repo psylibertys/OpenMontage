@@ -1,0 +1,159 @@
+{
+  "project_id": "xin-wai-wu-wu-social-anxiety-20260709",
+  "title": "心外无物：你的社恐，未必是别人在看你",
+  "cover_title": "心外无物",
+  "cover_lines": [
+    "心外无物"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 105,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "事实与解释不同",
+    "自动思维不是现实",
+    "把判断句改成观察句"
+  ],
+  "core_message": "社恐常把事实自动翻译成审判；区分观察与解释，目光就开始失效。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-09_心外无物_社恐.md",
+  "tags": [
+    "心哲灵",
+    "王阳明",
+    "心外无物",
+    "社恐"
+  ],
+  "raw_script": "社恐，你被它折磨过吗？\n\n电梯里碰到同事，对方没打招呼，你想了三个小时：他是不是对我有意见？\n\n朋友圈没人点赞，你开始怀疑：我是不是很讨人嫌？\n\n这本质上是同一个问题：你把别人的目光，接成了对自己的审判。\n\n王阳明说“心外无物”。\n\n不是外界不存在，而是说：一件事怎么伤到你，取决于你的心怎么接收。\n\n没打招呼，这是事实。\n\n“他讨厌我”，这是解释。\n\n别人看了你两秒，这是事实。\n\n“我很奇怪”，这是解释。\n\nCBT 模型也在说：情境和情绪之间，隔着一层自动思维。\n\n社恐最累的地方，就是你把自动思维当成了现实。\n\n聚光灯效应也一样。你以为所有人都在看你，其实大家都在忙自己的剧本。\n\n所以反转是：地狱不在别人眼睛里，地狱在你的注意力里。\n\n下次社恐发作，不要劝自己“别在意”。\n\n把判断句改成观察句。\n\n不要说：他肯定觉得我很奇怪。\n\n改成：他刚才看了我两秒，没说话。\n\n前一句把你送进审判庭。\n\n后一句把你带回现场。\n\n这不等于别人永远没有恶意，也不是专业帮助。\n\n但它能帮你看见：困住你的，常常不是目光，是你给目光配上的解释。\n\n当你开始区分事实和解释，别人的目光就已经开始失效了。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "lo-fi",
+      "calming",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "社恐，你被它折磨过吗？\n\n电梯里碰到同事，对方没打招呼，你想了三个小时：他是不是对我有意见？\n\n朋友圈没人点赞，你开始怀疑：我是不是很讨人嫌？\n\n这本质上是同一个问题：你把别人的目光，接成了对自己的审判。\n\n王阳明说“心外无物”。",
+      "queries": [
+        {
+          "query": "awkward coworkers silent elevator",
+          "description": "电梯里没有打招呼的尴尬"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "不是外界不存在，而是说：一件事怎么伤到你，取决于你的心怎么接收。\n\n没打招呼，这是事实。\n\n“他讨厌我”，这是解释。\n\n别人看了你两秒，这是事实。\n\n“我很奇怪”，这是解释。\n\nCBT 模型也在说：情境和情绪之间，隔着一层自动思维。",
+      "queries": [
+        {
+          "query": "spotlight effect person in crowd anxiety",
+          "description": "聚光灯效应隐喻"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "事实"
+          ],
+          "subtitle": "他看了两秒，没说话"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "社恐最累的地方，就是你把自动思维当成了现实。\n\n聚光灯效应也一样。你以为所有人都在看你，其实大家都在忙自己的剧本。\n\n所以反转是：地狱不在别人眼睛里，地狱在你的注意力里。\n\n下次社恐发作，不要劝自己“别在意”。\n\n把判断句改成观察句。",
+      "queries": [
+        {
+          "query": "courtroom judgment metaphor anxious person",
+          "description": "把目光接成审判"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "解释"
+          ],
+          "subtitle": "他肯定觉得我很奇怪"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "不要说：他肯定觉得我很奇怪。\n\n改成：他刚才看了我两秒，没说话。\n\n前一句把你送进审判庭。\n\n后一句把你带回现场。\n\n这不等于别人永远没有恶意，也不是专业帮助。\n\n但它能帮你看见：困住你的，常常不是目光，是你给目光配上的解释。\n\n当你开始区分事实和解释，别人的目光就已经开始失效了。",
+      "queries": [
+        {
+          "query": "calm person walking through crowd",
+          "description": "回到现场而非脑内解释"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-3",
+          "title_lines": [
+            "判断句",
+            "改成观察句"
+          ],
+          "subtitle": "把自己带回现场"
+        }
+      ]
+    }
+  ]
+}

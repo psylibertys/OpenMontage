@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "source_project": "treeelf-habit-door-brand-pilot-20260724",
+  "profile": "tiktok",
+  "render_runtime": "remotion",
+  "composition_mode": "templated",
+  "voice_profile_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/projects/treeelf-habit-door-brand-pilot-20260724/artifacts/brand_profiles/voice_profile_v1.json",
+  "cover_template_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/projects/treeelf-habit-door-brand-pilot-20260724/artifacts/brand_profiles/cover_template_v1.json",
+  "visual_style_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/projects/treeelf-habit-door-brand-pilot-20260724/artifacts/brand_profiles/visual_style_v1.json",
+  "future_batch_policy": "one narration, one cover background, approved hero frames and Wan shots only"
+}

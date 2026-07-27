@@ -18,10 +18,14 @@ from tools.base_tool import (
     ToolTier,
 )
 from tools.graphics.comfyui_image import ComfyUIImage
+from tools._comfyui.first_batch import build_workflow as build_first_batch_workflow
+from tools._comfyui.production import build_workflow as build_production_workflow
+from tools._comfyui.tts import build_workflow as build_tts_workflow
 from tools.graphics.image_selector import ImageSelector
 from tools.tool_registry import ToolRegistry
 from tools.video.video_selector import VideoSelector
 from tools.video.comfyui_video import ComfyUIVideo
+from tools.audio.comfyui_tts import ComfyUITTS
 
 TOOLS = [ComfyUIImage, ComfyUIVideo]
 WORKFLOW_DIR = Path(__file__).resolve().parent.parent.parent / "tools" / "_comfyui" / "workflows"
@@ -317,10 +321,31 @@ class TestClientHelpers:
 
 class TestModelRequirements:
 
+    def test_model_check_accepts_comfyui_subdirectory_paths(self):
+        from tools._comfyui.client import ComfyUIClient
+
+        client = ComfyUIClient()
+        client.list_models = lambda: {
+            "diffusion_models": ["krea2/krea2_turbo_fp8_scaled.safetensors"],
+            "vae": ["qwen_image_vae.safetensors"],
+        }
+
+        found, missing = client.check_models([
+            "krea2_turbo_fp8_scaled.safetensors",
+            "qwen_image_vae.safetensors",
+            "missing.safetensors",
+        ])
+
+        assert found == [
+            "krea2_turbo_fp8_scaled.safetensors",
+            "qwen_image_vae.safetensors",
+        ]
+        assert missing == ["missing.safetensors"]
+
     def test_image_tool_has_required_models(self):
         from tools.graphics.comfyui_image import _REQUIRED_MODELS
         assert len(_REQUIRED_MODELS) > 0
-        assert any("flux" in m.lower() for m in _REQUIRED_MODELS)
+        assert any("krea2" in m.lower() for m in _REQUIRED_MODELS)
 
     def test_video_tool_has_required_models_i2v(self):
         from tools.video.comfyui_video import _REQUIRED_MODELS_I2V
@@ -338,6 +363,237 @@ class TestModelRequirements:
 # ------------------------------------------------------------------
 
 class TestCustomWorkflowContract:
+
+    @pytest.mark.parametrize(
+        ("preset", "expected"),
+        [
+            ("portrait_9_16", (768, 1344)),
+            ("landscape_16_9", (1344, 768)),
+        ],
+    )
+    def test_first_batch_image_aspect_presets_patch_one_canonical_graph(
+        self, preset, expected
+    ):
+        workflow, output_node, provenance = build_first_batch_workflow(
+            "z_image_turbo_gguf",
+            {"prompt": "test", "aspect_preset": preset, "seed": 123},
+            media="image",
+        )
+
+        assert (workflow["162"]["inputs"]["width"], workflow["162"]["inputs"]["height"]) == expected
+        assert workflow["6"]["inputs"]["text"] == "test"
+        assert workflow["163"]["inputs"]["seed"] == 123
+        assert output_node == "171"
+        assert provenance["aspect_preset"] == preset
+
+    def test_first_batch_seedvr2_follows_uploaded_source_aspect(self):
+        workflow, output_node, provenance = build_first_batch_workflow(
+            "seedvr2_upscale",
+            {"seed": 77, "resolution": 2048},
+            media="image",
+            source_image_name="uploaded.png",
+        )
+
+        assert workflow["5"]["inputs"]["image"] == "uploaded.png"
+        assert workflow["4"]["inputs"]["resolution"] == 2048
+        assert output_node == "6"
+        assert provenance["follows_source_aspect"] is True
+
+    def test_image_first_batch_template_needs_no_manual_output_node(self, tmp_path):
+        tool = ComfyUIImage()
+        tool._client.is_available = lambda: True
+        tool._client.check_models = lambda required: (list(required), [])
+        seen = {}
+
+        def fake_generate(workflow, output_node, dest, **kwargs):
+            seen["workflow"] = workflow
+            seen["output_node"] = output_node
+            return [Path(dest)]
+
+        tool._client.generate = fake_generate
+        result = tool.execute({
+            "prompt": "landscape test",
+            "workflow_template": "krea2_low_vram",
+            "aspect_preset": "landscape_16_9",
+            "seed": 456,
+            "output_path": str(tmp_path / "image.png"),
+        })
+
+        assert result.success is True
+        assert seen["output_node"] == "199"
+        assert seen["workflow"]["162"]["inputs"]["width"] == 1344
+        assert seen["workflow"]["162"]["inputs"]["height"] == 768
+        assert result.data["workflow_provenance"]["source"] == "bundled_first_batch"
+
+    def test_bundled_image_template_rejects_unmapped_guidance(self, tmp_path):
+        tool = ComfyUIImage()
+        result = tool.execute({
+            "prompt": "do not silently ignore this",
+            "workflow_template": "krea2_low_vram",
+            "guidance": 3.5,
+            "output_path": str(tmp_path / "image.png"),
+        })
+
+        assert result.success is False
+        assert "CFG fixed at 1" in result.error
+        assert "not a replaceable parameter" in result.error
+
+    def test_video_first_batch_template_uploads_source_and_patches_preset(self, tmp_path):
+        tool = ComfyUIVideo()
+        tool._client.is_available = lambda: True
+        tool._client.upload_image = lambda path, name: "uploaded-source.png"
+        seen = {}
+
+        def fake_generate(workflow, output_node, dest, **kwargs):
+            seen["workflow"] = workflow
+            seen["output_node"] = output_node
+            return [Path(dest)]
+
+        tool._client.generate = fake_generate
+        source = tmp_path / "source.png"
+        source.write_bytes(b"placeholder")
+        result = tool.execute({
+            "prompt": "move slowly",
+            "workflow_template": "wan22_i2v_q6",
+            "aspect_preset": "landscape_16_9",
+            "reference_image_path": str(source),
+            "num_frames": 49,
+            "seed": 789,
+            "output_path": str(tmp_path / "video.mp4"),
+        })
+
+        assert result.success is True
+        assert seen["output_node"] == "122"
+        assert seen["workflow"]["203"]["inputs"]["value"] == 1024
+        assert seen["workflow"]["204"]["inputs"]["value"] == 576
+        assert seen["workflow"]["205"]["inputs"]["value"] == 3
+        assert seen["workflow"]["113"]["inputs"]["image"] == "uploaded-source.png"
+        assert result.data["workflow_provenance"]["source"] == "bundled_first_batch"
+
+    @pytest.mark.parametrize(
+        ("requested", "expected_frames", "expected_bucket"),
+        [(1.0, 17, 1.0), (2.6, 49, 3.0), (4.8, 81, 5.0)],
+    )
+    def test_wan_i2v_duration_seconds_selects_nearest_bucket(
+        self, requested, expected_frames, expected_bucket
+    ):
+        workflow, _, provenance = build_first_batch_workflow(
+            "wan22_i2v_q6",
+            {"prompt": "move", "duration_seconds": requested},
+            media="video",
+            source_image_name="source.png",
+        )
+        assert provenance["num_frames"] == expected_frames
+        assert provenance["requested_duration_seconds"] == requested
+        assert provenance["selected_duration_seconds"] == expected_bucket
+        assert workflow["205"]["inputs"]["value"] == (expected_frames - 1) // 16
+
+    def test_wan_i2v_rejects_ambiguous_seconds_and_frames(self):
+        with pytest.raises(ValueError, match="not both"):
+            build_first_batch_workflow(
+                "wan22_i2v_q6",
+                {"prompt": "move", "duration_seconds": 3, "num_frames": 49},
+                media="video",
+                source_image_name="source.png",
+            )
+
+    def test_flux_four_reference_template_uploads_all_inputs(self, tmp_path):
+        tool = ComfyUIImage()
+        tool._client.is_available = lambda: True
+        uploaded = []
+        tool._client.upload_image = lambda path, name: uploaded.append(name) or name
+        seen = {}
+        tool._client.generate = lambda workflow, output_node, dest, **kwargs: (
+            seen.update(workflow=workflow, output_node=output_node) or [Path(dest)]
+        )
+        refs = []
+        for index in range(4):
+            path = tmp_path / f"ref-{index}.png"
+            path.write_bytes(b"placeholder")
+            refs.append(str(path))
+        result = tool.execute({
+            "prompt": "same person in a library",
+            "workflow_template": "flux2_klein_4ref",
+            "reference_image_paths": refs,
+            "aspect_preset": "portrait_9_16",
+            "seed": 0,
+            "output_path": str(tmp_path / "result.png"),
+        })
+        assert result.success is True
+        assert len(uploaded) == 4
+        assert seen["output_node"] == "203"
+        assert seen["workflow"]["163"]["inputs"]["seed"] == 0
+
+    def test_infinitetalk_template_uploads_image_and_audio(self, tmp_path):
+        tool = ComfyUIVideo()
+        tool._client.is_available = lambda: True
+        tool._client.upload_image = lambda path, name: "person.png"
+        tool._client.upload_file = lambda path, name: "voice.mp3"
+        seen = {}
+        tool._client.generate = lambda workflow, output_node, dest, **kwargs: (
+            seen.update(workflow=workflow, output_node=output_node) or [Path(dest)]
+        )
+        image = tmp_path / "person.png"
+        audio = tmp_path / "voice.mp3"
+        image.write_bytes(b"image")
+        audio.write_bytes(b"audio")
+        result = tool.execute({
+            "prompt": "the person speaks naturally",
+            "workflow_template": "wan_infinitetalk_short",
+            "reference_image_path": str(image),
+            "reference_audio_path": str(audio),
+            "seed": 3,
+            "output_path": str(tmp_path / "talk.mp4"),
+        })
+        assert result.success is True
+        assert seen["output_node"] == "182"
+        assert seen["workflow"]["32"]["inputs"]["image"] == "person.png"
+        assert seen["workflow"]["171"]["inputs"]["audio"] == "voice.mp3"
+
+    @pytest.mark.parametrize(
+        ("template", "requested", "expected_frames", "expected_duration"),
+        [
+            ("wan_infinitetalk_short", 3.6, 49, 3.56),
+            ("wan_infinitetalk_extend", 20.0, 49, 19.56),
+        ],
+    )
+    def test_infinitetalk_duration_seconds_selects_nearest_bucket(
+        self, template, requested, expected_frames, expected_duration
+    ):
+        workflow, _, provenance = build_production_workflow(
+            template,
+            {"prompt": "talk", "duration_seconds": requested},
+            media="video",
+            uploads={"source_image": "person.png", "source_audio": "voice.mp3"},
+        )
+        assert provenance["num_frames"] == expected_frames
+        assert provenance["requested_duration_seconds"] == requested
+        assert provenance["selected_duration_seconds"] == pytest.approx(expected_duration)
+        spec_length_nodes = (
+            ("129", "130")
+            if template == "wan_infinitetalk_short"
+            else ("129", "130", "183", "193", "200", "206", "212", "218", "224", "228", "236", "242")
+        )
+        assert all(workflow[node]["inputs"]["length"] == expected_frames for node in spec_length_nodes)
+
+    def test_comfyui_tts_template_runs_without_manual_output_node(self, tmp_path):
+        tool = ComfyUITTS()
+        tool._client.is_available = lambda: True
+        seen = {}
+        tool._client.generate = lambda workflow, output_node, dest, **kwargs: (
+            seen.update(workflow=workflow, output_node=output_node) or [Path(dest)]
+        )
+        result = tool.execute({
+            "text": "你好，世界。",
+            "workflow_template": "qwen3_tts_voice_design",
+            "instruct": "平静温暖的中文女声",
+            "seed": 0,
+            "output_path": str(tmp_path / "voice.mp3"),
+        })
+        assert result.success is True
+        assert seen["output_node"] == "8"
+        assert seen["workflow"]["4"]["inputs"]["seed"] == 0
+        assert result.data["workflow_provenance"]["source"] == "bundled_production"
 
     def test_image_custom_workflow_uses_caller_output_node_and_provenance(self, tmp_path):
         tool = ComfyUIImage()
@@ -423,14 +679,14 @@ class TestCustomWorkflowContract:
         tool._client.is_available = lambda: True
         tool._client.check_models = lambda required: (
             [],
-            ["flux2-vae.safetensors"],
+            ["qwen_image_vae.safetensors"],
         )
 
         result = tool.execute({"prompt": "test"})
 
         assert result.success is False
         assert result.data["provider"] == "comfyui"
-        assert result.data["missing_models"][0]["name"] == "flux2-vae.safetensors"
+        assert result.data["missing_models"][0]["name"] == "qwen_image_vae.safetensors"
         assert result.data["missing_models"][0]["destination_hint"] == "ComfyUI/models/vae/"
         assert result.data["missing_models"][0]["download_url"]
 
@@ -449,7 +705,7 @@ class TestCustomWorkflowContract:
         assert result.data["missing_models"][0]["role"] == "diffusion_model_high_noise"
         assert result.data["missing_models"][0]["download_url"]
 
-    def test_bundled_workflow_provenance_records_hash_and_stack(self, tmp_path):
+    def test_default_image_workflow_routes_to_krea(self, tmp_path):
         tool = ComfyUIImage()
         tool._client.is_available = lambda: True
         tool._client.check_models = lambda required: (list(required), [])
@@ -461,9 +717,11 @@ class TestCustomWorkflowContract:
         })
 
         provenance = result.data["workflow_provenance"]
-        assert provenance["source"] == "bundled"
+        assert provenance["source"] == "bundled_first_batch"
+        assert provenance["workflow_template"] == "krea2_low_vram"
+        assert provenance["output_node"] == "199"
         assert provenance["workflow_hash_sha256"]
-        assert any(item["role"] == "vae" for item in provenance["model_stack"])
+        assert result.model == "Krea 2 Turbo FP8 Low VRAM"
 
 
 class TestComfyUISetupOffer:
@@ -664,3 +922,145 @@ class TestCustomWorkflowSelectorEligibility:
                 "workflow_model_stack",
             ):
                 assert field in props, f"{selector.name} missing {field}"
+
+
+class TestProductionWorkflowTemplates:
+
+    @pytest.mark.parametrize(
+        ("template", "output_node", "prompt_node", "image_node", "video_node", "size_nodes", "seed_node", "fps"),
+        [
+            ("wan22_animate_character", "56", "276", "55", "181", ("43", "49"), "58", 16),
+            ("wan_scail_character", "139", "417", "106", "130", ("203", "204"), "348", 24),
+        ],
+    )
+    def test_character_motion_templates_map_driver_and_follow_its_length(
+        self, template, output_node, prompt_node, image_node, video_node,
+        size_nodes, seed_node, fps,
+    ):
+        workflow, actual_output, provenance = build_production_workflow(
+            template,
+            {
+                "prompt": "person follows the driving motion",
+                "seed": 123,
+                "aspect_preset": "landscape_16_9",
+                "output_path": "projects/demo/assets/video/motion.mp4",
+            },
+            media="video",
+            uploads={"source_image": "character.png", "source_video": "drive.mp4"},
+        )
+
+        assert actual_output == output_node
+        assert workflow[output_node]["class_type"] == "VHS_VideoCombine"
+        assert workflow[output_node]["inputs"]["save_output"] is True
+        assert workflow[prompt_node]["inputs"]["positive"] == "person follows the driving motion"
+        assert workflow[image_node]["inputs"]["image"] == "character.png"
+        assert workflow[video_node]["inputs"]["video"] == "drive.mp4"
+        assert [workflow[node]["inputs"]["value"] for node in size_nodes] == [832, 480]
+        assert workflow[seed_node]["inputs"]["seed"] == 123
+        assert workflow[output_node]["inputs"]["frame_rate"] == fps
+        assert provenance["duration_mode"] == "driving_video"
+        assert provenance["num_frames"] is None
+
+        frame_consumers = [
+            node for node in workflow.values()
+            if node["class_type"] in {"WanVideoAnimateEmbeds", "WanVideoEmptyEmbeds"}
+        ]
+        assert len(frame_consumers) == 1
+        assert frame_consumers[0]["inputs"]["num_frames"] == [video_node, 1]
+
+    @pytest.mark.parametrize("template", ["wan22_animate_character", "wan_scail_character"])
+    def test_character_motion_templates_reject_ignored_num_frames(self, template):
+        with pytest.raises(ValueError, match="derives its frame count from driving_video_path"):
+            build_production_workflow(
+                template,
+                {"prompt": "person", "num_frames": 81},
+                media="video",
+                uploads={"source_image": "character.png", "source_video": "drive.mp4"},
+            )
+
+    @pytest.mark.parametrize("template", ["wan22_animate_character", "wan_scail_character"])
+    def test_character_motion_templates_record_requested_driver_duration(self, template):
+        _, _, provenance = build_production_workflow(
+            template,
+            {"prompt": "person", "duration_seconds": 2.5},
+            media="video",
+            uploads={"source_image": "character.png", "source_video": "drive.mp4"},
+        )
+        assert provenance["duration_mode"] == "driving_video"
+        assert provenance["requested_duration_seconds"] == 2.5
+        assert provenance["selected_duration_seconds"] == 2.5
+
+    def test_comfyui_tts_contract_and_setup_offer(self):
+        tool = ComfyUITTS()
+        assert tool.tier == ToolTier.VOICE
+        assert tool.runtime == ToolRuntime.LOCAL_GPU
+        assert tool.input_schema["required"] == ["text", "workflow_template", "output_path"]
+        assert tool.get_info()["setup_offer"]["env_var"] == "COMFYUI_SERVER_URL"
+
+    def test_image_schema_defaults_to_krea_and_keeps_gguf_as_fallback(self):
+        template = ComfyUIImage.input_schema["properties"]["workflow_template"]
+        assert template["default"] == "krea2_low_vram"
+        assert template["enum"][0] == "krea2_low_vram"
+        assert "z_image_turbo_gguf" in template["enum"]
+        assert "z_image_turbo_nunchaku" not in template["enum"]
+
+    def test_flux_four_reference_requires_exactly_four_uploads(self):
+        with pytest.raises(ValueError, match="exactly four"):
+            build_production_workflow(
+                "flux2_klein_4ref", {"prompt": "group"}, media="image",
+                uploads={"reference_images": ["a.png"]},
+            )
+        workflow, output_node, _ = build_production_workflow(
+            "flux2_klein_4ref", {"prompt": "group", "aspect_preset": "landscape_16_9"},
+            media="image", uploads={"reference_images": ["a.png", "b.png", "c.png", "d.png"]},
+        )
+        assert output_node == "203"
+        assert workflow["216"]["inputs"]["aspect_ratio"] == "16:9 (Widescreen)"
+        assert workflow["194"]["inputs"]["unet_name"] == "flux2/flux-2-klein-9b-kv-fp8.safetensors"
+        assert "202" not in workflow  # unconnected rgthree comparer is UI-only
+
+    def test_infinitetalk_uploads_and_forces_extension_output(self):
+        workflow, output_node, _ = build_production_workflow(
+            "wan_infinitetalk_extend",
+            {"prompt": "talking", "seed": 7, "num_frames": 81},
+            media="video",
+            uploads={"source_image": "person.png", "source_audio": "voice.mp3"},
+        )
+        assert output_node == "240"
+        assert workflow["240"]["inputs"]["save_output"] is True
+        assert sum(node["class_type"] == "WanInfiniteTalkToVideo" for node in workflow.values()) == 12
+        assert workflow["32"]["inputs"]["image"] == "person.png"
+        assert workflow["171"]["inputs"]["audio"] == "voice.mp3"
+        assert all("rgthree" not in node["class_type"] for node in workflow.values())
+
+    def test_qwen_voice_clone_save_mapping(self):
+        workflow, output_node, provenance = build_tts_workflow(
+            "qwen3_tts_voice_clone_save",
+            {
+                "text": "目标句", "reference_text": "参考句", "voice_name": "角色甲",
+                "seed": 99, "output_path": "projects/demo/assets/audio/line.mp3",
+            },
+            source_audio_name="reference.wav",
+        )
+        assert output_node == "8"
+        assert workflow["15"]["inputs"]["audio"] == "reference.wav"
+        assert workflow["18"]["inputs"]["filename"] == "角色甲"
+        assert workflow["8"]["inputs"]["filename_prefix"] == "audio/line"
+        assert provenance["model"].startswith("Qwen3-TTS")
+
+    def test_inpaint_mask_is_packed_as_comfyui_alpha(self, tmp_path):
+        from PIL import Image
+
+        source = tmp_path / "source.jpg"
+        mask = tmp_path / "mask.png"
+        Image.new("RGB", (2, 1), "red").save(source)
+        mask_image = Image.new("L", (2, 1), 0)
+        mask_image.putpixel((1, 0), 255)
+        mask_image.save(mask)
+        packed = ComfyUIImage._prepare_inpaint_upload(
+            source, mask, tmp_path / "result.png", 7
+        )
+        with Image.open(packed) as image:
+            alpha = image.getchannel("A")
+            assert alpha.getpixel((0, 0)) == 255
+            assert alpha.getpixel((1, 0)) == 0

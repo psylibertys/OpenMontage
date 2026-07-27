@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "batch_id": "treeelf-batch-zh-20260727-two",
+  "queue_depth": 2,
+  "episode_configs": [
+    "inspiration-not-blank-20260724.json",
+    "borges-time-20260720.json"
+  ]
+}

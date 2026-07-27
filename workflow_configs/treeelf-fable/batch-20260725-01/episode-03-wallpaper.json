@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-wallpaper-room-20260725-b01",
+  "title": "住进墙里的人",
+  "cover_title": "墙中人",
+  "cover_english_title": "In The Wall",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-21_住进墙里的人.md",
+  "estimated_duration_seconds": 150,
+  "protagonist": {
+    "type": "成年女性",
+    "description": "一位年轻成年女性，柔软深棕短卷发，轻薄夏季米白无袖上衣和深绿色长裙，没有眼下阴影，神情温柔乐观。每吞回一次愿望，皮肤和衣角会长出灰色墙纸花纹。"
+  },
+  "character_pack": {
+    "enabled": true,
+    "master_prompt": "vertical 9:16 full-body character key art of a young adult woman, soft dark-brown short curly hair, soft optimistic eyes, no under-eye shadows, lightweight summer ivory sleeveless top and deep green skirt, faint gray wallpaper patterns beginning on fingertips, cinematic storybook illustration, strong tactile paper texture, airy warm light, no text, no letters, no logo",
+    "reference_prompts": [
+      "front view of the exact same young adult woman, soft dark-brown short curly hair, no under-eye shadows, ivory sleeveless summer top and deep green skirt, faint gray wallpaper pattern on fingertips, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "left three-quarter view of the exact same young adult woman, soft dark-brown short curly hair, no under-eye shadows, ivory sleeveless summer top and deep green skirt, faint gray wallpaper pattern on fingertips, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "right profile view of the exact same young adult woman, soft dark-brown short curly hair, no under-eye shadows, ivory sleeveless summer top and deep green skirt, faint gray wallpaper pattern on fingertips, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo",
+      "back three-quarter view of the exact same young adult woman, soft dark-brown short curly hair, ivory sleeveless summer top and deep green skirt, faint gray wallpaper pattern along shoulders, neutral pose, plain softly lit background, cinematic storybook, strong paper texture, no text, no letters, no logo"
+    ]
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01",
+      "weight": 1.1,
+      "summary": "她每让出愿望，身体就浮出墙纸花纹。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman quietly giving up her own choice at a dining table, gray wallpaper pattern emerging on her fingertips, no male figure visible, warm room, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman lowering her voice in a crowded room, gray wallpaper pattern creeping up her arm, she takes less space, strong tactile paper texture"
+      ]
+    },
+    {
+      "id": "beat-02",
+      "weight": 1.0,
+      "summary": "她越来越不占地方，人们只记得屋子舒服，忘了她在哪里。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman blending into floral gray wallpaper near a sofa, guests absent as traces remain, soft lamps and comfortable chairs, no male figure visible, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman almost flat against the wall as a coat hangs near her outline, wallpaper pattern around her eyes, quiet self-erasure, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-03",
+      "weight": 1.0,
+      "summary": "她从房间痕迹里寻找自己。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of an empty sofa corner, a clean cup by the sink, curtains adjusted to gentle light, the same young woman's faint wallpaper silhouette barely visible, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman as a roll of old wallpaper following moving boxes out of an apartment, surreal but gentle, no male movers visible, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-04",
+      "weight": 1.2,
+      "summary": "新房没有墙纸可以藏，她第一次按自己的喜好布置生活。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman standing in a small new room with plain gray cement walls, no pattern to hide in, warm sunset light, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of the same young woman placing a yellow old desk lamp by the window, a deep green rug on the floor, a cup on the left side of the table, strong paper texture"
+      ]
+    },
+    {
+      "id": "beat-05",
+      "weight": 0.9,
+      "summary": "花纹褪去，黄色台灯照出她歪歪的影子，她不再扶正。",
+      "workflow": "flux2_klein_4ref",
+      "prompt_variants": [
+        "vertical 9:16 cinematic storybook illustration of the same young woman under a yellow desk lamp as wallpaper patterns fade from her hands and shoulders, her eyes returning, hopeful and quiet, strong paper texture",
+        "vertical 9:16 cinematic storybook illustration of a yellow desk lamp casting the same young woman's slightly crooked shadow beside a slightly crooked framed picture, she watches without correcting it, warm gray and deep green palette, strong paper texture"
+      ]
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 cinematic storybook cover background, a young woman in an ivory sleeveless summer top and deep green skirt emerging from gray wallpaper into warm yellow lamplight, faint pattern fading from her hands, slightly crooked picture on cement wall, strong tactile paper texture, leave clean space for Chinese title, no text, no letters, no logo",
+  "hero_wan": {
+    "enabled": true,
+    "scene_id": "scene-001",
+    "prompt": "gray wallpaper pattern slowly appears on the woman's fingertips as she gently lowers her hands, warm room light, stable identity and clothing, no morphing, no extra limbs"
+  },
+  "music_source": "",
+  "captions_path": "",
+  "narration_text": "城里有一种人，住在一个地方久了，就会慢慢变成那里的墙纸。\n\n最先消失的是手指。\n\n每当她把想要的东西让给别人，指尖就会浮出一小片灰色的花纹。\n\n后来是手臂，是肩膀，是半张脸。\n\n她总能很快知道，一间屋子希望她变成什么样。\n\n饭桌太热闹，她就把声音调低一点。\n\n有人心情不好，她就把自己的那部分高兴收起来。\n\n所有人都说随便的时候，她会最先放弃自己真正想去的地方。\n\n每吞回一个愿望，墙纸就从她身上多长出一寸。\n\n奇怪的是，没有人觉得这有什么不对。\n\n她越来越不占地方，越来越好相处。聚会结束后，人们记得灯光很柔和，饭菜很合口味，椅子也刚好够坐，却常常想不起她坐在哪里。\n\n有时，她站在客厅里，家人会穿过她面前，把一件外套挂到她身后的钩子上。\n\n她没有躲。\n\n只是墙上的花纹，已经爬到了眼睛周围。\n\n久而久之，她也习惯了从房间里寻找自己。\n\n沙发凹下去的一角，是她刚刚坐过的地方。\n\n水池边擦干净的杯子，是她来过的痕迹。\n\n窗帘被拉到不刺眼的位置，说明她今天也照顾过这里。\n\n至于她喜欢什么，讨厌什么，想留下还是想离开，屋子里没有任何东西知道。\n\n后来，房东要收回那套房子。\n\n搬家那天，工人几乎找不到她，只看见一卷旧墙纸跟在纸箱后面，安静地出了门。\n\n新房很小，墙面还是没有刷过的水泥色。\n\n那里没有花纹可以接住她。\n\n她站了很久，身体第一次没有地方可以藏。\n\n傍晚，她拆开纸箱，从最底下拿出一盏黄色的旧台灯。\n\n那盏灯和新房一点也不配，可她还是把它放在窗边。\n\n接着，她铺上一块深绿色的地毯，把杯子留在桌子的左边，又将一幅画挂得微微有些歪。\n\n每做完一件不必迁就任何人的小事，身上的花纹就淡一点。\n\n先回来的是手指，然后是肩膀，最后是眼睛。\n\n夜深以后，黄色台灯照亮了灰色的墙。\n\n墙上第一次出现了她的影子。\n\n那道影子有些歪，正好落在那幅歪画旁边。\n\n她看了一会儿，没有把它们扶正。"
+}

@@ -1,0 +1,296 @@
+{
+  "project_id": "comfyui-gpu-acceptance-20260723",
+  "server": "http://127.0.0.1:8188",
+  "notes": [
+    "Run serially through an SSH tunnel; never expose port 8188 publicly.",
+    "Create the inpaint mask fixture inside the project assets directory before running Flux inpaint.",
+    "Start with minimal frames. The 34-second InfiniteTalk graph is a separate long acceptance case.",
+    "Successful downloads must leave cleanup_failures empty before the next case."
+  ],
+  "fixtures": {
+    "character_portrait": "projects/comfyui-gpu-acceptance-20260723/assets/images/fixtures/character-portrait.png",
+    "character_refs": [
+      "projects/comfyui-gpu-acceptance-20260723/assets/images/fixtures/character-ref-01.png",
+      "projects/comfyui-gpu-acceptance-20260723/assets/images/fixtures/character-ref-02.png",
+      "projects/comfyui-gpu-acceptance-20260723/assets/images/fixtures/character-ref-03.png",
+      "projects/comfyui-gpu-acceptance-20260723/assets/images/fixtures/character-ref-04.png"
+    ],
+    "narration": "projects/comfyui-gpu-acceptance-20260723/assets/audio/fixtures/narration.mp3",
+    "extended_narration": "projects/comfyui-gpu-acceptance-20260723/assets/audio/fixtures/narration-35s.mp3",
+    "driving_video": "projects/comfyui-gpu-acceptance-20260723/assets/video/fixtures/driving.mp4",
+    "inpaint_mask": "projects/comfyui-gpu-acceptance-20260723/assets/images/fixtures/face-mask.png"
+  },
+  "cases": [
+    {
+      "id": "krea-default-portrait",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_image",
+      "workflow_template": "krea2_low_vram",
+      "inputs": {
+        "prompt": "A cinematic portrait of an orange weathered service robot in a dark workshop, detailed metal, red eyes, soft rim light",
+        "seed": 20260723,
+        "steps": 5,
+        "aspect_preset": "portrait_9_16"
+      }
+    },
+    {
+      "id": "krea-default-landscape",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_image",
+      "workflow_template": "krea2_low_vram",
+      "inputs": {
+        "prompt": "A cinematic wide shot of an orange weathered service robot in a dark workshop, detailed metal, red eyes, soft rim light",
+        "seed": 20260723,
+        "steps": 5,
+        "aspect_preset": "landscape_16_9"
+      }
+    },
+    {
+      "id": "flux-four-reference-portrait",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_image",
+      "workflow_template": "flux2_klein_4ref",
+      "inputs": {
+        "prompt": "The same pink-haired woman with round glasses and white bunny ears, reading beside a library window, photorealistic",
+        "reference_image_paths": "$fixtures.character_refs",
+        "seed": 20260724,
+        "aspect_preset": "portrait_9_16"
+      }
+    },
+    {
+      "id": "flux-four-reference-landscape",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_image",
+      "workflow_template": "flux2_klein_4ref",
+      "inputs": {
+        "prompt": "The same pink-haired woman with round glasses and white bunny ears, seated at a wooden library table, cinematic wide shot",
+        "reference_image_paths": "$fixtures.character_refs",
+        "seed": 20260724,
+        "aspect_preset": "landscape_16_9"
+      }
+    },
+    {
+      "id": "flux-inpaint",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_image",
+      "workflow_template": "flux2_klein_inpaint",
+      "inputs": {
+        "prompt": "restore natural facial detail while preserving identity, pink hair, round glasses and bunny ears",
+        "reference_image_path": "$fixtures.character_portrait",
+        "mask_image_path": "$fixtures.inpaint_mask",
+        "seed": 20260725,
+        "width": 768,
+        "height": 1344
+      }
+    },
+    {
+      "id": "flux-inpaint-landscape",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_image",
+      "workflow_template": "flux2_klein_inpaint",
+      "inputs": {
+        "prompt": "restore natural facial detail while preserving identity, pink hair, round glasses and bunny ears",
+        "reference_image_path": "$fixtures.character_portrait",
+        "mask_image_path": "$fixtures.inpaint_mask",
+        "seed": 20260725,
+        "width": 1344,
+        "height": 768
+      }
+    },
+    {
+      "id": "qwen-tts-four-workflows",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_tts",
+      "templates": [
+        "qwen3_tts_custom_voice",
+        "qwen3_tts_voice_design",
+        "qwen3_tts_voice_clone_save",
+        "qwen3_tts_voice_clone_load"
+      ],
+      "text": "真正的勇气，不是从未害怕，而是在害怕时仍愿意向前一步。",
+      "template_overrides": {
+        "qwen3_tts_custom_voice": {
+          "speaker": "Ryan",
+          "language": "Chinese",
+          "instruct": "沉稳、亲切、清晰的中文旁白，中速，自然停顿"
+        },
+        "qwen3_tts_voice_design": {
+          "language": "Chinese",
+          "instruct": "温柔克制的女性寓言讲述者，清晰普通话，中速，近讲麦克风"
+        },
+        "qwen3_tts_voice_clone_save": {
+          "reference_audio_path": "$fixtures.narration",
+          "reference_text": "What's up, I'm Pixaroma. In this workflow we design a custom voice. Instead of picking a preset speaker, you describe it.",
+          "voice_name": "openmontage_acceptance_voice"
+        },
+        "qwen3_tts_voice_clone_load": {
+          "voice_name": "openmontage_acceptance_voice",
+          "language": "Chinese"
+        }
+      }
+    },
+    {
+      "id": "infinitetalk-short-portrait",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_video",
+      "workflow_template": "wan_infinitetalk_short",
+      "inputs": {
+        "prompt": "the woman speaks naturally to camera, subtle blinking and restrained head movement",
+        "reference_image_path": "$fixtures.character_portrait",
+        "reference_audio_path": "$fixtures.narration",
+        "seed": 20260726,
+        "width": 480,
+        "height": 832,
+        "num_frames": 81
+      }
+    },
+    {
+      "id": "infinitetalk-extend-34s",
+      "enabled": false,
+      "validation_mode": "historical_gpu_pass",
+      "skip_reason": "Completed successfully once; user prohibited rerunning the 34-second acceptance case.",
+      "tool": "comfyui_video",
+      "workflow_template": "wan_infinitetalk_extend",
+      "inputs": {
+        "prompt": "the woman speaks naturally to camera, subtle blinking and restrained head movement",
+        "reference_image_path": "$fixtures.character_portrait",
+        "reference_audio_path": "$fixtures.extended_narration",
+        "seed": 20260727,
+        "width": 480,
+        "height": 832,
+        "num_frames": 81
+      }
+    },
+    {
+      "id": "infinitetalk-short-landscape",
+      "enabled": false,
+      "validation_mode": "gpu_executed_success",
+      "tool": "comfyui_video",
+      "workflow_template": "wan_infinitetalk_short",
+      "inputs": {
+        "prompt": "the woman speaks naturally to camera, subtle blinking and restrained head movement",
+        "reference_image_path": "$fixtures.character_portrait",
+        "reference_audio_path": "$fixtures.narration",
+        "seed": 20260726,
+        "width": 832,
+        "height": 480,
+        "num_frames": 81
+      }
+    },
+    {
+      "id": "animate-realistic",
+      "enabled": false,
+      "validation_mode": "static_contract_review",
+      "skip_reason": "User waived GPU generation after API graph and parameter mapping review.",
+      "tool": "comfyui_video",
+      "workflow_template": "wan22_animate_character",
+      "inputs": {
+        "prompt": "person",
+        "reference_image_path": "$fixtures.character_portrait",
+        "driving_video_path": "$fixtures.driving_video",
+        "seed": 20260728,
+        "width": 480,
+        "height": 832
+      }
+    },
+    {
+      "id": "scail-stylized",
+      "enabled": false,
+      "validation_mode": "static_contract_review",
+      "skip_reason": "User waived GPU generation after API graph and parameter mapping review.",
+      "tool": "comfyui_video",
+      "workflow_template": "wan_scail_character",
+      "inputs": {
+        "prompt": "the character follows the source movement",
+        "reference_image_path": "$fixtures.character_portrait",
+        "driving_video_path": "$fixtures.driving_video",
+        "seed": 20260729,
+        "width": 512,
+        "height": 896
+      }
+    },
+    {
+      "id": "animate-realistic-landscape",
+      "enabled": false,
+      "validation_mode": "static_contract_review",
+      "skip_reason": "User waived GPU generation after API graph and parameter mapping review.",
+      "tool": "comfyui_video",
+      "workflow_template": "wan22_animate_character",
+      "inputs": {
+        "prompt": "person",
+        "reference_image_path": "$fixtures.character_portrait",
+        "driving_video_path": "$fixtures.driving_video",
+        "seed": 20260728,
+        "width": 832,
+        "height": 480
+      }
+    },
+    {
+      "id": "scail-stylized-landscape",
+      "enabled": false,
+      "validation_mode": "static_contract_review",
+      "skip_reason": "User waived GPU generation after API graph and parameter mapping review.",
+      "tool": "comfyui_video",
+      "workflow_template": "wan_scail_character",
+      "inputs": {
+        "prompt": "the character follows the source movement",
+        "reference_image_path": "$fixtures.character_portrait",
+        "driving_video_path": "$fixtures.driving_video",
+        "seed": 20260729,
+        "width": 896,
+        "height": 512
+      }
+    },
+    {
+      "id": "regression-krea-low",
+      "enabled": false,
+      "validation_mode": "existing_gpu_artifacts",
+      "skip_reason": "Covered by successful Krea portrait/landscape results in this acceptance batch.",
+      "tool": "comfyui_image",
+      "workflow_template": "krea2_low_vram",
+      "inputs": {
+        "prompt": "the same pink-haired woman with bunny ears, clean portrait, warm bedroom light",
+        "seed": 20260730,
+        "steps": 4,
+        "aspect_preset": "portrait_9_16"
+      }
+    },
+    {
+      "id": "regression-wan22-i2v",
+      "enabled": false,
+      "validation_mode": "existing_gpu_artifacts",
+      "skip_reason": "Existing portrait and landscape Wan I2V outputs were archived locally and accepted.",
+      "tool": "comfyui_video",
+      "workflow_template": "wan22_i2v_q6",
+      "inputs": {
+        "prompt": "subtle natural blink and a gentle wave, static camera",
+        "reference_image_path": "$fixtures.character_portrait",
+        "seed": 20260731,
+        "num_frames": 17,
+        "aspect_preset": "portrait_9_16"
+      }
+    },
+    {
+      "id": "regression-seedvr2",
+      "enabled": false,
+      "validation_mode": "existing_gpu_artifacts",
+      "skip_reason": "Existing SeedVR2 upscale output was archived locally and accepted.",
+      "tool": "comfyui_image",
+      "workflow_template": "seedvr2_upscale",
+      "inputs": {
+        "prompt": "upscale",
+        "reference_image_path": "$fixtures.character_portrait",
+        "seed": 20260801,
+        "resolution": 1024
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-inspiration-not-blank-20260724",
+  "title": "灵感不是从空白里来的",
+  "cover_title": "灵感仓库",
+  "cover_english_title": "IDEA ARCHIVE",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-24_灵感不是从空白里来的.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": ["ambient", "piano", "warm", "curious", "纯音乐"]
+  },
+  "visual_brief": {
+    "emotional_core": ["空白前的急躁", "误以为自己没天赋", "记忆仓库里的暗线", "旧东西互相连接的轻微惊喜"],
+    "metaphor_candidates": ["空白文档", "前台误判", "仓库货架", "旧标签", "梦和记忆的后台", "几件旧东西开始聊天"],
+    "style_families": ["cinematic documentary photography", "surreal still life collage", "minimal geometric editorial design"]
+  },
+  "duration_seconds": 82,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": ["text-free visual media", "no generated logos", "no generated watermarks", "no pseudo typography"],
+    "style_source": "art-Styles.md",
+    "style_families": ["cinematic documentary photography", "surreal still life collage", "minimal geometric editorial design"],
+    "target_ratios": {"narrative_concrete": 0.15, "abstract_imagery": 0.40, "style_fusion_translation": 0.45},
+    "prompt_policy": "Creative prompts describe desired semantic anchors, emotions, metaphors, materials, light, composition and art languages in positive terms. Technical text-free requirements remain as workflow guardrails.",
+    "cross_episode_repeat_policy": "Extract motifs from this script: blank document, archive shelves, labels, remembered images and quiet object conversations.",
+    "images": [
+      {"id": "C01", "role": "cover", "visual_mode": "style_fusion_translation", "seed": 94101, "steps": 8, "prompt_review": "semantic_anchor: 灵感不是空投，而是仓库中旧材料重新相遇; style_logic: surreal still life collage and editorial minimalism make the idea archive feel tangible while leaving a calm title area. text_risk_mitigation: 封面只用空白纸张、纯材质物块、光线和留白表达仓库，不出现标签牌或任何可读标记。", "prompt": "Vertical 9:16 editorial cover background, a quiet idea archive made of warm wooden shelves, blank paper sheets, plain material blocks, soft desk light, tactile paper and dust particles, spacious negative space for later Remotion title, refined surreal still life collage blended with minimal geometric editorial composition, pure unmarked surfaces, text-free visual field"},
+      {"id": "P00", "role": "narrative_concrete", "visual_mode": "narrative_concrete", "seed": 94102, "steps": 8, "prompt_review": "semantic_anchor: 打开空白文档三分钟就给自己判定没天赋的真实场景。 text_risk_mitigation: 空白屏幕只作为纯光面和情绪对象，不承载任何可读界面或文字信息。", "prompt": "Vertical 9:16 cinematic documentary photograph, a young creator sitting at a desk before a glowing blank document, hands hovering above keyboard, coffee cooling nearby, early morning quiet, restrained frustration, natural window light, clear everyday workspace, clean blank screen surface for later Remotion text, text-free visual field"},
+      {"id": "P01", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94103, "steps": 8, "prompt_review": "semantic_anchor: 前台过早宣布仓库没货; every abstract element maps to premature judgment and absent search.", "prompt": "Vertical 9:16 poetic abstract artwork, an empty reception desk in front of a huge closed archive door, a small brass bell, soft shadows shaped like unopened drawers, calm ironic mood, warm beige and muted blue palette, spacious composition, tactile material detail, text-free visual field"},
+      {"id": "P02", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94104, "steps": 8, "prompt_review": "semantic_anchor: 荣格视角里的记忆、梦、经历堆在后台; style_logic: double exposure photography fits conscious and unconscious layers, minimal editorial grids keep the thought clear.", "prompt": "Vertical 9:16 double exposure fine art image, a quiet portrait silhouette layered with archive shelves, dream fragments, childhood light, closed plain sketchbooks as soft rectangular memory blocks, blurred corridor memories, cinematic documentary structure blended with precise minimal geometric rhythm, warm shadows and silver blue highlights, text-free visual field"},
+      {"id": "P03", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94105, "steps": 8, "prompt_review": "semantic_anchor: 创作材料并非空白，而是未贴标签的旧印象; each object corresponds to memory, dream, ignored impression. text_risk_mitigation: 用色块、微型风景、半透明折形和光斑替代短句与梦中纸条，所有容器表面保持纯材质。", "prompt": "Vertical 9:16 symbolic mixed-media still life, unlabeled glass jars holding a tiny landscape, a translucent folded shape, a soft color cloud and a faint light stain, arranged on a worktable like quiet inventory waiting for connection, soft overhead light, refined craft, pure material surfaces, text-free visual field"},
+      {"id": "P04", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94106, "steps": 8, "prompt_review": "semantic_anchor: 两种创作来源，一种认得出情绪，一种像陌生的梦; style_logic: surreal photography plus ink-wash softness expresses the boundary between recognizable emotion and dream logic.", "prompt": "Vertical 9:16 art-language translation frame, one side shows familiar warm objects of daily emotion, the other side opens into a misty dream corridor of floating translucent shapes and moonlit water, surreal photography fused with soft Chinese ink-wash atmosphere expressed through washes of tone and mist, balanced split composition, text-free visual field"},
+      {"id": "P05", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94107, "steps": 8, "prompt_review": "semantic_anchor: 仓库神秘但不会替人练手艺; abstract elements map to mystery plus practice.", "prompt": "Vertical 9:16 refined abstract editorial artwork, a luminous archive shelf connected to a plain practice surface and sharpened pencil, repeated pressure strokes becoming a path through dust and light, calm practical warmth, elegant material presence, text-free visual field"},
+      {"id": "P06", "role": "narrative_concrete", "visual_mode": "narrative_concrete", "seed": 94108, "steps": 8, "prompt_review": "semantic_anchor: 把近期反复来访的画面、旧影像和感觉摆到桌上; suitable as Wan reference because objects can slowly arrange themselves. text_risk_mitigation: 用纯色块、无字空白卡片、石头和影像块表达材料整理，避免让模型画笔记内容或色卡标签。", "prompt": "Vertical 9:16 cinematic documentary hero frame, a tabletop where a closed plain sketchbook, an old photo block, a small stone, pure solid color tiles and blank cards are placed in a loose circle, a creator's hands gently arranging them, soft afternoon light, grounded real environment, motion-ready stillness, pure material surfaces, text-free visual field"},
+      {"id": "P07", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94109, "steps": 8, "prompt_review": "semantic_anchor: 旧东西终于找到彼此; style_logic: surreal still life and Bauhaus-like geometry turn connection into visible composition.", "prompt": "Vertical 9:16 conceptual style-fusion artwork, ordinary objects on a desk begin to align into a constellation of thin golden paths and quiet geometric arcs, surreal still life blended with minimal Bauhaus editorial structure, warm curiosity, sophisticated composition, text-free visual field"},
+      {"id": "P08", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94110, "steps": 8, "prompt_review": "semantic_anchor: 一句记了很久的话像货架上的定位物; label-like forms express retrieval without readable text. text_risk_mitigation: 用空白小片、光点和方向关系表达检索，不生成标签内容。", "prompt": "Vertical 9:16 abstract image, rows of small blank archive tabs glowing gently on a shelf, one tab catches light and points toward a cluster of remembered objects, restrained color palette, clear visual hierarchy, tactile paper fibers, text-free visual field"},
+      {"id": "P09", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94111, "steps": 8, "prompt_review": "semantic_anchor: 反复出现的画面和异样感开始互相呼应; style_logic: impressionistic light and experimental photography show emergence without forcing a literal answer.", "prompt": "Vertical 9:16 elegant style-fusion artwork, repeated translucent image fragments hover above a worktable and slowly overlap into one clearer shape, impressionistic light fused with experimental photography, spacious rhythm, refined emotional resolution, text-free visual field"},
+      {"id": "P10", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94112, "steps": 8, "prompt_review": "semantic_anchor: 不逼前台当场生产，先检索后台; abstract device maps front desk versus deep shelves.", "prompt": "Vertical 9:16 abstract editorial image, a small front counter in foreground and deep archive shelves receding behind it, a soft path of light leading inward, calm tension between urgency and patient retrieval, clear material logic, text-free visual field"},
+      {"id": "P11", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94113, "steps": 8, "prompt_review": "semantic_anchor: 让画面、句子和感觉自己开始聊天; style_logic: collage theatre language translates invisible association into a small stage of objects.", "prompt": "Vertical 9:16 contemplative style-fusion artwork, a miniature theatre on a desk where paper, pebble, photo and color swatch face each other like quiet speakers, surreal object theatre fused with warm cinematic photography, coherent emotional landing, text-free visual field"},
+      {"id": "P12", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94114, "steps": 8, "prompt_review": "semantic_anchor: 仓库不一定空，只是还没贴标签; every blank tag corresponds to unnamed inner material.", "prompt": "Vertical 9:16 abstract closing image, a vast warm archive with many blank tags catching sunrise light, a few objects gently illuminated on the nearest shelf, quiet spatial resolution, symbolic scale, tactile texture, text-free visual field"},
+      {"id": "P13", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94115, "steps": 8, "prompt_review": "semantic_anchor: 创作从空白转为整理和连接; style_logic: minimal editorial design plus magical realism makes the conclusion feel useful and slightly wondrous. text_risk_mitigation: 用空白卡片、物件阵列和光线路径表达整理，不让画面出现文档、表格或可读栏位。", "prompt": "Vertical 9:16 refined style-fusion closing image, a blank luminous surface transforms into an organized constellation of plain cards, small objects and soft light paths, shelves softly opening behind it, minimal geometric composition fused with restrained magical realism, gentle hopeful light, generous negative space, text-free visual field"}
+    ],
+    "videos": [
+      {"id": "W01", "reference": "P00", "seed": 95101, "duration_seconds": 4, "prompt_review": "semantic_anchor: opening motion deepens the blank-document tension without adding generated text.", "prompt": "Slow natural camera drift toward the blank workspace, tiny movement in dust and curtain light, stable desk objects, clean screen surface, calm cinematic motion"},
+      {"id": "W02", "reference": "P06", "seed": 95102, "duration_seconds": 4, "prompt_review": "semantic_anchor: tabletop materials begin to connect, embodying retrieval rather than instant inspiration.", "prompt": "Gentle overhead camera drift, objects on the table subtly align through light and shadow, one small motivated hand movement, stable structure, calm visual rhythm"}
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {"id": "S01", "kind": "video", "src": "video/W01.mp4", "from": 0, "to": 6, "playbackRate": 0.67},
+      {"id": "S02", "kind": "still", "src": "images/P01.png", "from": 6, "to": 12, "motion": "push-left"},
+      {"id": "S03", "kind": "still", "src": "images/P02.png", "from": 12, "to": 18, "motion": "drift-up"},
+      {"id": "S04", "kind": "still", "src": "images/P03.png", "from": 18, "to": 24, "motion": "pull-back"},
+      {"id": "S05", "kind": "still", "src": "images/P04.png", "from": 24, "to": 30, "motion": "push-right"},
+      {"id": "S06", "kind": "still", "src": "images/P05.png", "from": 30, "to": 36, "motion": "drift-down"},
+      {"id": "S07", "kind": "video", "src": "video/W02.mp4", "from": 36, "to": 42, "playbackRate": 0.67},
+      {"id": "S08", "kind": "still", "src": "images/P07.png", "from": 42, "to": 48, "motion": "push-left"},
+      {"id": "S09", "kind": "still", "src": "images/P08.png", "from": 48, "to": 54, "motion": "drift-up"},
+      {"id": "S10", "kind": "still", "src": "images/P09.png", "from": 54, "to": 60, "motion": "pull-back"},
+      {"id": "S11", "kind": "still", "src": "images/P10.png", "from": 60, "to": 65, "motion": "push-right"},
+      {"id": "S12", "kind": "still", "src": "images/P11.png", "from": 65, "to": 70, "motion": "drift-down"},
+      {"id": "S13", "kind": "still", "src": "images/P12.png", "from": 70, "to": 75, "motion": "push-left"},
+      {"id": "S14", "kind": "still", "src": "images/P13.png", "from": 75, "to": 82, "motion": "drift-up"}
+    ],
+    "info_cards": [
+      {"id": "I01", "type": "comparison", "from": 28, "to": 36, "eyebrow": "换个理解", "left": "空投", "operator": "≠", "right": "检索"},
+      {"id": "I02", "type": "questions", "from": 58, "to": 68, "eyebrow": "先摆到桌上", "items": ["最近反复出现的画面？", "记了很久的一句话？", "说不清的异样感？"]}
+    ],
+    "captions": []
+  }
+}

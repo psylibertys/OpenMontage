@@ -1,0 +1,68 @@
+{
+  "18": {
+    "inputs": {
+      "positive": "Welcome to Pixaroma Radio. Today we’re testing a cloned voice inside ComfyUI. Pretty cool, right?"
+    },
+    "class_type": "easy positive",
+    "_meta": {
+      "title": "2. Speech Text"
+    }
+  },
+  "19": {
+    "inputs": {
+      "filename": "my_custom_voice.wav"
+    },
+    "class_type": "FB_Qwen3TTSLoadSpeaker",
+    "_meta": {
+      "title": "1. Load Previous Saved Voice (Press R to Refresh)"
+    }
+  },
+  "14": {
+    "inputs": {
+      "model_choice": "1.7B",
+      "device": "cuda",
+      "precision": "bf16",
+      "language": "English",
+      "seed": 1015280067243974,
+      "max_new_tokens": 512,
+      "top_p": 0.8,
+      "top_k": 20,
+      "temperature": 1,
+      "repetition_penalty": 1.05,
+      "x_vector_only": false,
+      "attention": "auto",
+      "unload_model_after_generate": false,
+      "custom_model_path": "",
+      "target_text": [
+        "18",
+        0
+      ],
+      "ref_text": [
+        "19",
+        2
+      ],
+      "voice_clone_prompt": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "FB_Qwen3TTSVoiceClone",
+    "_meta": {
+      "title": "🎭 Qwen3-TTS VoiceClone"
+    }
+  },
+  "8": {
+    "inputs": {
+      "filename_prefix": "audio/voice",
+      "quality": "V0",
+      "audio": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "SaveAudioMP3",
+    "_meta": {
+      "title": "Save Audio (MP3) (DEPRECATED)"
+    }
+  }
+}

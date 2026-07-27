@@ -1,0 +1,18 @@
+{
+  "project_id": "treeelf-shared-alarm-20260725",
+  "decision": "review_before_each_batch",
+  "retain_infrastructure": [
+    "/root/ComfyUI-Easy-Install/ComfyUI",
+    "/root/autodl-tmp/comfyui-models",
+    "/root/autodl-tmp/comfyui-runtime/validation"
+  ],
+  "retain_project_assets": ["treeelf_voice02_v1 reusable voice pack", "approved SHA-256 input caches"],
+  "backup_then_delete_runtime_types": [
+    "input",
+    "output",
+    "temp"
+  ],
+  "backup_then_delete_voice_files": [],
+  "delete_gate": "Mac backup exists and local/remote size and SHA-256 match",
+  "shutdown_gate": "queue empty, backup verified, cleanup verified, no pending failures"
+}

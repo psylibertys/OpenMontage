@@ -1,0 +1,17 @@
+{
+  "project_id": "comfyui-gpu-acceptance-20260723",
+  "decision": "no_reusable_project_assets",
+  "retain_infrastructure": [
+    "/root/ComfyUI-Easy-Install/ComfyUI",
+    "/root/autodl-tmp/comfyui-models"
+  ],
+  "retain_project_assets": [],
+  "backup_then_delete_runtime_types": [
+    "input",
+    "output",
+    "temp"
+  ],
+  "backup_then_delete_voice_files": [],
+  "delete_gate": "Mac backup exists and local/remote size and SHA-256 match",
+  "shutdown_gate": "queue empty, backup verified, cleanup verified, no pending failures"
+}

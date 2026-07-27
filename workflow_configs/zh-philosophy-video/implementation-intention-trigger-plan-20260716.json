@@ -1,0 +1,160 @@
+{
+  "project_id": "implementation-intention-trigger-plan-20260716",
+  "title": "计划失败在没有触发器",
+  "cover_title": "触发计划",
+  "cover_lines": [
+    "触发计划"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 98,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "执行意图把线索和动作连接",
+    "动作要具体且足够小",
+    "失败时检查线索、动作和现实条件"
+  ],
+  "core_message": "把模糊目标改写成如果情境出现、就执行一个具体小动作，计划才真正接上触发器。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-16_计划失败在没有触发器.md",
+  "tags": [
+    "心哲灵",
+    "执行意图",
+    "行动计划",
+    "习惯"
+  ],
+  "raw_script": "“我要早睡”“这周运动”“明天写文章”——计划表写得像新生活开业通知。到了晚上，新生活还没来上班。\n\n问题常常不是目标不够认真，而是它没有触发器。行为科学中的“执行意图”，会把计划写成：如果情境 X 出现，我就执行动作 Y。目标意图说去哪，执行意图负责把插头接上插座。\n\n它为什么有用？线索出现时，你少搜索一次“什么时候做”，也少开一场“到底先做什么”的内部会议。\n\n把“我要运动”改成：“如果晚饭后把碗放进水槽，我就换鞋下楼走十分钟。”收碗是线索，换鞋下楼是最低动作。插头终于不悬空了。\n\n“有空就运动”太模糊；“吃完饭完成一小时高强度训练”，动作又太重。前者找不到插座，后者一插上就想跳闸。先设计开始，再设计坚持。\n\n一次没做，检查三件事：线索出现了吗？动作具体、够小吗？现实条件允许吗？\n\n一句“如果—那么”不能保证成功。目标承诺、时间、体力、环境和资源都会影响结果；夜班、照护、疾病或缺钱，需要处理条件，不能怪计划格式。\n\n现在只改一个计划：如果______发生，我就先做______。先把插头接上，别急着给人格断电。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "lo-fi",
+      "ambient",
+      "folk",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "“我要早睡”“这周运动”“明天写文章”——计划表写得像新生活开业通知。到了晚上，新生活还没来上班。\n\n问题常常不是目标不够认真，而是它没有触发器。行为科学中的“执行意图”，会把计划写成：如果情境 X 出现，我就执行动作 Y。目标意图说去哪，执行意图负责把插头接上插座。",
+      "queries": [
+        {
+          "query": "unfinished planner goals procrastination",
+          "description": "计划写好但新生活没来上班"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "它为什么有用？线索出现时，你少搜索一次“什么时候做”，也少开一场“到底先做什么”的内部会议。\n\n把“我要运动”改成：“如果晚饭后把碗放进水槽，我就换鞋下楼走十分钟。”收碗是线索，换鞋下楼是最低动作。插头终于不悬空了。",
+      "queries": [
+        {
+          "query": "putting dishes in sink after dinner",
+          "description": "晚饭后收碗作为线索"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "如果 X 出现"
+          ],
+          "subtitle": "我就执行动作 Y"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "“有空就运动”太模糊；“吃完饭完成一小时高强度训练”，动作又太重。前者找不到插座，后者一插上就想跳闸。先设计开始，再设计坚持。\n\n一次没做，检查三件事：线索出现了吗？动作具体、够小吗？现实条件允许吗？",
+      "queries": [
+        {
+          "query": "putting on shoes going for short walk",
+          "description": "换鞋下楼作为最低动作"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "先设计开始"
+          ],
+          "subtitle": "再设计坚持"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "一句“如果—那么”不能保证成功。目标承诺、时间、体力、环境和资源都会影响结果；夜班、照护、疾病或缺钱，需要处理条件，不能怪计划格式。\n\n现在只改一个计划：如果______发生，我就先做______。先把插头接上，别急着给人格断电。",
+      "queries": [
+        {
+          "query": "night shift worker realistic schedule",
+          "description": "现实条件需要被纳入计划"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-3",
+          "title_lines": [
+            "线索",
+            "动作",
+            "条件"
+          ],
+          "subtitle": "失败后检查三件事"
+        }
+      ]
+    }
+  ]
+}

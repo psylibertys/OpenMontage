@@ -7,6 +7,10 @@ description: Use when working with ComfyUI workflows in OpenMontage, including c
 
 Use this skill before calling `comfyui_image` or `comfyui_video`, and when converting a community ComfyUI workflow into an OpenMontage tool call.
 
+## Project Deployment Context
+
+For this OpenMontage repository, first read `production-planning/COMFYUI_AGENT_CONTEXT.md` completely. It is the project-specific source of truth for the approved provider/model routing, active workflow catalog, AutoDL connection, current validation state, remote asset cleanup contract, and next action. This skill supplies generic ComfyUI rules and must not override those approved project decisions.
+
 ## Server Contract
 
 - ComfyUI must be running before the tool can generate. The default server is `http://localhost:8188`; override it with `COMFYUI_SERVER_URL`.

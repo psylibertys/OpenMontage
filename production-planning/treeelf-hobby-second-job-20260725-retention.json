@@ -1,0 +1,19 @@
+{
+  "project_id": "treeelf-hobby-second-job-20260725",
+  "decision": "approved_for_episode_batch_finalize_only_after_final_video_qc",
+  "retain_infrastructure": [
+    "/root/ComfyUI-Easy-Install/ComfyUI",
+    "/root/autodl-tmp/comfyui-models",
+    "/root/autodl-tmp/comfyui-runtime/validation"
+  ],
+  "retain_project_assets": [],
+  "backup_then_delete_runtime_types": [
+    "input",
+    "output",
+    "temp"
+  ],
+  "backup_then_delete_voice_files": [],
+  "delete_gate": "Mac backup exists and local/remote size and SHA-256 match",
+  "shutdown_gate": "queue empty, backup verified, cleanup verified, no pending failures",
+  "user_lifecycle_override": "Do not shutdown during production; finalize only after the whole episode workflow and QC pass"
+}

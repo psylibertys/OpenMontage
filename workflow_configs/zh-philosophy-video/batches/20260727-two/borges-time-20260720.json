@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-borges-time-20260720",
+  "title": "博尔赫斯教你如何征服时间",
+  "cover_title": "成为时间",
+  "cover_english_title": "BECOME TIME",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/已归档/2026-07-20_博尔赫斯教你如何征服时间.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": ["ambient", "neo-classical", "piano", "river", "纯音乐"]
+  },
+  "visual_brief": {
+    "emotional_core": ["时间带走人的眩晕", "当下的清澈", "意识串联世界的温柔虚构", "成为时间的动人翻转"],
+    "metaphor_candidates": ["河流", "珠子与线", "钟", "黄昏", "花", "身体里的时间"],
+    "style_families": ["cinematic fine art photography", "impressionist painting", "minimal geometric composition"]
+  },
+  "duration_seconds": 86,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": ["text-free visual media", "no generated logos", "no generated watermarks", "no pseudo typography"],
+    "style_source": "art-Styles.md",
+    "style_families": ["cinematic fine art photography", "impressionist painting", "minimal geometric composition"],
+    "target_ratios": {"narrative_concrete": 0.15, "abstract_imagery": 0.40, "style_fusion_translation": 0.45},
+    "prompt_policy": "Creative prompts describe desired semantic anchors, emotions, metaphors, materials, light, composition and art languages in positive terms. Technical text-free requirements remain as workflow guardrails.",
+    "cross_episode_repeat_policy": "Extract motifs from this script: river, beads, line, dusk, flower, clock and embodied time.",
+    "images": [
+      {"id": "C01", "role": "cover", "visual_mode": "style_fusion_translation", "seed": 94201, "steps": 8, "prompt_review": "semantic_anchor: 你不是只在失去时间，也正在成为时间; style_logic: cinematic fine art and minimal geometry let river, bead and body metaphors become one calm cover image.", "prompt": "Vertical 9:16 editorial cover background, a quiet river of light passing through floating pearl-like moments, a delicate thread dissolving into dusk, warm gold and deep blue palette, refined cinematic fine art photography fused with minimal geometric composition, generous negative space for later Remotion title, text-free visual field"},
+      {"id": "P00", "role": "narrative_concrete", "visual_mode": "narrative_concrete", "seed": 94202, "steps": 8, "prompt_review": "semantic_anchor: 时间一边带走你，一边又是你，先用真实黄昏场景落地。", "prompt": "Vertical 9:16 cinematic documentary photograph, a solitary person standing beside a slow river at dusk, city lights beginning far away, wind touching coat and water surface, contemplative posture, natural twilight, clear geography, text-free visual field"},
+      {"id": "P01", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94203, "steps": 8, "prompt_review": "semantic_anchor: 昨天不在、明天未到，只有眼前一下; each abstract element maps to vanishing past, absent future and tangible present.", "prompt": "Vertical 9:16 poetic abstract artwork, three translucent glass panels in a quiet room: one fading into mist, one still dark and unopened, one catching a sharp beam of present light, serene atmosphere, tactile glass and dust, text-free visual field"},
+      {"id": "P02", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94204, "steps": 8, "prompt_review": "semantic_anchor: 无数眼前这一下被串成一串珠子; style_logic: macro photography and minimal geometry make mental sequencing visible.", "prompt": "Vertical 9:16 style-fusion image, pearl-like moments suspended in air above a dark table, a barely visible thread connecting them into a curve, macro fine art photography blended with precise minimal geometric rhythm, soft gold highlights, text-free visual field"},
+      {"id": "P03", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94205, "steps": 8, "prompt_review": "semantic_anchor: 意识害怕世界散掉，于是补上一根线; thread corresponds to consciousness creating continuity.", "prompt": "Vertical 9:16 symbolic mixed-media artwork, scattered luminous beads, flower petals and small reflections held together by a single thin thread of light across a deep blue surface, calm intellectual tension, refined craft, text-free visual field"},
+      {"id": "P04", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94206, "steps": 8, "prompt_review": "semantic_anchor: 博尔赫斯并不完全相信，但夜晚和黄昏它会回来找他; style_logic: low-key cinematic light and impressionism express returning doubt.", "prompt": "Vertical 9:16 art-language translation frame, a quiet study at twilight with an open window, river light reflected on wall, a chair, a clock shadow and a soft haze of returning thought, low-key cinematic photography fused with impressionist brushlike light, text-free visual field"},
+      {"id": "P05", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94207, "steps": 8, "prompt_review": "semantic_anchor: 时间像河流把我冲走; water current corresponds to loss and motion.", "prompt": "Vertical 9:16 refined abstract editorial artwork, a river seen from above becomes a long ribbon through a dark landscape, small human-shaped shadow reflected then stretched by water, controlled twilight light, precise emotional atmosphere, text-free visual field"},
+      {"id": "P06", "role": "narrative_concrete", "visual_mode": "narrative_concrete", "seed": 94208, "steps": 8, "prompt_review": "semantic_anchor: 你看见一朵花，此刻就是时间留下的样子; suitable Wan reference because flower and light can move gently.", "prompt": "Vertical 9:16 cinematic documentary hero frame, close view of a single flower by a window in warm dusk light, a person's hand resting nearby without touching it, dust motes in the light, grounded room, motion-ready stillness, text-free visual field"},
+      {"id": "P07", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94209, "steps": 8, "prompt_review": "semantic_anchor: 我不只是乘客，我也是这条河; style_logic: double exposure turns person and river into one continuous image.", "prompt": "Vertical 9:16 conceptual style-fusion artwork, a human silhouette gently double-exposed with a flowing river, water texture crossing the body like memory and breath, cinematic fine art photography blended with restrained surrealism, sophisticated composition, text-free visual field"},
+      {"id": "P08", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94210, "steps": 8, "prompt_review": "semantic_anchor: 时间不是在我之外偷走生命; spatial relationship maps outside thief versus embodied flow.", "prompt": "Vertical 9:16 abstract image, an old clock outside a glass room casts no shadow, while warm moving light travels through the floor and hands inside the room, restrained palette, readable visual hierarchy, tactile surface, text-free visual field"},
+      {"id": "P09", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94211, "steps": 8, "prompt_review": "semantic_anchor: 花、爱过的人、听见一句话，都是时间在身上留下的样子; style_logic: impressionist collage lets moments appear as layered sensory traces.", "prompt": "Vertical 9:16 elegant style-fusion artwork, a flower, two distant hand silhouettes and a ripple of sound-like light layered across a human chest, impressionist painting fused with cinematic fine art collage, spacious visual rhythm, refined emotional resolution, text-free visual field"},
+      {"id": "P10", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94212, "steps": 8, "prompt_review": "semantic_anchor: 征服时间不是让钟停下; abstract device contrasts frozen clock with living flow.", "prompt": "Vertical 9:16 abstract editorial image, a stopped clock resting beside a living stream of warm light and petals, the stream continues around it without drama, calm tension, clear material logic, text-free visual field"},
+      {"id": "P11", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94213, "steps": 8, "prompt_review": "semantic_anchor: 终于明白自己也正在成为时间; style_logic: minimal geometry and fine art photography make philosophical insight feel simple and embodied.", "prompt": "Vertical 9:16 contemplative style-fusion artwork, a person walking along a river path while pearl-like moments orbit softly around the body and dissolve into water, cinematic fine art photography fused with minimal geometric motion paths, coherent emotional landing, text-free visual field"},
+      {"id": "P12", "role": "abstract_imagery", "visual_mode": "abstract_imagery", "seed": 94214, "steps": 8, "prompt_review": "semantic_anchor: 不是只在失去时间; symbolic scale shows loss transforming into becoming.", "prompt": "Vertical 9:16 abstract closing image, a dark hourglass opened at the center, grains becoming tiny reflected river lights instead of falling away, quiet spatial resolution, tactile glass and gold dust, text-free visual field"},
+      {"id": "P13", "role": "style_fusion_translation", "visual_mode": "style_fusion_translation", "seed": 94215, "steps": 8, "prompt_review": "semantic_anchor: 你也正在成为时间; style_logic: impressionist river-light and editorial minimalism create earned calm conclusion.", "prompt": "Vertical 9:16 refined style-fusion closing image, a river at dawn shaped like a gentle human pulse line, beads of present moments shining along the water, impressionist light fused with minimal editorial composition, generous negative space, harmonious material and light language, text-free visual field"}
+    ],
+    "videos": [
+      {"id": "W01", "reference": "P00", "seed": 95201, "duration_seconds": 4, "prompt_review": "semantic_anchor: opening motion lets dusk river carry the time metaphor.", "prompt": "Slow cinematic camera drift along the riverside at dusk, subtle water movement, coat and light moving gently, stable figure, calm philosophical mood"},
+      {"id": "W02", "reference": "P06", "seed": 95202, "duration_seconds": 4, "prompt_review": "semantic_anchor: flower and dusk light embody a present moment becoming time.", "prompt": "Gentle camera push toward the flower, dust motes and curtain light moving softly, hand remains stable nearby, natural motion, quiet visual rhythm"}
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {"id": "S01", "kind": "video", "src": "video/W01.mp4", "from": 0, "to": 6, "playbackRate": 0.67},
+      {"id": "S02", "kind": "still", "src": "images/P01.png", "from": 6, "to": 12, "motion": "push-left"},
+      {"id": "S03", "kind": "still", "src": "images/P02.png", "from": 12, "to": 18, "motion": "drift-up"},
+      {"id": "S04", "kind": "still", "src": "images/P03.png", "from": 18, "to": 24, "motion": "pull-back"},
+      {"id": "S05", "kind": "still", "src": "images/P04.png", "from": 24, "to": 30, "motion": "push-right"},
+      {"id": "S06", "kind": "still", "src": "images/P05.png", "from": 30, "to": 36, "motion": "drift-down"},
+      {"id": "S07", "kind": "video", "src": "video/W02.mp4", "from": 36, "to": 42, "playbackRate": 0.67},
+      {"id": "S08", "kind": "still", "src": "images/P07.png", "from": 42, "to": 48, "motion": "push-left"},
+      {"id": "S09", "kind": "still", "src": "images/P08.png", "from": 48, "to": 54, "motion": "drift-up"},
+      {"id": "S10", "kind": "still", "src": "images/P09.png", "from": 54, "to": 60, "motion": "pull-back"},
+      {"id": "S11", "kind": "still", "src": "images/P10.png", "from": 60, "to": 65, "motion": "push-right"},
+      {"id": "S12", "kind": "still", "src": "images/P11.png", "from": 65, "to": 70, "motion": "drift-down"},
+      {"id": "S13", "kind": "still", "src": "images/P12.png", "from": 70, "to": 75, "motion": "push-left"},
+      {"id": "S14", "kind": "still", "src": "images/P13.png", "from": 75, "to": 86, "motion": "drift-up"}
+    ],
+    "info_cards": [
+      {"id": "I01", "type": "comparison", "from": 24, "to": 32, "eyebrow": "博尔赫斯的追问", "left": "珠子", "operator": "+", "right": "线？"},
+      {"id": "I02", "type": "comparison", "from": 58, "to": 68, "eyebrow": "翻转", "left": "乘客", "operator": "→", "right": "河流"}
+    ],
+    "captions": []
+  }
+}

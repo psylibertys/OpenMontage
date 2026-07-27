@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "batch_id": "treeelf-batch-20260725-b",
+  "queue_depth": 2,
+  "episode_configs": [
+    "treeelf-failure-local-evidence-20260725.json",
+    "treeelf-love-frequency-scale-20260725.json",
+    "treeelf-emotion-body-grounding-20260725.json"
+  ]
+}

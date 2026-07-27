@@ -1,0 +1,149 @@
+{
+  "project_id": "future-self-borrows-hand-20260718",
+  "title": "当你与未来的自己纠缠在一起会发生什么",
+  "cover_title": "未来借手",
+  "cover_lines": [
+    "未来借手"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "按未来版本过今天",
+    "纠缠不是许愿",
+    "停掉一个旧习惯"
+  ],
+  "core_message": "未来自我不只是等待抵达的结果，也可以成为今天感受、选择和行动的出发点。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-18_为什么未来的自己总像个陌生人.md",
+  "tags": [
+    "心哲灵",
+    "未来自我",
+    "意识探索",
+    "乔迪斯本萨"
+  ],
+  "raw_script": "癌症复查还没看到好转，她却笑着对医生说：“我感觉好极了。”\n\n为什么？因为她没有等病情先好转，才开始换一种活法。她已经在按未来那个自己，过今天的生活。\n\n乔·迪斯本萨把这叫作：与“未来的自己”纠缠在一起。\n\n她一边接受治疗，一边冥想，一点点离开那个只会等待坏消息的自己。\n\n后来在乔·迪斯本萨的一次活动中，她感到强烈的爱，哭了很久。那一刻她很确定：不管要四年还是十年，自己已经在路上了。\n\n后来，她说自己的 PET 复查已经看不到癌症迹象。乔认为，身体的变化终于跟上了她已经开始活出的状态。\n\n乔用“纠缠”来形容这种状态。\n\n不是对未来许愿，也不是给下周的自己派任务。而是你已经开始像那个未来版本一样，感受、选择、生活。\n\n你不再天天问：“它什么时候才会发生？”\n\n你开始问：“如果我已经是那个人，今天会怎么活？”\n\n这是她讲述的个人经历，不能据此判断冥想造成了检查变化；她同时也接受了医疗治疗。但它把“纠缠”讲得很清楚：未来不只是在前面等你，它也可以成为你今天的出发点。\n\n想一想你最想成为的那个自己。别先问他拥有什么。\n\n问问他：今天会停掉哪一个旧习惯？\n\n然后，停掉一次。\n\n也许所谓纠缠，就是未来的你，第一次借你的手，改写现在。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "hopeful",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "癌症复查还没看到好转，她却笑着对医生说：“我感觉好极了。”\n\n为什么？因为她没有等病情先好转，才开始换一种活法。她已经在按未来那个自己，过今天的生活。",
+      "queries": [
+        {
+          "query": "person looking at future self mirror",
+          "description": "未来自我像镜中人"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "乔·迪斯本萨把这叫作：与“未来的自己”纠缠在一起。\n\n她一边接受治疗，一边冥想，一点点离开那个只会等待坏消息的自己。\n\n后来在乔·迪斯本萨的一次活动中，她感到强烈的爱，哭了很久。那一刻她很确定：不管要四年还是十年，自己已经在路上了。",
+      "queries": [
+        {
+          "query": "meditation event emotional love",
+          "description": "冥想和强烈情感体验"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "未来借手"
+          ],
+          "subtitle": "像那个未来版本一样活今天"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "后来，她说自己的 PET 复查已经看不到癌症迹象。乔认为，身体的变化终于跟上了她已经开始活出的状态。\n\n乔用“纠缠”来形容这种状态。\n\n不是对未来许愿，也不是给下周的自己派任务。而是你已经开始像那个未来版本一样，感受、选择、生活。\n\n你不再天天问：“它什么时候才会发生？”\n\n你开始问：“如果我已经是那个人，今天会怎么活？”",
+      "queries": [
+        {
+          "query": "person walking toward sunrise path",
+          "description": "已经在路上"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "别先问拥有"
+          ],
+          "subtitle": "问他今天会停掉什么旧习惯"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "这是她讲述的个人经历，不能据此判断冥想造成了检查变化；她同时也接受了医疗治疗。但它把“纠缠”讲得很清楚：未来不只是在前面等你，它也可以成为你今天的出发点。\n\n想一想你最想成为的那个自己。别先问他拥有什么。\n\n问问他：今天会停掉哪一个旧习惯？\n\n然后，停掉一次。\n\n也许所谓纠缠，就是未来的你，第一次借你的手，改写现在。",
+      "queries": [
+        {
+          "query": "hands opening curtain morning light",
+          "description": "未来借你的手改写现在"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-replace-me-YYYYMMDD",
+  "title": "替换标题",
+  "cover_title": "替换封面标题",
+  "source_script_md": "/absolute/path/to/fable.md",
+  "estimated_duration_seconds": 90,
+  "protagonist": {
+    "type": "成年女性",
+    "description": "按故事随机确定；本篇所有画面保持身份、外形标志、服装和配色一致"
+  },
+  "visual_brief": {
+    "fable_law": "本篇超现实规则，例如：一被看见身体就会透明。",
+    "central_metaphor": "本篇中心隐喻。",
+    "emotional_core": ["温暖", "克制", "微光"],
+    "symbolic_objects": ["一个最能承载寓言规则的物件"],
+    "protagonist_identity": "与 protagonist.description 保持一致。",
+    "art_style_logic": "说明本篇为什么适合选定的艺术语言；风格服务故事，不做抽象艺术短片。",
+    "technical_guardrails": ["text-free generated image", "no readable text", "no letters", "no logo", "no watermark", "no pseudo typography"]
+  },
+  "character_pack": {
+    "enabled": true,
+    "master_prompt": "vertical 9:16 full-body character key art, replace with reviewed episode protagonist design, cinematic storybook, visible paper texture, light summer styling when clothing applies, bright rested eyes, gentle optimistic presence",
+    "reference_prompts": [
+      "front view of the exact same protagonist, neutral pose, plain softly lit background, bright rested eyes, gentle optimistic presence",
+      "left three-quarter view of the exact same protagonist, neutral pose, plain softly lit background, bright rested eyes, gentle optimistic presence",
+      "right profile view of the exact same protagonist, neutral pose, plain softly lit background, bright rested eyes, gentle optimistic presence",
+      "back three-quarter view of the exact same protagonist, neutral pose, plain softly lit background, consistent clothing and silhouette"
+    ]
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01",
+      "weight": 1,
+      "summary": "建立寓言世界和主角",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "主角在一个可信的日常空间里遇到本篇寓言事件。",
+      "fable_law": "超现实规则第一次以真实事件显现。",
+      "art_style_logic": "电影绘本和克制魔法现实让事件既可信又有寓言感。",
+      "wan_candidate": true,
+      "fable_event_stage": "first_manifestation",
+      "prompt": "vertical 9:16 cinematic storybook illustration, replace with reviewed scene prompt, clear story event in an ordinary place, the fable law appears as a real physical change, tactile paper texture, restrained magical realism, stable protagonist identity"
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 human-free symbolic cover background, one story-derived object or environment detail expresses the central metaphor, refined material texture, generous clean negative space for later Remotion typography, calm editorial composition aligned with TreeElf philosophy covers",
+  "hero_wan": {
+    "enabled": true,
+    "selection_policy": "opening_fable_event_only_or_none",
+    "scene_id": "",
+    "prompt": "one restrained physically coherent action, stable identity and structure, calm camera drift"
+  },
+  "music_source": "",
+  "captions_path": ""
+}

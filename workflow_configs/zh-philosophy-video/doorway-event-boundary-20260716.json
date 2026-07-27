@@ -1,0 +1,158 @@
+{
+  "project_id": "doorway-event-boundary-20260716",
+  "title": "为什么一进房间，就忘了自己要干什么？",
+  "cover_title": "场景换挡",
+  "cover_lines": [
+    "场景换挡"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 101,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "事件分段更新当前情境模型",
+    "门口效应并非稳定超能力",
+    "过门前给下一场戏报幕"
+  ],
+  "core_message": "门框不是记忆删除键；场景切换会更新事件模型，后台越忙越容易暂时压住旧任务。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-16_为什么一进房间就忘了自己要干什么.md",
+  "tags": [
+    "心哲灵",
+    "认知科学",
+    "记忆",
+    "事件分段"
+  ],
+  "raw_script": "你目标明确地走进卧室，三步以后，目标没了。于是站在原地，开始认真参观一个每天都住的房间。人顺利送达，任务说明书没跟上。\n\n很多人把这叫“门口效应”，仿佛门框自带记忆删除键。早期实验确实发现，在部分任务中，参与者跨门后更难提取刚接触的信息。门框从此名声大振。\n\n真正的机制叫“事件分段”。大脑会维持一个“当前这一幕”的模型：我在哪、在做什么、目标是什么。地点或任务明显变化时，它就更新模型。像一个过度积极的场务，看到布景变了，啪，换场。上一幕的任务卡没被撕掉，只是暂时压到了文件夹下面。\n\n但门框的“超能力”没有稳定上线。2021 年研究连做四个实验，没有稳定复现跨门遗忘；只有参与者还背着额外工作记忆负担时，干扰才露出一点影子。后台越忙，换场才越容易压住旧任务。\n\n这套机制也有好处，它帮大脑给生活分章节。\n\n下次过门或切窗口前，可以给下一场戏报个幕：“卧室——拿充电线。”这是一个可以自测的小实验，谈不上记忆秘方。\n\n偶尔断片，给任务卡起个名字；频繁到影响生活的忘事，别只让门框背锅。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "lo-fi",
+      "ambient",
+      "chillwave",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "你目标明确地走进卧室，三步以后，目标没了。于是站在原地，开始认真参观一个每天都住的房间。人顺利送达，任务说明书没跟上。\n\n很多人把这叫“门口效应”，仿佛门框自带记忆删除键。早期实验确实发现，在部分任务中，参与者跨门后更难提取刚接触的信息。门框从此名声大振。",
+      "queries": [
+        {
+          "query": "person enters room suddenly forgets task",
+          "description": "进房间后突然忘记目的"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "真正的机制叫“事件分段”。大脑会维持一个“当前这一幕”的模型：我在哪、在做什么、目标是什么。地点或任务明显变化时，它就更新模型。像一个过度积极的场务，看到布景变了，啪，换场。上一幕的任务卡没被撕掉，只是暂时压到了文件夹下面。",
+      "queries": [
+        {
+          "query": "film set stage change behind scenes",
+          "description": "大脑像场务一样换场"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "门框"
+          ],
+          "subtitle": "不是记忆删除键"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "但门框的“超能力”没有稳定上线。2021 年研究连做四个实验，没有稳定复现跨门遗忘；只有参与者还背着额外工作记忆负担时，干扰才露出一点影子。后台越忙，换场才越容易压住旧任务。\n\n这套机制也有好处，它帮大脑给生活分章节。",
+      "queries": [
+        {
+          "query": "multitasking working memory overload laptop phone",
+          "description": "额外工作记忆负担"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "事件分段"
+          ],
+          "subtitle": "布景变了，大脑换场"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "下次过门或切窗口前，可以给下一场戏报个幕：“卧室——拿充电线。”这是一个可以自测的小实验，谈不上记忆秘方。\n\n偶尔断片，给任务卡起个名字；频繁到影响生活的忘事，别只让门框背锅。",
+      "queries": [
+        {
+          "query": "charging cable on bedroom table",
+          "description": "卧室拿充电线的具体目标"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-3",
+          "title_lines": [
+            "卧室"
+          ],
+          "subtitle": "拿充电线"
+        }
+      ]
+    }
+  ]
+}

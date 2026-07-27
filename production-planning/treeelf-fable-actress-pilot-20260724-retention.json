@@ -1,0 +1,22 @@
+{
+  "project_id": "treeelf-fable-actress-pilot-20260724",
+  "execution_status": "active_continuous_production_no_shutdown",
+  "decision": "The active GPU batch generates reference-pack-v2. Preserve the four reusable v1 reference inputs on the server, copy every v2 output to the Mac project, and verify size and SHA-256 before deleting only non-reusable runtime outputs/temp and shutting down.",
+  "retain_infrastructure": [
+    "/root/ComfyUI-Easy-Install/ComfyUI",
+    "/root/autodl-tmp/comfyui-models",
+    "/root/autodl-tmp/comfyui-runtime/validation"
+  ],
+  "retain_project_assets": [
+    "role-ref-01-front-close.png",
+    "role-ref-02-three-quarter.png",
+    "role-ref-03-left-profile.png",
+    "role-ref-04-front-fullbody.png"
+  ],
+  "backup_then_delete_runtime_types": ["output", "temp"],
+  "backup_then_delete_voice_files": [],
+  "delete_gate": "Every generated reference-pack-v2 PNG exists under the Mac project directory and every corresponding remote file matches local size and SHA-256",
+  "shutdown_gate": "disabled by explicit user instruction for the current continuous production session",
+  "shutdown_policy": "do_not_shutdown_until_user_explicitly_requests_it",
+  "current_blocker": "Shared runtime outputs belong to multiple projects. Do not run broad cleanup; continue generation with project-scoped local outputs and retain remote assets."
+}

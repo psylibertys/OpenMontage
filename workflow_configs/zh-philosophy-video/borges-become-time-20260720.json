@@ -1,0 +1,150 @@
+{
+  "project_id": "borges-become-time-20260720",
+  "title": "博尔赫斯教你如何征服时间",
+  "cover_title": "成为时间",
+  "cover_lines": [
+    "成为时间"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "真正碰得到的只有当下",
+    "时间之线可能是意识补上的",
+    "你也是这条河"
+  ],
+  "core_message": "征服时间不是让钟停下，而是看见你不只在失去时间，你也正在成为时间。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-20_博尔赫斯教你如何征服时间.md",
+  "tags": [
+    "心哲灵",
+    "博尔赫斯",
+    "时间",
+    "当下"
+  ],
+  "raw_script": "时间最诡异的地方是：它一边带走你，一边又是你。\n\n听着有点绕，但你每天都活在这个怪事里。\n\n昨天已经不在了，明天还没来。你真正碰得到的，永远只有眼前这一下。\n\n可我们会把无数个“眼前这一下”串成一串珠子，然后告诉自己：这就是时间，这就是我的一生。\n\n博尔赫斯偏要追问：那根把珠子串起来的线，真的存在吗？还是我们的意识，害怕世界散掉，于是给它补上了一根线？\n\n他自己也承认，他并不完全相信这个想法。\n\n但在夜晚和黄昏，它总会回来找他。\n\n因为它藏着一个很动人的翻转：时间像河流一样把我冲走，可我并不只是河里的乘客，我也是这条河。\n\n它不是在我之外偷走生命。\n\n你看见一朵花，爱过一个人，此刻听见一句话。\n\n这些不是时间之外的插曲。\n\n它们就是时间，在你身上留下的样子。\n\n所以征服时间，不是让钟停下。\n\n是终于明白：你不是只在失去时间，你也正在成为时间。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "neo-classical",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "时间最诡异的地方是：它一边带走你，一边又是你。\n\n听着有点绕，但你每天都活在这个怪事里。\n\n昨天已经不在了，明天还没来。你真正碰得到的，永远只有眼前这一下。",
+      "queries": [
+        {
+          "query": "old clock close up moody",
+          "description": "时间一边带走你"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "可我们会把无数个“眼前这一下”串成一串珠子，然后告诉自己：这就是时间，这就是我的一生。\n\n博尔赫斯偏要追问：那根把珠子串起来的线，真的存在吗？还是我们的意识，害怕世界散掉，于是给它补上了一根线？\n\n他自己也承认，他并不完全相信这个想法。",
+      "queries": [
+        {
+          "query": "person at dusk window contemplative",
+          "description": "夜晚和黄昏里的追问"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "成为时间"
+          ],
+          "subtitle": "你不是只在失去时间"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "但在夜晚和黄昏，它总会回来找他。\n\n因为它藏着一个很动人的翻转：时间像河流一样把我冲走，可我并不只是河里的乘客，我也是这条河。\n\n它不是在我之外偷走生命。\n\n你看见一朵花，爱过一个人，此刻听见一句话。",
+      "queries": [
+        {
+          "query": "string of beads close up",
+          "description": "眼前这一下串成珠子"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "你也是",
+            "这条河"
+          ],
+          "subtitle": "征服时间不是让钟停下"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "这些不是时间之外的插曲。\n\n它们就是时间，在你身上留下的样子。\n\n所以征服时间，不是让钟停下。\n\n是终于明白：你不是只在失去时间，你也正在成为时间。",
+      "queries": [
+        {
+          "query": "person walking along river sunset",
+          "description": "你也正在成为时间"
+        }
+      ]
+    }
+  ]
+}

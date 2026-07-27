@@ -1,0 +1,149 @@
+{
+  "project_id": "aesthetic-label-story-20260719",
+  "title": "美学与认知科学",
+  "cover_title": "标签变美",
+  "cover_lines": [
+    "标签变美"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 90,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "AI 标签会改变偏好",
+    "眼睛从不单独上班",
+    "喜欢来自结果也来自来处"
+  ],
+  "core_message": "美不只藏在物体里，也会被标签、来源故事和我们带来的知识一起改变。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-19_美学与认知科学.md",
+  "tags": [
+    "心哲灵",
+    "美学",
+    "认知科学",
+    "AI艺术"
+  ],
+  "raw_script": "同一幅画，像素一个没变。\n\n只把标签从“人画的”换成“AI 生成”，很多人就觉得它没那么好了。\n\n画没变，我们的目光却变了。\n\n斯坦福哲学百科有一篇《美学与认知科学》，里面提到一些研究：同样的作品被标为 AI 制作时，人们的偏好会下降。\n\n这听起来很不理性，却暴露了一件有趣的事：\n\n我们看东西时，眼睛从来不单独上班。\n\n记忆、知识、期待，还有那么一点偏见，会跟着它一起来打卡。\n\n同一条线，知道它是人一笔笔画出来的，你可能会觉得它细腻。得知它来自机器，这种感觉又可能改变。\n\n因为我们看的不只是结果，也在看它从哪里来、谁做了它、这件事花了什么代价。\n\n认知科学能帮我们理解，某种喜欢是怎么发生的。\n\n但它不能只靠一张脑扫描，就替我们判定哪幅画值得被珍惜。\n\n因为美不只藏在物体里。\n\n它也会被我们看到的样子、听到的故事，以及已经带在身上的知识一起改变。\n\n下次你因为一个标签，突然觉得某件东西变美或变丑时，可以问一句：\n\n是它变了，还是我的目光里，刚刚多了一个故事？",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "minimal",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "同一幅画，像素一个没变。\n\n只把标签从“人画的”换成“AI 生成”，很多人就觉得它没那么好了。\n\n画没变，我们的目光却变了。",
+      "queries": [
+        {
+          "query": "person looking at painting gallery",
+          "description": "观看同一幅画"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "斯坦福哲学百科有一篇《美学与认知科学》，里面提到一些研究：同样的作品被标为 AI 制作时，人们的偏好会下降。\n\n这听起来很不理性，却暴露了一件有趣的事：\n\n我们看东西时，眼睛从来不单独上班。\n\n记忆、知识、期待，还有那么一点偏见，会跟着它一起来打卡。",
+      "queries": [
+        {
+          "query": "artist hand painting brush close up",
+          "description": "知道人一笔笔画出来"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "标签变美"
+          ],
+          "subtitle": "画没变，目光变了"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "同一条线，知道它是人一笔笔画出来的，你可能会觉得它细腻。得知它来自机器，这种感觉又可能改变。\n\n因为我们看的不只是结果，也在看它从哪里来、谁做了它、这件事花了什么代价。\n\n认知科学能帮我们理解，某种喜欢是怎么发生的。\n\n但它不能只靠一张脑扫描，就替我们判定哪幅画值得被珍惜。\n\n因为美不只藏在物体里。\n\n它也会被我们看到的样子、听到的故事，以及已经带在身上的知识一起改变。",
+      "queries": [
+        {
+          "query": "museum visitor reading artwork label",
+          "description": "标签和故事进入目光"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "美"
+          ],
+          "subtitle": "也被故事和知识改变"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "下次你因为一个标签，突然觉得某件东西变美或变丑时，可以问一句：\n\n是它变了，还是我的目光里，刚刚多了一个故事？",
+      "queries": [
+        {
+          "query": "person looking thoughtful at artwork",
+          "description": "是它变了还是目光多了故事"
+        }
+      ]
+    }
+  ]
+}

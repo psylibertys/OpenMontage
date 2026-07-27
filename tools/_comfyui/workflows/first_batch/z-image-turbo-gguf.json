@@ -1,0 +1,138 @@
+{
+  "190": {
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "Conditioning Zero Out"
+    }
+  },
+  "191": {
+    "inputs": {
+      "shift": 3,
+      "model": [
+        "197",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "ModelSamplingAuraFlow"
+    }
+  },
+  "164": {
+    "inputs": {
+      "samples": [
+        "163",
+        0
+      ],
+      "vae": [
+        "196",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "171": {
+    "inputs": {
+      "filename_prefix": "img",
+      "images": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image Original"
+    }
+  },
+  "162": {
+    "inputs": {
+      "width": 768,
+      "height": 768,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": "Portrait photo of a futuristic orange steampunk robot, red eyes, close up head and shoulders, robot looking directly at the camera, intense mechanical gaze, advanced yet decayed design, fusion of futuristic technology and old industrial machinery, rusty metal surfaces, worn paint, exposed cables, glowing inner components, lost world atmosphere, abandoned civilization feeling, dramatic studio lighting, strong contrast, solid black background, cinematic shadows, shallow depth of field, ultra detailed, realistic photography style, high resolution, dark and moody tone",
+      "clip": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "163": {
+    "inputs": {
+      "seed": 538502292740713,
+      "steps": 5,
+      "cfg": 1,
+      "sampler_name": "dpmpp_sde",
+      "scheduler": "beta",
+      "denoise": 1,
+      "model": [
+        "191",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "190",
+        0
+      ],
+      "latent_image": [
+        "162",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "197": {
+    "inputs": {
+      "unet_name": "z-image/z-image-turbo-q4_k_s.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "Unet Loader (GGUF)"
+    }
+  },
+  "200": {
+    "inputs": {
+      "clip_name": "qwen-4b-zimage-heretic-q8.gguf",
+      "type": "lumina2"
+    },
+    "class_type": "CLIPLoaderGGUF",
+    "_meta": {
+      "title": "CLIPLoader (GGUF)"
+    }
+  },
+  "196": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  }
+}

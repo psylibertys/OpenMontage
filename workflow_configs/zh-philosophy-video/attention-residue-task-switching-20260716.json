@@ -1,0 +1,151 @@
+{
+  "project_id": "attention-residue-task-switching-20260716",
+  "title": "切换任务后，大脑没有立刻跟上",
+  "cover_title": "注意尾巴",
+  "cover_lines": [
+    "注意尾巴"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 94,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "未完成任务更容易留下注意力残留",
+    "任务切换不是窗口切换",
+    "三行便签提高结束质量"
+  ],
+  "core_message": "切换任务前给旧任务一个外部停靠点，能减少未完成目标留下的注意力残留。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-16_切换任务后大脑没有立刻跟上.md",
+  "tags": [
+    "心哲灵",
+    "注意力残留",
+    "任务切换",
+    "专注"
+  ],
+  "raw_script": "会议关了，消息回了，文档也打开了。人已经到新任务，注意力还在上一间会议室加班。\n\n这种现象叫“注意力残留”。Sophie Leroy 2009 年的两项实验提示：从未完成的任务切走时，人更难把注意充分转到新任务，后续表现可能受影响。\n\n任务切换不是窗口切换。上一件事停在“做到哪、接下来呢”的位置，大脑还得替它守着目标。可以把它想成一条“注意力尾巴”：人走进新房间，衣角还夹在上一扇门里。身体入场了，衣服没完全同意。\n\n所以，未完成的任务不一定催你工作，也可能只是安静地占着带宽。提高专注力之前，先提高任务的结束质量。\n\n下次切换前，留一张三行便签：现在做到哪；下一步是什么；准备什么时候回来。它给旧任务一个外部停靠点，大脑就不用一路举着“千万别忘”的牌子。\n\n便签法是根据机制设计的实践，不是原论文直接验证的方法；研究也没有给出固定恢复时间。疲劳、睡眠不足、焦虑和环境干扰，同样会让注意力掉线。\n\n切换前写下下一步。先把衣角带出来，再推开下一扇门。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "lo-fi",
+      "ambient",
+      "downtempo",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "会议关了，消息回了，文档也打开了。人已经到新任务，注意力还在上一间会议室加班。\n\n这种现象叫“注意力残留”。Sophie Leroy 2009 年的两项实验提示：从未完成的任务切走时，人更难把注意充分转到新任务，后续表现可能受影响。",
+      "queries": [
+        {
+          "query": "laptop meeting chat document multitasking",
+          "description": "人已切换而注意力仍留在上一任务"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "任务切换不是窗口切换。上一件事停在“做到哪、接下来呢”的位置，大脑还得替它守着目标。可以把它想成一条“注意力尾巴”：人走进新房间，衣角还夹在上一扇门里。身体入场了，衣服没完全同意。",
+      "queries": [
+        {
+          "query": "coat caught in closing door metaphor",
+          "description": "注意力尾巴夹在上一扇门"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "注意力残留"
+          ],
+          "subtitle": "人到了，注意力还在加班"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "所以，未完成的任务不一定催你工作，也可能只是安静地占着带宽。提高专注力之前，先提高任务的结束质量。\n\n下次切换前，留一张三行便签：现在做到哪；下一步是什么；准备什么时候回来。它给旧任务一个外部停靠点，大脑就不用一路举着“千万别忘”的牌子。",
+      "queries": [
+        {
+          "query": "sticky note next step task planning",
+          "description": "给旧任务一个外部停靠点"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "做到哪",
+            "下一步",
+            "何时回来"
+          ],
+          "subtitle": "切换前留三行便签"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "便签法是根据机制设计的实践，不是原论文直接验证的方法；研究也没有给出固定恢复时间。疲劳、睡眠不足、焦虑和环境干扰，同样会让注意力掉线。\n\n切换前写下下一步。先把衣角带出来，再推开下一扇门。",
+      "queries": [
+        {
+          "query": "closing laptop calm transition",
+          "description": "完成清晰的任务切换"
+        }
+      ]
+    }
+  ]
+}

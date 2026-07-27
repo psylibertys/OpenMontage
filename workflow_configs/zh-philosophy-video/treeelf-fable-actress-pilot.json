@@ -1,0 +1,145 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-actress-pilot-20260724",
+  "title": "树精灵寓言｜雨后青苔女性角色定型批",
+  "pipeline": "animated-explainer",
+  "profile": "tiktok",
+  "aspect_preset": "portrait_9_16",
+  "render_runtime": "remotion",
+  "composition_mode": "atelier",
+  "retention_policy": "production-planning/treeelf-fable-actress-pilot-20260724-retention.json",
+  "source_scripts": [
+    "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-21_一被看见就变透明的人.md",
+    "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-23_被蒲公英叫醒的人.md",
+    "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-23_把自己修成门锁的人.md"
+  ],
+  "character_bible": {
+    "character_id": "moss-after-rain-actress",
+    "role": "同一位女性寓言演员，在每集独立的寓言人生中扮演主角",
+    "identity": "25至32岁的东亚女性，明确的成年女性身份",
+    "personality": "柔和、乐观、清醒、有恢复力；安静但不阴郁",
+    "performance": "角色保持沉默，以目光、呼吸、停顿和小幅动作承载心理变化",
+    "hair_anchor": "黑色蓬松短卷发，自然空气感，长度在耳下到下颌之间",
+    "face_anchor": "明亮安静的眼神，舒展眉形，自然嘴角，柔和但具有成年感",
+    "wardrobe_policy": "每集重新穿搭；灰绿色只作为服装或道具中的系列签名",
+    "brand_presence": "树精灵只出现在片头、片尾和封面，不进入寓言故事",
+    "forbidden_drift": [
+      "眼下阴影或明显黑眼圈",
+      "疲惫、憔悴、病弱或长期苦相",
+      "幼童化、少女偶像化或夸张可爱",
+      "男性化或性别模糊",
+      "尖耳、精灵服装或奇幻种族特征",
+      "永久微笑、广告式灿笑或鸡汤式胜利表情",
+      "长直发、齐刘海或发型长度明显漂移"
+    ]
+  },
+  "selected_character_master": {
+    "status": "user_selected",
+    "source_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/Role/treeelf-fable-actress-master-v1.png",
+    "project_asset_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/projects/treeelf-fable-actress-pilot-20260724/assets/characters/moss-after-rain-actress/master/treeelf-fable-actress-master-v1.png",
+    "sha256": "957a8d03b310b7e8af286837e8308eddb49628584b638f598b221cd37a886511",
+    "selection_note": "用户明确选择第一张电影绘本现实风女性角色；排除3D版本与狗啃刘海版本。"
+  },
+  "current_reference_pack_stage": {
+    "v1_status": "user_generated_and_reviewed",
+    "v1_artifact": "projects/treeelf-fable-actress-pilot-20260724/artifacts/reference_pack_v1_review.json",
+    "v2_status": "prepared_not_generated",
+    "v2_plan": "projects/treeelf-fable-actress-pilot-20260724/artifacts/reference_pack_v2_plan.json",
+    "comparison_protocol": "projects/treeelf-fable-actress-pilot-20260724/artifacts/reference_pack_comparison_protocol.json",
+    "next_gate": "生成v2四图后进行A/B选择"
+  },
+  "candidate_selection": {
+    "workflow_template": "krea2_low_vram",
+    "steps": 4,
+    "output_size": [1080, 1920],
+    "shared_prompt": "Vertical 9:16 poetic 2.5D illustrated cinema character portrait of an East Asian woman aged 25 to 32, clearly adult and feminine, framed from mid-thigh upward at eye level. She has naturally voluminous short black curly hair ending between the ears and jaw, bright calm eyes, relaxed brows, a natural mouth, and a gentle optimistic presence. She wears an off-white cotton blouse under a muted moss-green knitted cardigan with simple charcoal trousers. Her posture is quiet and grounded, one hand relaxed beside her body. Soft overcast window light from camera left, subtle warm reflected light on the face, pale rain-washed plaster background, delicate paper grain, restrained hand-painted texture, cinematic depth, realistic anatomy, editorial storybook sophistication. The frame contains one woman only, clean background, no written marks, no emblem, no decorative border.",
+    "comparison_lock": {
+      "camera": "eye-level, mid-thigh portrait, 50mm-equivalent perspective",
+      "pose": "quiet grounded standing pose, one hand visible and relaxed",
+      "wardrobe": "off-white blouse, muted moss-green cardigan, charcoal trousers",
+      "background": "pale rain-washed plaster wall",
+      "lighting": "soft overcast window light from camera left",
+      "expression": "gentle optimism without a posed smile"
+    },
+    "candidates": [
+      {
+        "id": "A01",
+        "blind_label": "角色 A01",
+        "internal_name": "晨雾柔卷",
+        "seed": 73101,
+        "identity_delta": "Soft oval face, softly arched brows, almond-shaped warm brown eyes, a straight delicate nose and naturally full lips. Her curls are loose, airy C-shaped curls with a slightly off-center part and a few free strands around the temples. The impression is open, observant and quietly hopeful."
+      },
+      {
+        "id": "A02",
+        "blind_label": "角色 A02",
+        "internal_name": "林间轻卷",
+        "seed": 73102,
+        "identity_delta": "Gently rounded face with a defined adult jaw, straight relaxed brows, clear slightly upturned dark-brown eyes, a compact nose and subtle lips. Her short curls are smaller and more spring-like around the ears, with an asymmetrical natural silhouette. The impression is warm, lively and resilient without becoming cute or youthful."
+      },
+      {
+        "id": "A03",
+        "blind_label": "角色 A03",
+        "internal_name": "雨线波卷",
+        "seed": 73103,
+        "identity_delta": "Soft heart-shaped adult face, long relaxed brows, luminous deep-brown eyes, a gently defined nose bridge and calm expressive lips. Her hair forms short sculptural S-waves and soft curls, fuller at the crown and tapered near the jaw. The impression is thoughtful, composed and naturally optimistic."
+      }
+    ],
+    "selection_protocol": {
+      "presentation": "只展示A01、A02、A03编号和图片，不展示内部名称与提示词",
+      "review_dimensions": [
+        "是否明确是成年女性",
+        "是否柔和乐观而非疲惫",
+        "短卷发轮廓是否有辨识度",
+        "是否适合承载克制的心理寓言",
+        "是否愿意连续观看她出演16篇故事"
+      ],
+      "gate": "用户选择一个候选后，才准备并生成该角色的四张标准参考图"
+    }
+  },
+  "consistency_tests": [
+    {
+      "id": "T01",
+      "source_title": "一被看见就变透明的人",
+      "shot": "雨夜靠窗桌边的近景，透明手腕平放在木桌上",
+      "tests": ["面部近景", "透明特效下身份保留", "克制情绪"]
+    },
+    {
+      "id": "T02",
+      "source_title": "被蒲公英叫醒的人",
+      "shot": "雨后街边蹲下观察鞋中蒲公英的全身镜头",
+      "tests": ["户外全身", "手脚结构", "自然光", "柔和乐观"]
+    },
+    {
+      "id": "T03",
+      "source_title": "把自己修成门锁的人",
+      "shot": "寓言公寓中胸前门锁与工具桌的半身镜头",
+      "tests": ["复杂身体隐喻", "道具交互", "室内低照度身份稳定"]
+    }
+  ],
+  "motion_sample": {
+    "source_title": "被蒲公英叫醒的人",
+    "target_duration_seconds": 12,
+    "beats": [
+      "女性演员在雨后街边停下",
+      "她蹲下，看见鞋口的蒲公英",
+      "一颗白色种子从她眼前缓慢飞过",
+      "她的目光跟随种子，嘴角出现几乎不可察觉的暖意"
+    ],
+    "motion_rules": [
+      "不做口型",
+      "不使用夸张笑容",
+      "相机运动缓慢且有动机",
+      "卷发只做轻微风动，不能改变长度或卷度",
+      "优先验证脸、手和发型稳定，不追求复杂动作"
+    ]
+  },
+  "gpu_policy": {
+    "phase_one_only": true,
+    "phase_one_assets": 3,
+    "phase_one_description": "只生成A01-A03三张同条件候选角色图并停在人工选择门禁",
+    "automatic_follow_on_generation": false,
+    "approved_models": ["krea2_low_vram"],
+    "future_models_after_selection": ["flux2_klein_4ref", "flux2_klein_inpaint", "wan22_i2v_q6"],
+    "lora_allowed": false
+  }
+}

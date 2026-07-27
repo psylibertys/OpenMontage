@@ -34,6 +34,10 @@
           "provider": { "type": "string", "description": "Provider name (e.g. pixabay, google_imagen)" },
           "license": { "type": "string", "description": "License type (e.g. Pixabay License, CC0)" },
           "original_url": { "type": "string", "description": "Source URL if downloaded from a stock service" },
+          "creator": { "type": "string", "description": "Named creator or contributor supplied by the stock provider" },
+          "library_clip_id": { "type": "string", "description": "Stable identifier in the shared local stock library" },
+          "library_status": { "type": "string", "description": "Whether the shared-library clip was reused, added, or bypassed" },
+          "library_match_score": { "type": "number", "minimum": 0, "maximum": 1, "description": "Semantic match score used by the shared stock library" },
           "voice_performance": {
             "type": "object",
             "description": "Applied voice-performance contract for narration assets.",

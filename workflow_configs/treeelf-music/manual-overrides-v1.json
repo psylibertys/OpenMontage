@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0",
+  "description": "Manual metadata keyed by catalog track id. Catalog rebuilds never overwrite this file.",
+  "tracks": {}
+}

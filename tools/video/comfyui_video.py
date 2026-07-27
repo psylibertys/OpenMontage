@@ -8,6 +8,8 @@ via the ``workflow_json`` input.
 from __future__ import annotations
 
 import json
+import shutil
+import subprocess
 import time
 from pathlib import Path
 from typing import Any
@@ -27,6 +29,11 @@ from tools.base_tool import (
     ToolTier,
 )
 from tools._comfyui.client import ComfyUIClient, ComfyUIError
+from tools._comfyui.first_batch import build_workflow as build_first_batch_workflow
+from tools._comfyui.first_batch import get_spec as get_first_batch_spec
+from tools._comfyui.production import build_workflow as build_production_workflow
+from tools._comfyui.production import get_spec as get_production_spec
+from tools._comfyui.production import PRODUCTION_WORKFLOWS
 from tools._comfyui.metadata import (
     BUNDLED_MODEL_STACKS,
     COMFYUI_SETUP_OFFER,
@@ -34,6 +41,7 @@ from tools._comfyui.metadata import (
     model_stack,
     workflow_hash,
 )
+from tools.analysis.audio_probe import probe_duration
 
 _WORKFLOWS = Path(__file__).resolve().parent.parent / "_comfyui" / "workflows"
 
@@ -152,9 +160,32 @@ class ComfyUIVideo(BaseTool):
                 "type": "string",
                 "description": "URL of reference image (for image_to_video, downloaded first)",
             },
+            "reference_audio_path": {
+                "type": "string",
+                "description": "Local narration/reference audio for InfiniteTalk templates.",
+            },
+            "driving_video_path": {
+                "type": "string",
+                "description": "Local motion-driving video for Animate/SCAIL templates.",
+            },
             "width": {"type": "integer", "default": 832, "description": "T2V default 832, I2V default 640"},
             "height": {"type": "integer", "default": 480, "description": "T2V default 480, I2V default 640"},
-            "num_frames": {"type": "integer", "default": 81, "description": "81 frames = 5s at 16fps"},
+            "num_frames": {
+                "type": "integer",
+                "description": (
+                    "Legacy frame-bucket input for bundled workflows. Prefer "
+                    "duration_seconds; do not pass both."
+                ),
+            },
+            "duration_seconds": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": (
+                    "Requested clip duration. Bundled Wan/InfiniteTalk templates choose "
+                    "the nearest supported frame bucket. Animate/SCAIL trim, but never "
+                    "loop or extend, the driving video."
+                ),
+            },
             "seed": {"type": "integer", "description": "Random if omitted"},
             "output_path": {"type": "string", "description": "Where to save the video"},
             "workflow_json": {
@@ -164,6 +195,22 @@ class ComfyUIVideo(BaseTool):
             "workflow_path": {
                 "type": "string",
                 "description": "Optional path to a ComfyUI workflow JSON file. Requires output_node.",
+            },
+            "workflow_template": {
+                "type": "string",
+                "enum": [
+                    "wan22_i2v_q6",
+                    "wan_infinitetalk_short",
+                    "wan_infinitetalk_extend",
+                    "wan22_animate_character",
+                    "wan_scail_character",
+                ],
+                "description": "Bundled, parameterized first-batch API workflow.",
+            },
+            "aspect_preset": {
+                "type": "string",
+                "enum": ["portrait_9_16", "landscape_16_9"],
+                "default": "portrait_9_16",
             },
             "output_node": {
                 "type": "string",
@@ -193,7 +240,9 @@ class ComfyUIVideo(BaseTool):
         cpu_cores=2, ram_mb=16000, vram_mb=8000, disk_mb=2000, network_required=False,
     )
     retry_policy = RetryPolicy(max_retries=1, retryable_errors=["timeout"])
-    idempotency_key_fields = ["prompt", "operation", "width", "height", "num_frames", "seed"]
+    idempotency_key_fields = [
+        "prompt", "operation", "width", "height", "num_frames", "duration_seconds", "seed",
+    ]
     side_effects = ["writes video file to output_path"]
     user_visible_verification = ["Watch generated clip for motion coherence and artifacts"]
 
@@ -256,9 +305,43 @@ class ComfyUIVideo(BaseTool):
             return 210.0  # ~3.5 min
         return 240.0  # ~4 min
 
+    @staticmethod
+    def _trim_driving_video(
+        source: Path,
+        destination: Path,
+        duration_seconds: float,
+    ) -> None:
+        ffmpeg = shutil.which("ffmpeg")
+        if not ffmpeg:
+            raise ComfyUIError(
+                "duration_seconds for Animate/SCAIL requires ffmpeg on the OpenMontage host"
+            )
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        proc = subprocess.run(
+            [
+                ffmpeg, "-y", "-v", "error", "-i", str(source),
+                "-t", f"{duration_seconds:.3f}",
+                "-map", "0:v:0", "-map", "0:a?",
+                "-c:v", "libx264", "-pix_fmt", "yuv420p",
+                "-c:a", "aac", "-movflags", "+faststart",
+                str(destination),
+            ],
+            capture_output=True,
+            text=True,
+            timeout=300,
+        )
+        if proc.returncode != 0 or not destination.is_file():
+            raise ComfyUIError(
+                f"Failed to trim driving video to {duration_seconds:.2f}s: "
+                f"{proc.stderr.strip() or 'ffmpeg produced no file'}"
+            )
+
     def execute(self, inputs: dict[str, Any]) -> ToolResult:
-        custom_workflow = bool(inputs.get("workflow_json") or inputs.get("workflow_path"))
-        if custom_workflow and not inputs.get("output_node"):
+        workflow_template = inputs.get("workflow_template")
+        custom_workflow = bool(
+            inputs.get("workflow_json") or inputs.get("workflow_path") or workflow_template
+        )
+        if custom_workflow and not workflow_template and not inputs.get("output_node"):
             return ToolResult(
                 success=False,
                 error=(
@@ -273,7 +356,7 @@ class ComfyUIVideo(BaseTool):
                 error=self._client.unavailable_reason(),
             )
 
-        operation = inputs.get("operation", "text_to_video")
+        operation = "image_to_video" if workflow_template else inputs.get("operation", "text_to_video")
 
         if not custom_workflow:
             required = _REQUIRED_MODELS_I2V if operation == "image_to_video" else _REQUIRED_MODELS_T2V
@@ -299,13 +382,105 @@ class ComfyUIVideo(BaseTool):
                     ),
                 )
         start = time.time()
-        seed = inputs.get("seed") or ComfyUIClient.random_seed()
+        seed = inputs["seed"] if inputs.get("seed") is not None else ComfyUIClient.random_seed()
         output_path = Path(
             inputs.get("output_path", f"comfyui_video_{operation}_{seed}.mp4")
         )
+        self._client.begin_job()
 
         try:
-            if custom_workflow:
+            template_provenance = None
+            if workflow_template:
+                is_production = workflow_template in PRODUCTION_WORKFLOWS
+                spec = (
+                    get_production_spec(workflow_template, media="video")
+                    if is_production
+                    else get_first_batch_spec(workflow_template, media="video")
+                )
+                ref_path = inputs.get("reference_image_path")
+                ref_url = inputs.get("reference_image_url")
+                if ref_url and not ref_path:
+                    resp = requests.get(ref_url, timeout=60)
+                    resp.raise_for_status()
+                    ref_path = str(output_path.with_suffix(".ref.png"))
+                    Path(ref_path).parent.mkdir(parents=True, exist_ok=True)
+                    Path(ref_path).write_bytes(resp.content)
+                if not ref_path:
+                    raise ComfyUIError(
+                        f"Workflow template {workflow_template!r} requires "
+                        "reference_image_path or reference_image_url"
+                    )
+                source_image_name = self._client.upload_image(
+                    Path(ref_path),
+                    f"om_{output_path.stem}_{seed}_source{Path(ref_path).suffix or '.png'}",
+                )
+                if is_production:
+                    uploads: dict[str, Any] = {"source_image": source_image_name}
+                    if spec.get("source_audio"):
+                        audio_path = inputs.get("reference_audio_path")
+                        if not audio_path:
+                            raise ComfyUIError(
+                                f"Workflow template {workflow_template!r} requires reference_audio_path"
+                            )
+                        uploads["source_audio"] = self._client.upload_file(
+                            Path(audio_path), f"om_{output_path.stem}_{seed}_audio{Path(audio_path).suffix}"
+                        )
+                    if spec.get("source_video"):
+                        video_path = inputs.get("driving_video_path")
+                        if not video_path:
+                            raise ComfyUIError(
+                                f"Workflow template {workflow_template!r} requires driving_video_path"
+                            )
+                        source_video_path = Path(video_path)
+                        upload_video_path = source_video_path
+                        trimmed_video_path: Path | None = None
+                        requested_duration = inputs.get("duration_seconds")
+                        if requested_duration is not None:
+                            requested_duration = float(requested_duration)
+                            if requested_duration <= 0:
+                                raise ComfyUIError("duration_seconds must be greater than 0")
+                            source_duration = probe_duration(source_video_path)
+                            if source_duration is None:
+                                raise ComfyUIError(
+                                    f"Could not probe driving video duration: {source_video_path}"
+                                )
+                            if requested_duration > source_duration + 0.05:
+                                raise ComfyUIError(
+                                    f"Requested duration {requested_duration:.2f}s exceeds "
+                                    f"driving video duration {source_duration:.2f}s; "
+                                    "automatic looping is disabled"
+                                )
+                            if requested_duration < source_duration - 0.05:
+                                trimmed_video_path = output_path.parent / (
+                                    f".{output_path.stem}-{seed}-drive-"
+                                    f"{requested_duration:.3f}s.mp4"
+                                )
+                                self._trim_driving_video(
+                                    source_video_path,
+                                    trimmed_video_path,
+                                    requested_duration,
+                                )
+                                upload_video_path = trimmed_video_path
+                        try:
+                            uploads["source_video"] = self._client.upload_file(
+                                upload_video_path,
+                                f"om_{output_path.stem}_{seed}_drive"
+                                f"{upload_video_path.suffix}",
+                            )
+                        finally:
+                            if trimmed_video_path is not None:
+                                trimmed_video_path.unlink(missing_ok=True)
+                    workflow, output_node, template_provenance = build_production_workflow(
+                        workflow_template, inputs, media="video", uploads=uploads
+                    )
+                else:
+                    workflow, output_node, template_provenance = build_first_batch_workflow(
+                        workflow_template,
+                        inputs,
+                        media="video",
+                        source_image_name=source_image_name,
+                    )
+            elif custom_workflow:
                 workflow = self._load_custom_workflow(inputs)
                 output_node = str(inputs["output_node"])
             elif operation == "image_to_video":
@@ -316,22 +491,48 @@ class ComfyUIVideo(BaseTool):
             provenance = self._workflow_provenance(
                 inputs, custom_workflow, output_node, operation, workflow
             )
+            if template_provenance:
+                provenance = {
+                    **template_provenance,
+                    "workflow_hash_sha256": workflow_hash(workflow),
+                    "output_node": output_node,
+                }
+            timeout = 1800 if workflow_template == "wan_infinitetalk_extend" else 900
             paths = self._client.generate(
                 workflow,
                 output_node=output_node,
                 dest=output_path,
-                timeout=900,
+                timeout=timeout,
                 interval=10,
             )
 
         except ComfyUIError as exc:
+            self._client.record_pending_upload_cleanup(output_path.parent, str(exc))
             return ToolResult(success=False, error=str(exc))
         except Exception as exc:
+            self._client.record_pending_upload_cleanup(output_path.parent, str(exc))
             return ToolResult(success=False, error=f"ComfyUI video generation failed: {exc}")
 
         width = inputs.get("width", 832 if operation == "text_to_video" else 640)
         height = inputs.get("height", 480 if operation == "text_to_video" else 640)
-        num_frames = inputs.get("num_frames", 81)
+        num_frames = (
+            (template_provenance or {}).get("num_frames")
+            or inputs.get("num_frames")
+            or (49 if workflow_template else 81)
+        )
+        if template_provenance:
+            width = template_provenance.get("width") or width
+            height = template_provenance.get("height") or height
+
+        fps = int((template_provenance or {}).get("fps") or 16)
+        media_duration = probe_duration(paths[0]) if paths and paths[0].is_file() else None
+        if media_duration is None:
+            segment_count = int((template_provenance or {}).get("segment_count") or 1)
+            overlap = 9 if segment_count > 1 else 0
+            rendered_frames = num_frames + max(0, segment_count - 1) * (num_frames - overlap)
+            media_duration = rendered_frames / fps
+        else:
+            rendered_frames = round(media_duration * fps)
 
         model_name = self._model_name(inputs, custom_workflow)
         return ToolResult(
@@ -343,12 +544,13 @@ class ComfyUIVideo(BaseTool):
                 "operation": operation,
                 "width": width,
                 "height": height,
-                "num_frames": num_frames,
-                "fps": 16,
-                "duration_seconds": round(num_frames / 16, 2),
+                "num_frames": rendered_frames,
+                "fps": fps,
+                "duration_seconds": round(media_duration, 2),
                 "output": str(paths[0]),
                 "format": "mp4",
                 "workflow_provenance": provenance,
+                "cleanup_failures": self._client.cleanup_failures,
             },
             artifacts=[str(p) for p in paths],
             cost_usd=0.0,
@@ -425,6 +627,11 @@ class ComfyUIVideo(BaseTool):
     def _model_name(inputs: dict[str, Any], custom_workflow: bool) -> str:
         if not custom_workflow:
             return "wan2.2-14b-fp8-4step"
+        if inputs.get("workflow_template"):
+            template = inputs["workflow_template"]
+            if template in PRODUCTION_WORKFLOWS:
+                return get_production_spec(template, media="video")["model"]
+            return get_first_batch_spec(template, media="video")["model"]
         return (
             inputs.get("workflow_model")
             or inputs.get("model")

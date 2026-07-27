@@ -1,0 +1,151 @@
+{
+  "project_id": "truth-indifferent-familiarity-20260718",
+  "title": "为什么不在乎真假的话反而更难防",
+  "cover_title": "真假免检",
+  "cover_lines": [
+    "真假免检"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 75,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "真假漠不关心不同于谎言",
+    "重复会提高加工流畅性",
+    "用出处、范围、可证伪来核验"
+  ],
+  "core_message": "重复会制造熟悉感，但熟悉不等于证据；越不在乎真假的话，越要把判断带回出处和范围。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-18_为什么不在乎真假的话反而更难防.md",
+  "tags": [
+    "心哲灵",
+    "认知心理学",
+    "错觉真相效应",
+    "信息判断"
+  ],
+  "raw_script": "最难防的未必是谎话，而是根本没查过真假、却被你听过三遍的话。一句没出处的话，第一次可疑，第二次耳熟，第三次你已能接上后半句。它没多一条证据，大脑门卫却快把它当熟客了。\n\n法兰克福区分过谎话和“对真假漠不关心的话”：说谎者得先在乎真相，才会故意遮住它；后者只在乎话有没有效果，不把真假当必查项。\n\n三项受控实验中，同样的重复陈述，标为来自“对真假漠不关心的人”时，比标为来自“说谎者”时的可信度评分更高。\n\n这和“错觉真相效应”有关：重复让句子更容易处理，加工流畅性可能被误读成真实感。把它记成“真假免检通道”：来源不负责证据，重复提高流畅性，熟悉感就可能替核验盖章。句子第三次来，门卫还没看证件，手已帮它按电梯了。\n\n遇到“大家都这么说”，先别转发，问三件事：第一个可靠出处在哪？证据支持到什么范围？什么证据会改变结论？这会把判断从“我见过”换回“我能核对”。\n\n实验用了来源标签、中性事实和受控重复，无法推出所有这类话都比谎话有效，也不等于重复三次就会信。\n\n熟悉感只能说明它来过。证据、范围、可证伪条件齐了，再让它进门。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "tension",
+      "minimal",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "最难防的未必是谎话，而是根本没查过真假、却被你听过三遍的话。一句没出处的话，第一次可疑，第二次耳熟，第三次你已能接上后半句。它没多一条证据，大脑门卫却快把它当熟客了。",
+      "queries": [
+        {
+          "query": "person reading repeated fake news phone",
+          "description": "反复看到没有出处的话"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "法兰克福区分过谎话和“对真假漠不关心的话”：说谎者得先在乎真相，才会故意遮住它；后者只在乎话有没有效果，不把真假当必查项。\n\n三项受控实验中，同样的重复陈述，标为来自“对真假漠不关心的人”时，比标为来自“说谎者”时的可信度评分更高。",
+      "queries": [
+        {
+          "query": "security guard checking id door metaphor",
+          "description": "大脑门卫查证件"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "真假免检"
+          ],
+          "subtitle": "熟悉感不能替证据盖章"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "这和“错觉真相效应”有关：重复让句子更容易处理，加工流畅性可能被误读成真实感。把它记成“真假免检通道”：来源不负责证据，重复提高流畅性，熟悉感就可能替核验盖章。句子第三次来，门卫还没看证件，手已帮它按电梯了。\n\n遇到“大家都这么说”，先别转发，问三件事：第一个可靠出处在哪？证据支持到什么范围？什么证据会改变结论？这会把判断从“我见过”换回“我能核对”。",
+      "queries": [
+        {
+          "query": "rumor spreading in crowd city",
+          "description": "大家都这么说的传播"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "出处",
+            "范围",
+            "可证伪"
+          ],
+          "subtitle": "把判断换回核对"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "实验用了来源标签、中性事实和受控重复，无法推出所有这类话都比谎话有效，也不等于重复三次就会信。\n\n熟悉感只能说明它来过。证据、范围、可证伪条件齐了，再让它进门。",
+      "queries": [
+        {
+          "query": "person pausing before sharing phone",
+          "description": "转发前暂停"
+        }
+      ]
+    }
+  ]
+}

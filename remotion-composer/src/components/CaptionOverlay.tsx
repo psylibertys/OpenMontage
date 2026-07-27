@@ -22,6 +22,8 @@ interface CaptionOverlayProps {
   color?: string;
   highlightColor?: string;
   backgroundColor?: string;
+  outlineColor?: string;
+  outlineWidth?: number;
   fontFamily?: string;
 }
 
@@ -51,8 +53,19 @@ const PageRenderer: React.FC<{
   color: string;
   highlightColor: string;
   backgroundColor: string;
+  outlineColor: string;
+  outlineWidth: number;
   fontFamily: string;
-}> = ({ page, fontSize, color, highlightColor, backgroundColor, fontFamily }) => {
+}> = ({
+  page,
+  fontSize,
+  color,
+  highlightColor,
+  backgroundColor,
+  outlineColor,
+  outlineWidth,
+  fontFamily,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -91,6 +104,8 @@ const PageRenderer: React.FC<{
             fontFamily,
             lineHeight: 1.4,
             whiteSpace: "pre-wrap",
+            WebkitTextStroke: `${outlineWidth}px ${outlineColor}`,
+            paintOrder: "stroke fill",
           }}
         >
           {page.words.map((w, i) => {
@@ -103,8 +118,8 @@ const PageRenderer: React.FC<{
                   color: isActive ? highlightColor : isPast ? color : `${color}99`,
                   transition: "none", // CSS transitions forbidden in Remotion
                   textShadow: isActive
-                    ? `0 0 20px ${highlightColor}66, 0 2px 4px rgba(0,0,0,0.5)`
-                    : "0 2px 4px rgba(0,0,0,0.5)",
+                    ? `0 0 18px ${outlineColor}, 0 2px 5px ${outlineColor}, 0 0 12px ${highlightColor}55`
+                    : `0 0 14px ${outlineColor}, 0 2px 5px ${outlineColor}`,
                 }}
               >
                 {w.word}{i < page.words.length - 1 ? " " : ""}
@@ -124,6 +139,8 @@ export const CaptionOverlay: React.FC<CaptionOverlayProps> = ({
   color = "#F8FAFC",
   highlightColor = "#22D3EE",
   backgroundColor = "rgba(15, 23, 42, 0.75)",
+  outlineColor = "#000000",
+  outlineWidth = 0,
   fontFamily = "Space Grotesk, Inter, system-ui, sans-serif",
 }) => {
   const { fps } = useVideoConfig();
@@ -147,6 +164,8 @@ export const CaptionOverlay: React.FC<CaptionOverlayProps> = ({
               color={color}
               highlightColor={highlightColor}
               backgroundColor={backgroundColor}
+              outlineColor={outlineColor}
+              outlineWidth={outlineWidth}
               fontFamily={fontFamily}
             />
           </Sequence>

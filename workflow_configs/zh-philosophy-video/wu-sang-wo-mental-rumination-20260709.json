@@ -1,0 +1,151 @@
+{
+  "project_id": "wu-sang-wo-mental-rumination-20260709",
+  "title": "吾丧我：精神内耗的东方解药",
+  "cover_title": "丧我止耗",
+  "cover_lines": [
+    "丧我止耗"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 91,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和B站上关注心理机制、哲学解释与自我成长的中文观众",
+  "key_points": [
+    "区分吾与我",
+    "默认模式网络会维持自我叙事",
+    "用行动把注意力带回现场"
+  ],
+  "core_message": "脑中的声音正在发生，但它不等于你；觉察本身就是退出内耗的开始。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-09_吾丧我_精神内耗.md",
+  "tags": [
+    "心哲灵",
+    "庄子",
+    "吾丧我",
+    "精神内耗"
+  ],
+  "raw_script": "精神内耗，你被它折磨过吗？\n\n有的人为三天前一句失言反复回放，把语气和表情复盘十几遍。\n\n还有的人因为别人一条微信没回，已经在脑子里编完一整季剧情。\n\n这本质上都是同一个问题：你把脑子里那个声音，当成了自己。\n\n庄子在《齐物论》里有三个字，叫“吾丧我”。\n\n“我”，是那个不停评判、比较、后悔的声音。\n\n“吾”，是听见这个声音的人。\n\n精神内耗最狠的地方，不是脑子里有声音。\n\n是每个声音一出现，你都立刻相信：这就是我。\n\n神经科学里，这接近默认模式网络：\n\n你发呆、回忆、想别人怎么看你时，大脑还在后台处理“我”。\n\n所以没做事，也会累。\n\n但庄子说：别用思考消灭思考。\n\n“我为什么还在想”“我能不能别想了”，这本身就是下一轮内耗。\n\n像用汽油灭火。\n\n庄子的办法是：\n\n先松下来，让注意力离开脑内剧场。\n\n比如，站起来洗杯子，看三分钟树影，或者把桌面收完。\n\n它给你一个清楚区分：声音在发生，不等于声音就是你。\n\n当你意识到自己正在听见它，你就已经不属于它了。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "ambient",
+      "calming",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "精神内耗，你被它折磨过吗？\n\n有的人为三天前一句失言反复回放，把语气和表情复盘十几遍。\n\n还有的人因为别人一条微信没回，已经在脑子里编完一整季剧情。\n\n这本质上都是同一个问题：你把脑子里那个声音，当成了自己。\n\n庄子在《齐物论》里有三个字，叫“吾丧我”。",
+      "queries": [
+        {
+          "query": "anxious person replaying conversation alone at night",
+          "description": "反复复盘失言的内耗感"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "“我”，是那个不停评判、比较、后悔的声音。\n\n“吾”，是听见这个声音的人。\n\n精神内耗最狠的地方，不是脑子里有声音。\n\n是每个声音一出现，你都立刻相信：这就是我。\n\n神经科学里，这接近默认模式网络：\n\n你发呆、回忆、想别人怎么看你时，大脑还在后台处理“我”。",
+      "queries": [
+        {
+          "query": "person listening to inner voice mirror reflection",
+          "description": "把脑内声音误认成自己"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "吾",
+            "不等于",
+            "我"
+          ],
+          "subtitle": "听见声音的人 / 评判的声音"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "所以没做事，也会累。\n\n但庄子说：别用思考消灭思考。\n\n“我为什么还在想”“我能不能别想了”，这本身就是下一轮内耗。\n\n像用汽油灭火。\n\n庄子的办法是：\n\n先松下来，让注意力离开脑内剧场。\n\n比如，站起来洗杯子，看三分钟树影，或者把桌面收完。",
+      "queries": [
+        {
+          "query": "brain default mode network abstract animation",
+          "description": "大脑后台自我叙事隐喻"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "声音在发生"
+          ],
+          "subtitle": "不等于声音就是你"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "它给你一个清楚区分：声音在发生，不等于声音就是你。\n\n当你意识到自己正在听见它，你就已经不属于它了。",
+      "queries": [
+        {
+          "query": "sunlight tree shadows calm observation",
+          "description": "注意力回到当下现场"
+        }
+      ]
+    }
+  ]
+}

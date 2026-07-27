@@ -1,0 +1,18 @@
+{
+  "project_id": "treeelf-habit-door-brand-pilot-20260724",
+  "decision": "candidate batch outputs are copied to the Mac project, size and SHA-256 verified, then non-reusable runtime inputs/outputs/temp are deleted before shutdown",
+  "retain_infrastructure": [
+    "/root/ComfyUI-Easy-Install/ComfyUI",
+    "/root/autodl-tmp/comfyui-models",
+    "/root/autodl-tmp/comfyui-runtime/validation"
+  ],
+  "retain_project_assets": [],
+  "backup_then_delete_runtime_types": [
+    "input",
+    "output",
+    "temp"
+  ],
+  "backup_then_delete_voice_files": [],
+  "delete_gate": "All 10 voice candidates, 12 cover backgrounds, 3 style frames, and 1 motion test required by the project exist locally and local/remote size and SHA-256 match",
+  "shutdown_gate": "ComfyUI queue empty, backup verified, cleanup verified, no pending failures"
+}

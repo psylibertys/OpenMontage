@@ -1,0 +1,149 @@
+{
+  "project_id": "appointment-occupies-day-20260717",
+  "title": "为什么下午有个安排，上午就什么也做不了",
+  "cover_title": "预约占台",
+  "cover_lines": [
+    "预约占台"
+  ],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {
+    "cleanup_remotion_public": true,
+    "cleanup_intermediate_renders": false
+  },
+  "stock_library": {
+    "enabled": true,
+    "min_match_score": 0.3
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 75,
+  "tone": "克制、清醒、有温度",
+  "target_audience": "抖音、小红书和视频号上关注心理机制、哲学解释、亲密关系与自我成长的中文观众",
+  "key_points": [
+    "预约会触发查钟",
+    "等待会预订整天",
+    "提醒和小任务能释放当下"
+  ],
+  "core_message": "未来安排会占用内部报时和切换准备；用外部提醒接管报时，才能把现在还给现在。",
+  "voice_style": "成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气",
+  "speaker_directions": "像在自然分享；成年女性普通话声线，中等音高，中速，清晰发音；整体活泼、温暖，有微笑语气；遇到更有趣或轻微幽默的内容时，可以自然轻笑，同时保持语义清楚和表达可信。",
+  "sample_section_id": "s3",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-17_为什么下午有个安排上午就什么也做不了.md",
+  "tags": [
+    "心哲灵",
+    "认知心理学",
+    "前瞻记忆",
+    "时间管理"
+  ],
+  "raw_script": "下午三点有个预约，为什么上午十一点就什么都做不了了？有人反复看钟，不敢打开沉浸任务；有人等一件只说“上午送达”的快递，做事时还留半只耳朵听门铃。日历只占一格，体感却像买下全天冠名权。预约只占一小时，等待却把整天预订了。\n\n“等待模式”只是社群描述，并非临床术语。认知心理学里，时间性前瞻记忆指记得在未来某时做一件事。研究显示，自行查钟会占注意资源；目标时刻越近，人们通常查得越频繁。\n\n但这里有个反转：你缺的未必是更多空闲，而是让大脑停止内部查钟的外部边界。可以把这条路径叫“预约占台”：未来任务要被记住，大脑就持续查钟，还要预留切换时间，眼前的任务因此迟迟不敢开场。日历写着下午三点，大脑却从上午开始报幕。\n\n设两个提醒：一个开始准备，一个必须出发或进入会议；再挑一件结束点明确、随时能收尾的小任务。提醒接管报时，明确终点也降低了被硬切断的预期成本。\n\n这只能部分解释预约前的低效，焦虑、睡眠和现实准备成本也可能参与。若两个提醒没有改善，就别让一个模型承包全部原因。把预约交给提醒，把现在还给现在。",
+  "tts": {
+    "provider": "edge",
+    "version": "7.2.7",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz",
+    "volume": "+0%",
+    "generation_mode": "single_pass"
+  },
+  "music": {
+    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "preferred_keywords": [
+      "lo-fi",
+      "ambient",
+      "calming",
+      "纯音乐"
+    ]
+  },
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.5,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 260,
+    "card_title_font_size": 136,
+    "card_subtitle_font_size": 54,
+    "card_line_gap": 34,
+    "title_color_rgb": [
+      248,
+      246,
+      231
+    ],
+    "accent_color_rgb": [
+      214,
+      179,
+      90
+    ],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 60,
+    "music_volume": 0.1
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "label": "Hook",
+      "text": "下午三点有个预约，为什么上午十一点就什么都做不了了？有人反复看钟，不敢打开沉浸任务；有人等一件只说“上午送达”的快递，做事时还留半只耳朵听门铃。日历只占一格，体感却像买下全天冠名权。预约只占一小时，等待却把整天预订了。",
+      "queries": [
+        {
+          "query": "person checking clock waiting appointment",
+          "description": "反复看钟等待预约"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "Context",
+      "text": "“等待模式”只是社群描述，并非临床术语。认知心理学里，时间性前瞻记忆指记得在未来某时做一件事。研究显示，自行查钟会占注意资源；目标时刻越近，人们通常查得越频繁。",
+      "queries": [
+        {
+          "query": "delivery waiting doorbell home",
+          "description": "等快递留半只耳朵"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-1",
+          "title_lines": [
+            "预约占台"
+          ],
+          "subtitle": "日历只占一格，体感占全天"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "label": "Mechanism",
+      "text": "但这里有个反转：你缺的未必是更多空闲，而是让大脑停止内部查钟的外部边界。可以把这条路径叫“预约占台”：未来任务要被记住，大脑就持续查钟，还要预留切换时间，眼前的任务因此迟迟不敢开场。日历写着下午三点，大脑却从上午开始报幕。\n\n设两个提醒：一个开始准备，一个必须出发或进入会议；再挑一件结束点明确、随时能收尾的小任务。提醒接管报时，明确终点也降低了被硬切断的预期成本。",
+      "queries": [
+        {
+          "query": "phone reminder notification calendar",
+          "description": "提醒接管报时"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card-2",
+          "title_lines": [
+            "两个提醒"
+          ],
+          "subtitle": "准备 / 出发"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "label": "Landing",
+      "text": "这只能部分解释预约前的低效，焦虑、睡眠和现实准备成本也可能参与。若两个提醒没有改善，就别让一个模型承包全部原因。把预约交给提醒，把现在还给现在。",
+      "queries": [
+        {
+          "query": "calm desk timer focus",
+          "description": "把现在还给现在"
+        }
+      ]
+    }
+  ]
+}

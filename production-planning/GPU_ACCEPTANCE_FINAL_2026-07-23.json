@@ -1,0 +1,284 @@
+{
+  "project_id": "comfyui-gpu-acceptance-20260723",
+  "closed_at": "2026-07-23T13:40:06.904598+00:00",
+  "status": "closed",
+  "no_further_gpu_runs_required": true,
+  "counts": {
+    "gpu_executed_success": 13,
+    "static_contract_review": 4,
+    "existing_gpu_artifacts": 3,
+    "total": 20
+  },
+  "gpu_executed": [
+    {
+      "id": "krea-default-portrait",
+      "workflow_template": "krea2_low_vram",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/images/krea-default-portrait.png",
+          "size_bytes": 1102073,
+          "sha256": "3793b2f832759f471f92f0f909272d5aa60009a0900514a25efd130d5029915f"
+        }
+      ]
+    },
+    {
+      "id": "krea-default-landscape",
+      "workflow_template": "krea2_low_vram",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/images/krea-default-landscape.png",
+          "size_bytes": 999943,
+          "sha256": "2af690bb21cfa209f2d0fcc8ab62006c32968542c2bca86abb11e6bc31d1d9f7"
+        }
+      ]
+    },
+    {
+      "id": "flux-four-reference-portrait",
+      "workflow_template": "flux2_klein_4ref",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/images/flux-four-reference-portrait.png",
+          "size_bytes": 1340578,
+          "sha256": "d3f75cfc0b7f42f04d393342988015c2ddfd11720783c556e21d7d219adadc2e"
+        }
+      ]
+    },
+    {
+      "id": "flux-four-reference-landscape",
+      "workflow_template": "flux2_klein_4ref",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/images/flux-four-reference-landscape.png",
+          "size_bytes": 1267295,
+          "sha256": "1d1ee88cf2dffd23dbd9e4d3e8e9a72f88ce21919d0d14fb9017f4fee22ef769"
+        }
+      ]
+    },
+    {
+      "id": "flux-inpaint",
+      "workflow_template": "flux2_klein_inpaint",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/images/flux-inpaint.png",
+          "size_bytes": 21357096,
+          "sha256": "2d3fd001c403e744770a1491ee2361782e36f3a2ef4a255e29bcf9d5cc328612"
+        }
+      ]
+    },
+    {
+      "id": "flux-inpaint-landscape",
+      "workflow_template": "flux2_klein_inpaint",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/images/flux-inpaint-landscape.png",
+          "size_bytes": 21453033,
+          "sha256": "d26860a92ecf792966ba7e68fa116a6e5763cb91e6091a91aaefdd48f5b99ad2"
+        }
+      ]
+    },
+    {
+      "id": "qwen-tts-four-workflows-qwen3_tts_custom_voice",
+      "workflow_template": "qwen3_tts_custom_voice",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/audio/qwen-tts-four-workflows-qwen3_tts_custom_voice.mp3",
+          "size_bytes": 91365,
+          "sha256": "5bed07b4d3f7bac722d21dcab34b9d04982fd4b7a8ec2ce47fe537672b4a245e"
+        }
+      ]
+    },
+    {
+      "id": "qwen-tts-four-workflows-qwen3_tts_voice_design",
+      "workflow_template": "qwen3_tts_voice_design",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/audio/qwen-tts-four-workflows-qwen3_tts_voice_design.mp3",
+          "size_bytes": 73053,
+          "sha256": "8cca6c12810cec18b85dddde0508aa2e370075a924a0029dfdf9d0fca506ded9"
+        }
+      ]
+    },
+    {
+      "id": "infinitetalk-short-portrait",
+      "workflow_template": "wan_infinitetalk_short",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/video/infinitetalk-short-portrait.mp4",
+          "size_bytes": 1308620,
+          "sha256": "08af788c0f120d406339c240a44f4804008efb313c1b29b87d2f2ec4690cff4f"
+        }
+      ]
+    },
+    {
+      "id": "qwen-tts-four-workflows-qwen3_tts_voice_clone_save",
+      "workflow_template": "qwen3_tts_voice_clone_save",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/audio/qwen-tts-four-workflows-qwen3_tts_voice_clone_save.mp3",
+          "size_bytes": 68695,
+          "sha256": "6ab99017a76dff1439be82c9e1e18b70eb40694e78723a317d129676ce429514"
+        }
+      ]
+    },
+    {
+      "id": "qwen-tts-four-workflows-qwen3_tts_voice_clone_load",
+      "workflow_template": "qwen3_tts_voice_clone_load",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/audio/qwen-tts-four-workflows-qwen3_tts_voice_clone_load.mp3",
+          "size_bytes": 71990,
+          "sha256": "f735b79a1e4d9057784e053ce2bef64a0683ee55df3618a7f6a0d9d1a2d4a361"
+        }
+      ]
+    },
+    {
+      "id": "infinitetalk-extend-34s",
+      "workflow_template": "wan_infinitetalk_extend",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/video/infinitetalk-extend-34s.mp4",
+          "size_bytes": 6262245,
+          "sha256": "a1ecf8cd2dc96bb559b655fc56c57762e20297f08ea7e72cc22d20c2ed228ac1"
+        }
+      ]
+    },
+    {
+      "id": "infinitetalk-short-landscape",
+      "workflow_template": "wan_infinitetalk_short",
+      "validation_mode": "gpu_executed",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/video/infinitetalk-short-landscape.mp4",
+          "size_bytes": 1054655,
+          "sha256": "2ede6d7e9a147ba1f5359cb004e98a5087dc7fb9c7942a1fd4f43ff3c5c0dd2c"
+        }
+      ]
+    }
+  ],
+  "static_contract_review": [
+    {
+      "id": "animate-realistic",
+      "workflow_template": "wan22_animate_character",
+      "validation_mode": "static_contract_review",
+      "workflow": {
+        "path": "tools/_comfyui/workflows/production/wan22-animate-character.json",
+        "size_bytes": 15599,
+        "sha256": "cd1a5118b2374fdb223cfd867569fe782d1412f23e5d8e75c769bb8d2fbe0f64"
+      },
+      "evidence": [
+        "API-format graph parses and contains the declared output node",
+        "reference image and driving video mappings are covered by contract tests",
+        "prompt, seed, portrait/landscape size and driver-derived frame count are covered",
+        "user explicitly waived GPU generation"
+      ]
+    },
+    {
+      "id": "scail-stylized",
+      "workflow_template": "wan_scail_character",
+      "validation_mode": "static_contract_review",
+      "workflow": {
+        "path": "tools/_comfyui/workflows/production/wan-scail-character.json",
+        "size_bytes": 14449,
+        "sha256": "af555de882285ec7157d3fa0fd33d2cff60ec13d19f27b5bf64b7ed068131a64"
+      },
+      "evidence": [
+        "API-format graph parses and contains the declared output node",
+        "reference image and driving video mappings are covered by contract tests",
+        "prompt, seed, portrait/landscape size and driver-derived frame count are covered",
+        "user explicitly waived GPU generation"
+      ]
+    },
+    {
+      "id": "animate-realistic-landscape",
+      "workflow_template": "wan22_animate_character",
+      "validation_mode": "static_contract_review",
+      "workflow": {
+        "path": "tools/_comfyui/workflows/production/wan22-animate-character.json",
+        "size_bytes": 15599,
+        "sha256": "cd1a5118b2374fdb223cfd867569fe782d1412f23e5d8e75c769bb8d2fbe0f64"
+      },
+      "evidence": [
+        "API-format graph parses and contains the declared output node",
+        "reference image and driving video mappings are covered by contract tests",
+        "prompt, seed, portrait/landscape size and driver-derived frame count are covered",
+        "user explicitly waived GPU generation"
+      ]
+    },
+    {
+      "id": "scail-stylized-landscape",
+      "workflow_template": "wan_scail_character",
+      "validation_mode": "static_contract_review",
+      "workflow": {
+        "path": "tools/_comfyui/workflows/production/wan-scail-character.json",
+        "size_bytes": 14449,
+        "sha256": "af555de882285ec7157d3fa0fd33d2cff60ec13d19f27b5bf64b7ed068131a64"
+      },
+      "evidence": [
+        "API-format graph parses and contains the declared output node",
+        "reference image and driving video mappings are covered by contract tests",
+        "prompt, seed, portrait/landscape size and driver-derived frame count are covered",
+        "user explicitly waived GPU generation"
+      ]
+    }
+  ],
+  "existing_gpu_artifacts": [
+    {
+      "id": "regression-krea-low",
+      "workflow_template": "krea2_low_vram",
+      "validation_mode": "existing_gpu_artifacts",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/images/krea-default-portrait.png",
+          "size_bytes": 1102073,
+          "sha256": "3793b2f832759f471f92f0f909272d5aa60009a0900514a25efd130d5029915f"
+        },
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/images/krea-default-landscape.png",
+          "size_bytes": 999943,
+          "sha256": "2af690bb21cfa209f2d0fcc8ab62006c32968542c2bca86abb11e6bc31d1d9f7"
+        }
+      ]
+    },
+    {
+      "id": "regression-wan22-i2v",
+      "workflow_template": "wan22_i2v_q6",
+      "validation_mode": "existing_gpu_artifacts",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/remote-preflight-archive/output/wan-portrait_00001.mp4",
+          "size_bytes": 831312,
+          "sha256": "c9ab47065088cbd3ca9ae56afa76e3017db4417d118bed5cff3bd88a93215b94"
+        },
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/remote-preflight-archive/output/wan-landscape_00001.mp4",
+          "size_bytes": 766821,
+          "sha256": "dbb6dd6969c852d4f8a06b89d08293ed0ee304ff2042c0bd6d427bc6d6efb60e"
+        }
+      ]
+    },
+    {
+      "id": "regression-seedvr2",
+      "workflow_template": "seedvr2_upscale",
+      "validation_mode": "existing_gpu_artifacts",
+      "artifacts": [
+        {
+          "path": "projects/comfyui-gpu-acceptance-20260723/assets/remote-preflight-archive/output/seed-landscape_00001_.png",
+          "size_bytes": 10289833,
+          "sha256": "184edfc9abb46aeef78b4f3ae1be563a6de1861ce5730dc66362075f0d21ae4d"
+        }
+      ]
+    }
+  ]
+}
