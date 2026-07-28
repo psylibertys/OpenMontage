@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文哲思横屏 Edge+Remotion"
+  short_description: "恢复并运行旧版中文哲思横屏 Edge-TTS 与 Remotion 成片链路"
+  default_prompt: "Use $zh-philosophy-video-edge-remotion to reproduce this Chinese script with the preserved 16:9 Edge-TTS and Remotion workflow."
