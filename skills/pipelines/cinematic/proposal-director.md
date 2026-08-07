@@ -43,6 +43,14 @@ A `render_runtime_selection` decision with only one option considered when both 
 | Style playbooks | `styles/*.yaml` | Available visual styles |
 | User input | Subject, footage, preferences | Creative direction |
 
+### StudioBinder Decision Support
+
+Read `skills/meta/studiobinder-skill-hub.md` before locking the production's
+cinematic intent or approving a costly proof of concept. Select only applicable
+entries from `cinematic.proposal` in `config/studiobinder-stage-routing.yaml`
+and invoke explicit slugs. The returned guidance cannot choose a provider,
+runtime, budget, or concept without the normal proposal conversation and gate.
+
 ## Process
 
 ### Step 0: Check for Reference Video Context

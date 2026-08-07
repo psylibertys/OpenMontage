@@ -16,6 +16,14 @@ Unlike explainer research (which focuses on facts, data, and content gaps), cine
 | User input | Subject, mood hints, footage situation, references | Research scope |
 | Tools | Web search, web fetch | Research execution |
 
+### StudioBinder Decision Support
+
+Before turning references into transferable visual rules, read
+`skills/meta/studiobinder-skill-hub.md`. Select at most the applicable entries
+from `cinematic.research` in `config/studiobinder-stage-routing.yaml` and invoke
+them by explicit slug. This supplements reference research; it does not replace
+the required bibliography or verified visual evidence.
+
 ## Process
 
 ### Step 0: Check for Reference Video Context

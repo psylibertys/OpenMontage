@@ -1,0 +1,101 @@
+version: "1.0"
+mcp_server: treeelf-skill-hub
+selection_mode: explicit_stage_mapping
+automatic_route_enabled: false
+source_skills_read_only: true
+max_skills_per_stage: 3
+
+# These are candidates, not a command to invoke every entry. The stage agent
+# selects only the smallest applicable set (normally one, never more than
+# max_skills_per_stage) and invokes each skill explicitly by slug.
+pipelines:
+  cinematic:
+    research:
+      - slug: visual-reference-decomposition
+        applicability: core
+        when: Reference frames, mood boards, or films must be converted into transferable visual rules.
+      - slug: visual-world-grammar
+        applicability: core
+        when: The production needs one coherent visual language across color, light, framing, motion, and space.
+      - slug: capture-format-benefit-audit
+        applicability: conditional
+        when: A real capture format, film stock, sensor format, or premium generation format has a material cost tradeoff.
+
+    proposal:
+      - slug: cinematic-intent-system
+        applicability: core
+        when: The approved intent must become a decision principle shared by direction, camera, edit, and sound.
+      - slug: film-proof-of-concept
+        applicability: conditional
+        when: A costly or uncertain visual mechanism should be validated with a small sample before full production.
+      - slug: constraint-driven-rewrite
+        applicability: conditional
+        when: Budget, duration, location, cast, provider, or asset limits require a rewrite without losing the dramatic goal.
+      - slug: minimum-camera-rig
+        applicability: conditional
+        when: The proposal includes a real shoot and needs the smallest viable camera, support, and sound package.
+
+    script:
+      - slug: screenplay-observable-interface
+        applicability: core
+        when: Abstract internal states must become actions, images, sound, or other producible evidence.
+      - slug: visual-motif-arc
+        applicability: conditional
+        when: A recurring object, color, shape, or image needs a planned meaning change across the piece.
+      - slug: character-pressure-map
+        applicability: conditional
+        when: Character behavior and framing depend on competing emotional or social pressures.
+      - slug: narrative-time-scaling
+        applicability: core
+        when: The beat map compresses long periods or expands decisive moments for impact.
+      - slug: prepared-improvisation
+        applicability: conditional
+        when: Real performers need bounded improvisation with anchors and a safe return to the planned story.
+
+    scene_plan:
+      - slug: viewer-attention-relay
+        applicability: core
+        when: Attention must move deliberately between subject, clue, text, action, and threat across shots.
+      - slug: complex-scene-information
+        applicability: conditional
+        when: A scene contains several simultaneous story, character, or spatial changes that risk confusion.
+      - slug: motivated-camera-movement
+        applicability: core
+        when: Camera motion needs a character, spatial, or narrative trigger rather than decoration.
+      - slug: subjective-visual-state-map
+        applicability: conditional
+        when: A character's changing perception or mental state needs a readable visual progression.
+      - slug: lens-distance-viewer-position
+        applicability: core
+        when: Lens and camera distance determine intimacy, pressure, surveillance, or emotional separation.
+      - slug: spatial-motivated-lighting
+        applicability: core
+        when: Lighting must remain attributable to scene sources and respond to blocking or spatial movement.
+      - slug: darkness-information-budget
+        applicability: conditional
+        when: A dark scene must preserve selected expressions, actions, or story information.
+      - slug: locked-frame-event-design
+        applicability: conditional
+        when: A static frame must sustain tension through entrances, exits, layers, and in-frame events.
+      - slug: simultaneous-channel-attention
+        applicability: conditional
+        when: Dialogue, action, text, graphics, or background clues compete in the same time window.
+      - slug: long-take-value-gate
+        applicability: conditional
+        when: A long take has meaningful continuity benefits but substantial production or generation risk.
+
+    assets:
+      - slug: shotlist-location-loop
+        applicability: conditional
+        when: Real location constraints, blocking, and the shot list must be reconciled iteratively.
+      - slug: production-dependency-recovery
+        applicability: conditional
+        when: A performer, provider, asset, prop, model, or upstream dependency becomes unavailable.
+      - slug: essential-coverage-triage
+        applicability: conditional
+        when: Time, budget, quota, or usable footage is insufficient and minimum editable coverage must be protected.
+
+    edit:
+      - slug: supporting-shot-value-budget
+        applicability: core
+        when: B-roll, inserts, or generated support shots must be ranked by narrative value and reduced without weakening the cut.

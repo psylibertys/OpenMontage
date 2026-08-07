@@ -13,6 +13,15 @@ You are deciding how each cinematic beat will look and transition. This is where
 | Tools | `frame_sampler`, `scene_detect` | Source inspection and reframing checks |
 | Playbook | Active style playbook | Color and typography consistency |
 
+### StudioBinder Decision Support
+
+Read `skills/meta/studiobinder-skill-hub.md` before making a material camera,
+lens, lighting, attention, information-channel, subjective-state, or long-take
+decision. Select no more than three applicable entries from
+`cinematic.scene_plan` in `config/studiobinder-stage-routing.yaml`, invoke each
+explicitly, and persist the adopted decision in scene fields plus compact
+`studiobinder_guidance` metadata.
+
 ## Process
 
 ### 1. Make Hero Frames Explicit

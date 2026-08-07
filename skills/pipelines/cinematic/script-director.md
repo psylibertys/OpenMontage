@@ -12,6 +12,14 @@ This stage builds the beat map, selected lines, title-card copy, and reveal stru
 | Prior artifact | `state.artifacts["proposal"]["proposal_packet"]` | Emotional arc and source truth |
 | Tools | `transcriber`, `scene_detect` | Optional dialogue mining and source review |
 
+### StudioBinder Decision Support
+
+Read `skills/meta/studiobinder-skill-hub.md` when abstract internal states,
+motifs, character pressure, time scaling, or bounded improvisation need a
+repeatable method. Choose from `cinematic.script` in
+`config/studiobinder-stage-routing.yaml` and invoke the selected skill by slug;
+do not ask automatic routing to write or classify the script.
+
 ## Process
 
 ### 1. Build A Beat Map First

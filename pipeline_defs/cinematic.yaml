@@ -47,6 +47,7 @@ required_skills:
   - meta/reviewer
   - meta/checkpoint-protocol
   - meta/animation-runtime-selector
+  - meta/studiobinder-skill-hub
 
 compatible_playbooks:
   recommended:

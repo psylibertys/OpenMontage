@@ -30,6 +30,14 @@ Before authoring title cards, name plates, or SVG overlays, read **`skills/meta/
 | Tools | `subtitle_gen`, `audio_enhance`, `image_selector`, `video_selector`, `pixabay_music` (free, default), `freesound_music` (free), `music_gen` (ElevenLabs, paid) — selectors auto-discover all available providers from the registry. **Default to `pixabay_music` before reaching for `music_gen`.** | Optional support asset creation |
 | Playbook | Active style playbook | Brand and typography consistency |
 
+### StudioBinder Decision Support
+
+Read `skills/meta/studiobinder-skill-hub.md` when real locations, dependency
+failures, or insufficient editable coverage affect the asset plan. Use only
+applicable entries from `cinematic.assets` in
+`config/studiobinder-stage-routing.yaml`. Invoke by explicit slug and surface a
+material provider, model, or production-path change to the user before acting.
+
 ## Process
 
 ### 1. Prioritize Source Selects

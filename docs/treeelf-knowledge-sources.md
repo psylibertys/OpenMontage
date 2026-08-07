@@ -24,6 +24,24 @@ Obsidian 根目录：
 
 它是人类可读的课程学习区，包含课程档案、中文课名、学习顺序、逐课方法、案例、练习和来源定位。当前有三套课程：
 
+### Skill Hub 与课程检索的分工
+
+OpenMontage 通过用户级 MCP 连接 `treeelf-skill-hub`，使用其中治理的
+26 个 StudioBinder 技能。Skill Hub 提供**方法与决策框架**；下面的
+Qdrant 检索提供**案例、证据和时间码**。两者不能互相冒充：
+
+- 先读 `skills/meta/studiobinder-skill-hub.md`，按
+  `config/studiobinder-stage-routing.yaml` 的 explicit stage mapping 显式选择 slug；
+- 默认调用 `skills_invoke(..., compose=false)`，不让 `skills_route` 自动决定生产方法；
+- 需要课程依据时，再用 `openmontage-project-agent` 查询对应课程领域；
+- 在 artifact/checkpoint metadata 中记录 skill slug、catalog generation、
+  content hash 和实际采用的决策；
+- 不复制 Skill Hub 技能正文到 OpenMontage，也不修改 Psynaut 中的源技能。
+
+当前自动路由的无泄漏质量门禁尚未通过，因此只能用于探索，不得作为
+cinematic pipeline 的自动生产决策器。MCP 不可用时，继续遵守现有阶段
+director 和审批门禁，并明确记录降级状态。
+
 | 课程 | 课程 ID | 主要用途 |
 |---|---|---|
 | 摄影机运动终极指南 | `ytpl_PLEzQZpmbzckWUQALEX8UlbyH2GtRLMrSd` | 固定机位、推拉变焦、跟拍、横摇/俯仰、边走边谈等运镜选择，以及运动的叙事动机。 |

@@ -12,6 +12,13 @@ This stage turns the beat map into a paced cinematic timeline. Rhythm and restra
 | Prior artifacts | `state.artifacts["assets"]["asset_manifest"]`, `state.artifacts["scene_plan"]["scene_plan"]`, `state.artifacts["script"]["script"]` | Assets, hero frames, beat map |
 | Playbook | Active style playbook | Typography and transition consistency |
 
+### StudioBinder Decision Support
+
+Read `skills/meta/studiobinder-skill-hub.md` when B-roll, inserts, or generated
+support shots must be cut to a constrained value budget. Select from
+`cinematic.edit` in `config/studiobinder-stage-routing.yaml`, invoke the skill
+by explicit slug, and record which support shots were kept or removed and why.
+
 ## Process
 
 ### 1. Cut By Emotion First

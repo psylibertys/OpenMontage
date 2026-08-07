@@ -41,6 +41,13 @@ Course access is a project capability, not a delegation requirement. The current
 
 The project identity is restricted to the `cinematography` and `ai_visual_tools` course domains. It must use the controlled retrieval script and stable aliases documented in the knowledge map, never a physical Qdrant collection or another Agent's identity. Obsidian course directories are read-only, and visual evidence is verified only after the current Agent actually opens the referenced asset.
 
+For governed StudioBinder methods, read `skills/meta/studiobinder-skill-hub.md`
+and use the explicit stage mapping in
+`config/studiobinder-stage-routing.yaml`. Do not copy the external skill bodies
+into OpenMontage and do not let free-text `skills_route` make production
+decisions until its quality gate passes. Skill Hub packets provide method;
+course retrieval provides evidence and examples.
+
 ## Reference Video Entry Point
 
 When the user provides a **video URL or local video file as inspiration** — for example:
