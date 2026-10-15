@@ -2,16 +2,28 @@
   "version": "1.0",
   "series": "treeelf-fable",
   "source_dir": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言",
-  "status_ledger": "/Users/treeelf/Desktop/psynautCode/OpenMontage/production-planning/treeelf-fable-series-status.json",
+  "status_ledger": "/Users/treeelf/Desktop/psynautCode/OpenMontage/archive/autodl-era/production-planning/treeelf-fable-series-status.json",
   "source_selection": {
     "rule": "unproduced_work_only",
-    "ignored_editorial_fields": ["status", "review_status"],
-    "exclude_when": ["completed_video_exists", "active_batch_reservation"],
-    "same_work_suffixes": ["精简版", "短版", "30秒版"]
+    "ignored_editorial_fields": [
+      "status",
+      "review_status"
+    ],
+    "exclude_when": [
+      "completed_video_exists",
+      "active_batch_reservation"
+    ],
+    "same_work_suffixes": [
+      "精简版",
+      "短版",
+      "30秒版"
+    ]
   },
   "delivery_dir": "/Users/treeelf/Movies/treeelf-fable",
   "delivery_policy": {
-    "movies_contains": ["final_video_mp4"],
+    "movies_contains": [
+      "final_video_mp4"
+    ],
     "cover_delivery": "project_assets_only",
     "cover_asset_policy": "Keep cover-background.png and cover-final.png under projects/<project_id>/assets/images/cover; do not copy or hardlink covers into Movies."
   },
@@ -25,7 +37,10 @@
   },
   "pacing": {
     "target_seconds_per_image": 5,
-    "normal_range_seconds": [4, 7],
+    "normal_range_seconds": [
+      4,
+      7
+    ],
     "maximum_hold_seconds": 8,
     "maximum_wan_clips_per_episode": 1,
     "wan_duration_seconds": 3,
@@ -34,7 +49,16 @@
   },
   "character": {
     "selection": "story_compatible_prefer_female",
-    "allowed_protagonists": ["成年女性", "成年男性", "女孩", "男孩", "动物", "植物", "物品", "其他非人存在"],
+    "allowed_protagonists": [
+      "成年女性",
+      "成年男性",
+      "女孩",
+      "男孩",
+      "动物",
+      "植物",
+      "物品",
+      "其他非人存在"
+    ],
     "forbidden_protagonists": [],
     "gender_policy": "性别是创意选择而不是原文代词的机械映射。角色在两种性别都成立时优先女性；当人物关系、角色设定或叙事情境明显更适合男性时使用男性，并在 protagonist.selection_rationale 中说明。",
     "appearance_policy": "根据人物身份、年代、职业和寓言气质设计年龄、脸型、发型、体态与服装；检查最近作品，避免连续复用卷发、相同年龄段、相同脸型或相同服装轮廓。",
@@ -155,7 +179,10 @@
   "batch_assets": {
     "download_scope": "all_assets_generated_in_current_batch",
     "isolation": "batch_id_plus_remote_runtime_baseline",
-    "verify": ["size", "sha256"],
+    "verify": [
+      "size",
+      "sha256"
+    ],
     "never_touch": [
       "other_project_assets",
       "historical_batch_assets",
@@ -169,7 +196,9 @@
   "local_storage": {
     "canonical_project_asset_root": "projects/<project_id>/assets",
     "movies_archive": "/Users/treeelf/Movies/treeelf-fable",
-    "movies_contains": ["final_video_mp4"],
+    "movies_contains": [
+      "final_video_mp4"
+    ],
     "retain": [
       "assets/images/cover/cover-background.png",
       "assets/images/cover/cover-final.png",

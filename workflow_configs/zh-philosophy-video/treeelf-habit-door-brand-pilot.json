@@ -7,7 +7,7 @@
   "target_duration_seconds": 90,
   "render_runtime": "remotion",
   "composition_mode": "templated",
-  "retention_policy": "production-planning/treeelf-habit-door-brand-pilot-20260724-retention.json",
+  "retention_policy": "archive/autodl-era/production-planning/treeelf-habit-door-brand-pilot-20260724-retention.json",
   "voice_selection": {
     "workflow_template": "qwen3_tts_voice_design",
     "sample_text": "闹钟一响，昨晚那个准备晨跑的自己忽然失联。床上的自己接到通知：请立刻完成起床、换衣、下楼、跑步、拉伸，一整栋习惯大楼现在就要开业。难怪他顺手按掉闹钟，工程量听着就像要剪彩。真正容易固定的，不是整栋楼，而是进门的第一个动作。先让那扇门认得你，剩下的路，交给已经进门的人。",
