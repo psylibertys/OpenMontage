@@ -41,8 +41,8 @@ _WORKFLOWS = Path(__file__).resolve().parent.parent / "_comfyui" / "workflows"
 
 # Models required by the default Krea 2 Low VRAM workflow.
 _REQUIRED_MODELS = [
-    "krea2_turbo_fp8_scaled.safetensors",
-    "qwen3vl_4b_fp8_scaled.safetensors",
+    "krea2_turbo_int8_convrot.safetensors",
+    "qwen3-vl-4b-heretic_int8.safetensors",
     "qwen_image_vae.safetensors",
 ]
 
@@ -120,10 +120,12 @@ class ComfyUIImage(BaseTool):
                     "z_image_turbo_gguf",
                     "seedvr2_upscale",
                     "flux2_klein_4ref",
-                    "flux2_klein_inpaint",
+                    "flux2_klein_outpaint",
+                    "krea2_edit_lora",
+                    "krea2_outfit_transfer",
                 ],
                 "default": "krea2_low_vram",
-                "description": "Bundled, parameterized first-batch API workflow.",
+                "description": "Bundled, parameterized API workflow templates.",
             },
             "aspect_preset": {
                 "type": "string",
@@ -132,7 +134,10 @@ class ComfyUIImage(BaseTool):
             },
             "reference_image_path": {
                 "type": "string",
-                "description": "Source image required by SeedVR2 templates.",
+                "description": (
+                    "Source image required by SeedVR2, krea2_edit_lora and "
+                    "krea2_outfit_transfer templates."
+                ),
             },
             "reference_image_paths": {
                 "type": "array",
@@ -143,9 +148,24 @@ class ComfyUIImage(BaseTool):
             },
             "mask_image_path": {
                 "type": "string",
+                "description": "Reserved for future edit/inpaint templates (currently unused).",
+            },
+            "outpaint_ratio": {
+                "type": "string",
+                "enum": ["16:9", "9:16", "3:2", "2:3", "4:3", "3:4", "1:1"],
                 "description": (
-                    "Optional white-on-black mask for flux2_klein_inpaint. "
-                    "If omitted, reference_image_path must already carry a ComfyUI alpha mask."
+                    "Target aspect ratio for flux2_klein_outpaint; the original "
+                    "image pixels stay untouched, only the surroundings are generated."
+                ),
+            },
+            "reference_boost": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10,
+                "default": 4,
+                "description": (
+                    "krea2_edit_lora identity/similarity slider: 0 = most creative, "
+                    "4 = default balance, 10 = most similar to the source image."
                 ),
             },
             "megapixels": {
@@ -288,20 +308,10 @@ class ComfyUIImage(BaseTool):
                             f"Workflow template {workflow_template!r} requires reference_image_path"
                         )
                     upload_path = Path(source_path)
-                    temporary_masked_path = None
-                    if workflow_template == "flux2_klein_inpaint" and inputs.get("mask_image_path"):
-                        temporary_masked_path = self._prepare_inpaint_upload(
-                            upload_path, Path(inputs["mask_image_path"]), output_path, seed
-                        )
-                        upload_path = temporary_masked_path
-                    try:
-                        source_image_name = self._client.upload_image(
-                            upload_path,
-                            f"om_{output_path.stem}_{seed}_source{upload_path.suffix or '.png'}",
-                        )
-                    finally:
-                        if temporary_masked_path is not None:
-                            temporary_masked_path.unlink(missing_ok=True)
+                    source_image_name = self._client.upload_image(
+                        upload_path,
+                        f"om_{output_path.stem}_{seed}_source{upload_path.suffix or '.png'}",
+                    )
                     uploads["source_image"] = source_image_name
                 if spec.get("reference_images"):
                     paths = inputs.get("reference_image_paths") or []
@@ -392,22 +402,6 @@ class ComfyUIImage(BaseTool):
         if inputs.get("workflow_json"):
             return json.loads(inputs["workflow_json"])
         return ComfyUIClient.load_workflow(Path(inputs["workflow_path"]))
-
-    @staticmethod
-    def _prepare_inpaint_upload(
-        source_path: Path, mask_path: Path, output_path: Path, seed: int
-    ) -> Path:
-        """Pack a white-on-black mask into the alpha convention LoadImage emits."""
-        from PIL import Image, ImageOps
-
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        target = output_path.parent / f".{output_path.stem}.{seed}.inpaint-input.png"
-        with Image.open(source_path) as source, Image.open(mask_path) as mask:
-            rgba = source.convert("RGBA")
-            white_is_edit = mask.convert("L").resize(rgba.size, Image.Resampling.LANCZOS)
-            rgba.putalpha(ImageOps.invert(white_is_edit))
-            rgba.save(target, format="PNG")
-        return target
 
     @staticmethod
     def _model_name(inputs: dict[str, Any], custom_workflow: bool) -> str:

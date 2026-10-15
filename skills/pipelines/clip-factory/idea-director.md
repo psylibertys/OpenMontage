@@ -14,7 +14,7 @@ Per AGENT_GUIDE.md → "Present Both Composition Runtimes (HARD RULE)": do NOT s
 
 ## Reference Inputs
 
-- `docs/clip-factory-best-practices.md`
+- `skills/pipelines/clip-factory/information-density-standard.md`
 - `skills/creative/short-form.md`
 - `skills/creative/video-editing.md`
 

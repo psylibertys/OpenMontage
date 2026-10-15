@@ -24,10 +24,13 @@ def make_fixture(tmp_path: Path) -> tuple[Path, dict, dict, Path, Path]:
         "cover_title": "测试",
         "source_script_md": str(source),
         "estimated_duration_seconds": 20,
+        "narration_text": "第一段。第二段。",
         "protagonist": {"type": "物品", "description": "一只茶杯"},
         "semantic_beats": [
             {
                 "id": "beat-01",
+                "subject_mode": "object",
+                "script_anchor": "第一段",
                 "weight": 1,
                 "workflow": "krea2_low_vram",
                 "story_event": "一只茶杯在桌面上轻轻转向光源。",
@@ -37,6 +40,8 @@ def make_fixture(tmp_path: Path) -> tuple[Path, dict, dict, Path, Path]:
             },
             {
                 "id": "beat-02",
+                "subject_mode": "environment",
+                "script_anchor": "第二段",
                 "weight": 1,
                 "workflow": "krea2_low_vram",
                 "story_event": "桌面空下来，只留下茶杯移动过的浅浅圆痕。",
@@ -46,7 +51,7 @@ def make_fixture(tmp_path: Path) -> tuple[Path, dict, dict, Path, Path]:
             },
         ],
         "character_reference_paths": [],
-        "cover_prompt": "vertical storybook cover, no text, no letters, no logo",
+        "cover_prompt": "vertical symbolic still life artwork, quiet open upper field, no text, no letters, no logo",
         "hero_wan": {"enabled": True, "scene_id": "scene-002", "prompt": "the cup turns gently"},
         "music_source": "",
         "captions_path": "",
@@ -82,8 +87,42 @@ def relaxed_series(series: dict) -> dict:
         "require_visual_qc_for_stage": False,
         "require_calibrated_captions_for_stage": False,
         "require_audio_loudness_qc": False,
+        "require_cover_ocr": False,
+        "require_script_anchors": True,
     }
     return series
+
+
+def test_sync_ledger_ignores_review_status_and_deduplicates_short_versions(tmp_path: Path) -> None:
+    source_dir = tmp_path / "fables"
+    source_dir.mkdir()
+    original = source_dir / "2026-07-27_新寓言.md"
+    original.write_text("---\nstatus: draft\nreview_status: pending\n---\n# 新寓言\n", encoding="utf-8")
+    short = source_dir / "2026-07-28_新寓言_精简版.md"
+    short.write_text("---\nstatus: ready\nreview_status: passed\n---\n# 新寓言\n", encoding="utf-8")
+    done = source_dir / "2026-07-27_旧寓言.md"
+    done.write_text("---\nreview_status: pending\n---\n# 旧寓言\n", encoding="utf-8")
+    ledger_path = tmp_path / "ledger.json"
+    write_json(ledger_path, {
+        "version": "1.0",
+        "series": "treeelf-fable",
+        "items": [{"source": done.name, "status": "completed", "output": "/missing/history.mp4"}],
+    })
+    series = workflow.load_json(workflow.DEFAULT_SERIES)
+
+    report = workflow.sync_fable_source_ledger(
+        series,
+        source_dir=source_dir,
+        ledger_path=ledger_path,
+    )
+
+    assert report["editorial_status_ignored"] is True
+    assert report["added"] == [str(original)]
+    ledger = workflow.load_json(ledger_path)
+    sources = [item["source"] for item in ledger["items"]]
+    assert original.name in sources
+    assert short.name not in sources
+    assert done.name in sources
 
 
 def test_five_second_density_for_previous_episode_duration() -> None:
@@ -99,13 +138,66 @@ def test_five_second_density_for_previous_episode_duration() -> None:
     assert slots[-1]["to"] == 167.304
 
 
-def test_adult_male_protagonist_is_rejected(tmp_path: Path) -> None:
+def test_adult_male_protagonist_is_allowed_with_story_rationale(tmp_path: Path) -> None:
     batch_path, batch, series, _, episode_path = make_fixture(tmp_path)
     episode = workflow.load_json(episode_path)
-    episode["protagonist"]["type"] = "成年男性"
+    episode["protagonist"] = {
+        "type": "成年男性",
+        "description": "一位年长的男性父亲",
+        "selection_rationale": "父子关系是本篇冲突成立的关键，男性角色更贴合故事关系。",
+        "appearance": {
+            "age_band": "五十岁左右",
+            "hair": "灰黑短直发",
+            "silhouette": "宽肩旧外套与磨损皮鞋构成沉稳轮廓",
+        },
+    }
     write_json(episode_path, episode)
     errors = workflow.validate_batch(batch, batch_path, series)
-    assert any("protagonist" in error for error in errors)
+    assert not any("protagonist" in error for error in errors)
+
+
+def test_human_protagonist_requires_selection_rationale(tmp_path: Path) -> None:
+    batch_path, batch, series, _, episode_path = make_fixture(tmp_path)
+    episode = workflow.load_json(episode_path)
+    episode["protagonist"] = {
+        "type": "成年女性",
+        "description": "一位成年女性",
+        "appearance": {"age_band": "三十岁", "hair": "黑色短直发", "silhouette": "深色长外套"},
+    }
+    write_json(episode_path, episode)
+    errors = workflow.validate_batch(batch, batch_path, series)
+    assert any("selection_rationale" in error for error in errors)
+
+
+def test_batch_rejects_three_default_curly_hair_characters(tmp_path: Path) -> None:
+    batch_path, batch, series, _, episode_path = make_fixture(tmp_path)
+    base = workflow.load_json(episode_path)
+    paths = []
+    for index in range(3):
+        source = tmp_path / f"fable-{index}.md"
+        source.write_text("第一段。第二段。", encoding="utf-8")
+        episode = json.loads(json.dumps(base))
+        episode["project_id"] = f"treeelf-fable-curl-{index}"
+        episode["source_script_md"] = str(source)
+        episode["protagonist"] = {
+            "type": "成年女性",
+            "description": f"第{index}位成年女性角色",
+            "selection_rationale": "这个中性角色由女性承担自然成立。",
+            "appearance": {
+                "age_band": f"{25 + index}岁左右",
+                "hair": "深色短卷发",
+                "silhouette": f"第{index}种不同服装轮廓",
+            },
+        }
+        path = tmp_path / f"episode-{index}.json"
+        write_json(path, episode)
+        paths.append(path.name)
+    batch["episode_configs"] = paths
+    write_json(batch_path, batch)
+
+    errors = workflow.validate_batch(batch, batch_path, series)
+
+    assert any("overuse one hair family:curly" in error for error in errors)
 
 
 def test_cover_prompt_with_human_terms_is_rejected(tmp_path: Path) -> None:
@@ -117,6 +209,64 @@ def test_cover_prompt_with_human_terms_is_rejected(tmp_path: Path) -> None:
     errors = workflow.validate_batch(batch, batch_path, series)
 
     assert any("cover_prompt must be human-free" in error for error in errors)
+
+
+def test_cover_prompt_with_layout_cues_is_rejected(tmp_path: Path) -> None:
+    batch_path, batch, series, _, episode_path = make_fixture(tmp_path)
+    episode = workflow.load_json(episode_path)
+    episode["cover_prompt"] = "symbolic empty room, editorial composition with space for title"
+    write_json(episode_path, episode)
+
+    errors = workflow.validate_batch(batch, batch_path, series)
+
+    assert any("remove layout/typography cues" in error for error in errors)
+
+
+def test_human_free_compiled_prompt_does_not_receive_protagonist_or_human_camera() -> None:
+    beat = {
+        "id": "beat-01",
+        "subject_mode": "environment",
+        "prompt": "human-free midnight street with one open window",
+    }
+
+    prompt = workflow.compile_scene_prompt(
+        beat,
+        0,
+        protagonist_identity="a woman with short hair",
+        guardrails=list(workflow.TECHNICAL_GUARDRAILS),
+    )
+
+    assert "Episode protagonist identity" not in prompt
+    assert "protagonist's action" not in prompt
+    assert workflow.compiled_prompt_contract_errors(prompt, "environment") == []
+
+
+def test_script_anchors_bind_beats_to_matching_caption_semantics() -> None:
+    captions = [
+        {"text": "杯子先朝向窗边。", "startMs": 0, "endMs": 4000},
+        {"text": "后来桌面只剩一个圆痕。", "startMs": 4000, "endMs": 9000},
+    ]
+    beats = [
+        {
+            "id": "beat-01",
+            "subject_mode": "object",
+            "script_anchor": "杯子先朝向窗边",
+            "prompt": "a cup turns toward a window",
+        },
+        {
+            "id": "beat-02",
+            "subject_mode": "environment",
+            "script_anchor": "后来桌面只剩",
+            "prompt": "an empty table with a circular trace",
+        },
+    ]
+
+    slots = workflow.build_visual_slots(9, beats, target_seconds=5, captions=captions)
+
+    assert [slot["beat_id"] for slot in slots] == ["beat-01", "beat-02"]
+    assert all(slot["caption_binding"] == "script_anchor" for slot in slots)
+    assert "杯子" in slots[0]["script_excerpt"]
+    assert "圆痕" in slots[1]["script_excerpt"]
 
 
 def test_semantic_beat_requires_fable_visual_fields(tmp_path: Path) -> None:
@@ -152,6 +302,9 @@ def test_prepare_is_independent_and_reserves_ledger(tmp_path: Path) -> None:
     episode = workflow.load_json(episode_path)
     episode_root = projects / episode["project_id"]
     assert (episode_root / "artifacts" / "visual_brief.json").is_file()
+    blueprint = workflow.load_json(episode_root / "artifacts" / "gpu_visual_blueprint.json")
+    assert blueprint["compiled_before_gpu"] is True
+    assert blueprint["slots"]
     assert (episode_root / "artifacts" / "prompt_review_warnings.json").is_file()
     readiness = workflow.load_json(projects / batch["batch_id"] / "artifacts" / "batch_readiness_report.json")
     assert readiness["ready_for_prepare"] is True
@@ -162,6 +315,52 @@ def test_prepare_is_independent_and_reserves_ledger(tmp_path: Path) -> None:
     assert "instruct" not in narration_job["inputs"]
     assert narration_job["voice_instruction"]["instruct_present"] is True
     assert narration_job["voice_instruction"]["instruct_effective_in_current_workflow"] is False
+    compiled = workflow.load_json(episode_root / "artifacts" / "compiled_prompt_report.json")
+    assert compiled["scenes"][0]["subject_mode"] == "object"
+    assert compiled["scenes"][0]["errors"] == []
+
+
+def test_prepare_queues_one_turnaround_sheet_instead_of_independent_views(tmp_path: Path) -> None:
+    batch_path, batch, series, ledger_path, episode_path = make_fixture(tmp_path)
+    episode = workflow.load_json(episode_path)
+    episode["character_pack"] = {
+        "enabled": True,
+        "mode": "single_turnaround_sheet",
+        "turnaround_prompt": "one 2x2 turnaround image of the exact same cup in four distinct views",
+    }
+    episode["semantic_beats"][0]["workflow"] = "flux2_klein_4ref"
+    write_json(episode_path, episode)
+
+    result = workflow.prepare_batch(
+        batch,
+        batch_path,
+        series,
+        projects_root=tmp_path / "projects",
+        ledger_path=ledger_path,
+    )
+    manifest = workflow.load_json(Path(result["manifest"]))
+    jobs = manifest["gpu_groups"][1]["jobs"]
+
+    assert len(jobs) == 1
+    assert jobs[0]["job_id"].endswith(":character-turnaround-sheet")
+    assert jobs[0]["inputs"]["output_path"].endswith("turnaround-sheet.png")
+
+
+def test_crop_character_turnaround_sheet_creates_four_distinct_quadrants(tmp_path: Path) -> None:
+    sheet = Image.new("RGB", (800, 1200), "white")
+    colors = [(220, 20, 20), (20, 220, 20), (20, 20, 220), (220, 180, 20)]
+    for index, color in enumerate(colors):
+        x = (index % 2) * 400
+        y = (index // 2) * 600
+        Image.new("RGB", (400, 600), color).save(tmp_path / f"quadrant-{index}.png")
+        sheet.paste(Image.open(tmp_path / f"quadrant-{index}.png"), (x, y))
+    sheet_path = tmp_path / "turnaround-sheet.png"
+    sheet.save(sheet_path)
+
+    references = workflow.crop_character_turnaround_sheet(sheet_path, tmp_path / "character")
+
+    assert len(references) == 4
+    assert [Image.open(path).getpixel((10, 10)) for path in references] == colors
 
 
 def capture_baseline(
@@ -216,7 +415,7 @@ def test_refresh_uses_actual_audio_duration_and_builds_one_wan(
     assert result["wan_jobs"] == 1
     refreshed_manifest = workflow.load_json(projects / batch["batch_id"] / "artifacts" / "gpu_batch_manifest.json")
     cover_prompt = refreshed_manifest["gpu_groups"][4]["jobs"][0]["inputs"]["prompt"]
-    assert "object/environment-only cover background" in cover_prompt
+    assert "symbolic object and environment artwork" in cover_prompt
     assert "no character or portrait" not in cover_prompt
     plan = workflow.load_json(projects / "treeelf-fable-test-20260725" / "artifacts" / "visual_plan.json")
     assert plan["duration_seconds"] == 20.2
@@ -376,7 +575,7 @@ def test_caption_sync_falls_back_to_beat_anchors() -> None:
     assert synced["slots"][2]["script_excerpt"] == "第三段。第四段。"
 
 
-def test_refresh_requires_generated_character_references_for_flux(
+def test_refresh_blocks_only_flux_when_character_references_are_missing(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -384,8 +583,8 @@ def test_refresh_requires_generated_character_references_for_flux(
     episode = workflow.load_json(episode_path)
     episode["character_pack"] = {
         "enabled": True,
-        "master_prompt": "character key art",
-        "reference_prompts": ["front", "left", "right", "back"],
+        "mode": "single_turnaround_sheet",
+        "turnaround_prompt": "one 2x2 sheet with the same cup character in four views",
     }
     episode["semantic_beats"][0]["workflow"] = "flux2_klein_4ref"
     write_json(episode_path, episode)
@@ -395,12 +594,18 @@ def test_refresh_requires_generated_character_references_for_flux(
     narration = projects / "treeelf-fable-test-20260725" / "assets" / "audio" / "narration.mp3"
     narration.write_bytes(b"audio")
     monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 10.0)
-    with pytest.raises(FileNotFoundError, match="character reference gate failed"):
-        workflow.refresh_visuals(batch, batch_path, series, projects_root=projects)
+    result = workflow.refresh_visuals(batch, batch_path, series, projects_root=projects)
 
+    assert result["blocked_flux_jobs"] > 0
+    manifest = workflow.load_json(projects / batch["batch_id"] / "artifacts" / "gpu_batch_manifest.json")
+    groups = {group["id"]: group for group in manifest["gpu_groups"]}
+    assert groups["scene_images_krea"]["jobs"]
+    assert groups["covers"]["jobs"]
+    assert all(job["status"] == "blocked_character_review" for job in groups["scene_images_flux"]["jobs"])
 
 def test_stage_local_selects_music_and_preserves_scene_timing(
     tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     _, _, series, _, episode_path = make_fixture(tmp_path)
     series = relaxed_series(series)
@@ -437,6 +642,11 @@ def test_stage_local_selects_music_and_preserves_scene_timing(
         },
     )
     workflow.dump_json(root / "artifacts" / "captions.json", {"captions": [{"text": "第一段。", "startMs": 0, "endMs": 5000}]})
+    def fake_normalize(source_path, target_path, **_kwargs):
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        target_path.write_bytes(source_path.read_bytes())
+        return {"mode": "test", "verified": True, "path": str(target_path)}
+    monkeypatch.setattr(workflow, "normalize_background_music", fake_normalize)
     result = workflow.stage_local_episode(episode, series, projects_root=projects)
     props = workflow.load_json(Path(result["props"]))
     synced_plan = workflow.load_json(root / "artifacts" / "visual_plan.json")
@@ -446,7 +656,7 @@ def test_stage_local_selects_music_and_preserves_scene_timing(
     assert synced_plan["duration_source"] == "calibrated_captions"
     assert synced_plan["duration_delta_seconds"] == 1
     assert (root / "artifacts" / "wan_retarget_report.json").is_file()
-    assert props["captionStyle"]["safeBottom"] == 360
+    assert props["captionStyle"]["safeBottom"] == 460
     assert props["coverSrc"] == "images/cover/cover-final.png"
     assert props["scenes"][0]["scriptExcerpt"] == "第一段。"
     assert (root / "artifacts" / "music_selection.json").is_file()
@@ -503,7 +713,7 @@ def test_stage_local_requires_calibrated_captions_when_gate_enabled(tmp_path: Pa
         workflow.stage_local_episode(episode, series, projects_root=tmp_path / "projects")
 
 
-def test_stage_local_requires_visual_qc_when_gate_enabled(tmp_path: Path) -> None:
+def test_missing_visual_qc_creates_nonblocking_template(tmp_path: Path) -> None:
     _, _, series, _, episode_path = make_fixture(tmp_path)
     series = json.loads(json.dumps(series))
     series["quality_gates"]["require_audio_loudness_qc"] = False
@@ -535,14 +745,17 @@ def test_stage_local_requires_visual_qc_when_gate_enabled(tmp_path: Path) -> Non
         root / "artifacts" / "captions.json",
         {"source": "whisper large-v3", "whisper_corrected": True, "captions": [{"text": "第一段。", "startMs": 0, "endMs": 4000}]},
     )
-    with pytest.raises(PermissionError, match="visual_qc"):
-        workflow.stage_local_episode(episode, series, projects_root=tmp_path / "projects")
-    visual_qc = workflow.load_json(root / "artifacts" / "visual_qc.json")
+    plan = workflow.load_json(root / "artifacts" / "visual_plan.json")
+    visual_qc = workflow.require_visual_qc(episode, root, plan)
     assert visual_qc["scenes"]["scene-001"]["image_path"].endswith("scene-001.png")
     assert visual_qc["cover"]["background_path"].endswith("cover-background.png")
+    assert visual_qc["blocking_findings"] == []
 
 
-def test_stage_local_requires_wan_motion_safety_when_wan_selected(tmp_path: Path) -> None:
+def test_stage_local_falls_back_to_still_when_wan_motion_is_risky(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     _, _, series, _, episode_path = make_fixture(tmp_path)
     series = json.loads(json.dumps(series))
     series["quality_gates"]["require_calibrated_captions_for_stage"] = False
@@ -605,12 +818,30 @@ def test_stage_local_requires_wan_motion_safety_when_wan_selected(tmp_path: Path
             },
         },
     )
+    monkeypatch.setattr(
+        workflow,
+        "select_and_record_music_usage",
+        lambda *_args, **_kwargs: ({"path": str(music)}, {"status": "reserved"}),
+    )
+    monkeypatch.setattr(
+        workflow,
+        "normalize_background_music",
+        lambda source, target, **_kwargs: (
+            target.parent.mkdir(parents=True, exist_ok=True),
+            target.write_bytes(source.read_bytes()),
+            {"verified": True, "path": str(target)},
+        )[-1],
+    )
+    monkeypatch.setattr(workflow, "build_audio_mix_qc", lambda *_args, **_kwargs: {"approved_for_render": True})
 
-    with pytest.raises(PermissionError, match="visual QC"):
-        workflow.stage_local_episode(episode, series, projects_root=tmp_path / "projects")
+    staged = workflow.stage_local_episode(episode, series, projects_root=tmp_path / "projects")
+    props = workflow.load_json(Path(staged["props"]))
+    assert props["scenes"][0]["kind"] == "still"
+    assert props["wanPolicy"]["applied_to_render"] is False
+    assert (root / "artifacts" / "wan_static_fallback.json").is_file()
 
 
-def test_visual_qc_requires_identity_stability_for_protagonist_scene(tmp_path: Path) -> None:
+def test_visual_qc_blocks_only_explicit_blocking_scene_issue(tmp_path: Path) -> None:
     _, _, _series, _, episode_path = make_fixture(tmp_path)
     episode = workflow.load_json(episode_path)
     root = tmp_path / "projects" / episode["project_id"]
@@ -626,6 +857,8 @@ def test_visual_qc_requires_identity_stability_for_protagonist_scene(tmp_path: P
                     "anatomy_acceptable": True,
                     "identity_stable_when_applicable": False,
                     "text_free": True,
+                    "severity": "blocking",
+                    "blocking_issue": True,
                     "repair_needed": False,
                 }
             },
@@ -653,7 +886,7 @@ def test_visual_qc_requires_identity_stability_for_protagonist_scene(tmp_path: P
         workflow.require_visual_qc(episode, root, plan)
 
 
-def test_refresh_builds_contact_sheet_and_requires_character_review(
+def test_refresh_builds_contact_sheet_and_blocks_only_flux_until_review(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -661,8 +894,8 @@ def test_refresh_builds_contact_sheet_and_requires_character_review(
     episode = workflow.load_json(episode_path)
     episode["character_pack"] = {
         "enabled": True,
-        "master_prompt": "character key art",
-        "reference_prompts": ["front", "left", "right", "back"],
+        "mode": "single_turnaround_sheet",
+        "turnaround_prompt": "one 2x2 sheet with the same cup character in four views",
     }
     episode["semantic_beats"][0]["workflow"] = "flux2_klein_4ref"
     write_json(episode_path, episode)
@@ -675,11 +908,25 @@ def test_refresh_builds_contact_sheet_and_requires_character_review(
     for index in range(1, 5):
         Image.new("RGB", (80, 120), (index * 30, index * 20, index * 10)).save(character_root / f"ref-{index:02d}.png")
     monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 10.0)
-    with pytest.raises(PermissionError, match="character contact sheet created"):
-        workflow.refresh_visuals(batch, batch_path, series, projects_root=projects)
+    result = workflow.refresh_visuals(batch, batch_path, series, projects_root=projects)
     assert (root / "artifacts" / "character_contact_sheet.png").is_file()
     review = workflow.load_json(root / "artifacts" / "character_review.json")
     assert review["approved"] is False
+    assert result["blocked_flux_jobs"] > 0
+    manifest = workflow.load_json(projects / batch["batch_id"] / "artifacts" / "gpu_batch_manifest.json")
+    groups = {group["id"]: group for group in manifest["gpu_groups"]}
+    assert groups["scene_images_krea"]["jobs"]
+    assert groups["covers"]["jobs"]
+    assert all(job["status"] == "blocked_character_review" for job in groups["scene_images_flux"]["jobs"])
+
+    review["approved"] = True
+    review["checks"] = {key: True for key in review["checks"]}
+    workflow.dump_json(root / "artifacts" / "character_review.json", review)
+    released = workflow.refresh_visuals(batch, batch_path, series, projects_root=projects)
+    assert released["blocked_flux_jobs"] == 0
+    manifest = workflow.load_json(projects / batch["batch_id"] / "artifacts" / "gpu_batch_manifest.json")
+    groups = {group["id"]: group for group in manifest["gpu_groups"]}
+    assert all(job["status"] == "queued" for job in groups["scene_images_flux"]["jobs"])
 
 
 def test_voice_instruction_report_marks_clone_load_instruct_as_metadata() -> None:
@@ -699,6 +946,25 @@ def test_delivery_uses_chinese_collision_safe_names(tmp_path: Path) -> None:
     first_video.write_bytes(b"old")
     second_video = workflow._delivery_video_path(episode, delivery)
     assert second_video.name == "测试 寓言_v2.mp4"
+
+
+def test_completed_delivery_reconciles_stale_gpu_queued_ledger_status() -> None:
+    ledger = {
+        "items": [{"source": "寓言.md", "status": "gpu_queued"}],
+    }
+
+    workflow.transition_ledger_item(
+        ledger,
+        "寓言.md",
+        "completed",
+        project_id="treeelf-fable-test",
+        output="/Movies/寓言.mp4",
+    )
+
+    item = ledger["items"][0]
+    assert item["status"] == "completed"
+    assert item["status_reconciled_from"] == "gpu_queued"
+    assert item["output"] == "/Movies/寓言.mp4"
 
 
 def test_prompt_review_warnings_catch_aesthetic_negatives() -> None:
@@ -730,6 +996,11 @@ def test_verify_inventory_tracks_every_current_batch_job(
         output = Path(job["inputs"]["output_path"])
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_bytes(job["job_id"].encode("utf-8"))
+    monkeypatch.setattr(
+        workflow,
+        "cover_ocr_check",
+        lambda path: {"path": str(path), "available": True, "passed": True, "detected_tokens": []},
+    )
     result = workflow.verify_gpu_assets(
         batch,
         series,
@@ -774,6 +1045,11 @@ def test_complete_local_delivers_and_marks_article_completed(
     cover.parent.mkdir(parents=True, exist_ok=True)
     cover.write_bytes(b"cover-placeholder")
     monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 12.0)
+    monkeypatch.setattr(
+        workflow,
+        "build_final_audio_mix_qc",
+        lambda *_args, **_kwargs: {"approved_for_delivery": True},
+    )
 
     result = workflow.complete_local_batch(
         batch,
@@ -792,6 +1068,61 @@ def test_complete_local_delivers_and_marks_article_completed(
     assert Path(report["cover_asset"]) == cover
     assert workflow.load_json(ledger_path)["items"][0]["status"] == "completed"
     assert workflow.load_json(manifest_path)["status"] == "completed"
+
+    repeated = workflow.complete_local_batch(
+        batch,
+        batch_path,
+        series,
+        projects_root=projects,
+        ledger_path=ledger_path,
+    )
+    assert repeated["deliveries"][0]["video"] == result["deliveries"][0]["video"]
+    assert repeated["deliveries"][0]["delivery_mode"] == "reused_verified_delivery"
+    assert len(list(delivery.glob("*.mp4"))) == 1
+
+
+def test_complete_local_refuses_failed_final_audio_qc(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    batch_path, batch, series, ledger_path, episode_path = make_fixture(tmp_path)
+    projects = tmp_path / "projects"
+    delivery = tmp_path / "Movies" / "treeelf-fable"
+    series = json.loads(json.dumps(series))
+    series["delivery_dir"] = str(delivery)
+    workflow.prepare_batch(
+        batch, batch_path, series, projects_root=projects, ledger_path=ledger_path
+    )
+    manifest_path = projects / batch["batch_id"] / "artifacts" / "gpu_batch_manifest.json"
+    manifest = workflow.load_json(manifest_path)
+    manifest["status"] = "local_packaging"
+    manifest["episodes"][0]["status"] = "local_packaging"
+    workflow.dump_json(manifest_path, manifest)
+    ledger = workflow.load_json(ledger_path)
+    ledger["items"][0]["status"] = "local_packaging"
+    workflow.dump_json(ledger_path, ledger)
+    episode = workflow.load_json(episode_path)
+    final = projects / episode["project_id"] / "renders" / "final.mp4"
+    final.write_bytes(b"bad-audio-video")
+    monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 12.0)
+    monkeypatch.setattr(
+        workflow,
+        "build_final_audio_mix_qc",
+        lambda *_args, **_kwargs: {
+            "approved_for_delivery": False,
+            "checks": {"integrated_loudness_in_range": False},
+        },
+    )
+
+    with pytest.raises(ValueError, match="final audio mix QC failed"):
+        workflow.complete_local_batch(
+            batch,
+            batch_path,
+            series,
+            projects_root=projects,
+            ledger_path=ledger_path,
+        )
+    assert not list(delivery.glob("*.mp4"))
 
 
 def test_cleanup_local_removes_only_derivatives_after_delivery(
@@ -836,6 +1167,11 @@ def test_cleanup_local_removes_only_derivatives_after_delivery(
     public.mkdir(parents=True, exist_ok=True)
     (public / "duplicate.txt").write_text("duplicate", encoding="utf-8")
     monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 12.0)
+    monkeypatch.setattr(
+        workflow,
+        "build_final_audio_mix_qc",
+        lambda *_args, **_kwargs: {"approved_for_delivery": True},
+    )
     workflow.complete_local_batch(batch, batch_path, series, projects_root=projects, ledger_path=ledger_path)
 
     dry_run = workflow.cleanup_local_batch(

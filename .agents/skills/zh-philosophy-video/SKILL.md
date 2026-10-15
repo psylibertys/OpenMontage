@@ -1,6 +1,6 @@
 ---
 name: zh-philosophy-video
-description: Produce and maintain the reusable TreeElf Chinese philosophy/psychology vertical-video series from reviewed Markdown copy. Use when scanning the 心哲灵短视频文案 inbox, preparing the next unproduced article, generating narration with the saved 配音02 Qwen3-TTS clone, creating one text-free Krea cover plus realistic/abstract/style-fusion media and Wan motion, composing animated stills, exact Remotion information cards, outlined captions and audible music, delivering to Movies, or updating the source production status only after verified delivery.
+description: Produce and maintain the reusable TreeElf Chinese philosophy/psychology vertical-video series from unproduced Markdown copy. Use when scanning the 心哲灵短视频文案 inbox, preparing the next unproduced article, generating narration with the saved 配音02 Qwen3-TTS clone, creating one text-free Krea cover plus realistic/abstract/style-fusion media and Wan motion, composing animated stills, exact Remotion information cards, outlined captions and audible music, delivering to Movies, or updating the source production status only after verified delivery.
 ---
 
 # 树精灵中文哲思短视频
@@ -37,7 +37,9 @@ description: Produce and maintain the reusable TreeElf Chinese philosophy/psycho
 .venv/bin/python scripts/treeelf_philosophy_episode.py prepare --config <episode.json>
 ```
 
-`prepare` 只快照原文，不修改原文状态。若原文已经是 `production_status: completed`，必须拒绝重复生产。`prepare` 同时生成 `artifacts/visual_brief.json`，记录本篇的情绪核心、隐喻候选、关键短句、三类视觉模式比例、风格来源和技术护栏；后续图片 prompt 必须能追溯到这份 brief 或 episode JSON 中更具体的人工覆盖。
+候选筛选只判断“是否已经生成过视频”：`status` 和 `review_status` 仅记录来源信息，不参与筛选、排序或阻塞；`draft`、`pending`、`passed_with_warnings` 均可进入候选。已经存在完成状态或成片文件，以及正被活动批次预约的文章仍然排除，避免重复生产与并发撞车。
+
+`prepare` 只快照原文，不修改原文状态。若原文已经是 `production_status: completed`，或已经记录 `video_output`，必须拒绝重复生产。`prepare` 同时生成 `artifacts/visual_brief.json`，记录本篇的情绪核心、隐喻候选、关键短句、三类视觉模式比例、风格来源和技术护栏；后续图片 prompt 必须能追溯到这份 brief 或 episode JSON 中更具体的人工覆盖。
 
 ## 锁定的栏目规范
 
@@ -45,9 +47,8 @@ description: Produce and maintain the reusable TreeElf Chinese philosophy/psycho
 - 旁白使用服务器持久声包 `treeelf_voice02_v1`，模板 `qwen3_tts_voice_clone_load`。
 - 按自然段生成旁白片段，再本地拼接、标准化；不要把整篇长文强塞进一次 TTS 请求。
 - 每篇仅生成一张新的 Krea 无字封面背景；Remotion 添加中文标题、英文副标题和“树精灵”。
-- 每篇至少生成 15 张图：1 张封面和 14 张正文图；正文图中 2 张只作为 Wan 参考帧，至少 12 张只作为动态静帧。
-- 14 张正文图是最低基准而不是上限。根据审核后的旁白、Wan 和全屏信息页时间检查静态图有效可见时长；平均超过 6 秒时继续增加图片，短篇也不因时长较短自动减到 14 张以下。
-- 每篇固定生成 2 个 Wan 镜头。选择策略为“开头钩子 + 最长且语义安全的核心画面”：W01 优先服务开头，W02 在精确字幕/scene 重排后，从可见时间最长、语义关键、运动安全的正文画面中选择。正文图不得重复作为多个静帧；启用 `wan_policy` 后，Remotion 会把被选中的静帧段替换为对应 Wan，并把旧 Wan 占位还原为普通静帧。
+- 每篇默认生成 12 张图：1 张封面和 11 张正文图；其中 1 张作为 Wan 开场参考帧，其余作为动态静帧。
+- 每篇固定生成 1 个 Wan 开场镜头，优先服务开头钩子；其余画面用静态动效和信息页完成节奏。
 - Wan 生成时长默认 4 秒，上限 5 秒。即使一个画面在成片中停留 8–10 秒，也不按完整停留时长生成 Wan；由 Remotion 通过慢放、尾帧保持和轻微静帧动效延展。
 - `canvas-design` 只负责艺术指导，Krea 负责无字执行，Remotion 负责准确文字。
 - `cover-image-generator` 不参与。
@@ -61,10 +62,11 @@ description: Produce and maintain the reusable TreeElf Chinese philosophy/psycho
 - 跨作品通过重新提取文案意象来减少醒目标志物的机械重复；某个元素是否出现，只由它和当前文案意象的匹配度决定。创意 prompt 用正向画面目标替代审美禁令。
 - 每条片有 2–3 个 Remotion 动态信息页，总时长约 15–25%，用于比较、因果、步骤、提问或关键词。
 - 静态图必须有可见而克制的推、移、纵向漂移或视差；连续静态镜头不得使用相同运动。
-- 字幕为较小白字、黑色描边、透明底，不用黑色字幕框；默认使用较高的短视频平台安全区，`safe_bottom >= 360`，避免被底部标题、进度条和互动按钮干扰。
+- 字幕为较小白字、黑色描边、透明底，不用黑色字幕框；默认使用更高的短视频平台安全区，`safe_bottom >= 460`，避免被底部标题、进度条和互动按钮干扰。
 - 背景音乐锁定旁白优先的 B3 混音基准：Remotion `musicVolume = 0.30`，并按讲话状态更强 ducking；讲话时音乐应退到低氛围层，不压旁白。
-- 背景音乐不再长期固定同一首。`stage-remotion` 通过 `workflow_configs/treeelf-music/catalog-v1.json` 按标题、正文情绪和意象关键词从中央本地纯音乐库自动选曲；心哲灵与 fable 共用跨批次使用账本，同批与近期曲目会降权。项目音乐副本标准化到 -18 LUFS / -2 dBTP，中央原曲不修改；选择、匹配原因、SHA、标准化结果写入 `artifacts/music_selection.json`。
+- 背景音乐不再长期固定同一首。`stage-remotion` 通过 `workflow_configs/treeelf-music/catalog-v1.json` 按标题、正文情绪和意象关键词从中央本地纯音乐库自动选曲；`纯音乐/instrumental` 只作为资格标签，不算语义命中。心哲灵与 fable 共用 `reserved / committed / failed` 使用账本：同一项目默认复用原曲，只有显式 `reselect_music: true` 才换曲，交付成功后才提交正式使用。项目音乐副本必须成功标准化到 -18 LUFS / -2 dBTP，中央原曲不修改；选择、匹配原因、SHA、标准化结果写入 `artifacts/music_selection.json`。
 - 音乐是否可听，以导出文件的人耳试听和响度结果判断，不以时间线参数代替。
+- 心哲灵的背景音乐循环覆盖完整 Composition，并在结尾淡出。交付前必须生成 `final_audio_mix_qc.json`，确认音轨覆盖片尾、综合 LUFS 合理、真实峰值安全；失败时不得交付，音乐预约转为 `failed`。
 - 独立平台封面与成片首帧使用同一封面；首帧只有 1 帧，不形成可感知片头。
 
 ## 正向提示词规则
@@ -105,7 +107,7 @@ COMFYUI_SERVER_URL=http://127.0.0.1:18188 \
 
 ## 批量 GPU 模式
 
-批量生产是正式默认方式，建议每批 5–8 篇。GPU 关机时先为每篇准备审核过的 episode JSON，再创建 batch JSON；`prepare` 只快照原文并写入批次预约，不修改原文完成状态。
+批量生产是正式默认方式，建议每批 5–8 篇。GPU 关机时先为每篇未生产文章准备 episode JSON，再创建 batch JSON；`prepare` 只快照原文并写入批次预约，不修改原文完成状态。
 
 ```bash
 .venv/bin/python scripts/treeelf_philosophy_batch.py validate --config <batch.json>
@@ -120,7 +122,7 @@ COMFYUI_SERVER_URL=http://127.0.0.1:18188 \
   .venv/bin/python scripts/treeelf_philosophy_batch.py generate-gpu --config <batch.json>
 ```
 
-只有 `gpu_asset_inventory.json` 已记录全部本地文件的大小和 SHA-256、队列为空，才允许进入收尾。必须先查看 dry-run 的精确远端清单，再执行备份、双端哈希校验、清理和关机：
+只有 `gpu_asset_inventory.json` 已记录并验证单篇项目 `assets/` 中全部正式资产、队列为空，才允许进入收尾。必须先查看 dry-run 的精确远端清单，再校验项目主素材、清理和关机；不得另建 `remote-final-backup`：
 
 ```bash
 .venv/bin/python scripts/treeelf_philosophy_batch.py finalize-gpu --config <batch.json> --dry-run
@@ -132,7 +134,7 @@ COMFYUI_SERVER_URL=http://127.0.0.1:18188 \
 ## 本地合成
 
 1. 使用本地 MLX Whisper 模型 `/Users/treeelf/AI_Models/Whisper` 转录标准化旁白，检查首句、尾句与内容完整性。ASR 只用于 QC，不能把它识别错的专名直接当字幕。
-2. 从审核原文和每个 Qwen 自然段的真实时长生成精确字幕文字；批量 GPU 模式必须在全部旁白生成后、Wan 生成前执行这一步，供 W02 选择“最长且语义安全”的画面：
+2. 从生产快照和每个 Qwen 自然段的真实时长生成精确字幕文字；批量 GPU 模式必须在全部旁白生成后、Wan 生成前执行这一步，供 W02 选择“最长且语义安全”的画面：
 
 ```bash
 .venv/bin/python scripts/treeelf_philosophy_episode.py build-captions --config <episode.json>
@@ -160,8 +162,7 @@ npx remotion render src/index.tsx TreeElfPhilosophyEpisode <project-render.mp4> 
 交付前必须完成：
 
 - ffprobe：时长、1080×1920、H.264/AAC；
-- 联系表目视检查：风格、乱码、重复元素、静态动效和信息页；
-- 本地 MLX Whisper：旁白完整且尾句存在；
+- 默认不做逐条联系表与全量 Whisper；需要专项排错时再启用；
 - 音频：音乐可听、总响度和峰值合理；
 - 项目成片与 Movies 副本 SHA-256 一致。
 
@@ -183,11 +184,11 @@ video_output: <Movies absolute path>
 video_generated: <UTC timestamp>
 ```
 
-如果原文在 `prepare` 后发生变化，必须停止交付并重新审核修订，不能覆盖状态。
+如果原文在 `prepare` 后发生变化，必须停止交付并重新建立快照或明确确认使用版本，不能覆盖状态。
 
 ## 本地存储与复用
 
-把 `projects/<project_id>/assets/` 作为该篇唯一主素材库，把 `/Users/treeelf/Movies/zh-philosophy-video/` 作为最终视频唯一发行档案。不要把 `remotion-composer/public/` 或批次 `remote-final-backup/` 当作长期素材库。
+把 `projects/<project_id>/assets/` 作为该篇唯一主素材库，把 `/Users/treeelf/Movies/zh-philosophy-video/` 作为最终视频唯一发行档案。不要创建独立的批次 `remote-final-backup`。
 
 - Remotion 暂存优先创建硬链接；跨文件系统或硬链接失败时才复制字节。
 - Movies 交付同样优先使用硬链接；即使项目路径和 Movies 路径同时存在，也只占一份实际字节。交付后项目 `renders/` 不再作为长期成片副本。
@@ -201,18 +202,13 @@ video_generated: <UTC timestamp>
 .venv/bin/python scripts/treeelf_philosophy_episode.py cleanup-local --config <episode.json> --yes --include-delayed
 ```
 
-- 批次 `remote-final-backup` 只用于关机后的短期灾备。必须等批次内每篇都已交付且Movies文件仍存在，再保留7天；到期后先dry-run再删除：
-
-```bash
-.venv/bin/python scripts/treeelf_philosophy_batch.py cleanup-local --config <batch.json> --dry-run
-.venv/bin/python scripts/treeelf_philosophy_batch.py cleanup-local --config <batch.json> --yes
-```
+- GPU 收尾直接以各单篇项目 `assets/` 和 `gpu_asset_inventory.json` 为本地备份及哈希门槛，不再复制第二份批次灾备。
 
 任何交付报告缺失、Movies文件缺失、保留期未到或目标路径越界，都拒绝清理。不要自动清理历史项目；先生成精确dry-run清单并确认它属于已交付作品。
 
 ## 单篇制作原则
 
-- 保留用户审核通过的原文，除非用户明确要求改稿。
+- 保留本批选定的原文，除非用户明确要求改稿。
 - 叙事具象镜头负责人物处境、动作和关系；抽象意象镜头负责情绪、隐喻和心理结构；风格融合转译镜头负责把文案语义转成有艺术语言支撑的连续画面。
 - 不靠审美禁令避免陈词滥调；每篇先重新提取关键词、隐喻、情感基调和认知动作，再由这些语义生成对应画面。
 - 风格多样性发生在作品之间和镜头之间；单篇应有 2–3 个主风格语言的清晰组合，不是把所有媒介都塞入同一张图。

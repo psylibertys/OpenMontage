@@ -1,0 +1,18 @@
+{
+  "project_id": "gourd-cannot-hold-water-20260812", "title": "装不下水的大葫芦", "cover_title": "换一片水", "cover_lines": ["装不下水", "不等于没用"],
+  "profile": "youtube_landscape", "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video", "remotion_timeout_ms": 600000,
+  "retention": {"cleanup_remotion_public": true, "cleanup_intermediate_renders": false},
+  "stock_library": {"enabled": false, "download_sources": ["pexels", "pixabay", "mixkit"], "rotate_download_sources": true},
+  "target_platform": "16:9 landscape", "target_duration_seconds": 55, "tone": "轻巧、寓言感、温暖", "target_audience": "容易自我怀疑、正在寻找适合自己位置的中文观众",
+  "key_points": ["大葫芦并非无用", "用途限制了评价", "缺点可能只是场景错位"], "core_message": "先别砸碎自己，换一片水，也许你原本就会浮起来。",
+  "voice_style": "成年女性普通话声线，中速，清晰、自然、温暖", "speaker_directions": "开头像讲故事，中段带一点反问，结尾放慢。",
+  "tts": {"provider": "edge", "version": "7.2.7", "voice": "zh-CN-XiaoxiaoNeural", "rate": "+0%", "pitch": "+0Hz", "volume": "+0%", "generation_mode": "single_pass"},
+  "music": {"library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐", "preferred_keywords": ["warm", "ambient", "piano", "纯音乐"]},
+  "style": {"card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf", "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf", "black_overlay_opacity": 0.5, "cover_enabled": true, "cover_duration_frames": 1, "cover_font_size": 220, "card_title_font_size": 128, "card_subtitle_font_size": 50, "card_line_gap": 30, "title_color_rgb": [248,246,231], "accent_color_rgb": [214,179,90], "subtitle_color": "#FFFFFF", "subtitle_outline_color": "#000000", "subtitle_outline_width": 3, "subtitle_font_size": 52, "music_start_seconds": 0, "music_volume": 0.08},
+  "sections": [
+    {"id":"s1","label":"大葫芦","text":"惠子种出一个能装五石的大葫芦。他拿来盛水，葫芦太重，提不起来；劈成瓢，又大得没地方搁。惠子越看越生气，干脆把它砸了。","queries":[{"query":"large gourd harvest farmer hands","description":"巨大葫芦与使用困境。"},{"query":"person frustrated breaking object","description":"因无用而生气。"},{"query":"nature lake calm landscape","description":"为漂浮江湖埋下意象。"}]},
+    {"id":"s2","label":"庄子的回答","text":"庄子听完却说，这么大的葫芦，为什么非得当水壶？绑在身上，浮游江湖，不也很好吗？","queries":[{"query":"person floating peacefully on lake","description":"换一种用途后的自由。"}],"cards":[{"id":"use-card","title_lines":["为什么非得", "当水壶"],"subtitle":"同一件东西，也可以有别的活法"}]},
+    {"id":"s3","label":"放错场景","text":"葫芦没有变，改变的只是用途。我们也常这样处理自己：不会应酬，就说性格没用；走得慢，就说人生失败。可一条鱼若总被要求爬树，努力只会让它更怀疑自己。","queries":[{"query":"shy person alone at social gathering","description":"被错误标准衡量的人。"},{"query":"fish swimming underwater sunlight","description":"鱼在适合自己的环境中游动。"}],"cards":[{"id":"scene-card","title_lines":["不是没用"],"subtitle":"可能只是被放错了场景"}]},
+    {"id":"s4","label":"收束","text":"有些所谓缺点，只是被放错了场景。先别急着砸碎自己，换一片水，也许你原本就会浮起来。","queries":[{"query":"person swimming peaceful open water sunrise","description":"进入适合自己的水域。"}],"cards":[{"id":"landing-card","title_lines":["换一片水"],"subtitle":"也许你原本就会浮起来"}]}
+  ]
+}

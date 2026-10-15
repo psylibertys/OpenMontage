@@ -1,0 +1,308 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-feeling-without-confession-20260728",
+  "title": "有感觉不等于必须告白",
+  "cover_title": "感觉缓办",
+  "cover_english_title": "FEELING IS NOT A COMMAND",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-28_有感觉不等于必须告白.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "tender",
+      "friendship",
+      "honest",
+      "acoustic",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "友谊里好感冒出的慌张",
+      "必须立刻行动的误解",
+      "把决定权还给双方的成熟"
+    ],
+    "metaphor_candidates": [
+      "感情部门",
+      "关系升级窗口",
+      "感觉通知",
+      "双方来到窗口"
+    ],
+    "style_families": [
+      "cinematic friendship photography",
+      "surreal civic-space collage",
+      "minimal relational geometry"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic friendship photography",
+      "surreal civic-space collage",
+      "minimal relational geometry"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 感情部门, 关系升级窗口, 感觉通知, 双方来到窗口; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_only",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97901,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two friends approaching a shared open window while a warm signal rests between them without pushing either forward; style_logic: cinematic friendship photography and surreal civic-space collage compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, two friends approaching a shared open window while a warm signal rests between them without pushing either forward, cinematic friendship photography blended with surreal civic-space collage, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97902,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two close friends sharing an ordinary walk when one notices a new warmth in the relationship; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, two close friends sharing an ordinary walk when one notices a new warmth in the relationship, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97903,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an overactive inner department rushing a glowing relationship token toward an upgrade window; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, an overactive inner department rushing a glowing relationship token toward an upgrade window, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97904,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two empty queue positions while an application token arrives too early; style_logic: minimal relational geometry provides the scene structure while cinematic friendship photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, two empty queue positions while an application token arrives too early, minimal relational geometry blended with cinematic friendship photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97905,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a warm signal resting in one person's hands without becoming an order arrow; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a warm signal resting in one person's hands without becoming an order arrow, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97906,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the relationship changing on one side while the other person's space remains independent; style_logic: surreal civic-space collage provides the scene structure while minimal relational geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, the relationship changing on one side while the other person's space remains independent, surreal civic-space collage blended with minimal relational geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97907,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: three possible paths opening gently: distance, honest conversation and continued friendship; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, three possible paths opening gently: distance, honest conversation and continued friendship, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97908,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two friends sitting across from each other with open posture and room to respond; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, two friends sitting across from each other with open posture and room to respond, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97909,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a careful disclosure placed between them as a small warm object rather than a demand; style_logic: surreal civic-space collage provides the scene structure while minimal relational geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a careful disclosure placed between them as a small warm object rather than a demand, surreal civic-space collage blended with minimal relational geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97910,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one person allowed to feel differently without the shared space collapsing; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one person allowed to feel differently without the shared space collapsing, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97911,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a pause path, a distance path and a friendship path remaining equally visible; style_logic: cinematic friendship photography provides the scene structure while surreal civic-space collage translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a pause path, a distance path and a friendship path remaining equally visible, cinematic friendship photography blended with surreal civic-space collage, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97912,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an ambiguous feeling released from a courtroom and returned to a conversation table; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, an ambiguous feeling released from a courtroom and returned to a conversation table, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 97951,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens two close friends sharing an ordinary walk when one notices a new warmth in the relationship without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P06.png",
+        "from": 36,
+        "to": 42,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "先分开感觉与行动",
+        "left": "有好感",
+        "operator": "≠",
+        "right": "必须告白"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "questions",
+        "eyebrow": "把决定权还给双方",
+        "items": [
+          "暂停还是继续？",
+          "拉开距离还是维持友谊？"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

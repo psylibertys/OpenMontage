@@ -672,6 +672,7 @@ def generate_gpu_candidates(config: dict[str, Any], *, projects_dir: Path = PROJ
                     "candidate_id": candidate["id"],
                     "blind_label": candidate["blind_label"],
                     "path": str(output_dir / f"{candidate['id']}.png"),
+                    "size": (output_dir / f"{candidate['id']}.png").stat().st_size,
                     "sha256": sha256_file(output_dir / f"{candidate['id']}.png"),
                     "seed": candidate["seed"],
                     "workflow_template": config["candidate_selection"]["workflow_template"],
@@ -744,6 +745,8 @@ def finalize_gpu_batch(config: dict[str, Any], *, yes: bool, shutdown: bool) -> 
         str(project_dir(config)),
         "--policy",
         str(REPO_ROOT / config["retention_policy"]),
+        "--local-inventory",
+        str(project_dir(config) / "artifacts" / "candidate_asset_manifest.json"),
     ]
     command.append("--yes" if yes else "--dry-run")
     if shutdown:

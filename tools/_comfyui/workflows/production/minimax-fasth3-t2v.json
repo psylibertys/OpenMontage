@@ -1,0 +1,313 @@
+{
+ "194": {
+  "inputs": {
+   "unet_name": "h3/fastvideo_fasth3_8step_v2_pruned_int8_convrot.safetensors",
+   "weight_dtype": "default"
+  },
+  "class_type": "UNETLoader",
+  "_meta": {
+   "title": "Load Diffusion Model"
+  }
+ },
+ "195": {
+  "inputs": {
+   "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+   "type": "minimax",
+   "device": "default"
+  },
+  "class_type": "CLIPLoader",
+  "_meta": {
+   "title": "Load CLIP"
+  }
+ },
+ "196": {
+  "inputs": {
+   "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "198": {
+  "inputs": {
+   "label_json": "{\"text\": \"Minimax FastH3 - Text to video\", \"fontSize\": 31, \"fontFamily\": \"Arial\", \"fontColor\": \"#ffffff\", \"textAlign\": \"left\", \"backgroundColor\": \"#f66744\", \"padding\": 10, \"borderRadius\": 0, \"opacity\": 1, \"fontWeight\": \"normal\", \"lineHeight\": 1}"
+  },
+  "class_type": "PixaromaLabel",
+  "_meta": {
+   "title": "Label Pixaroma"
+  }
+ },
+ "212": {
+  "inputs": {
+   "note_json": "{\"version\": 1, \"content\": \"<h1>MODELS AND NODES USED IN THIS WORKFLOW</h1><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"model-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load Diffusion Model</h2><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/FastVideo/FastVideo-FastH3-Comfy/resolve/main/diffusion_models/fastvideo_fasth3_8step_v2_pruned_int8_convrot.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download fastvideo_fasth3_8step_v2_pruned_int8_convrot.safetensors<span class=\\\"pix-note-btnsize\\\">20.6 GB</span></a>\\n</span>&nbsp;\\n</p><p>\\n\\n</p><div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/diffusion_models/h3</div><p>\\n\\n</p><p>Create the <code>h3</code> folder if it does not exist.</p><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/FastVideo/FastVideo-FastH3-Comfy/tree/main/diffusion_models\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">More versions</a>\\n</span>&nbsp;<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">READ LICENSE</a></span>&nbsp;<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/QA-about-License.md\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">More About LICENSE</a></span>&nbsp;<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">FastH3 model card</a></span>&nbsp;</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"CLIP\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load CLIP</h2><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors<span class=\\\"pix-note-btnsize\\\">14.6 GB</span></a>\\n</span>&nbsp;\\n</p><p>\\n\\n</p><div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/text_encoders</div><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"VAE\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load VAE</h2><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download minimax_h3_video_vae_fp16.safetensors<span class=\\\"pix-note-btnsize\\\">4.9 GB</span></a>\\n</span>&nbsp;\\n</p><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download minimax_h3_audio_vae_fp32.safetensors<span class=\\\"pix-note-btnsize\\\">577 MB</span></a>\\n</span>&nbsp;\\n</p><p>\\n\\n</p><div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/vae<br></div><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #ffffff\\\"><h3>Google Gemini Free Prompting Gem</h3><p><span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://gemini.google.com/gem/1ZKGIbgRccQR26RnxdJ6ZB6S2m4Smru-n?usp=sharing\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">MiniMax H3 Text2Video Prompt Writer</a></span>&nbsp;</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><p><span data-ic=\\\"warning-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;After placing the files, restart ComfyUI or refresh model lists using the <b>R</b> shortcut.</p><p>\\n\\n</p><h2><span data-ic=\\\"nodes-installed\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Nodes Installed from Manager</h2><p>\\n\\n</p><ul>\\n  <li>Pixaroma</li>\\n</ul><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"pixaroma\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Resources</h2><p>\\n\\n</p><p>\\n  <a class=\\\"pix-note-discord\\\" href=\\\"https://discord.com/invite/gggpkVgBf3\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Join Discord</a>&nbsp;\\n  <a class=\\\"pix-note-yt\\\" href=\\\"https://www.youtube.com/@pixaroma\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Pixaroma YouTube Channel</a>&nbsp;\\n</p>\", \"buttonColor\": \"#f66744\", \"lineColor\": \"#f66744\", \"width\": 551.7198933736197, \"height\": 786, \"backgroundColor\": \"#2a2a2a\"}"
+  },
+  "class_type": "PixaromaNote",
+  "_meta": {
+   "title": "Note Pixaroma"
+  }
+ },
+ "213": {
+  "inputs": {
+   "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "222": {
+  "inputs": {
+   "prompt": [
+    "236",
+    0
+   ],
+   "width": [
+    "223",
+    0
+   ],
+   "height": [
+    "223",
+    1
+   ],
+   "length": [
+    "234",
+    0
+   ],
+   "clip": [
+    "195",
+    0
+   ],
+   "vae": [
+    "196",
+    0
+   ]
+  },
+  "class_type": "MiniMaxH3ImageToVideo",
+  "_meta": {
+   "title": "MiniMax H3 Image to Video"
+  }
+ },
+ "223": {
+  "inputs": {
+   "SizesState": "{\"version\":1,\"sizes\":[[864,480],[960,544],[1056,608],[1152,640],[1216,672],[1280,736],[1344,768],[1376,768],[1504,832],[1664,928],[1824,1024],[1920,1088]],\"selected\":0,\"orientation\":\"portrait\",\"snap\":32,\"accent\":null,\"collapsed\":false,\"starred\":[\"480x864\",\"672x1216\",\"736x1280\",\"640x1152\",\"608x1056\",\"544x960\"],\"w\":480,\"h\":864}"
+  },
+  "class_type": "PixaromaSizes",
+  "_meta": {
+   "title": "1. Pick Orientation and Size"
+  }
+ },
+ "224": {
+  "inputs": {
+   "conditioning": [
+    "222",
+    0
+   ]
+  },
+  "class_type": "ConditioningZeroOut",
+  "_meta": {
+   "title": "Conditioning Zero Out"
+  }
+ },
+ "225": {
+  "inputs": {
+   "seed": [
+    "240",
+    0
+   ],
+   "steps": 8,
+   "cfg": 1,
+   "sampler_name": "res_multistep",
+   "scheduler": "simple",
+   "denoise": 1,
+   "model": [
+    "239",
+    0
+   ],
+   "positive": [
+    "222",
+    0
+   ],
+   "negative": [
+    "224",
+    0
+   ],
+   "latent_image": [
+    "222",
+    1
+   ]
+  },
+  "class_type": "KSampler",
+  "_meta": {
+   "title": "KSampler"
+  }
+ },
+ "226": {
+  "inputs": {
+   "samples": [
+    "243",
+    0
+   ],
+   "vae": [
+    "196",
+    0
+   ]
+  },
+  "class_type": "VAEDecode",
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "227": {
+  "inputs": {
+   "samples": [
+    "225",
+    0
+   ],
+   "vae": [
+    "213",
+    0
+   ]
+  },
+  "class_type": "VAEDecodeAudio",
+  "_meta": {
+   "title": "VAE Decode Audio"
+  }
+ },
+ "228": {
+  "inputs": {
+   "fps": 24,
+   "filename_prefix": "Video",
+   "save_mode": "save",
+   "trim_to_audio": false,
+   "audio_fade_ms": 200,
+   "video_frames": [
+    "226",
+    0
+   ],
+   "audio": [
+    "227",
+    0
+   ],
+   "CivitaiMeta": "0"
+  },
+  "class_type": "PixaromaSaveMp4",
+  "_meta": {
+   "title": "Save Mp4 Pixaroma"
+  }
+ },
+ "234": {
+  "inputs": {
+   "DurationState": "{\"seconds\":5,\"fps\":24,\"step\":17,\"plus\":5,\"minFrames\":5,\"mode\":\"recipe\",\"formula\":\"\"}"
+  },
+  "class_type": "PixaromaDuration",
+  "_meta": {
+   "title": "2. Select Duration"
+  }
+ },
+ "235": {
+  "inputs": {},
+  "class_type": "PixaromaRunTimer",
+  "_meta": {
+   "title": "Run Timer Pixaroma"
+  }
+ },
+ "236": {
+  "inputs": {
+   "PromptState": "{\"text\":\"integrated_multimodal_description: Live-action cinematic, a medium close-up frames a gorgeous 20-year-old romanian woman model with a beautiful face, natural skin texture, bright expressive blue eyes, and long flowing black hair. She is wearing a fitted white t-shirt featuring a prominent gaming logo that reads clearly \\\"PIXA\\\" in bright orange across the chest, standing inside a minimalist modern hotel room with warm neutral tones, light wood wall panels, and a large floor-to-ceiling glass window behind her revealing an exotic tropical city skyline at dusk, under soft stable ambient lighting from recessed ceiling fixtures. She turns her head slightly toward the lens and, her jaw and lips moving clearly through every word, the young woman with a clear, upbeat voice (S1) says: <d>[English] Minimax is now even faster, how cool is that?</d> She closes her lips into a confident smile, and the camera holds a static shot while the background lighting remains completely steady.\\n\\noverall_soundscape: Soft indoor room tone continues throughout with the quiet rustle of outdoor palm leaves.\\n\\nnon_diegetic_music: An upbeat electronic synthesizer melody at a moderate tempo with clean digital rhythms, maintaining a modern and energetic tone throughout.\",\"order\":\"mine\",\"sep\":\", \"}"
+  },
+  "class_type": "PixaromaPrompt",
+  "_meta": {
+   "title": "3. Add a prompt"
+  }
+ },
+ "237": {
+  "inputs": {
+   "shift_video": 10,
+   "shift_audio": 3,
+   "model": [
+    "194",
+    0
+   ]
+  },
+  "class_type": "MiniMaxH3SigmaShift",
+  "_meta": {
+   "title": "ModelSamplingMiniMaxH3"
+  }
+ },
+ "238": {
+  "inputs": {
+   "attention": "comfy kitchen attention",
+   "model": [
+    "237",
+    0
+   ]
+  },
+  "class_type": "ModelAttentionBackend",
+  "_meta": {
+   "title": "Model Attention Backend"
+  }
+ },
+ "239": {
+  "inputs": {
+   "selection": "vsa",
+   "selection.keep_percent": 10,
+   "start_percent": 0.2,
+   "end_percent": 1,
+   "dense_blocks": "",
+   "min_tokens": 12288,
+   "extra_tokens": 256,
+   "sink_conditioning": "exact_kv_and_rows",
+   "verbose": false,
+   "model": [
+    "238",
+    0
+   ]
+  },
+  "class_type": "BlockSparseAttention",
+  "_meta": {
+   "title": "Model Sparse Attention"
+  }
+ },
+ "240": {
+  "inputs": {
+   "SeedState": "{\"runSeed\":123456}",
+   "seed": 123456
+  },
+  "class_type": "PixaromaSeed",
+  "_meta": {
+   "title": "4. Seed Random/Fixed?"
+  }
+ },
+ "241": {
+  "inputs": {
+   "note_json": "{\"version\": 1, \"content\": \"<h1>WHAT EACH NODE DOES</h1><p>\\n\\n</p><p>The colour of a node tells you what kind of node it is. Nothing here needs changing except the blue ones.</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"model-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Models to download</h2><p>\\n\\n</p><p>Orange. Each one needs a file from the list in the note above.</p><p>\\n\\n</p><ul><li><b>Load Diffusion Model (FastH3)</b> - MiniMax H3 distilled down to 8 sampling steps. This is the file that makes the workflow fast.</li><li><b>Load CLIP (Qwen3-VL)</b> - Reads your prompt. It is a vision-language model, which is why it understands a prompt written as a scene.</li><li><b>Load VAE (video)</b> - Turns the render into pictures.</li><li><b>Load VAE (audio)</b> - Turns the render into sound.</li></ul><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"chip\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;The numbers you set</h2><p>\\n\\n</p><p>Blue, and numbered. These are the only nodes you have to touch.</p><p>\\n\\n</p><ul><li><b>1. Pick Orientation and Size</b> - The shape of the clip. Portrait or landscape, then a size off the list. The run time table in the note on the right is measured against these exact sizes.</li><li><b>2. Select Duration</b> - How many seconds. It turns seconds into the frame count H3 accepts, so you never have to work that out.</li><li><b>3. Add a prompt</b> - Your scene. H3 wants one written a particular way, with the picture, the sound and the music each in their own field. The note above links a free Gemini Gem that writes them for you.</li><li><b>4. Seed Random/Fixed?</b> - Fixed repeats the same clip, Random rolls a new one each Run. Leave it on Random while you are exploring, fix it once you have something you like and want to change one thing at a time.</li></ul><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"chip\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;What makes this one fast</h2><p>\\n\\n</p><p>Teal. The three above the graph set up the fast checkpoint and should be left exactly as they are. The fourth one sits in the render row and is about memory rather than speed.</p><p>\\n\\n</p><ul><li><b>Noise schedule (Sigma Shift)</b> - Sets the noise schedule the checkpoint was trained on: 10 for the picture, 3 for the sound. FastH3 was distilled at these numbers and changing them is the quickest way to get mush.</li><li><b>Model Attention Backend</b> - Picks the fast attention used everywhere the next node is not being sparse.</li><li><b>Model Sparse Attention</b> - Runs VSA at 10%, the sparsity this checkpoint was distilled with. It needs FastH3 weights, so it belongs to this workflow only. Drop it into the full H3 model and the picture falls apart.</li><li><b>Free VRAM</b> - Sits between the sampler and the video decode and hands the card's memory back before the decode starts. It is the one node here you may want to switch off; the note on the right says when, and how.</li></ul><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"chip\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;The render</h2><p>\\n\\n</p><p>Green. These run by themselves.</p><p>\\n\\n</p><ul><li><b>MiniMaxH3ImageToVideo</b> - Builds the empty video and its sound track at the size and length you chose, and reads your prompt through the text encoder. Picture and sound are made together here, which is why H3 clips come out with their own audio.</li><li><b>KSampler</b> - The render. 8 steps, res_multistep, simple. More steps do not make it better: this model was distilled to finish in eight, and the extra ones only cost you time.</li><li><b>ConditioningZeroOut</b> - The empty negative prompt. H3 runs at CFG 1, so there is nothing to write in it.</li><li><b>VAE Decode</b> and <b>VAE Decode Audio</b> - Turn the finished latent into pictures and into sound. Two separate VAEs, which is why the workflow loads two.</li></ul><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"checkmark\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;The result</h2><p>\\n\\n</p><p>Dark red, at the end.</p><p>\\n\\n</p><ul><li><b>Save Mp4 Pixaroma</b> - Writes the clip with its sound to output, and plays it here so you do not have to go and find it. The audio fade is set to 200 ms: that is the smallest fade that reliably hides the click H3 puts at the start of a music track.</li><li><b>Run Timer Pixaroma</b> - How long the last run took. Handy when you are trying sizes against the table in the other note.</li></ul><p>\\n\\n</p>\", \"buttonColor\": \"#f66744\", \"lineColor\": \"#f66744\", \"width\": 720, \"height\": 1229, \"backgroundColor\": \"#2a2a2a\"}"
+  },
+  "class_type": "PixaromaNote",
+  "_meta": {
+   "title": "Note Pixaroma"
+  }
+ },
+ "242": {
+  "inputs": {
+   "note_json": "{\"version\": 1, \"content\": \"<h1>SETTINGS AND RUN TIME</h1><p>\\n\\n</p><h2><span data-ic=\\\"chip\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;What this workflow makes</h2><p>\\n\\n</p><p>A video from words alone, with its own sound. Nothing is fed in but your prompt: the model invents the person, the room and the light, which is why the prompt has to name them. Picture and audio are generated together, so the clip arrives with room tone, effects and, if you asked for it, music.</p><p>\\n\\n</p><p>Every number below was measured on a <b>24 GB RTX 4090</b> with this workflow and its own settings, each run on a fresh seed. A different card gives different numbers, but the shape holds: the cost goes up with the pixels and with the frames.</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"chip\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;How long a Run takes</h2><p>\\n\\n</p><table class=\\\"pix-note-grid\\\" style=\\\"--pix-note-grid-border: #f66744; --pix-note-grid-header-bg: #1a1a1a\\\"><thead><tr><th>Size</th><th>5 seconds</th><th>10 seconds</th><th>15 seconds</th></tr></thead><tbody><tr><td>864 x 480</td><td>36 s</td><td>1 min 09 s</td><td>1 min 45 s</td></tr><tr><td>1216 x 672</td><td>1 min 08 s</td><td>2 min 20 s</td><td>3 min 52 s</td></tr><tr><td>1344 x 768</td><td>1 min 24 s</td><td>2 min 53 s</td><td>4 min 54 s</td></tr><tr><td>1504 x 832</td><td>1 min 43 s</td><td>3 min 42 s</td><td>6 min 29 s</td></tr></tbody></table><p>\\n\\n</p><p>The model only accepts certain lengths, so the columns are really <b>124 frames / 243 frames / 362 frames</b> at 24 frames a second, which is 5.17 s, 10.12 s, 15.08 s.</p><p>\\n\\n</p><p>Read it across and it is roughly proportional: three times the seconds costs about three times the time (<b>36 s</b> to <b>1 min 45 s</b> at 864 x 480). Read it down and the same is true of size (<b>36 s</b> to <b>1 min 43 s</b> going from 864 x 480 to 1504 x 832). There is no cheap corner: if a Run is too slow, the thing to cut is whichever of the two you need least.</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"warning-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;The first run of the session</h2><p>\\n\\n</p><p>The first Run after starting ComfyUI has to get <b>20.6 GB</b> of model and <b>14.6 GB</b> of text encoder into the card. Measured on the same clip, <b>864 x 480</b> at 5.2 seconds: <b>39 s</b> with the models unloaded first, <b>30 s</b> with them already in memory. About 9 seconds, which is less than people expect.</p><p>\\n\\n</p><p>That is because the model file was still in this machine's file cache. The very first load after switching the computer on reads it off the disk for real and will be slower than this: that case was not measured, so no number is given for it.</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"warning-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;What it takes off the card</h2><p>\\n\\n</p><p>The graphics card peaked at about <b>23 GB</b> during these runs - and it was the same at EVERY size and every length in the table above, from the smallest to the largest. ComfyUI keeps what it can and hands back what it has to, so the number does not tell you which rows are heavy. What it does tell you is that a 24 GB card is comfortable with all of them.</p><p>\\n\\n</p><p>On a smaller card, start at the top of the table and work down. The small sizes are there for exactly that, and a clip that is too big for the card gets slow long before it stops working.</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"chip\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;The Free VRAM node, and how to switch it off</h2><p>\\n\\n</p><p>The teal <b>Free VRAM</b> node sits between the sampler and the video decode. When the sampler finishes it hands the card back, so the decode starts with an empty card instead of squeezing in beside a model that is no longer needed.</p><p>\\n\\n</p><p><b>Why it is here.</b> Change the size and run again, and the decode can crawl: measured on a 4090, one decode took <b>89 seconds</b> where the same clip normally takes about <b>9</b>. The card was full, so it spent the time shuffling memory instead of working. This node is what stops that.</p><p>\\n\\n</p><p><b>What it costs.</b> Nothing you can measure. Three runs with it against three without, same seeds and the same size: it added about <b>1 second</b> a run, and the gap between runs of the same kind was wider than that. How much memory it hands back depends on what that run had loaded, and the node shows the figure on its own face after every run.</p><p>\\n\\n</p><p><b>To switch it off:</b> click the node and press <b>Ctrl+B</b> to bypass it. The latent then passes straight through and the rest of the graph is untouched. Press Ctrl+B again to turn it back on. Do not use Mute (Ctrl+M) on this one: a muted node sends nothing at all, and the decode below it would have no picture to work from.</p><p>\\n\\n</p><p>It is worth switching off only if your models sit on a slow drive, where loading them again each run costs real time. On a fast NVMe, leave it on.</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><h2><span data-ic=\\\"chip\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;What to change, and what to leave</h2><p>\\n\\n</p><p>The three nodes above the graph are the FastH3 setup. Leave them. The sampler is on 8 steps because the model was distilled to finish in eight: more steps cost time and do not improve it.</p><p>Size and duration are the two knobs that cost you time, and the tables above say how much. Everything else is free to change.</p><p>A prompt written the way H3 wants it makes more difference than any of these numbers. The note on the left links a free Gemini Gem that writes them.</p>\", \"buttonColor\": \"#f66744\", \"lineColor\": \"#f66744\", \"width\": 810, \"height\": 1379, \"backgroundColor\": \"#2a2a2a\"}"
+  },
+  "class_type": "PixaromaNote",
+  "_meta": {
+   "title": "Note Pixaroma"
+  }
+ },
+ "243": {
+  "inputs": {
+   "value": [
+    "225",
+    0
+   ],
+   "FreeVramState": "{\"mode\":\"all\",\"gc\":true,\"everyRun\":true,\"useThreshold\":false,\"thresholdGb\":8}"
+  },
+  "class_type": "PixaromaFreeVram",
+  "_meta": {
+   "title": "Free VRAM Pixaroma"
+  }
+ }
+}

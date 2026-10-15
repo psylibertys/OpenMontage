@@ -1,0 +1,16 @@
+{
+  "project_id": "empty-center-of-wheel-20260812", "title": "车轮最重要的地方是空的", "cover_title": "留一点空", "cover_lines": ["最重要的地方", "是空的"],
+  "profile": "youtube_landscape", "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video", "remotion_timeout_ms": 600000,
+  "retention": {"cleanup_remotion_public": true, "cleanup_intermediate_renders": false}, "stock_library": {"enabled": false, "download_sources": ["pexels", "pixabay", "mixkit"], "rotate_download_sources": true},
+  "target_platform": "16:9 landscape", "target_duration_seconds": 55, "tone": "简洁、安静、有启发", "target_audience": "日程过满、难以休息的中文观众", "key_points": ["轮毂的空使车轮可用", "日程过满会失去转动空间", "空白是功能而非浪费"], "core_message": "空白是车轴进来的地方，也是重新出发的地方。",
+  "voice_style": "成年女性普通话声线，中速，清晰、沉静", "speaker_directions": "故事部分自然，引用处略停顿，结尾放慢。",
+  "tts": {"provider":"edge","version":"7.2.7","voice":"zh-CN-XiaoxiaoNeural","rate":"+0%","pitch":"+0Hz","volume":"+0%","generation_mode":"single_pass"},
+  "music":{"library_dir":"/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐","preferred_keywords":["minimal","ambient","piano","纯音乐"]},
+  "style":{"card_font":"fronts/漓雨手书_100font/LiyuXingkai.ttf","cover_font":"fronts/漓雨手书_100font/LiyuXingkai.ttf","black_overlay_opacity":0.5,"cover_enabled":true,"cover_duration_frames":1,"cover_font_size":220,"card_title_font_size":128,"card_subtitle_font_size":50,"card_line_gap":30,"title_color_rgb":[248,246,231],"accent_color_rgb":[214,179,90],"subtitle_color":"#FFFFFF","subtitle_outline_color":"#000000","subtitle_outline_width":3,"subtitle_font_size":52,"music_start_seconds":0,"music_volume":0.08},
+  "sections":[
+    {"id":"s1","label":"塞满轮毂","text":"有个工匠做了一只漂亮的车轮。三十根辐条整整齐齐，唯独中间留着一个洞。他越看越难受：这么好的轮子，怎么能有一块空着？于是他找来最结实的木头，把轮毂塞得严严实实。车轮终于完整了，却再也装不上车轴。","queries":[{"query":"woodworker crafting wooden wheel workshop","description":"工匠制作木轮。"},{"query":"wooden wagon wheel close up hub","description":"轮毂中央的空洞。"},{"query":"nature empty road landscape","description":"空与道路的意象。"}]},
+    {"id":"s2","label":"无之用","text":"《道德经》说，三十辐共一毂，当其无，有车之用。让车轮转起来的，恰恰是那块什么都没放的地方。","queries":[{"query":"wagon wheel turning slow motion","description":"车轮因为空心轮毂而转动。"}],"cards":[{"id":"dao-card","title_lines":["当其无", "有车之用"],"subtitle":"让车轮转动的，恰恰是空"}]},
+    {"id":"s3","label":"塞满一天","text":"人的一天也一样。会议之间塞消息，吃饭时塞视频，睡前再塞一点焦虑。日程看起来满了，生活却转不动了。","queries":[{"query":"busy office calendar meetings phone messages","description":"被任务填满的一天。"},{"query":"person scrolling phone while eating alone","description":"吃饭时也没有空白。"}],"cards":[{"id":"full-card","title_lines":["日程满了"],"subtitle":"生活却转不动了"}]},
+    {"id":"s4","label":"收束","text":"空白不是浪费。它是车轴进来的地方，也是你重新出发的地方。","queries":[{"query":"quiet empty room sunlight peaceful","description":"让人重新呼吸的空白。"}],"cards":[{"id":"landing-card","title_lines":["空白不是浪费"],"subtitle":"它是重新出发的地方"}]}
+  ]
+}

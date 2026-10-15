@@ -27,6 +27,7 @@ tests/qa/output/
 
 # Project workspaces (generated assets, renders — all regenerable)
 projects/
+workflow_configs/treeelf-music/*.lock
 
 # Local production caches and personal source assets
 .cache/

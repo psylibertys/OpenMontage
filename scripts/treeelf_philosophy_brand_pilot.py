@@ -151,7 +151,7 @@ def scan_inbox(
     previous = load_json(ledger_path) if ledger_path.exists() else {"version": "1.0", "items": {}}
     previous_items = previous.get("items", {})
     items: dict[str, Any] = {}
-    counts = {"eligible": 0, "draft": 0, "other": 0, "changed": 0}
+    counts = {"eligible": 0, "completed": 0, "reserved": 0, "changed": 0}
 
     for path in sorted(inbox_dir.glob("*.md")):
         metadata, body = parse_markdown(path)
@@ -159,14 +159,13 @@ def scan_inbox(
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         production_status = str(metadata.get("production_status") or "discovered")
         reservation = reservations.get(str(path.resolve()))
-        eligible = (
-            metadata.get("type") == "短视频文案"
-            and metadata.get("status") == "ready"
-            and metadata.get("review_status") == "passed"
-            and production_status not in {"completed", "produced", "archived"}
-            and reservation is None
+        video_output = str(metadata.get("video_output") or "").strip()
+        has_completed_video = (
+            production_status in {"completed", "produced", "archived"}
+            or bool(video_output)
         )
-        category = "eligible" if eligible else "draft" if metadata.get("status") == "draft" else "other"
+        eligible = not has_completed_video and reservation is None
+        category = "eligible" if eligible else "completed" if has_completed_video else "reserved"
         counts[category] += 1
         old = previous_items.get(asset_id, {})
         changed = bool(old and old.get("source_sha256") != digest)
@@ -186,6 +185,7 @@ def scan_inbox(
             "production_status": production_status,
             "video_project_id": metadata.get("video_project_id"),
             "video_output": metadata.get("video_output"),
+            "has_completed_video": has_completed_video,
             "changed_since_last_scan": changed,
             "batch_reservation": reservation,
         }
@@ -1179,6 +1179,7 @@ def finalize_gpu_batch(config: dict[str, Any], *, yes: bool, shutdown: bool) -> 
         str(REPO_ROOT / "scripts" / "finalize_autodl_comfyui_batch.py"),
         "--project-dir", str(project_dir(config)),
         "--policy", str(REPO_ROOT / config["retention_policy"]),
+        "--local-inventory", str(project_dir(config) / "artifacts" / "candidate_asset_manifest.json"),
     ]
     if yes:
         command.append("--yes")

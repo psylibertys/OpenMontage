@@ -44,15 +44,15 @@ def _make_batch(tmp_path: Path) -> tuple[Path, dict, dict]:
     return batch_path, batch, series
 
 
-def test_batch_validation_and_gpu_plan_use_fifteen_images_two_wan(tmp_path: Path) -> None:
+def test_batch_validation_and_gpu_plan_use_twelve_images_one_wan(tmp_path: Path) -> None:
     batch_path, batch, series = _make_batch(tmp_path)
 
     assert batch_workflow.validate_batch(batch, batch_path, series) == []
     plan = batch_workflow.gpu_plan(batch, batch_path, series)
 
-    assert plan["totals"] == {"narration_segments": 4, "images": 30, "wan_clips": 4}
+    assert plan["totals"] == {"narration_segments": 4, "images": 24, "wan_clips": 2}
     assert plan["queue_depth"] == 2
-    assert plan["estimated_effective_gpu_seconds"] == 1062.56
+    assert plan["estimated_effective_gpu_seconds"] == 712.72
 
 
 def test_prepare_batch_creates_reservation_and_retention_gate(tmp_path: Path) -> None:
@@ -73,7 +73,7 @@ def test_prepare_batch_creates_reservation_and_retention_gate(tmp_path: Path) ->
     assert manifest["model_group_order"] == [
         "qwen3_tts_voice_clone_load",
         "krea2_low_vram",
-        "wan22_i2v_q6",
+        "minimax_fasth3_i2v",
     ]
     assert policy["backup_then_delete_runtime_types"] == ["input", "output", "temp"]
     assert policy["backup_then_delete_voice_files"] == []
@@ -209,3 +209,38 @@ def test_batch_backup_cleanup_requires_delivery_and_supports_dry_run(tmp_path: P
     )
     assert applied["deleted"]
     assert not backup.exists()
+
+
+def test_stage_local_batch_passes_same_batch_music_history(tmp_path: Path, monkeypatch) -> None:
+    batch_path, batch, series = _make_batch(tmp_path)
+    projects = tmp_path / "projects"
+    batch_workflow.prepare_batch(batch, batch_path, series, projects_dir=projects)
+    manifest_path = projects / batch["batch_id"] / "artifacts" / "batch_manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["status"] = "local_pending"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    received: list[list[str]] = []
+
+    def fake_stage(config, _series, *, projects_dir, used_music_paths):
+        received.append(list(used_music_paths))
+        selected = tmp_path / ("music-a.mp3" if not used_music_paths else "music-b.mp3")
+        report = projects_dir / config["project_id"] / "artifacts" / "music_selection.json"
+        report.parent.mkdir(parents=True, exist_ok=True)
+        report.write_text(json.dumps({"selected": {"path": str(selected)}}), encoding="utf-8")
+        return {
+            "music_selection": str(report),
+            "props": str(report.with_name("remotion_props.json")),
+            "public_dir": str(tmp_path / "public" / config["project_id"]),
+        }
+
+    monkeypatch.setattr(batch_workflow, "stage_remotion", fake_stage)
+    result = batch_workflow.stage_local_batch(
+        batch, batch_path, series, projects_dir=projects
+    )
+
+    assert received == [[], [str(tmp_path / "music-a.mp3")]]
+    assert result["used_music_paths"] == [
+        str(tmp_path / "music-a.mp3"),
+        str(tmp_path / "music-b.mp3"),
+    ]
+    assert json.loads(manifest_path.read_text(encoding="utf-8"))["status"] == "local_staged"

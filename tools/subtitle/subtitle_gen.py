@@ -8,6 +8,7 @@ the standard library.
 from __future__ import annotations
 
 import json
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -25,7 +26,7 @@ from tools.base_tool import (
 
 class SubtitleGen(BaseTool):
     name = "subtitle_gen"
-    version = "0.1.0"
+    version = "0.2.0"
     tier = ToolTier.CORE
     capability = "subtitle"
     provider = "openmontage"
@@ -37,7 +38,13 @@ class SubtitleGen(BaseTool):
     install_instructions = "No external dependencies required."
     agent_skills = ["remotion-best-practices"]
 
-    capabilities = ["generate_srt", "generate_vtt", "generate_caption_json"]
+    capabilities = [
+        "generate_srt",
+        "generate_vtt",
+        "generate_caption_json",
+        "generate_remotion_word_json",
+        "rebase_edl",
+    ]
 
     input_schema = {
         "type": "object",
@@ -49,7 +56,7 @@ class SubtitleGen(BaseTool):
             },
             "format": {
                 "type": "string",
-                "enum": ["srt", "vtt", "json"],
+                "enum": ["srt", "vtt", "json", "remotion_json"],
                 "default": "srt",
             },
             "output_path": {"type": "string"},
@@ -69,6 +76,28 @@ class SubtitleGen(BaseTool):
                     "Example: {\"cloud\": \"Claude\", \"co-pilot\": \"Copilot\"}."
                 ),
             },
+            "edl_operations": {
+                "type": "array",
+                "description": "KEEP/CUT/BLEEP operations in source timebase.",
+            },
+            "preserve_keep_order": {
+                "type": "boolean",
+                "default": False,
+                "description": (
+                    "Preserve KEEP operations in declared playback order. Use for "
+                    "cold opens and other intentional non-chronological EDLs."
+                ),
+            },
+            "allow_overlapping_keeps": {
+                "type": "boolean",
+                "default": False,
+                "description": (
+                    "Allow ordered KEEP ranges to replay overlapping source time. "
+                    "Keep false for normal cold opens; enable only for an audited, "
+                    "intentional repetition."
+                ),
+            },
+            "bleep_replacement": {"type": "string", "default": "[哔]"},
         },
     }
 
@@ -87,12 +116,23 @@ class SubtitleGen(BaseTool):
         highlight_style = inputs.get("highlight_style", "none")
         output_path = inputs.get("output_path")
         corrections = inputs.get("corrections")
+        edl_operations = inputs.get("edl_operations")
+        preserve_keep_order = inputs.get("preserve_keep_order", False)
+        allow_overlapping_keeps = inputs.get("allow_overlapping_keeps", False)
+        bleep_replacement = inputs.get("bleep_replacement", "[哔]")
 
         start = time.time()
 
         # Apply word corrections if provided
         if corrections:
             segments = self._apply_corrections(segments, corrections)
+
+        edit_metadata: dict[str, Any] = {}
+        if edl_operations:
+            segments, edit_metadata = self._rebase_segments_to_edl(
+                segments, edl_operations, bleep_replacement, preserve_keep_order,
+                allow_overlapping_keeps,
+            )
 
         # Build cues from word-level timestamps
         cues = self._build_cues(segments, max_words, max_chars)
@@ -104,8 +144,48 @@ class SubtitleGen(BaseTool):
             content = self._render_vtt(cues, highlight_style)
             ext = ".vtt"
         elif fmt == "json":
-            content = json.dumps({"cues": cues, "highlight_style": highlight_style}, indent=2)
+            content = json.dumps(
+                {
+                    "cues": cues,
+                    "highlight_style": highlight_style,
+                    **edit_metadata,
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
             ext = ".caption.json"
+        elif fmt == "remotion_json":
+            words = [
+                {
+                    "word": word["word"].strip(),
+                    "startMs": round(word["start"] * 1000),
+                    "endMs": round(word["end"] * 1000),
+                }
+                for cue in cues
+                for word in cue.get("words", [])
+            ]
+            content = json.dumps(
+                {
+                    "words": words,
+                    "captions": [
+                        {
+                            "text": word["word"],
+                            "startMs": word["startMs"],
+                            "endMs": word["endMs"],
+                            "timestampMs": word["startMs"],
+                            "confidence": 1.0,
+                        }
+                        for word in words
+                    ],
+                    "durationMs": round(edit_metadata.get("duration_seconds", 0) * 1000)
+                    if edit_metadata
+                    else (words[-1]["endMs"] if words else 0),
+                    **edit_metadata,
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+            ext = ".captions.json"
         else:
             return ToolResult(success=False, error=f"Unknown format: {fmt}")
 
@@ -123,6 +203,7 @@ class SubtitleGen(BaseTool):
                 "format": fmt,
                 "cue_count": len(cues),
                 "output": str(out),
+                **edit_metadata,
             },
             artifacts=[str(out)],
             duration_seconds=round(elapsed, 2),
@@ -192,7 +273,7 @@ class SubtitleGen(BaseTool):
 
         for w in all_words:
             word_text = w["word"].strip()
-            candidate = f"{buf_text} {word_text}".strip() if buf_text else word_text
+            candidate = self._join_word_text([*buf, w])
 
             if buf and (len(buf) >= max_words or len(candidate) > max_chars):
                 cues.append({
@@ -209,7 +290,7 @@ class SubtitleGen(BaseTool):
                 buf_text = ""
 
             buf.append(w)
-            buf_text = f"{buf_text} {word_text}".strip() if buf_text else word_text
+            buf_text = self._join_word_text(buf)
 
         # Flush remaining
         if buf:
@@ -225,6 +306,143 @@ class SubtitleGen(BaseTool):
             })
 
         return cues
+
+    @staticmethod
+    def _join_word_text(words: list[dict]) -> str:
+        """Join ASR tokens without inserting spaces between Chinese characters."""
+        result = ""
+        for item in words:
+            token = str(item.get("word", "")).strip()
+            if not token:
+                continue
+            if result and re.search(r"[A-Za-z0-9]$", result) and re.match(r"^[A-Za-z0-9]", token):
+                result += " "
+            result += token
+        return result
+
+    @classmethod
+    def _rebase_segments_to_edl(
+        cls,
+        segments: list[dict],
+        operations: list[dict],
+        bleep_replacement: str,
+        preserve_keep_order: bool = False,
+        allow_overlapping_keeps: bool = False,
+    ) -> tuple[list[dict], dict[str, Any]]:
+        """Apply an EDL and convert source timestamps to a contiguous clip timebase."""
+        keep_intervals = [
+            (float(op["start"]), float(op["end"]))
+            for op in operations
+            if op.get("action") == "KEEP" and float(op["end"]) > float(op["start"])
+        ]
+        if preserve_keep_order and not allow_overlapping_keeps:
+            for index, (start, end) in enumerate(keep_intervals):
+                for later_start, later_end in keep_intervals[index + 1:]:
+                    if min(end, later_end) - max(start, later_start) > 0.001:
+                        raise ValueError(
+                            "Ordered KEEP ranges overlap and would replay source speech; "
+                            "subtract the cold-open interval from the main body or set "
+                            "allow_overlapping_keeps=true for audited intentional repetition"
+                        )
+        keep = keep_intervals if preserve_keep_order else cls._merge_intervals(keep_intervals)
+        cuts = cls._merge_intervals(
+            (float(op["start"]), float(op["end"]))
+            for op in operations
+            if op.get("action") == "CUT" and float(op["end"]) > float(op["start"])
+        )
+        timeline = cls._subtract_intervals(keep, cuts)
+        source_words = [word for seg in segments for word in seg.get("words", [])]
+
+        bleep_sources = [
+            (float(op["start"]), float(op["end"]), op.get("subtitle", bleep_replacement))
+            for op in operations
+            if op.get("action") == "BLEEP" and float(op["end"]) > float(op["start"])
+        ]
+        rebased_words: list[dict[str, Any]] = []
+        rebased_bleeps: list[dict[str, Any]] = []
+        cursor = 0.0
+
+        for interval_start, interval_end in timeline:
+            duration = interval_end - interval_start
+            active_bleeps: list[tuple[float, float, str]] = []
+            for bleep_start, bleep_end, replacement in bleep_sources:
+                start = max(interval_start, bleep_start)
+                end = min(interval_end, bleep_end)
+                if end > start:
+                    active_bleeps.append((start, end, replacement))
+                    rebased_bleeps.append({
+                        "startMs": round((cursor + start - interval_start) * 1000),
+                        "endMs": round((cursor + end - interval_start) * 1000),
+                        "replacement": replacement,
+                    })
+
+            for word in source_words:
+                word_start = float(word["start"])
+                word_end = float(word["end"])
+                midpoint = (word_start + word_end) / 2
+                if not interval_start <= midpoint < interval_end:
+                    continue
+                if any(start <= midpoint < end for start, end, _ in active_bleeps):
+                    continue
+                rebased_words.append({
+                    "word": word.get("word", ""),
+                    "start": cursor + max(word_start, interval_start) - interval_start,
+                    "end": cursor + min(word_end, interval_end) - interval_start,
+                })
+
+            for start, end, replacement in active_bleeps:
+                rebased_words.append({
+                    "word": replacement,
+                    "start": cursor + start - interval_start,
+                    "end": cursor + end - interval_start,
+                })
+            cursor += duration
+
+        rebased_words.sort(key=lambda word: (word["start"], word["end"]))
+        result = []
+        if rebased_words:
+            result = [{
+                "start": rebased_words[0]["start"],
+                "end": rebased_words[-1]["end"],
+                "text": cls._join_word_text(rebased_words),
+                "words": rebased_words,
+            }]
+        return result, {
+            "duration_seconds": round(cursor, 6),
+            "bleeps": rebased_bleeps,
+            "timebase": "clip_relative",
+        }
+
+    @staticmethod
+    def _merge_intervals(intervals: Any) -> list[tuple[float, float]]:
+        merged: list[list[float]] = []
+        for start, end in sorted(intervals):
+            if not merged or start > merged[-1][1]:
+                merged.append([start, end])
+            else:
+                merged[-1][1] = max(merged[-1][1], end)
+        return [(start, end) for start, end in merged]
+
+    @staticmethod
+    def _subtract_intervals(
+        keep: list[tuple[float, float]], cuts: list[tuple[float, float]]
+    ) -> list[tuple[float, float]]:
+        result: list[tuple[float, float]] = []
+        for keep_start, keep_end in keep:
+            pieces = [(keep_start, keep_end)]
+            for cut_start, cut_end in cuts:
+                next_pieces = []
+                for start, end in pieces:
+                    if cut_end <= start or cut_start >= end:
+                        next_pieces.append((start, end))
+                    else:
+                        if cut_start > start:
+                            next_pieces.append((start, min(cut_start, end)))
+                        if cut_end < end:
+                            next_pieces.append((max(cut_end, start), end))
+                pieces = next_pieces
+            result.extend(pieces)
+        return result
 
     def _render_srt(self, cues: list[dict], highlight_style: str = "none") -> str:
         lines = []

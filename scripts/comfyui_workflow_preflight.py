@@ -47,7 +47,9 @@ def _graphs() -> dict[str, tuple[dict[str, Any], str]]:
         uploads: dict[str, Any] = {}
         if spec.get("source_image"):
             uploads["source_image"] = "source.png"
-        if spec.get("source_audio"):
+        if spec.get("last_image"):
+            uploads["last_image"] = "last.png"
+        if spec.get("source_audio") or spec.get("source_audio_state"):
             uploads["source_audio"] = "source.mp3"
         if spec.get("source_video"):
             uploads["source_video"] = "source.mp4"

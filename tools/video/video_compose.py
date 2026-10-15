@@ -189,6 +189,15 @@ class VideoCompose(BaseTool):
             "codec": {"type": "string", "default": "libx264"},
             "crf": {"type": "integer", "default": 23},
             "preset": {"type": "string", "default": "medium"},
+            "pixel_format": {"type": "string"},
+            "video_filter": {"type": "string"},
+            "video_profile": {"type": "string"},
+            "color_range": {"type": "string", "enum": ["tv", "pc"]},
+            "fps": {"type": "number", "minimum": 1},
+            "audio_sample_rate": {"type": "integer", "minimum": 8000},
+            "audio_channels": {"type": "integer", "enum": [1, 2]},
+            "audio_filter": {"type": "string"},
+            "movflags": {"type": "string"},
             "remotion_timeout_ms": {
                 "type": "integer",
                 "description": (
@@ -197,6 +206,10 @@ class VideoCompose(BaseTool):
                     "Raise this when the browser is slow to start (e.g. restricted "
                     "networks). The subprocess timeout is widened to match."
                 ),
+            },
+            "public_dir": {
+                "type": "string",
+                "description": "Optional project-specific Remotion public directory.",
             },
         },
     }
@@ -1754,6 +1767,16 @@ class VideoCompose(BaseTool):
             f"--props={props_path}",
         ]
 
+        public_dir = inputs.get("public_dir")
+        if public_dir:
+            public_path = Path(public_dir).resolve()
+            if not public_path.exists():
+                return ToolResult(
+                    success=False,
+                    error=f"Remotion public_dir not found: {public_path}",
+                )
+            cmd.append(f"--public-dir={public_path}")
+
         # Apply media profile dimensions
         profile_name = inputs.get("profile")
         if profile_name:
@@ -2521,6 +2544,25 @@ class VideoCompose(BaseTool):
             "-c:v", codec, "-crf", str(crf), "-preset", preset,
             "-c:a", "aac", "-b:a", "192k",
         ]
+
+        if inputs.get("pixel_format"):
+            cmd.extend(["-pix_fmt", str(inputs["pixel_format"])])
+        if inputs.get("video_filter"):
+            cmd.extend(["-vf", str(inputs["video_filter"])])
+        if inputs.get("video_profile"):
+            cmd.extend(["-profile:v", str(inputs["video_profile"])])
+        if inputs.get("color_range"):
+            cmd.extend(["-color_range", str(inputs["color_range"])])
+        if inputs.get("fps"):
+            cmd.extend(["-r", str(inputs["fps"])])
+        if inputs.get("audio_sample_rate"):
+            cmd.extend(["-ar", str(inputs["audio_sample_rate"])])
+        if inputs.get("audio_channels"):
+            cmd.extend(["-ac", str(inputs["audio_channels"])])
+        if inputs.get("audio_filter"):
+            cmd.extend(["-af", str(inputs["audio_filter"])])
+        if inputs.get("movflags"):
+            cmd.extend(["-movflags", str(inputs["movflags"])])
 
         # Apply media profile if specified
         if profile_name:

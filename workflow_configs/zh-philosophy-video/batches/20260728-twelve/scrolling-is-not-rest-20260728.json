@@ -1,0 +1,309 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-scrolling-is-not-rest-20260728",
+  "title": "刷到累不是休息",
+  "cover_title": "刷到脑雾",
+  "cover_english_title": "LET THE SYSTEM REST",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-28_刷到累不是休息_重写版.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "digital",
+      "fatigue",
+      "calm",
+      "ambient",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "内容轻松却系统过载",
+      "刷完后的脑雾与沉重",
+      "单一情境带来的恢复"
+    ],
+    "metaphor_candidates": [
+      "脑内转接台",
+      "不停换工牌的值班员",
+      "三条街",
+      "摘下工牌"
+    ],
+    "style_families": [
+      "cinematic night photography",
+      "surreal switchboard collage",
+      "soft minimal color fields"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic night photography",
+      "surreal switchboard collage",
+      "soft minimal color fields"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 脑内转接台, 不停换工牌的值班员, 三条街, 摘下工牌; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_only",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97801,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an exhausted switchboard operator finally removing a badge as many glowing channels go quiet; style_logic: cinematic night photography and surreal switchboard collage compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, an exhausted switchboard operator finally removing a badge as many glowing channels go quiet, cinematic night photography blended with surreal switchboard collage, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97802,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person scrolling in bed while wildly different tiny scenes flash across surrounding light panels; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person scrolling in bed while wildly different tiny scenes flash across surrounding light panels, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97803,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a switchboard operator rapidly reconnecting dog, economy and cooking channels; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a switchboard operator rapidly reconnecting dog, economy and cooking channels, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97804,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one finger moving slightly while a hidden operator runs through three long corridors; style_logic: soft minimal color fields provides the scene structure while cinematic night photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, one finger moving slightly while a hidden operator runs through three long corridors, soft minimal color fields blended with cinematic night photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97805,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: hundreds of small participants represented as lights connected through fatigue, stress and anxiety pathways; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, hundreds of small participants represented as lights connected through fatigue, stress and anxiety pathways, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97806,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a clean causal diagram made of objects showing an indirect route rather than a direct fall; style_logic: surreal switchboard collage provides the scene structure while soft minimal color fields translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a clean causal diagram made of objects showing an indirect route rather than a direct fall, surreal switchboard collage blended with soft minimal color fields, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97807,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: light entertainment at the surface while the underlying system overheats; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, light entertainment at the surface while the underlying system overheats, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97808,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person lowering the phone and noticing foggy attention and heavy posture; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person lowering the phone and noticing foggy attention and heavy posture, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97809,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a hand wanting one more swipe while the switchboard remains fully lit; style_logic: surreal switchboard collage provides the scene structure while soft minimal color fields translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a hand wanting one more swipe while the switchboard remains fully lit, surreal switchboard collage blended with soft minimal color fields, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97810,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a quiet ten-minute walk containing only one continuous street and one rhythm; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a quiet ten-minute walk containing only one continuous street and one rhythm, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97811,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: warm shower steam filling a single calm sensory space; style_logic: cinematic night photography provides the scene structure while surreal switchboard collage translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, warm shower steam filling a single calm sensory space, cinematic night photography blended with surreal switchboard collage, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97812,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one complete song visualized as a continuous wave from beginning to end; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one complete song visualized as a continuous wave from beginning to end, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 97851,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens a person scrolling in bed while wildly different tiny scenes flash across surrounding light panels without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P06.png",
+        "from": 36,
+        "to": 42,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "判断是不是休息",
+        "left": "内容轻松",
+        "operator": "≠",
+        "right": "系统停工"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "questions",
+        "eyebrow": "换十分钟单一情境",
+        "items": [
+          "走一段路",
+          "洗个澡",
+          "完整听完一首歌"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

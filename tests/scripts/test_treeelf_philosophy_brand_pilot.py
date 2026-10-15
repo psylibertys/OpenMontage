@@ -33,7 +33,7 @@ def test_reviewed_brand_pilot_config_is_valid() -> None:
     assert len({item["instruct"] for item in config["voice_selection"]["candidates"]}) == 10
 
 
-def test_scan_inbox_only_reads_root_and_filters_review_status(tmp_path: Path) -> None:
+def test_scan_inbox_only_reads_root_and_ignores_editorial_status(tmp_path: Path) -> None:
     inbox = tmp_path / "inbox"
     inbox.mkdir()
     eligible = inbox / "ready.md"
@@ -54,8 +54,9 @@ def test_scan_inbox_only_reads_root_and_filters_review_status(tmp_path: Path) ->
     report = scan_inbox(inbox, ledger_path=ledger)
 
     assert report["root_markdown_count"] == 2
-    assert report["counts"]["eligible"] == 1
-    assert report["counts"]["draft"] == 1
+    assert report["counts"]["eligible"] == 2
+    assert report["items"]["draft-id"]["eligibility"] == "eligible"
+    assert report["items"]["draft-id"]["review_status"] == "pending"
     assert set(report["items"]) == {"ready-id", "draft-id"}
 
 
@@ -94,7 +95,7 @@ def test_scan_inbox_excludes_completed_production(tmp_path: Path) -> None:
     )
     report = scan_inbox(inbox, ledger_path=tmp_path / "ledger.json")
     item = report["items"]["done-1"]
-    assert item["eligibility"] == "other"
+    assert item["eligibility"] == "completed"
     assert item["production_status"] == "completed"
     assert item["video_project_id"] == "project-1"
     assert item["video_output"] == "/tmp/final.mp4"
@@ -127,7 +128,7 @@ def test_scan_inbox_excludes_source_reserved_by_active_batch(tmp_path: Path) -> 
     )
 
     item = report["items"]["reserved-1"]
-    assert item["eligibility"] == "other"
+    assert item["eligibility"] == "reserved"
     assert item["batch_reservation"]["batch_id"] == "treeelf-batch-test"
 
 
@@ -158,6 +159,7 @@ def test_cover_props_use_treeelf_brand_and_direction_layout() -> None:
     assert props["chineseTitle"] == "先开门"
     assert props["englishTitle"] == "OPEN ONE DOOR"
     assert props["backgroundSrc"].endswith("/C01.png")
+    assert props["chineseFontSrc"].endswith("/fonts/LiyuXingkai.ttf")
 
 
 def test_gpu_event_summary_tracks_kind_averages_and_failures() -> None:

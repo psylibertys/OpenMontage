@@ -1,0 +1,254 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-borrowed-bricks-20260727-b01",
+  "title": "借来的砖",
+  "cover_title": "借来的砖",
+  "cover_english_title": "Borrowed Bricks",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-27_借来的砖.md",
+  "estimated_duration_seconds": 90,
+  "narration_text": "这座城有条规则：今天每砌一块没人需要的砖，五十年后的某座房子，就会少一块。\n\n白天，没人看得见后果。只有到了午夜，五十年后的街道才会在河对岸显出影子。当下用得越多，那些未来房屋上的缺口就越多。\n\n一名泥瓦匠奉命在广场上建造纪念高塔。高塔无人居住，也不遮风挡雨，只需要比城里所有建筑都高。\n\n她每砌高一层，河对岸就多几面漏风的墙。她一直没有停下，因为那些房子和里面的人，在她看来都还太遥远。\n\n封顶那天，她在最后一块砖的底部，看见了自己的姓和五十年后的日期。\n\n那天午夜，对岸出现了一座挂着同样姓氏门牌的小屋。屋顶缺了一大块，雨水正落在一张小床上。\n\n泥瓦匠回到广场，没有放上最后一块砖。她反而拆掉了高塔最上面两层无用的尖顶。\n\n每拆下一块砖，对岸便有一个缺口慢慢合上。\n\n天亮时，广场上的塔矮了两层，顶端平平的。而河对岸消失前，那张小床上，已经没有雨了。",
+  "protagonist": {
+    "type": "成年女性",
+    "description": "一位三十岁左右的女性泥瓦匠，深棕色利落短直发，暖褐肤色，清醒坚定的眼神，穿赭石色工装夹克、灰蓝工作裤和结实短靴，腰间系旧皮工具带；本篇所有人物镜头保持相同面容、发型、服装与配色。",
+    "selection_rationale": "泥瓦匠的伦理觉醒与性别无关，女性可以自然承担这一劳动者角色，符合中性角色优先女性的栏目偏好。",
+    "appearance": {
+      "age_band": "三十岁左右",
+      "hair": "深棕色利落短直发",
+      "silhouette": "赭石工装夹克、灰蓝工作裤、旧皮工具带与结实短靴构成稳健劳动者轮廓"
+    }
+  },
+  "visual_brief": {
+    "fable_law": "当下每砌一块超出真实需要的砖，河对岸五十年后的某座房屋便真实少掉一块。",
+    "central_metaphor": "宏伟但无用的当代高塔，正在借走尚未出生者屋顶上的砖。",
+    "emotional_core": [
+      "宏大诱惑",
+      "迟来的看见",
+      "责任觉醒",
+      "克制修复"
+    ],
+    "symbolic_objects": [
+      "刻着未来日期的砖",
+      "河对岸缺口累累的屋顶",
+      "被拆矮两层的平顶高塔"
+    ],
+    "protagonist_identity": "一位三十岁左右的女性泥瓦匠，深棕色短发，暖褐肤色，赭石工装夹克、灰蓝工作裤、旧皮工具带。",
+    "art_style_logic": "以社会现实主义的劳动现场建立可信因果，以建筑剖面和微缩城市语言同时呈现两个时代，再用克制的魔法现实让砖块跨越五十年的交换成为可见事件；赭石、砖红与夜间青蓝的对照对应当下消耗和未来代价。",
+    "technical_guardrails": [
+      "text-free generated image",
+      "no readable text",
+      "no letters",
+      "no logo",
+      "no watermark",
+      "no pseudo typography"
+    ]
+  },
+  "character_pack": {
+    "enabled": true,
+    "mode": "single_turnaround_sheet",
+    "turnaround_prompt": "one clean 2x2 character turnaround sheet showing the exact same thirty-year-old woman mason in four distinct views: front, left three-quarter, right profile, and back three-quarter; deep-brown short straight hair, warm brown skin, alert steady eyes, ochre work jacket, slate-blue work trousers, sturdy ankle boots and worn leather tool belt; consistent face, proportions, clothing and palette across all four panels, neutral grounded pose, softly lit plain studio backdrop, social-realist literary picturebook with tactile gouache and paper grain, balanced anatomy and natural hands"
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01",
+      "subject_mode": "protagonist",
+      "script_anchor": "这座城有条规则",
+      "weight": 1,
+      "summary": "城的规则在河两岸同时显现",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "清晨，女泥瓦匠把第一块多余的砖放上高塔，远处河对岸一座未来房屋的墙面同时出现一个清楚缺口。",
+      "fable_law": "当下多用一块砖，未来房屋便少一块，因果在同一构图中第一次真实显现。",
+      "art_style_logic": "建筑剖面式双岸构图让相隔五十年的因果一眼可读，社会现实主义笔触保持劳动现场可信。",
+      "wan_candidate": true,
+      "fable_event_stage": "first_manifestation",
+      "prompt": "vertical 9:16 cinematic literary picturebook, a woman mason places one brick on a rising civic tower at dawn while across a broad river a softly luminous future house simultaneously develops one precise brick-sized gap, both banks clearly visible in one coherent composition, restrained magical realism, architectural cutaway clarity, ochre brick dust against cool cyan future light, tactile gouache and paper grain, stable body and natural hands"
+    },
+    {
+      "id": "beat-02",
+      "subject_mode": "protagonist",
+      "script_anchor": "白天，没人看得见后果",
+      "weight": 1,
+      "summary": "白昼里代价暂时不可见",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "白天的繁忙广场上，女泥瓦匠持续砌塔，河对岸只有平静水雾，周围人只看见高塔变高。",
+      "fable_law": "未来后果在白昼隐去，使多余建造看起来毫无代价。",
+      "art_style_logic": "明亮写实劳动场景与被雾遮住的对岸形成认知盲区，画面强调看不见并不等于不存在。",
+      "prompt": "vertical 9:16 social-realist storybook scene, the same woman mason working on a monumental brick tower in a busy sunlit square, citizens below admire its height, the opposite riverbank dissolved into pale daylight mist, strong vertical architecture and tiny human scale, tactile gouache, warm brick reds and muted blue-gray shadows, stable anatomy"
+    },
+    {
+      "id": "beat-03",
+      "subject_mode": "environment",
+      "script_anchor": "只有到了午夜",
+      "weight": 1,
+      "summary": "午夜未来街道显影",
+      "workflow": "krea2_low_vram",
+      "story_event": "午夜，河对岸浮现一整条五十年后的住宅街，许多墙壁和屋顶带着砖块大小的缺口。",
+      "fable_law": "只有午夜才可看见当下用砖在未来留下的空洞。",
+      "art_style_logic": "蓝晒般的夜景与建筑模型剖面把抽象的代际代价转译成一排可数的真实缺口。",
+      "prompt": "vertical 9:16 human-free panoramic riverbank at midnight, a future residential street materializes across black water like an architectural model, roofs and walls carry many crisp brick-sized gaps, moonlit cyan blueprint atmosphere blended with tactile gouache and miniature set photography, quiet ominous beauty, coherent buildings, deep negative sky"
+    },
+    {
+      "id": "beat-04",
+      "subject_mode": "protagonist",
+      "script_anchor": "一名泥瓦匠奉命",
+      "weight": 1,
+      "summary": "无人使用的纪念高塔拔高",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "女泥瓦匠站在脚手架上砌筑一座无人居住、无法遮风挡雨的纪念高塔，塔身远高于真实需要。",
+      "fable_law": "每一层装饰性高度都在扩大未来房屋的缺口。",
+      "art_style_logic": "夸张但结构可信的垂直透视表现宏伟诱惑，工人的真实尺度揭示人与制度目标的不对等。",
+      "prompt": "vertical 9:16 cinematic social-realist picturebook, the same woman mason high on sturdy scaffolding building an immense ceremonial brick tower with hollow decorative chambers, the tower dominates the civic square yet serves no sheltering function, dramatic upward perspective, ochre dust in late-afternoon light, tactile fresco and gouache texture, coherent masonry and stable body"
+    },
+    {
+      "id": "beat-05",
+      "subject_mode": "environment",
+      "script_anchor": "她每砌高一层",
+      "weight": 1,
+      "summary": "对岸漏风的墙越来越多",
+      "workflow": "krea2_low_vram",
+      "story_event": "夜里，未来街区的缺墙形成一道道冷风通道，窗帘和床单被风吹向缺口。",
+      "fable_law": "高塔增加的砖数对应未来住宅失去的砖数。",
+      "art_style_logic": "室内剖面与风的可视化线条让缺砖从数字变成居住者身体能感到的寒冷。",
+      "prompt": "vertical 9:16 human-free architectural cutaway of several future homes at night, precise brick-sized wall gaps channel pale wind through curtains blankets and simple rooms, layered paper-cut depth blended with luminous watercolor and architectural illustration, cyan night light with small warm interior lamps, every gap reads as a physical consequence"
+    },
+    {
+      "id": "beat-06",
+      "subject_mode": "protagonist",
+      "script_anchor": "她一直没有停下",
+      "weight": 1,
+      "summary": "遥远让她继续工作",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "女泥瓦匠在高处俯瞰模糊对岸，短暂停顿后又举起砖，远方未来房屋像微小模型。",
+      "fable_law": "时间距离使真实损失显得可以忽略。",
+      "art_style_logic": "长焦压缩的河面与尺度反差表现心理距离，克制表情保留人物尚未觉醒的复杂性。",
+      "prompt": "vertical 9:16 literary cinematic illustration, the same woman mason pauses on a safe scaffold holding one brick close to her torso, she looks across an immense compressed river toward tiny softly glowing future houses then resumes her measured work, social-realist face and restrained magical realism, atmospheric perspective, ochre foreground and distant cyan, balanced anatomy and natural hands"
+    },
+    {
+      "id": "beat-07",
+      "subject_mode": "protagonist",
+      "script_anchor": "封顶那天",
+      "weight": 1,
+      "summary": "最后一块砖露出未来印记",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "封顶时，女泥瓦匠双手托住最后一块砖，砖底浮现同族谱系般的印记与未来时间刻痕。",
+      "fable_law": "代价第一次指向她自己的后代。",
+      "art_style_logic": "近景物件与人物眼神完成叙事转折，浅浮雕刻痕替代可读文字，避免依赖排版也能表达血缘与未来。",
+      "prompt": "vertical 9:16 intimate cinematic close shot, the same woman mason safely cradles the final brick at tower height, its underside bears an abstract family-tree emblem and a sequence of future-time notches carved as nonlinguistic relief, her steady eyes sharpen with recognition, tactile macro brick texture, warm sunset rim light meeting cool midnight glow, natural fingers and coherent hands"
+    },
+    {
+      "id": "beat-08",
+      "subject_mode": "environment",
+      "script_anchor": "那天午夜",
+      "weight": 1,
+      "summary": "同姓小屋在对岸出现",
+      "workflow": "krea2_low_vram",
+      "story_event": "午夜对岸显出一座与砖上族谱符号相呼应的小屋，屋顶中央缺失一大片。",
+      "fable_law": "被借走的砖来自她未来家族的住所。",
+      "art_style_logic": "重复同一非文字族谱符号建立因果识别，孤立小屋的留白强化私人代价。",
+      "prompt": "vertical 9:16 human-free future cottage alone on a midnight riverbank, a small abstract family-tree emblem embossed beside the doorway echoes the brick motif, a large coherent section of the roof is missing and rain enters the room, architectural model realism blended with luminous watercolor and paper relief, vast dark negative space, cool cyan and one warm lamp"
+    },
+    {
+      "id": "beat-09",
+      "subject_mode": "object",
+      "script_anchor": "雨水正落在一张小床上",
+      "weight": 1,
+      "summary": "雨落在未来的小床上",
+      "workflow": "krea2_low_vram",
+      "story_event": "未来小屋的剖面中，雨穿过屋顶缺口落到一张小床，床边散着儿童木块。",
+      "fable_law": "多余高塔的砖直接变成后代屋顶无法遮雨的空洞。",
+      "art_style_logic": "微缩剧场式室内剖面把宏观伦理落到一张床的尺度，水彩雨线带来克制的情感冲击。",
+      "prompt": "vertical 9:16 human-free miniature-theatre cutaway of a modest future bedroom, rain falls through a brick-shaped roof opening onto a small bed, a few wooden building blocks rest nearby, tactile model photography blended with transparent watercolor rain and gouache shadows, emotionally restrained, clear spatial causality"
+    },
+    {
+      "id": "beat-10",
+      "subject_mode": "protagonist",
+      "script_anchor": "泥瓦匠回到广场",
+      "weight": 1,
+      "summary": "她带着最后一块砖下塔",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "女泥瓦匠没有封顶，抱着最后一块砖沿安全楼梯走下高塔，神情从震动变为决定。",
+      "fable_law": "拒绝再借一块砖，开始中断交换。",
+      "art_style_logic": "向下的对角线运动逆转此前不断向上的权力构图，人物动作本身成为价值选择。",
+      "prompt": "vertical 9:16 cinematic storybook, the same woman mason carries the final brick securely against her torso while descending a broad safe scaffold stair, her expression moves from shock to calm resolve, the unfinished tower above meets open dawn sky, social-realist labor detail with tactile gouache and restrained magical realism, stable body and natural hands"
+    },
+    {
+      "id": "beat-11",
+      "subject_mode": "protagonist",
+      "script_anchor": "她反而拆掉了",
+      "weight": 1,
+      "summary": "无用尖顶开始拆除",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "她在清晨拆下高塔最上层的装饰砖，砖块被整齐放进升降平台。",
+      "fable_law": "归还每一块无用砖，未来便恢复一个缺口。",
+      "art_style_logic": "有序拆解而非崩塌表现负责的修复，节制的动作避免把觉醒拍成破坏奇观。",
+      "prompt": "vertical 9:16 social-realist literary picturebook, the same woman mason carefully removes decorative bricks from the tower crown one by one and places them in an orderly lift basket, broad calm morning light, responsible deconstruction, coherent masonry, ochre and slate palette, tactile fresco-gouache blend, balanced anatomy and natural hands"
+    },
+    {
+      "id": "beat-12",
+      "subject_mode": "object",
+      "script_anchor": "每拆下一块砖",
+      "weight": 1,
+      "summary": "每拆一砖未来补一缺口",
+      "workflow": "krea2_low_vram",
+      "story_event": "双岸剖面中，近岸一块砖离开尖顶，远岸一块光形成的砖同步嵌回未来屋顶。",
+      "fable_law": "拆除当下多余部分，未来房屋的缺口逐一合上。",
+      "art_style_logic": "同步蒙太奇式单画面把修复因果直接可视化，光砖只承担时间桥梁而不取代真实建筑。",
+      "prompt": "vertical 9:16 human-free split-river architectural tableau, one physical brick lifts from a ceremonial tower crown on the near bank while a softly luminous matching brick settles into a future cottage roof across the water, exact synchronized geometry, restrained magical realism blended with architectural collage and tactile gouache, warm dawn crossing cool night"
+    },
+    {
+      "id": "beat-13",
+      "subject_mode": "environment",
+      "script_anchor": "对岸便有一个缺口",
+      "weight": 1,
+      "summary": "缺口一排排合上",
+      "workflow": "krea2_low_vram",
+      "story_event": "未来街区从近到远逐栋恢复完整墙面和屋顶，冷风停下，室内灯光稳定。",
+      "fable_law": "归还的砖沿着未来街道逐步解除损失。",
+      "art_style_logic": "序列式建筑构图表现修复不是瞬间魔法，而是一个可追踪的因果过程。",
+      "prompt": "vertical 9:16 human-free future street in sequential architectural perspective, brick-sized gaps close house by house from foreground to distance, curtains settle and warm interior lights become steady, lyrical architectural watercolor blended with paper-cut relief and subtle social realism, clear progression, coherent roofs and walls"
+    },
+    {
+      "id": "beat-14",
+      "subject_mode": "protagonist",
+      "script_anchor": "天亮时",
+      "weight": 1,
+      "summary": "塔矮两层并留下平顶",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "天亮，女泥瓦匠站在广场看着矮两层的平顶高塔，塔仍坚固但不再追求最高。",
+      "fable_law": "当下接受少一点宏伟，未来获得真实庇护。",
+      "art_style_logic": "平稳水平线替代尖顶垂直线，构图从炫耀转向可居住尺度，视觉上完成伦理落地。",
+      "prompt": "vertical 9:16 cinematic literary picturebook at dawn, the same woman mason stands in the civic square facing a sturdy ceremonial tower now two levels shorter with a calm flat top, broad horizontal sky and human-scale composition replace the former vertigo, tactile social-realist gouache, soft ochre light, grounded posture"
+    },
+    {
+      "id": "beat-15",
+      "subject_mode": "object",
+      "script_anchor": "而河对岸消失前",
+      "weight": 1,
+      "summary": "未来小床重新获得屋顶",
+      "workflow": "krea2_low_vram",
+      "story_event": "河对岸消失前，未来小屋的屋顶完整，雨沿屋檐流走，小床保持干燥。",
+      "fable_law": "被归还的砖恢复了后代最基本的遮蔽。",
+      "art_style_logic": "温暖小尺度结尾回应高塔的巨大尺度，以水彩余雨和完整屋檐呈现安静而非胜利式的修复。",
+      "prompt": "vertical 9:16 human-free intimate cutaway of the future cottage just before dawn, the roof is complete and rain now runs safely along the eaves, the small bed below remains dry beside wooden blocks, luminous watercolor blended with tactile miniature architecture and paper grain, quiet warm amber within cool receding night"
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 human-free symbolic artwork, one weathered brick suspended exactly between a monumental flat-topped tower silhouette and a small complete roof across a dark river, architectural paper relief blended with refined gouache and cool cyan night glaze, strong central metaphor, quiet open upper field of natural paper texture, calm balanced composition",
+  "hero_wan": {
+    "enabled": true,
+    "selection_policy": "opening_fable_event_only_or_none",
+    "scene_id": "",
+    "prompt": "the woman mason calmly places one brick while a single precise brick-sized gap appears across the river, subtle water movement and slow camera drift, physically coherent architecture, stable identity and structure"
+  },
+  "music": {
+    "preferred_keywords": [
+      "contemplative",
+      "moral tension",
+      "warm resolve",
+      "architectural",
+      "piano",
+      "ambient"
+    ]
+  },
+  "music_source": "",
+  "captions_path": ""
+}

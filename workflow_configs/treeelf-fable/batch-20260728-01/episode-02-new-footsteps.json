@@ -1,0 +1,152 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-new-footsteps-20260728-b01",
+  "title": "楼梯换了一串脚步",
+  "cover_title": "换了脚步",
+  "cover_english_title": "New Footsteps",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-28_楼梯换了一串脚步.md",
+  "estimated_duration_seconds": 110,
+  "narration_text": "空了三年的房子里，楼梯每天黄昏都会自己响十三下。声音从第一阶一路走到阁楼门口，却从来没有人下来。\n\n这座木楼梯只会做一件怪事：每天重放最后一个完整走上楼的人留下的脚步。只要后来有人从第一阶走到阁楼，旧脚步就会被新脚步替换。\n\n新租客知道这条规矩，却一直只住楼下。房东早已告诉她，阁楼里留着一床棉被和一箱工具。可她宁愿盖着外套睡觉，也不肯踏上那串看不见的脚步。\n\n天气一天比一天冷。第四个晚上，她被冻醒，终于站到楼梯前。旧脚步照常在前面响，她便隔着一阶跟在后面。\n\n走到第六阶时，她想退回去。可阁楼里的棉被就在上面，楼下也没有别的东西可以御寒。她扶住栏杆，继续走完剩下七阶，推开阁楼门，把棉被抱了下来。\n\n第二天黄昏，楼梯再次响起。仍然是十三下，却不再是不紧不慢的旧声音。新的脚步在第六阶停了一会儿，接着才走到顶端。\n\n她听出了那是自己昨夜的脚步。\n\n从那以后，她白天也开始上楼取工具。楼梯每晚仍会响起，只是它重放的，已经是她最近一次上楼的声音。",
+  "protagonist": {
+    "type": "成年女性",
+    "description": "一位三十四岁左右的女性书籍修复师，暗栗色长发编成低位单辫，浅棕肤色，穿暖灰针织开衫、橄榄色长裤和深棕软底鞋，搬入旧屋时带着帆布工具袋；本篇所有人物镜头保持相同面容、发型、服装与配色。",
+    "selection_rationale": "新租客与旧屋建立关系的故事对性别没有特殊要求，女性角色自然成立，符合中性角色优先女性的栏目偏好；书籍修复师身份也能连接阁楼工具与空间记忆。",
+    "appearance": {
+      "age_band": "三十四岁左右",
+      "hair": "暗栗色长发编成低位单辫",
+      "silhouette": "暖灰针织开衫、橄榄长裤、深棕软底鞋与帆布工具袋形成柔和实用的修复师轮廓"
+    }
+  },
+  "visual_brief": {
+    "fable_law": "木楼梯每天黄昏重放最后一次完整上楼的十三步，直到另一个人走完整段楼梯，新脚步才会替换旧脚步。",
+    "central_metaphor": "空间保存旧日动作，并非要困住后来者，而是在等待新的生活把这段动作接下去。",
+    "emotional_core": ["陌生", "回避", "寒冷推动", "接近", "承接", "安居"],
+    "symbolic_objects": ["十三阶木楼梯", "逐阶扬起的微尘", "第六阶短暂停顿", "阁楼棉被", "帆布工具袋"],
+    "protagonist_identity": "一位三十四岁左右的女性书籍修复师，暗栗色低位单辫、浅棕肤色，暖灰针织开衫、橄榄长裤、深棕软底鞋、帆布工具袋。",
+    "art_style_logic": "以北欧室内写实建立木屋的可信空间，以日本木版画的节奏线和粉彩灰尘表现看不见的脚步，再融入定格动画般的逐阶变化，让空间记忆既有规则又保留温柔神秘；琥珀木色、冬夜靛蓝和棉被乳白形成由寒冷到安居的色彩转折。",
+    "technical_guardrails": ["text-free generated image", "no readable text", "no letters", "no logo", "no watermark", "no pseudo typography"]
+  },
+  "character_pack": {
+    "enabled": true,
+    "mode": "single_turnaround_sheet",
+    "turnaround_prompt": "one clean 2x2 character turnaround image showing the exact same thirty-four-year-old woman book conservator in four distinct views: front, left three-quarter, right profile, and back three-quarter; dark auburn long hair in one low braid, light brown skin, warm-gray knitted cardigan, olive trousers, dark brown soft-soled shoes and a canvas tool satchel; consistent identity proportions clothing braid and palette across all four panels, neutral grounded pose, softly lit plain cream studio backdrop, Nordic interior realism blended with Japanese woodblock rhythm and tactile pastel paper grain, balanced anatomy and natural relaxed hands"
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01", "subject_mode": "environment", "script_anchor": "空了三年的房子里", "weight": 1, "summary": "空楼梯自己走完十三步", "workflow": "krea2_low_vram", "wan_candidate": true, "fable_event_stage": "first_manifestation",
+      "story_event": "黄昏的空木屋中，十三阶楼梯从下到上依次轻微下沉并扬起细尘，阁楼门保持关闭。",
+      "fable_law": "没有人物出现，楼梯仍完整重放一串由第一阶走到阁楼的脚步。",
+      "art_style_logic": "固定机位让逐阶变化承担叙事，木版节奏线和粉彩微尘赋予看不见的动作清楚方向。",
+      "prompt": "vertical 9:16 human-free fixed-camera view inside an empty old wooden house at dusk, a thirteen-step staircase reads clearly from bottom to attic door, successive treads show a gentle sequence of fresh compression and lifted dust moving upward, coherent staircase geometry, Nordic interior realism blended with Japanese woodblock rhythm and tactile pastel particles, amber wood against indigo evening"
+    },
+    {
+      "id": "beat-02", "subject_mode": "macro", "script_anchor": "这座木楼梯只会", "weight": 1, "summary": "木阶保存最后一次受力", "workflow": "krea2_low_vram",
+      "story_event": "木阶剖面显示旧脚步留下的细小凹痕、磨亮边缘和微尘方向，十三个受力点连续向上。",
+      "fable_law": "楼梯把最后一次完整上楼的动作保存为每天可重放的材料记忆。",
+      "art_style_logic": "木材微距与年轮版画把声音规则落实到可见材质，而非漂浮符号。",
+      "prompt": "vertical 9:16 human-free macro cutaway of aged wooden stair treads, thirteen sequential pressure traces appear as subtle polished grain, tiny depressions and directional dust patterns leading upward, material memory rendered with exact woodworking detail, Japanese mokuhanga grain fused with Nordic naturalism and soft pastel dust"
+    },
+    {
+      "id": "beat-03", "subject_mode": "environment", "script_anchor": "只要后来有人", "weight": 1, "summary": "新脚步可替换旧脚步", "workflow": "krea2_low_vram",
+      "story_event": "同一楼梯被表现为两串清楚不同的受力节奏：旧痕逐渐变淡，新鲜脚印压力从第一阶完整延伸到顶端。",
+      "fable_law": "后来者完整走过十三阶，楼梯便用新的动作覆盖旧动作。",
+      "art_style_logic": "时间叠印和逐格定格语言呈现替换过程，空间结构始终稳定。",
+      "prompt": "vertical 9:16 human-free stable staircase in a temporal overlay, an older sequence of faint tread impressions recedes while a fresh distinct pressure rhythm progresses from the first step all the way to the attic landing, stop-motion-like interval structure blended with mokuhanga linework and Nordic interior light, coherent thirteen-step geometry"
+    },
+    {
+      "id": "beat-04", "subject_mode": "protagonist", "script_anchor": "新租客知道", "weight": 1, "summary": "新租客只住楼下", "workflow": "flux2_klein_4ref",
+      "story_event": "新租客在楼下工作桌旁修补一本旧书，楼梯入口位于画面另一侧，她的生活物品全部留在一层。",
+      "fable_law": "她知道楼梯的规则，却通过生活动线持续绕开它。",
+      "art_style_logic": "固定宽景用空间分区表现回避，修复工作与未被接续的楼梯形成含蓄呼应。",
+      "prompt": "vertical 9:16 fixed wide interior containing one single woman renter as the sole visible person, she stands alone beside a modest ground-floor worktable with one closed old book whose cover is plain unmarked cloth, simple bookbinding tools arranged beside it, the full staircase entrance remains across the room, her bedroll kettle and one canvas tool satchel all arranged downstairs, clear spatial separation, Nordic domestic realism blended with restrained Japanese woodblock planes and tactile paper grain, stable standing anatomy"
+    },
+    {
+      "id": "beat-05", "subject_mode": "object", "script_anchor": "房东早已告诉她", "weight": 1, "summary": "棉被和工具留在阁楼", "workflow": "krea2_low_vram",
+      "story_event": "阁楼中，一床厚实乳白棉被叠在木箱上，旁边是打开的无字工具箱，冷光从小窗落下。",
+      "fable_law": "真正能让新生活安定下来的物件都在旧脚步尽头等待。",
+      "art_style_logic": "静物建立明确目标，乳白织物在冬夜靛蓝中成为温暖视觉锚点。",
+      "prompt": "vertical 9:16 human-free attic still life, a thick folded ivory quilt rests on a cedar chest beside an open plain tool box containing bookbinding and household tools, cool winter light enters through a small window, precise tactile fabric and wood, Nordic still-life realism fused with soft pastel and delicate mokuhanga contour, warm promise within indigo cold"
+    },
+    {
+      "id": "beat-06", "subject_mode": "protagonist", "script_anchor": "可她宁愿", "weight": 1, "summary": "她裹着外套睡在楼下", "workflow": "flux2_klein_4ref",
+      "story_event": "夜里，新租客蜷在楼下简易床铺上，把针织开衫和外套盖在身上，楼梯投下长长木栏阴影。",
+      "fable_law": "为了回避那串旧动作，她接受了眼前可见的寒冷。",
+      "art_style_logic": "人物与楼梯阴影的距离表达心理回避，蓝灰低温光保持情绪克制。",
+      "prompt": "vertical 9:16 quiet winter-night interior, the new renter lies curled on a simple downstairs bedroll using her cardigan and coat as a thin blanket, the staircase balusters cast long orderly shadows across the floor at a distance, indigo-blue cold light with small amber embers, Nordic realism blended with Japanese woodblock shadow rhythm and soft pastel texture, coherent resting posture"
+    },
+    {
+      "id": "beat-07", "subject_mode": "environment", "script_anchor": "天气一天比一天冷", "weight": 1, "summary": "寒气逐日进入旧屋", "workflow": "krea2_low_vram",
+      "story_event": "连续四个夜晚被压缩在同一空屋构图中，窗沿霜线逐日增厚，楼梯木色逐渐变冷。",
+      "fable_law": "被回避的楼梯保持原样，而生活条件不断推动后来者靠近它。",
+      "art_style_logic": "同构图时间叠印使温度变化可读，避免依靠文字说明日期。",
+      "prompt": "vertical 9:16 human-free temporal interior study of the same old room across four winter evenings, frost along the window ledge grows progressively thicker and the staircase shifts from amber wood toward cool blue shadow, exact stable room geometry, four-stage stop-motion rhythm blended with Nordic realism, mokuhanga planes and powdery pastel frost"
+    },
+    {
+      "id": "beat-08", "subject_mode": "protagonist", "script_anchor": "第四个晚上", "weight": 1, "summary": "她终于站到第一阶前", "workflow": "flux2_klein_4ref",
+      "story_event": "被冻醒的新租客站在楼梯第一阶前，一手收紧开衫，另一手自然垂下，仰望暗处的阁楼门。",
+      "fable_law": "寒冷让她第一次把身体放到规则的起点。",
+      "art_style_logic": "低机位楼梯透视放大决定感，人物双手保持简单分离以提高结构稳定性。",
+      "prompt": "vertical 9:16 low-angle literary fable frame, the new renter stands directly before the first stair after waking cold, one hand gathering her cardigan at the chest and the other relaxed at her side, her gaze follows the staircase toward the dim attic door, strong but coherent upward perspective, amber wood edges emerging from indigo shadow, Nordic realism blended with restrained mokuhanga and pastel grain, stable anatomy"
+    },
+    {
+      "id": "beat-09", "subject_mode": "protagonist", "script_anchor": "旧脚步照常", "weight": 1, "summary": "她隔一阶跟随旧脚步", "workflow": "flux2_klein_4ref",
+      "story_event": "旧脚步让前方木阶逐一轻沉，新租客始终隔着一阶向上，身体动作缓慢且重心稳定。",
+      "fable_law": "她尚未替换旧脚步，只在它留下的节奏后面学习前进。",
+      "art_style_logic": "侧面剖视构图把两种节奏清楚分开，逐阶粉尘形成方向线。",
+      "prompt": "vertical 9:16 side-cutaway view of the staircase, the new renter ascends slowly while keeping exactly one empty stair between herself and each newly compressed tread ahead, fine amber dust marks the invisible old footstep sequence, clear separated rhythm and stable center of gravity, Nordic architectural realism fused with mokuhanga cadence and stop-motion interval design, coherent limbs"
+    },
+    {
+      "id": "beat-10", "subject_mode": "protagonist", "script_anchor": "走到第六阶", "weight": 1, "summary": "她在第六阶停住", "workflow": "flux2_klein_4ref",
+      "story_event": "新租客停在第六阶，双脚完整落在相邻踏板上，一手扶栏杆，回头看向仍然寒冷的楼下。",
+      "fable_law": "新动作第一次出现停顿，这个停顿将成为楼梯日后保存的个人节奏。",
+      "art_style_logic": "固定中景让身体与第六阶关系精确可读，楼上暖色和楼下冷色形成选择。",
+      "prompt": "vertical 9:16 fixed medium view, the new renter pauses on the sixth stair with both feet clearly supported on adjacent treads and one hand resting naturally on the railing, she glances back toward the cold blue ground floor while soft amber attic light waits above, precise staircase anatomy, Nordic interior realism blended with Japanese woodblock color blocks and tactile pastel paper, stable body"
+    },
+    {
+      "id": "beat-11", "subject_mode": "object", "script_anchor": "可阁楼里的棉被", "weight": 1, "summary": "棉被在楼梯尽头等待", "workflow": "krea2_low_vram",
+      "story_event": "从第六阶视角望向半开的阁楼门，乳白棉被边角和木工具箱清楚可见，暖光沿剩余七阶落下。",
+      "fable_law": "必须走完整段楼梯才能把等待中的生活物件带回当下。",
+      "art_style_logic": "主观视角把目标与剩余距离放进同一画面，暖光不是装饰而是行动动机。",
+      "prompt": "vertical 9:16 human-free point-of-view from the sixth stair toward a slightly open attic door, the edge of an ivory quilt and a cedar tool chest are clearly visible beyond, warm light descends across the remaining seven treads, coherent staircase perspective, Nordic realism blended with luminous pastel and precise mokuhanga lines, tactile wood and cloth"
+    },
+    {
+      "id": "beat-12", "subject_mode": "protagonist", "script_anchor": "她扶住栏杆", "weight": 1, "summary": "她走完七阶抱下棉被", "workflow": "flux2_klein_4ref",
+      "story_event": "新租客走上最后一级，随后在阁楼门口把折好的棉被稳稳抱在胸前，栏杆和双脚关系清楚。",
+      "fable_law": "完整走过十三阶的这一刻，新脚步获得替换旧脚步的资格。",
+      "art_style_logic": "到达动作与具体棉被共同完成转折，乳白织物把画面温度从冷转暖。",
+      "prompt": "vertical 9:16 literary fable arrival at the attic landing, the new renter has completed the staircase and holds a neatly folded ivory quilt securely against her torso, both feet grounded on the landing and the railing clearly beside her, warm amber light opening around the doorway, Nordic domestic realism fused with restrained mokuhanga rhythm and tactile pastel cloth, stable anatomy and simple hands"
+    },
+    {
+      "id": "beat-13", "subject_mode": "environment", "script_anchor": "第二天黄昏", "weight": 1, "summary": "楼梯重放新的十三步", "workflow": "krea2_low_vram",
+      "story_event": "第二天同一固定机位中，十三阶再次逐一轻沉，但新节奏在第六阶留下明显较长停顿后才继续。",
+      "fable_law": "楼梯已经用昨夜后来者的完整动作替换旧动作，包括她真实发生过的犹豫。",
+      "art_style_logic": "重复首镜构图只改变节奏，使替换一眼可辨；第六阶的尘埃悬停承担停顿。",
+      "prompt": "vertical 9:16 human-free fixed-camera return to the same thirteen-step staircase at dusk, successive treads compress upward in a new rhythm, a visibly longer suspension of fine dust occurs over the sixth stair before the sequence continues to the attic, exact unchanged architecture, Nordic interior realism blended with mokuhanga cadence and stop-motion timing, amber dust against indigo evening"
+    },
+    {
+      "id": "beat-14", "subject_mode": "protagonist", "script_anchor": "她听出了", "weight": 1, "summary": "她认出自己的停顿", "workflow": "flux2_klein_4ref",
+      "story_event": "新租客裹着乳白棉被坐在楼下，听到第六阶停顿时抬头，神情从戒备变成安静辨认。",
+      "fable_law": "空间保存的已不再是陌生人的痕迹，而是她自己克服寒冷时留下的节奏。",
+      "art_style_logic": "人物反应与第六阶同框，让认出动作无需文字解释；柔光保持情绪含蓄。",
+      "prompt": "vertical 9:16 intimate fixed interior, the new renter sits downstairs wrapped in the ivory quilt and looks up exactly as fine amber dust pauses above the sixth stair, her expression settles into quiet recognition, staircase and face held in one clear depth composition, warm Nordic realism blended with soft mokuhanga planes and tactile pastel grain, stable seated anatomy"
+    },
+    {
+      "id": "beat-15", "subject_mode": "protagonist", "script_anchor": "从那以后", "weight": 1, "summary": "她把楼上纳入日常", "workflow": "flux2_klein_4ref",
+      "story_event": "白天，新租客自然地走下楼梯，一手提帆布工具袋，另一臂夹着修复工具，阁楼和楼下都已有生活痕迹。",
+      "fable_law": "楼梯继续保存最近一次上楼的脚步，空间记忆已经成为新生活的日常节奏。",
+      "art_style_logic": "明亮日景与自然下楼动作完成安居，人物不再被楼梯构图压迫，而与空间形成平衡。",
+      "prompt": "vertical 9:16 bright final literary fable scene, the new renter descends the familiar wooden staircase in daylight carrying a canvas tool satchel and a small bundle of bookbinding tools, both attic and ground floor show modest signs of active life, balanced human-scale composition, warm Nordic interior realism blended with gentle mokuhanga rhythm and tactile pastel paper, stable walking posture and coherent limbs"
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 human-free symbolic artwork, a thirteen-step wooden staircase rises through deep indigo shadow while one warm amber sequence of compressed treads and floating dust travels toward a softly lit attic door, an ivory quilt edge visible at the top, Nordic wood realism blended with Japanese mokuhanga rhythm and tactile pastel particles, strong readable spatial metaphor, quiet naturally open upper field",
+  "hero_wan": {
+    "enabled": true,
+    "selection_policy": "opening_fable_event_only_or_none",
+    "scene_id": "",
+    "prompt": "the empty staircase remains structurally fixed while three nearby treads depress in a calm upward sequence and a small veil of warm dust rises then settles, locked camera, subtle physically coherent motion, stable staircase geometry"
+  },
+  "music": {"preferred_keywords": ["gentle mystery", "wooden", "winter", "warm", "memory", "minimal piano", "ambient"]},
+  "music_source": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐/101-Ambient + Jazz + Chillwave-纯音乐-Ambient + Jazz + Chillwave-Relaxing ambient jazz with dreamy chillwave instrumental fus.mp3",
+  "captions_path": ""
+}

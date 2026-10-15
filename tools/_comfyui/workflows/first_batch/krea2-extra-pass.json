@@ -1,7 +1,7 @@
 {
   "195": {
     "inputs": {
-      "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+      "clip_name": "qwen3-vl-4b-heretic_int8.safetensors",
       "type": "krea2",
       "device": "default"
     },
@@ -58,7 +58,7 @@
   },
   "194": {
     "inputs": {
-      "unet_name": "krea2/krea2_turbo_fp8_scaled.safetensors",
+      "unet_name": "krea2/krea2_turbo_int8_convrot.safetensors",
       "weight_dtype": "default"
     },
     "class_type": "UNETLoader",

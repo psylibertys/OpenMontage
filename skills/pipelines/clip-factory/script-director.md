@@ -11,6 +11,7 @@ This stage converts the long-form source into a ranked candidate list and then i
 | Schema | `schemas/artifacts/script.schema.json` | Artifact validation |
 | Prior artifact | `state.artifacts["idea"]["brief"]` | Batch goals and platform targets |
 | Tools | `transcriber`, `scene_detect` | Transcript-first selection and visual checks |
+| Density standard | `skills/pipelines/clip-factory/information-density-standard.md` | Binding candidate audit and hook rules |
 
 ## Process
 
@@ -43,6 +44,16 @@ Reject or widen clips that contain:
 - long lead-ins before the point lands,
 - endings that stop before the payoff.
 
+### 3b. Run The Information-Density Pass (Mandatory)
+
+Read `information-density-standard.md` and audit every selected candidate sentence by sentence. Candidate discovery timestamps are search results, not approved edit boundaries.
+
+- Identify the strongest spoken hook and require it to land within 0–3 seconds.
+- Mark every removable range as `slow_open`, `repeat`, `filler`, `tangent`, `dead_air`, or `broken_boundary`.
+- Use a 3–8 second cold open from later in the source when it materially improves the opening; record the reordered playback sequence.
+- Classify each candidate `keep`, `tighten`, or `replace_or_drop`.
+- Do not pad weak material to satisfy count or duration.
+
 ### 4. Select The Final Batch
 
 Pick the smallest set that best satisfies the batch goal.
@@ -74,11 +85,16 @@ Each candidate should record:
 - reason selected or rejected,
 - scoring dimensions,
 - likely crop viability.
+- exact first spoken line and its source timestamp,
+- main-body source ranges in playback order,
+- removed ranges with reasons,
+- density review status and expected post-edit duration.
 
 ### 6. Quality Gate
 
 - the top-ranked clips are genuinely the strongest, not just the earliest found,
 - every selected clip passes the standalone test,
+- every selected clip passes the information-density standard,
 - the set covers the source deliberately instead of clustering in one section,
 - low-quality candidates are rejected honestly.
 
@@ -96,6 +112,8 @@ add the source. Do not invent statistics, dates, or attributions.
 ## Common Pitfalls
 
 - Trusting first-pass candidate timestamps without transcript-level review.
+- Treating broad semantic candidate windows as final EDL boundaries.
+- Confusing permissive content review with permissive pacing.
 - Selecting too many calm, same-energy clips.
 - Preserving chronological order instead of ranking by quality.
 - Treating transcript quality issues as minor when they affect selection accuracy.

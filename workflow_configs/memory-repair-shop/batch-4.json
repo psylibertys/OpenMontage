@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "batch_id": "memory-repair-shop-b4",
+  "project_id": "memory-repair-shop",
+  "pipeline": "story-to-storyboard",
+  "status": "prepared_offline",
+  "storyboard_export": "projects/memory-repair-shop/exports/storyboard/memory-repair-shop/memory-repair-shop.json",
+  "aspect_preset": "portrait_9_16",
+  "queue_depth": 2,
+  "ssh_host": "autodl-comfyui",
+  "prerequisites": [
+    "批次 3 完成：人物首帧全重生成（中国面孔）、对白 TTS 5 条就绪、角色包人审通过",
+    "storyboard v2 i2v_prompt 已按 pixaroma EP35 H3 FirstFrame2Video 公式重写（对齐行+三字段+四拍动作+独立镜头句），非对白镜无 <d> 块、对白镜台词走音频轨",
+    "镜头时长已在设计层 ≥4s（H3 最短档），生成时长=设计时长，不做后期截取"
+  ],
+  "video": {
+    "workflow_template": "minimax_fasth3_i2v",
+    "keyframe_source": "assets/images/scenes/scene-{nn}.png（批次 3 产物；9 空镜沿用 v1 首帧）",
+    "duration_source": "storyboard v2 每镜 duration_seconds（4-6s），seed/hd 两轮同值",
+    "two_stage": {
+      "seed_pass": {
+        "longest_side": 480,
+        "duration_seconds": null,
+        "purpose": "选种轮：小尺寸快出，人工星标合格镜头（同 seed 记录），废片换 seed 重抽"
+      },
+      "hd_pass": {
+        "longest_side": 1920,
+        "duration_seconds": null,
+        "purpose": "重跑轮：入选镜头以同 seed 升 Full HD 1080x1920"
+      }
+    },
+    "dialogue_shots": {
+      "lip_sync": {
+        "scenes": ["scene-14", "scene-17", "scene-21"],
+        "workflow": "minimax_h3_audio_sync",
+        "audio_source": "assets/audio/dialogue/scene-{nn}.mp3（批次 3 产物）",
+        "mode": "单轮 HD 直接成型（口型镜数量少，重跑成本低，不做选种轮）",
+        "duration_margin_seconds": 1.0
+      },
+      "voice_over": {
+        "scenes": ["scene-9", "scene-20"],
+        "mode": "普通 i2v 两段式；对白音频在 Remotion 成片时对轨（物件画面+画外音）"
+      }
+    },
+    "native_audio": "H3 按提示词 overall_soundscape 生成环境音，成片混音时作氛围层压低"
+  },
+  "shot_enhancements": [
+    {
+      "transition": {"from": "scene-21", "to": "scene-22"},
+      "workflow": "minimax_fasth3_fflf",
+      "frames": "两镜首帧（reference_image_path=s21 / last_image_path=s22）",
+      "duration_seconds": 4,
+      "reason": "雪夜释怀→春天小巷的情绪转场；s21/s22 本镜 i2v 照常生成，fflf 片段作为转场插入备选"
+    }
+  ],
+  "base_seed": 20261014,
+  "prompt_adaptations": {},
+  "metadata": {
+    "source_pipeline": "story-to-storyboard (v2 drama-form revision 2026-10-13)",
+    "shot_count": 25,
+    "total_duration_seconds": 106,
+    "batch_scope": "20 镜 i2v 两段式 + 3 镜口型 audio_sync 单轮 + s21→22 fflf 转场备选；完成后 Remotion 短剧组件拼成片"
+  }
+}

@@ -148,9 +148,11 @@ class VisualQA(BaseTool):
         timestamps = inputs.get("timestamps", [])
 
         if not timestamps:
-            # Auto-generate timestamps: start, 25%, 50%, 75%, end-1s
+            # Frame zero is the cover. Keep a separate 1s sample so an
+            # entrance animation cannot hide a missing frame-zero title.
             dur = self._get_duration(input_path)
             timestamps = [
+                0.0,
                 1.0,
                 dur * 0.25,
                 dur * 0.50,

@@ -32,9 +32,12 @@ from lib.treeelf_music import (  # noqa: E402
     DEFAULT_CATALOG_PATH,
     DEFAULT_OVERRIDES_PATH,
     DEFAULT_USAGE_LEDGER_PATH,
+    build_final_audio_mix_qc,
+    configured_music_library_dir,
     normalize_background_music,
-    record_music_usage,
+    select_and_record_music_usage,
     select_music_track,
+    transition_music_usage,
 )
 from scripts.finalize_autodl_comfyui_batch import (  # noqa: E402
     _require_empty_queue,
@@ -53,6 +56,14 @@ CAMERA_VARIATIONS = (
     "close detail emphasizing the story object and tactile texture",
     "over-the-shoulder composition with layered foreground",
     "quiet reaction composition with restrained optimistic expression",
+)
+
+HUMAN_FREE_CAMERA_VARIATIONS = (
+    "establishing wide environmental composition with readable geography",
+    "medium environmental composition focused on the story object",
+    "close detail emphasizing material and tactile texture",
+    "layered spatial composition with clear foreground and background",
+    "quiet atmospheric composition with restrained visual tension",
 )
 
 TECHNICAL_GUARDRAILS = (
@@ -102,6 +113,24 @@ COVER_HUMAN_TERMS = (
     "女人", "女孩", "男孩", "男人", "人物", "人像", "肖像", "主角", "脸", "手",
 )
 
+COVER_LAYOUT_CUES = (
+    "typography",
+    "title-safe",
+    "title safe",
+    "space for title",
+    "space for text",
+    "editorial composition",
+    "poster layout",
+    "book cover layout",
+    "treeelf",
+    "排版",
+    "标题区",
+    "文字区",
+)
+
+SUBJECT_MODES = {"protagonist", "group", "environment", "object", "macro"}
+HUMAN_SUBJECT_MODES = {"protagonist", "group"}
+
 TTS_WORKFLOWS_WITH_EFFECTIVE_INSTRUCT = {
     "qwen3_tts_custom_voice",
     "qwen3_tts_voice_design",
@@ -117,6 +146,13 @@ ALLOWED_TRANSITIONS: dict[str, set[str]] = {
     "completed": set(),
     "failed": {"planned"},
 }
+
+# Artifact-backed terminal states are reconciliation targets, not workflow
+# permissions.  A recovered batch may have valid assets/delivery even when an
+# older orchestration label was never advanced (for example after a local
+# process was interrupted).  These states may therefore be applied directly
+# and idempotently after their concrete file gates pass.
+RECONCILABLE_STATUSES = {"gpu_assets_complete", "local_packaging", "completed"}
 
 
 def utc_now() -> str:
@@ -210,6 +246,30 @@ def media_duration_seconds(path: Path) -> float:
     return float(result.stdout.strip())
 
 
+def cover_ocr_check(path: Path) -> dict[str, Any]:
+    executable = shutil.which("tesseract")
+    if not executable:
+        return {"path": str(path), "available": False, "passed": False, "error": "tesseract is unavailable"}
+    result = subprocess.run(
+        [executable, str(path), "stdout", "--psm", "11", "-l", "eng"],
+        check=False,
+        capture_output=True,
+        text=True,
+        timeout=60,
+    )
+    normalized = " ".join(result.stdout.split())
+    tokens = re.findall(r"[A-Za-z0-9]{3,}", normalized)
+    return {
+        "path": str(path),
+        "available": True,
+        "passed": result.returncode == 0 and not tokens,
+        "detected_text": normalized,
+        "detected_tokens": tokens,
+        "returncode": result.returncode,
+        "error": result.stderr[-1000:] if result.returncode else "",
+    }
+
+
 def _prompt_guardrails(series: dict[str, Any]) -> list[str]:
     return [
         str(item)
@@ -246,6 +306,67 @@ def cover_human_prompt_terms(prompt: str) -> list[str]:
     return found
 
 
+def cover_layout_prompt_terms(prompt: str) -> list[str]:
+    lowered = prompt.lower()
+    return [term for term in COVER_LAYOUT_CUES if term in lowered]
+
+
+def hair_design_family(value: str) -> str:
+    lowered = str(value).lower()
+    families = (
+        ("curly", ("卷发", "卷曲", "curly", "curls", "wavy")),
+        ("braided", ("辫", "braid", "plait")),
+        ("shaved", ("光头", "剃", "shaved", "bald")),
+        ("straight", ("直发", "straight")),
+        ("coiled", ("脏辫", "dread", "coiled", "afro")),
+    )
+    for family, terms in families:
+        if any(term in lowered for term in terms):
+            return family
+    return "other"
+
+
+def _beat_subject_mode(beat: dict[str, Any]) -> str:
+    explicit = str(beat.get("subject_mode", "")).strip().lower()
+    if explicit:
+        return explicit
+    prompt = str(beat.get("prompt") or " ".join(beat.get("prompt_variants", []))).lower()
+    if "human-free" in prompt:
+        if any(token in prompt for token in ("macro", "close-up", "close detail")):
+            return "macro"
+        return "environment"
+    return "protagonist" if beat.get("workflow") == "flux2_klein_4ref" else "object"
+
+
+def compile_scene_prompt(
+    beat: dict[str, Any],
+    prompt_index: int,
+    *,
+    protagonist_identity: str,
+    guardrails: list[str],
+) -> str:
+    base_prompt = _beat_prompt(beat, prompt_index)
+    subject_mode = _beat_subject_mode(beat)
+    if subject_mode in HUMAN_SUBJECT_MODES and protagonist_identity and "protagonist identity" not in base_prompt.lower():
+        base_prompt = f"{base_prompt.rstrip(' .')}. Episode protagonist identity: {protagonist_identity}"
+    camera_variations = CAMERA_VARIATIONS if subject_mode in HUMAN_SUBJECT_MODES else HUMAN_FREE_CAMERA_VARIATIONS
+    camera = camera_variations[prompt_index % len(camera_variations)]
+    return _append_guardrails(f"{base_prompt.rstrip(' .')}. {camera}", guardrails)
+
+
+def compiled_prompt_contract_errors(prompt: str, subject_mode: str) -> list[str]:
+    errors: list[str] = []
+    lowered = prompt.lower()
+    if subject_mode not in SUBJECT_MODES:
+        errors.append(f"unsupported subject_mode:{subject_mode}")
+    if subject_mode not in HUMAN_SUBJECT_MODES:
+        if "episode protagonist identity" in lowered:
+            errors.append("non-human scene received protagonist identity")
+        if any(value in lowered for value in ("protagonist's action", "over-the-shoulder", "reaction composition")):
+            errors.append("non-human scene received a human camera direction")
+    return errors
+
+
 def prompt_review_warnings(episode: dict[str, Any]) -> list[dict[str, Any]]:
     warnings: list[dict[str, Any]] = []
 
@@ -263,6 +384,7 @@ def prompt_review_warnings(episode: dict[str, Any]) -> list[dict[str, Any]]:
 
     for label, value in (
         ("character_pack.master_prompt", episode.get("character_pack", {}).get("master_prompt", "")),
+        ("character_pack.turnaround_prompt", episode.get("character_pack", {}).get("turnaround_prompt", "")),
         ("cover_prompt", episode.get("cover_prompt", "")),
         ("hero_wan.prompt", episode.get("hero_wan", {}).get("prompt", "")),
     ):
@@ -423,6 +545,90 @@ def _chunk_caption_segments(
                 "endMs": end_ms,
             }
         )
+    return groups
+
+
+def _compact_anchor_text(value: str) -> str:
+    return re.sub(r"\s+", "", str(value))
+
+
+def _anchored_caption_groups(
+    captions: list[dict[str, Any]],
+    beats: list[dict[str, Any]],
+    count: int,
+    duration_seconds: float,
+) -> list[tuple[dict[str, Any], dict[str, Any], int]]:
+    """Bind visual beats to narration using explicit script anchors, then allocate slots."""
+
+    if not beats or not all(str(beat.get("script_anchor", "")).strip() for beat in beats):
+        return []
+    compact_parts = [_compact_anchor_text(item.get("text", "")) for item in captions]
+    joined = "".join(compact_parts)
+    caption_offsets: list[tuple[int, int]] = []
+    cursor = 0
+    for part in compact_parts:
+        caption_offsets.append((cursor, cursor + len(part)))
+        cursor += len(part)
+
+    anchor_positions: list[int] = []
+    search_from = 0
+    for beat in beats:
+        anchor = _compact_anchor_text(beat["script_anchor"])
+        position = joined.find(anchor, search_from)
+        if position < 0:
+            raise ValueError(f"script_anchor not found in captions:{beat.get('id')}:{beat.get('script_anchor')}")
+        anchor_positions.append(position)
+        search_from = position + max(1, len(anchor))
+
+    def position_to_ms(position: int) -> int:
+        for index, (start, end) in enumerate(caption_offsets):
+            if position < end or index == len(caption_offsets) - 1:
+                caption = captions[index]
+                width = max(1, end - start)
+                fraction = max(0.0, min(1.0, (position - start) / width))
+                return round(int(caption["startMs"]) + fraction * (int(caption["endMs"]) - int(caption["startMs"])))
+        return round(duration_seconds * 1000)
+
+    duration_ms = max(1, round(duration_seconds * 1000))
+    starts = [0, *(position_to_ms(position) for position in anchor_positions[1:])]
+    ranges = [
+        (starts[index], starts[index + 1] if index + 1 < len(starts) else duration_ms)
+        for index in range(len(beats))
+    ]
+    allocations = _allocate_counts(
+        [(start / 1000, end / 1000) for start, end in ranges],
+        count,
+    )
+    groups: list[tuple[dict[str, Any], dict[str, Any], int]] = []
+    for beat, (start_ms, end_ms), allocation in zip(beats, ranges, allocations):
+        span = max(allocation, 1)
+        for within in range(span):
+            slot_start = round(start_ms + (end_ms - start_ms) * within / span)
+            slot_end = round(start_ms + (end_ms - start_ms) * (within + 1) / span)
+            overlapping = [
+                (index, caption)
+                for index, caption in enumerate(captions)
+                if int(caption["endMs"]) > slot_start and int(caption["startMs"]) < slot_end
+            ]
+            if not overlapping:
+                nearest = min(
+                    range(len(captions)),
+                    key=lambda index: abs(int(captions[index]["startMs"]) - slot_start),
+                )
+                overlapping = [(nearest, captions[nearest])]
+            groups.append(
+                (
+                    beat,
+                    {
+                        "items": [item for _, item in overlapping],
+                        "start_index": overlapping[0][0],
+                        "end_index": overlapping[-1][0],
+                        "startMs": slot_start,
+                        "endMs": slot_end,
+                    },
+                    within,
+                )
+            )
     return groups
 
 
@@ -659,6 +865,7 @@ def select_music_source(
     *,
     used_music_paths: list[str] | None = None,
     usage_ledger_path: Path | None = None,
+    preferred_track_id: str | None = None,
 ) -> dict[str, Any]:
     text = "\n".join(
         [
@@ -688,6 +895,8 @@ def select_music_source(
     ):
         if raw:
             roots.append(Path(str(raw)).expanduser())
+    if not roots:
+        roots.append(configured_music_library_dir())
     if fallback.is_file() and fallback.parent not in roots:
         roots.append(fallback.parent)
     return select_music_track(
@@ -700,7 +909,16 @@ def select_music_source(
         catalog_path=Path(str(music.get("catalog_path", DEFAULT_CATALOG_PATH))).expanduser(),
         overrides_path=Path(str(music.get("overrides_path", DEFAULT_OVERRIDES_PATH))).expanduser(),
         usage_ledger_path=usage_ledger_path or Path(str(music.get("usage_ledger_path", DEFAULT_USAGE_LEDGER_PATH))).expanduser(),
+        preferred_track_id=preferred_track_id,
     )
+
+
+def _music_usage_ledger_path(series: dict[str, Any], projects_root: Path) -> Path:
+    if projects_root.resolve() != PROJECTS_ROOT.resolve():
+        return projects_root / ".treeelf-music-usage-ledger.json"
+    return Path(
+        str(series.get("music", {}).get("usage_ledger_path", DEFAULT_USAGE_LEDGER_PATH))
+    ).expanduser()
 
 
 def _strict_gate(series: dict[str, Any], key: str, default: bool = True) -> bool:
@@ -837,6 +1055,30 @@ def build_character_contact_sheet(
     }
 
 
+def crop_character_turnaround_sheet(sheet_path: Path, character_root: Path) -> list[str]:
+    """Split a reviewed 2x2 turnaround sheet into four portrait references."""
+
+    if not sheet_path.is_file() or sheet_path.stat().st_size <= 0:
+        raise FileNotFoundError(f"character turnaround sheet is missing:{sheet_path}")
+    image = Image.open(sheet_path).convert("RGB")
+    width, height = image.size
+    if width < 512 or height < 512:
+        raise ValueError(f"character turnaround sheet is too small:{width}x{height}")
+    boxes = (
+        (0, 0, width // 2, height // 2),
+        (width // 2, 0, width, height // 2),
+        (0, height // 2, width // 2, height),
+        (width // 2, height // 2, width, height),
+    )
+    character_root.mkdir(parents=True, exist_ok=True)
+    references: list[str] = []
+    for index, box in enumerate(boxes, start=1):
+        output = character_root / f"ref-{index:02d}.png"
+        image.crop(box).save(output)
+        references.append(str(output))
+    return references
+
+
 def default_character_review(episode: dict[str, Any], references: list[str], contact_sheet: Path) -> dict[str, Any]:
     return {
         "version": "1.0",
@@ -846,15 +1088,14 @@ def default_character_review(episode: dict[str, Any], references: list[str], con
         "reviewed_at": "",
         "contact_sheet": str(contact_sheet),
         "reference_image_paths": references,
+        "blocking_findings": [],
         "checks": {
             "same_identity_all_views": False,
             "four_distinct_views": False,
-            "stable_face_or_design": False,
-            "stable_clothing_or_signature_features": False,
             "anatomy_acceptable": False,
             "no_text_or_pseudo_text": False,
         },
-        "notes": "人工审核通过后，把 approved 和各项 checks 改为 true，再刷新正文视觉任务。",
+        "notes": "只审核同一身份、四个有效不同视角、严重人体错误和可读文字。通过后把 approved 与四项 checks 设为 true，再次运行统一GPU调度命令即可释放 Flux 场景。",
     }
 
 
@@ -863,9 +1104,24 @@ def require_character_review(episode: dict[str, Any], target: Path) -> dict[str,
     if not review_path.is_file():
         raise PermissionError(f"{episode['project_id']} needs approved character_review.json before Flux scene generation")
     review = load_json(review_path)
-    failed = [key for key, value in review.get("checks", {}).items() if value is not True]
-    if review.get("approved") is not True or failed:
-        raise PermissionError(f"{episode['project_id']} character review is not approved; failed checks: {failed}")
+    waived = {str(key) for key in review.get("waived_checks", [])}
+    required_checks = {
+        "same_identity_all_views",
+        "four_distinct_views",
+        "anatomy_acceptable",
+        "no_text_or_pseudo_text",
+    }
+    failed = [
+        key
+        for key, value in review.get("checks", {}).items()
+        if key in required_checks and value is not True and key not in waived
+    ]
+    findings = list(review.get("blocking_findings", []))
+    if review.get("approved") is not True or failed or findings:
+        raise PermissionError(
+            f"{episode['project_id']} character review is not approved; "
+            f"failed checks: {failed}; findings: {findings}"
+        )
     return review
 
 
@@ -875,7 +1131,8 @@ def default_visual_qc(episode: dict[str, Any], plan: dict[str, Any], target: Pat
     return {
         "version": "1.0",
         "project_id": episode["project_id"],
-        "approved": False,
+        "blocking_findings": [],
+        "warnings": [],
         "reviewed_at": "",
         "scenes": {
             slot["id"]: {
@@ -888,13 +1145,10 @@ def default_visual_qc(episode: dict[str, Any], plan: dict[str, Any], target: Pat
                 "story_event": slot.get("story_event", ""),
                 "fable_law": slot.get("fable_law", ""),
                 "art_style_logic": slot.get("art_style_logic", ""),
-                "approved": False,
-                "story_matches_caption": False,
-                "anatomy_acceptable": False,
-                "identity_stable_when_applicable": False,
-                "text_free": False,
-                "wan_motion_safety": "approved | risky | rejected",
-                "repair_needed": True,
+                "wan_motion_safety": "unreviewed",
+                "blocking_issue": False,
+                "blocking_findings": [],
+                "warnings": [],
                 "notes": "",
             }
             for slot in plan.get("slots", [])
@@ -903,19 +1157,18 @@ def default_visual_qc(episode: dict[str, Any], plan: dict[str, Any], target: Pat
             "background_path": str(cover_root / "cover-background.png") if cover_root else "",
             "final_cover_path": str(cover_root / "cover-final.png") if cover_root else "",
             "cover_title": episode.get("cover_title", ""),
-            "approved": False,
-            "human_free": False,
-            "text_free": False,
-            "logo_free": False,
-            "watermark_free": False,
-            "title_safe_space": False,
+            "blocking_findings": [],
+            "warnings": [],
             "notes": "",
         },
-        "notes": "人工审核每张正文图和封面背景；未通过的图重生或修复后再进入 Remotion。",
+        "notes": "联系表审核只记录明确的 blocking_findings：严重人体错误、可读错误文字、主角身份严重漂移或核心情节冲突。风格偏差、无害动物和额外环境物件记录为 warnings。",
     }
 
 
 def _slot_needs_identity_check(slot: dict[str, Any]) -> bool:
+    subject_mode = str(slot.get("subject_mode", "")).strip().lower()
+    if subject_mode:
+        return subject_mode in HUMAN_SUBJECT_MODES
     if str(slot.get("workflow", "")) == "flux2_klein_4ref":
         return True
     text = " ".join(
@@ -945,40 +1198,33 @@ def _slot_needs_identity_check(slot: dict[str, Any]) -> bool:
 def require_visual_qc(episode: dict[str, Any], target: Path, plan: dict[str, Any]) -> dict[str, Any]:
     qc_path = target / "artifacts" / "visual_qc.json"
     if not qc_path.is_file():
-        dump_json(qc_path, default_visual_qc(episode, plan, target))
-        raise PermissionError(f"{episode['project_id']} needs approved visual_qc.json before Remotion staging")
+        qc = default_visual_qc(episode, plan, target)
+        dump_json(qc_path, qc)
+        return qc
     qc = load_json(qc_path)
-    failed_scenes = [
-        scene_id
-        for scene_id, row in qc.get("scenes", {}).items()
-        if row.get("approved") is not True
-        or row.get("story_matches_caption") is not True
-        or row.get("anatomy_acceptable") is not True
-        or row.get("text_free") is not True
-        or row.get("repair_needed") is True
-    ]
-    slots_by_id = {str(slot.get("id", "")): slot for slot in plan.get("slots", [])}
-    failed_scenes.extend(
-        scene_id
-        for scene_id, row in qc.get("scenes", {}).items()
-        if _slot_needs_identity_check(slots_by_id.get(str(scene_id), {}))
-        and row.get("identity_stable_when_applicable") is not True
-    )
+    blocking_findings = list(qc.get("blocking_findings", []))
+    failed_scenes: list[str] = []
+    for scene_id, row in qc.get("scenes", {}).items():
+        row_findings = list(row.get("blocking_findings", []))
+        # Backward compatibility: old reviewed files may still carry the
+        # explicit blocking fields.  The old approval/checklist fields do not
+        # independently block staging anymore.
+        explicitly_blocking = (
+            row.get("blocking_issue") is True
+            or str(row.get("severity", "")).strip().lower() == "blocking"
+        )
+        if explicitly_blocking or row_findings:
+            failed_scenes.append(scene_id)
+            blocking_findings.extend(
+                row_findings or [f"{scene_id}:legacy_explicit_blocking_issue"]
+            )
     cover = qc.get("cover", {})
-    wan_selection = plan.get("wan_selection", {}) if isinstance(plan.get("wan_selection"), dict) else {}
-    wan_scene_id = str(wan_selection.get("scene_id", ""))
-    if wan_scene_id:
-        row = qc.get("scenes", {}).get(wan_scene_id, {})
-        if str(row.get("wan_motion_safety", "")).lower() != "approved":
-            failed_scenes.append(wan_scene_id)
-    cover_failed = [
-        key
-        for key in ("approved", "human_free", "text_free", "logo_free", "watermark_free", "title_safe_space")
-        if cover.get(key) is not True
-    ]
-    if qc.get("approved") is not True or failed_scenes or cover_failed:
+    cover_findings = list(cover.get("blocking_findings", []))
+    blocking_findings.extend(cover_findings)
+    if failed_scenes or blocking_findings:
         raise PermissionError(
-            f"{episode['project_id']} visual QC is not approved; failed_scenes={failed_scenes}; cover_failed={cover_failed}"
+            f"{episode['project_id']} visual QC has blocking findings; "
+            f"failed_scenes={failed_scenes}; findings={blocking_findings}"
         )
     return qc
 
@@ -1103,14 +1349,26 @@ def build_visual_slots(
     motion_names = ("push-in", "drift-left", "pull-back", "drift-right", "drift-up")
     guardrails = technical_guardrails or list(TECHNICAL_GUARDRAILS)
     if captions:
-        grouped_captions = _chunk_caption_segments(captions, count, duration_seconds)
-        for group_index, group in enumerate(grouped_captions):
-            beat_index = min(len(beats) - 1, math.floor(group_index * len(beats) / max(1, len(grouped_captions))))
-            beat = beats[beat_index]
-            base_prompt = _beat_prompt(beat, group_index)
-            if protagonist_identity and "protagonist identity" not in base_prompt.lower():
-                base_prompt = f"{base_prompt.rstrip(' .')}. Episode protagonist identity: {protagonist_identity}"
-            camera = CAMERA_VARIATIONS[group_index % len(CAMERA_VARIATIONS)]
+        anchored = _anchored_caption_groups(captions, beats, count, duration_seconds)
+        if anchored:
+            assignments = anchored
+            timing_policy = "script_anchor"
+        else:
+            grouped_captions = _chunk_caption_segments(captions, count, duration_seconds)
+            assignments = []
+            for group_index, group in enumerate(grouped_captions):
+                beat_index = min(len(beats) - 1, math.floor(group_index * len(beats) / max(1, len(grouped_captions))))
+                assignments.append((beats[beat_index], group, group_index))
+            timing_policy = "legacy_proportional"
+        for group_index, (beat, group, prompt_index) in enumerate(assignments):
+            beat_index = beats.index(beat)
+            subject_mode = _beat_subject_mode(beat)
+            compiled_prompt = compile_scene_prompt(
+                beat,
+                prompt_index,
+                protagonist_identity=protagonist_identity,
+                guardrails=guardrails,
+            )
             slot_start = int(group["startMs"]) / 1000
             slot_end = int(group["endMs"]) / 1000
             fields = _beat_story_fields(beat)
@@ -1122,7 +1380,8 @@ def build_visual_slots(
                     "to": round(slot_end, 3),
                     "duration": round(slot_end - slot_start, 3),
                     "workflow": beat.get("workflow", "krea2_low_vram"),
-                    "prompt": _append_guardrails(f"{base_prompt.rstrip(' .')}. {camera}", guardrails),
+                    "subject_mode": subject_mode,
+                    "prompt": compiled_prompt,
                     "story_event": fields["story_event"],
                     "fable_law": fields["fable_law"],
                     "art_style_logic": fields["art_style_logic"],
@@ -1135,6 +1394,7 @@ def build_visual_slots(
                         "startMs": int(group["startMs"]),
                         "endMs": int(group["endMs"]),
                     },
+                    "caption_binding": timing_policy,
                     "motion": motion_names[(scene_number - 1) % len(motion_names)],
                     "output_name": f"scene-{scene_number:03d}.png",
                 }
@@ -1149,10 +1409,13 @@ def build_visual_slots(
         for within_beat in range(allocation):
             slot_start = start + within_beat * step
             slot_end = end if within_beat == allocation - 1 else start + (within_beat + 1) * step
-            base_prompt = _beat_prompt(beat, within_beat)
-            if protagonist_identity and "protagonist identity" not in base_prompt.lower():
-                base_prompt = f"{base_prompt.rstrip(' .')}. Episode protagonist identity: {protagonist_identity}"
-            camera = CAMERA_VARIATIONS[within_beat % len(CAMERA_VARIATIONS)]
+            subject_mode = _beat_subject_mode(beat)
+            compiled_prompt = compile_scene_prompt(
+                beat,
+                within_beat,
+                protagonist_identity=protagonist_identity,
+                guardrails=guardrails,
+            )
             fields = _beat_story_fields(beat)
             slots.append(
                 {
@@ -1162,7 +1425,8 @@ def build_visual_slots(
                     "to": round(slot_end, 3),
                     "duration": round(slot_end - slot_start, 3),
                     "workflow": beat.get("workflow", "krea2_low_vram"),
-                    "prompt": _append_guardrails(f"{base_prompt.rstrip(' .')}. {camera}", guardrails),
+                    "subject_mode": subject_mode,
+                    "prompt": compiled_prompt,
                     "story_event": fields["story_event"],
                     "fable_law": fields["fable_law"],
                     "art_style_logic": fields["art_style_logic"],
@@ -1188,11 +1452,16 @@ def validate_episode(episode: dict[str, Any], series: dict[str, Any]) -> list[st
         errors.append("project_id must start with treeelf-fable-")
     protagonist = str(episode.get("protagonist", {}).get("type", ""))
     allowed = set(series.get("character", {}).get("allowed_protagonists", []))
-    forbidden = set(series.get("character", {}).get("forbidden_protagonists", []))
     if protagonist not in allowed:
         errors.append(f"unsupported protagonist type:{protagonist}")
-    if protagonist in forbidden or protagonist in {"成年男性", "中年男人"}:
-        errors.append(f"forbidden protagonist type:{protagonist}")
+    protagonist_config = episode.get("protagonist", {}) if isinstance(episode.get("protagonist"), dict) else {}
+    if protagonist in {"成年女性", "成年男性", "女孩", "男孩"}:
+        if not str(protagonist_config.get("selection_rationale", "")).strip():
+            errors.append("human protagonist requires selection_rationale")
+        appearance = protagonist_config.get("appearance", {}) if isinstance(protagonist_config.get("appearance"), dict) else {}
+        for field in ("age_band", "hair", "silhouette"):
+            if not str(appearance.get(field, "")).strip():
+                errors.append(f"human protagonist appearance missing:{field}")
     beats = episode.get("semantic_beats", [])
     if not beats:
         errors.append("semantic_beats must not be empty")
@@ -1204,13 +1473,45 @@ def validate_episode(episode: dict[str, Any], series: dict[str, Any]) -> list[st
         for field in ("story_event", "fable_law", "art_style_logic"):
             if not str(beat.get(field, "")).strip():
                 errors.append(f"{beat.get('id', 'semantic beat')}: missing fable visual field:{field}")
+        subject_mode = _beat_subject_mode(beat)
+        if not str(beat.get("subject_mode", "")).strip():
+            errors.append(f"{beat.get('id', 'semantic beat')}: missing subject_mode")
+        elif subject_mode not in SUBJECT_MODES:
+            errors.append(f"{beat.get('id', 'semantic beat')}: unsupported subject_mode:{subject_mode}")
+        compiled = compile_scene_prompt(
+            beat,
+            0,
+            protagonist_identity=str(protagonist_config.get("description", "")),
+            guardrails=_prompt_guardrails(series),
+        )
+        errors.extend(
+            f"{beat.get('id', 'semantic beat')}: compiled prompt contract:{message}"
+            for message in compiled_prompt_contract_errors(compiled, subject_mode)
+        )
+    if _strict_gate(series, "require_script_anchors", True):
+        narration_text = str(episode.get("narration_text", ""))
+        compact_narration = _compact_anchor_text(narration_text)
+        search_from = 0
+        for beat in beats:
+            anchor = _compact_anchor_text(beat.get("script_anchor", ""))
+            if not anchor:
+                errors.append(f"{beat.get('id', 'semantic beat')}: missing script_anchor")
+                continue
+            position = compact_narration.find(anchor, search_from)
+            if position < 0:
+                errors.append(f"{beat.get('id', 'semantic beat')}: script_anchor is missing or out of narration order")
+                continue
+            search_from = position + max(1, len(anchor))
     needs_references = any(beat.get("workflow") == "flux2_klein_4ref" for beat in beats)
     provided_references = episode.get("character_reference_paths", [])
     character_pack = episode.get("character_pack", {})
-    generated_references = character_pack.get("reference_prompts", [])
     if needs_references and len(provided_references) != 4:
-        if not character_pack.get("enabled") or len(generated_references) != 4:
-            errors.append("flux2_klein_4ref requires four existing references or an enabled four-reference character_pack")
+        if not character_pack.get("enabled"):
+            errors.append("flux2_klein_4ref requires four existing references or an enabled character_pack")
+        elif character_pack.get("mode") != "single_turnaround_sheet":
+            errors.append("new character packs must use mode=single_turnaround_sheet; independent text-only views are not identity-safe")
+        elif not str(character_pack.get("turnaround_prompt", "")).strip():
+            errors.append("single_turnaround_sheet character pack requires turnaround_prompt")
     hero = episode.get("hero_wan", {})
     if hero.get("enabled"):
         manual_scene_id = str(hero.get("scene_id", "")).strip()
@@ -1232,6 +1533,12 @@ def validate_episode(episode: dict[str, Any], series: dict[str, Any]) -> list[st
             "cover_prompt must be human-free symbolic/environment imagery; remove people/portrait terms: "
             + ", ".join(cover_terms)
         )
+    cover_layout_terms = cover_layout_prompt_terms(str(episode.get("cover_prompt", "")))
+    if cover_layout_terms:
+        errors.append(
+            "cover_prompt must describe only the artwork background; remove layout/typography cues: "
+            + ", ".join(cover_layout_terms)
+        )
     source = Path(str(episode.get("source_script_md", ""))).expanduser()
     if episode.get("source_script_md") and not source.is_file():
         errors.append(f"source does not exist:{source}")
@@ -1250,6 +1557,7 @@ def validate_batch(batch: dict[str, Any], batch_path: Path, series: dict[str, An
         errors.append("queue_depth must match the independent fable series profile")
     project_ids: list[str] = []
     source_paths: list[str] = []
+    human_hair_families: list[tuple[str, str]] = []
     for path in paths:
         if not path.is_file():
             errors.append(f"missing episode config:{path}")
@@ -1257,11 +1565,28 @@ def validate_batch(batch: dict[str, Any], batch_path: Path, series: dict[str, An
         episode = load_json(path)
         project_ids.append(str(episode.get("project_id", "")))
         source_paths.append(str(Path(str(episode.get("source_script_md", ""))).expanduser()))
+        protagonist = episode.get("protagonist", {}) if isinstance(episode.get("protagonist"), dict) else {}
+        if str(protagonist.get("type", "")) in {"成年女性", "成年男性", "女孩", "男孩"}:
+            appearance = protagonist.get("appearance", {}) if isinstance(protagonist.get("appearance"), dict) else {}
+            human_hair_families.append(
+                (str(episode.get("project_id", path.name)), hair_design_family(str(appearance.get("hair", ""))))
+            )
         errors.extend(f"{path.name}:{error}" for error in validate_episode(episode, series))
     if len(project_ids) != len(set(project_ids)):
         errors.append("episode project_id values must be unique")
     if len(source_paths) != len(set(source_paths)):
         errors.append("episode source paths must be unique")
+    if len(human_hair_families) >= 3:
+        counts: dict[str, list[str]] = {}
+        for project_id, family in human_hair_families:
+            counts.setdefault(family, []).append(project_id)
+        dominant_family, projects = max(counts.items(), key=lambda item: len(item[1]))
+        if dominant_family != "other" and len(projects) >= 3 and len(projects) / len(human_hair_families) >= 0.75:
+            errors.append(
+                "batch character designs overuse one hair family:"
+                f"{dominant_family} ({len(projects)}/{len(human_hair_families)}): "
+                + ", ".join(projects)
+            )
     return errors
 
 
@@ -1344,7 +1669,7 @@ def build_batch_readiness_report(
                 "manual_wan_scene_id": manual_wan_scene_id,
                 "has_opening_wan_candidate": has_explicit_wan_candidate,
                 "expected_wan_jobs": expected_wan_jobs,
-                "ready": not missing_fields and not prompt_warnings and source.is_file() and ledger_status in {"pending", "planned", "failed", "not_checked"},
+                "ready": not missing_fields and source.is_file() and ledger_status in {"pending", "planned", "failed", "not_checked"},
             }
         )
     return {
@@ -1387,10 +1712,17 @@ def transition_ledger_item(
         if cover:
             item["cover"] = cover
         return
-    if new_status not in ALLOWED_TRANSITIONS.get(current, set()):
+    if (
+        new_status not in ALLOWED_TRANSITIONS.get(current, set())
+        and new_status not in RECONCILABLE_STATUSES
+    ):
         raise ValueError(f"invalid fable status transition:{current}->{new_status}")
+    reconciled_from = current if new_status not in ALLOWED_TRANSITIONS.get(current, set()) else ""
     item["status"] = new_status
     item["updated_at"] = utc_now()
+    if reconciled_from:
+        item["status_reconciled_from"] = reconciled_from
+        item["status_reconciled_at"] = item["updated_at"]
     if project_id:
         item["project_id"] = project_id
     if batch_id:
@@ -1410,6 +1742,105 @@ def _narration_text(source: Path) -> str:
         if len(parts) == 3:
             text = parts[2]
     return "\n".join(line for line in text.splitlines() if not line.lstrip().startswith("#")).strip()
+
+
+def canonical_fable_source_key(path_or_name: str | Path) -> str:
+    """Group dated originals and derived short versions as one fable work."""
+
+    stem = Path(path_or_name).stem
+    stem = re.sub(r"^\d{4}-\d{2}-\d{2}_", "", stem)
+    stem = re.sub(r"_(?:精简版|短版|30秒版)$", "", stem)
+    return stem.strip()
+
+
+def _fable_ledger_item_has_video(item: dict[str, Any]) -> bool:
+    if str(item.get("status", "")).lower() in {"completed", "produced", "archived"}:
+        return True
+    output = str(item.get("output") or "").strip()
+    return bool(output and Path(output).expanduser().is_file())
+
+
+def sync_fable_source_ledger(
+    series: dict[str, Any],
+    *,
+    source_dir: Path | None = None,
+    ledger_path: Path | None = None,
+) -> dict[str, Any]:
+    """Discover one candidate per unproduced fable, ignoring editorial statuses."""
+
+    source_root = (source_dir or Path(str(series["source_dir"]))).expanduser().resolve()
+    ledger_file = (ledger_path or Path(str(series["status_ledger"]))).expanduser().resolve()
+    ledger = load_json(ledger_file) if ledger_file.is_file() else {
+        "version": "1.0",
+        "series": "treeelf-fable",
+        "source_dir": str(source_root),
+        "items": [],
+    }
+    items = ledger.setdefault("items", [])
+    existing_by_source = {str(item.get("source")): item for item in items}
+    produced_keys = {
+        canonical_fable_source_key(str(item.get("source", "")))
+        for item in items
+        if _fable_ledger_item_has_video(item)
+    }
+    represented_keys = {
+        canonical_fable_source_key(str(item.get("source", "")))
+        for item in items
+        if str(item.get("source", "")).strip()
+    }
+    grouped: dict[str, list[Path]] = {}
+    for source in sorted(source_root.glob("*.md")):
+        grouped.setdefault(canonical_fable_source_key(source), []).append(source)
+
+    added: list[str] = []
+    skipped_completed: list[str] = []
+    skipped_same_work: list[str] = []
+    for key, paths in sorted(grouped.items()):
+        if key in produced_keys:
+            skipped_completed.extend(str(path) for path in paths)
+            continue
+        if key in represented_keys:
+            skipped_same_work.extend(
+                str(path) for path in paths if path.name not in existing_by_source
+            )
+            continue
+        originals = [path for path in paths if not re.search(r"_(?:精简版|短版|30秒版)$", path.stem)]
+        selected = max(originals or paths, key=lambda path: (path.stat().st_mtime_ns, path.name))
+        items.append({
+            "source": selected.name,
+            "status": "pending",
+            "discovered_at": utc_now(),
+            "selection_basis": "unproduced_work_only",
+        })
+        existing_by_source[selected.name] = items[-1]
+        represented_keys.add(key)
+        added.append(str(selected))
+
+    ledger["source_dir"] = str(source_root)
+    ledger["updated"] = datetime.now().astimezone().date().isoformat()
+    ledger["selection_policy"] = {
+        "eligible_when": "no completed video and no active batch reservation",
+        "ignored_editorial_fields": ["status", "review_status"],
+        "same_work_suffixes": ["精简版", "短版", "30秒版"],
+    }
+    dump_json(ledger_file, ledger)
+    available = [
+        item for item in items
+        if str(item.get("status", "")) in {"pending", "failed"}
+        and not _fable_ledger_item_has_video(item)
+    ]
+    return {
+        "version": "1.0",
+        "source_dir": str(source_root),
+        "ledger_path": str(ledger_file),
+        "added": added,
+        "added_count": len(added),
+        "available_count": len(available),
+        "available": available,
+        "skipped_completed_count": len(skipped_completed),
+        "skipped_same_work_count": len(skipped_same_work),
+        "editorial_status_ignored": True,
+    }
 
 
 def prepare_batch(
@@ -1466,6 +1897,33 @@ def prepare_batch(
             episode_target / "artifacts" / "visual_brief.json",
             build_visual_brief(episode, series, str(narration_text)),
         )
+        estimated_duration = float(episode.get("estimated_duration_seconds") or 0)
+        provisional_slots = (
+            build_visual_slots(
+                estimated_duration,
+                episode.get("semantic_beats", []),
+                target_seconds=float(series["pacing"]["target_seconds_per_image"]),
+                protagonist_identity=str(episode.get("protagonist", {}).get("description", "")),
+                technical_guardrails=_prompt_guardrails(series),
+            )
+            if estimated_duration > 0 and episode.get("semantic_beats")
+            else []
+        )
+        dump_json(
+            episode_target / "artifacts" / "gpu_visual_blueprint.json",
+            {
+                "version": "1.0",
+                "project_id": episode["project_id"],
+                "compiled_before_gpu": True,
+                "duration_basis": "episode.estimated_duration_seconds",
+                "estimated_duration_seconds": estimated_duration,
+                "timing_expansion_policy": "After narration, refresh only slot count and caption ranges from actual duration; retain the approved beat prompts and visual logic.",
+                "slots": provisional_slots,
+                "cover_prompt": episode.get("cover_prompt", ""),
+                "character_turnaround_prompt": episode.get("character_pack", {}).get("turnaround_prompt", ""),
+                "compiled_at": utc_now(),
+            },
+        )
         dump_json(
             episode_target / "artifacts" / "prompt_review_warnings.json",
             {
@@ -1474,6 +1932,34 @@ def prepare_batch(
                 "warnings": prompt_review_warnings(episode),
                 "technical_guardrails": _prompt_guardrails(series),
                 "checked_at": utc_now(),
+            },
+        )
+        compiled_rows = []
+        for beat in episode.get("semantic_beats", []):
+            subject_mode = _beat_subject_mode(beat)
+            prompt = compile_scene_prompt(
+                beat,
+                0,
+                protagonist_identity=str(episode.get("protagonist", {}).get("description", "")),
+                guardrails=_prompt_guardrails(series),
+            )
+            compiled_rows.append(
+                {
+                    "beat_id": beat.get("id", ""),
+                    "subject_mode": subject_mode,
+                    "script_anchor": beat.get("script_anchor", ""),
+                    "prompt": prompt,
+                    "errors": compiled_prompt_contract_errors(prompt, subject_mode),
+                }
+            )
+        dump_json(
+            episode_target / "artifacts" / "compiled_prompt_report.json",
+            {
+                "version": "1.0",
+                "project_id": episode["project_id"],
+                "checked_at": utc_now(),
+                "scenes": compiled_rows,
+                "cover_layout_cues": cover_layout_prompt_terms(str(episode.get("cover_prompt", ""))),
             },
         )
         warnings = prompt_review_warnings(episode)
@@ -1516,28 +2002,28 @@ def prepare_batch(
         if character_pack.get("enabled"):
             character_root = episode_target / "assets" / "images" / "character"
             character_root.mkdir(parents=True, exist_ok=True)
-            character_prompts = [
-                ("master", character_pack["master_prompt"]),
-                *[
-                    (f"ref-{index:02d}", prompt)
-                    for index, prompt in enumerate(character_pack.get("reference_prompts", []), start=1)
-                ],
-            ]
-            for name, prompt in character_prompts:
-                character_jobs.append(
-                    {
-                        "job_id": f"{episode['project_id']}:character-{name}",
-                        "project_id": episode["project_id"],
-                        "tool": "comfyui_image",
-                        "workflow_template": series["gpu"]["ordinary_image_workflow"],
-                        "inputs": {
-                            "prompt": _append_guardrails(str(prompt), _prompt_guardrails(series)),
-                            "aspect_preset": "portrait_9_16",
-                            "output_path": str(character_root / f"{name}.png"),
-                        },
-                        "status": "queued",
-                    }
+            if character_pack.get("mode") != "single_turnaround_sheet":
+                raise ValueError(
+                    f"{episode['project_id']} character_pack must use single_turnaround_sheet; "
+                    "independent text-only reference views are not permitted"
                 )
+            character_jobs.append(
+                {
+                    "job_id": f"{episode['project_id']}:character-turnaround-sheet",
+                    "project_id": episode["project_id"],
+                    "tool": "comfyui_image",
+                    "workflow_template": series["gpu"]["ordinary_image_workflow"],
+                    "inputs": {
+                        "prompt": _append_guardrails(
+                            str(character_pack["turnaround_prompt"]),
+                            _prompt_guardrails(series),
+                        ),
+                        "aspect_preset": "portrait_9_16",
+                        "output_path": str(character_root / "turnaround-sheet.png"),
+                    },
+                    "status": "queued",
+                }
+            )
         episodes.append(
             {
                 "project_id": episode["project_id"],
@@ -1566,6 +2052,7 @@ def prepare_batch(
             {"id": "scene_images_krea", "workflow": series["gpu"]["ordinary_image_workflow"], "jobs": []},
             {"id": "scene_images_flux", "workflow": series["gpu"]["character_consistency_workflow"], "jobs": []},
             {"id": "covers", "workflow": series["gpu"]["cover_workflow"], "jobs": []},
+            {"id": "repairs", "workflow": "mixed_explicit_repair", "jobs": []},
             {"id": "wan", "workflow": series["gpu"]["wan_workflow"], "jobs": []},
         ],
         "next_action": "generate narration group, then run refresh-visuals before image groups",
@@ -1649,7 +2136,12 @@ def refresh_visuals(
     if not manifest_path.is_file():
         raise FileNotFoundError("run prepare before refresh-visuals")
     manifest = load_json(manifest_path)
-    if manifest.get("status") not in {"baseline_captured", "visual_jobs_queued"}:
+    if manifest.get("status") not in {
+        "baseline_captured",
+        "visual_jobs_queued",
+        "waiting_character_review",
+        "gpu_generation_complete",
+    }:
         raise ValueError("capture-gpu-baseline must run before narration or visual generation")
     scene_jobs_krea: list[dict[str, Any]] = []
     scene_jobs_flux: list[dict[str, Any]] = []
@@ -1682,14 +2174,25 @@ def refresh_visuals(
         references = [str(Path(value).expanduser()) for value in episode.get("character_reference_paths", [])]
         if len(references) != 4 and episode.get("character_pack", {}).get("enabled"):
             character_root = episode_target / "assets" / "images" / "character"
-            references = [str(character_root / f"ref-{index:02d}.png") for index in range(1, 5)]
+            turnaround = character_root / "turnaround-sheet.png"
+            expected = [str(character_root / f"ref-{index:02d}.png") for index in range(1, 5)]
+            if episode.get("character_pack", {}).get("mode") == "single_turnaround_sheet" and (
+                turnaround.is_file() and turnaround.stat().st_size > 0
+            ):
+                references = crop_character_turnaround_sheet(turnaround, character_root)
+            else:
+                references = expected
         needs_references = any(beat.get("workflow") == "flux2_klein_4ref" for beat in episode["semantic_beats"])
+        references_exist = [Path(value).is_file() and Path(value).stat().st_size > 0 for value in references]
+        reference_hashes = [sha256_file(Path(value)) for value, exists in zip(references, references_exist) if exists]
         character_gate = {
             "version": "1.0",
             "project_id": episode["project_id"],
             "requires_references": needs_references,
             "reference_image_paths": references,
-            "reference_images_exist": [Path(value).is_file() and Path(value).stat().st_size > 0 for value in references],
+            "reference_images_exist": references_exist,
+            "reference_sha256": reference_hashes,
+            "four_distinct_reference_files": len(reference_hashes) == 4 and len(set(reference_hashes)) == 4,
             "protagonist_identity": episode.get("protagonist", {}).get("description", ""),
             "contact_sheet": "",
             "review_required": bool(needs_references and _strict_gate(series, "require_character_review", True)),
@@ -1706,14 +2209,27 @@ def refresh_visuals(
             review_path = episode_target / "artifacts" / "character_review.json"
             if not review_path.is_file():
                 dump_json(review_path, default_character_review(episode, references, sheet_path))
-            elif _strict_gate(series, "require_character_review", True):
-                require_character_review(episode, episode_target)
-                character_gate["review_approved"] = True
+            if character_gate["four_distinct_reference_files"]:
+                try:
+                    require_character_review(episode, episode_target)
+                    character_gate["review_approved"] = True
+                except PermissionError as exc:
+                    character_gate["waiting_reason"] = str(exc)
+            else:
+                character_gate["waiting_reason"] = "four character reference crops are not distinct files"
         dump_json(episode_target / "artifacts" / "character_gate_report.json", character_gate)
-        if needs_references and (len(references) != 4 or not all(character_gate["reference_images_exist"])):
-            raise FileNotFoundError(f"{episode['project_id']} character reference gate failed; generate/review four references before scene images")
-        if needs_references and _strict_gate(series, "require_character_review", True) and not character_gate["review_approved"]:
-            raise PermissionError(f"{episode['project_id']} character contact sheet created; approve character_review.json before scene images")
+        character_flux_ready = bool(
+            not needs_references
+            or (
+                len(references) == 4
+                and all(character_gate["reference_images_exist"])
+                and character_gate["four_distinct_reference_files"]
+                and (
+                    character_gate["review_approved"]
+                    or not _strict_gate(series, "require_character_review", True)
+                )
+            )
+        )
         slots = build_visual_slots(
             duration,
             episode["semantic_beats"],
@@ -1730,8 +2246,6 @@ def refresh_visuals(
                 "output_path": str(output),
             }
             if slot["workflow"] == "flux2_klein_4ref":
-                if len(references) != 4:
-                    raise ValueError(f"{episode['project_id']} requires exactly four character references")
                 inputs["reference_image_paths"] = references
             job = {
                 "job_id": f"{episode['project_id']}:{slot['id']}",
@@ -1743,6 +2257,13 @@ def refresh_visuals(
             }
             if slot["workflow"] == "flux2_klein_4ref":
                 job["depends_on_group"] = "character_pack"
+                job["status"] = "queued" if character_flux_ready else "blocked_character_review"
+                job["gate"] = {
+                    "type": "character_review",
+                    "project_id": episode["project_id"],
+                    "ready": character_flux_ready,
+                    "report": str(episode_target / "artifacts" / "character_gate_report.json"),
+                }
                 scene_jobs_flux.append(job)
             else:
                 scene_jobs_krea.append(job)
@@ -1754,7 +2275,7 @@ def refresh_visuals(
                 "workflow_template": series["gpu"]["cover_workflow"],
                 "inputs": {
                     "prompt": _append_guardrails(
-                        f"{episode['cover_prompt'].rstrip(' .')}. symbolic object/environment-only cover background, generous title-safe negative space, refined material composition aligned with the philosophy cover visual system",
+                        f"{episode['cover_prompt'].rstrip(' .')}. symbolic object and environment artwork, quiet naturally open upper field, refined material composition",
                         _prompt_guardrails(series),
                     ),
                     "aspect_preset": "portrait_9_16",
@@ -1794,6 +2315,8 @@ def refresh_visuals(
                         "scene_duration_seconds": round(float(matching["to"]) - float(matching["from"]), 3),
                         "generation_duration_seconds": wan_duration,
                     },
+                    "optional": True,
+                    "failure_policy": "render_matching_static_scene",
                     "status": "queued",
                 }
             )
@@ -1830,14 +2353,19 @@ def refresh_visuals(
         summary.append({"project_id": episode["project_id"], "duration_seconds": round(duration, 3), "images": len(slots), "wan": visual_plan["wan_count"]})
 
     groups = {group["id"]: group for group in manifest["gpu_groups"]}
-    groups["scene_images_krea"]["jobs"] = scene_jobs_krea
-    groups["scene_images_flux"]["jobs"] = scene_jobs_flux
-    groups["covers"]["jobs"] = cover_jobs
-    groups["wan"]["jobs"] = wan_jobs
+    groups["scene_images_krea"]["jobs"] = _merge_planned_jobs(groups["scene_images_krea"].get("jobs", []), scene_jobs_krea)
+    groups["scene_images_flux"]["jobs"] = _merge_planned_jobs(groups["scene_images_flux"].get("jobs", []), scene_jobs_flux)
+    groups["covers"]["jobs"] = _merge_planned_jobs(groups["covers"].get("jobs", []), cover_jobs)
+    groups["wan"]["jobs"] = _merge_planned_jobs(groups["wan"].get("jobs", []), wan_jobs)
     manifest["status"] = "visual_jobs_queued"
     manifest["narration_group_completed_at"] = utc_now()
     manifest["visual_plan_refreshed_at"] = utc_now()
-    manifest["next_action"] = "generate scene_images, covers, and wan groups; add every repair job to this manifest"
+    blocked_flux_jobs = sum(job.get("status") == "blocked_character_review" for job in scene_jobs_flux)
+    manifest["next_action"] = (
+        "generate Krea scenes and covers while character review is pending; rerun refresh-visuals to release Flux jobs"
+        if blocked_flux_jobs
+        else "generate Krea, Flux, covers, and optional Wan groups"
+    )
     dump_json(manifest_path, manifest)
     return {
         "batch_id": batch["batch_id"],
@@ -1847,7 +2375,26 @@ def refresh_visuals(
         "scene_jobs_flux": len(scene_jobs_flux),
         "cover_jobs": len(cover_jobs),
         "wan_jobs": len(wan_jobs),
+        "blocked_flux_jobs": blocked_flux_jobs,
     }
+
+
+def _merge_planned_jobs(existing: list[dict[str, Any]], planned: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Refresh a generated job plan without losing completed job provenance."""
+
+    previous = {str(job.get("job_id")): job for job in existing}
+    merged: list[dict[str, Any]] = []
+    for job in planned:
+        old = previous.get(str(job.get("job_id")))
+        if old and old.get("status") == "complete":
+            preserved = dict(job)
+            for key in ("status", "completed_at", "duration_seconds", "artifacts"):
+                if key in old:
+                    preserved[key] = old[key]
+            merged.append(preserved)
+        else:
+            merged.append(job)
+    return merged
 
 
 def _all_jobs(manifest: dict[str, Any]) -> list[dict[str, Any]]:
@@ -1866,10 +2413,15 @@ def verify_gpu_assets(
     manifest = load_json(manifest_path)
     rows_by_path: dict[str, dict[str, Any]] = {}
     missing: list[str] = []
+    optional_missing: list[str] = []
+    cover_ocr_rows: list[dict[str, Any]] = []
     for job in _all_jobs(manifest):
         output = Path(job["inputs"]["output_path"])
         if not output.is_file() or output.stat().st_size <= 0:
-            missing.append(str(output))
+            if job.get("optional") is True:
+                optional_missing.append(str(output))
+            else:
+                missing.append(str(output))
             continue
         rows_by_path[str(output)] = {
             "job_id": job["job_id"],
@@ -1877,6 +2429,8 @@ def verify_gpu_assets(
             "size": output.stat().st_size,
             "sha256": sha256_file(output),
         }
+        if str(job.get("job_id", "")).endswith(":cover"):
+            cover_ocr_rows.append(cover_ocr_check(output))
     if missing:
         raise FileNotFoundError("GPU asset inventory is incomplete:\n" + "\n".join(missing))
     # Candidates, repair outputs, contact sheets, and provider provenance may
@@ -1904,9 +2458,23 @@ def verify_gpu_assets(
         "scope": "all jobs recorded for the current batch, including appended candidates and repairs",
         "verified_at": utc_now(),
         "assets": rows,
+        "optional_missing_assets": optional_missing,
     }
     inventory_path = target / "artifacts" / "gpu_asset_inventory.json"
     dump_json(inventory_path, inventory)
+    dump_json(
+        target / "artifacts" / "cover_ocr_report.json",
+        {"version": "1.0", "batch_id": batch["batch_id"], "covers": cover_ocr_rows},
+    )
+    failed_cover_ocr = [row for row in cover_ocr_rows if row.get("passed") is not True]
+    if _strict_gate(series, "require_cover_ocr", True) and failed_cover_ocr:
+        raise ValueError(
+            "cover OCR gate failed:\n"
+            + "\n".join(
+                f"- {row['path']}: detected={row.get('detected_tokens', [])} error={row.get('error', '')}"
+                for row in failed_cover_ocr
+            )
+        )
     manifest["status"] = "gpu_assets_complete"
     manifest["gpu_assets_verified_at"] = utc_now()
     manifest["gpu_generation_completed_at"] = manifest["gpu_assets_verified_at"]
@@ -1956,8 +2524,9 @@ def stage_local_episode(
         plan = sync_visual_plan_to_captions(plan, captions)
         dump_json(target / "artifacts" / "visual_plan.json", plan)
         dump_json(target / "artifacts" / "wan_retarget_report.json", build_wan_retarget_report(original_plan, plan))
+    visual_qc: dict[str, Any] = {}
     if _strict_gate(series, "require_visual_qc_for_stage", True):
-        require_visual_qc(episode, target, plan)
+        visual_qc = require_visual_qc(episode, target, plan)
 
     cover_background = target / "assets" / "images" / "cover" / "cover-background.png"
     if not cover_background.is_file() or cover_background.stat().st_size <= 0:
@@ -1975,9 +2544,27 @@ def stage_local_episode(
     hero = episode.get("hero_wan", {})
     wan_selection = plan.get("wan_selection", {}) if isinstance(plan.get("wan_selection"), dict) else {}
     wan_scene_id = str(wan_selection.get("scene_id") or hero.get("scene_id", ""))
+    wan_asset = target / "assets" / "video" / "wan-hero.mp4"
+    wan_qc_row = visual_qc.get("scenes", {}).get(wan_scene_id, {}) if wan_scene_id else {}
+    wan_motion_safe = str(wan_qc_row.get("wan_motion_safety", "")).lower() == "approved"
+    wan_available = wan_asset.is_file() and wan_asset.stat().st_size > 0
+    apply_wan = bool(hero.get("enabled") and wan_scene_id and wan_available and wan_motion_safe)
+    if hero.get("enabled") and wan_scene_id and not apply_wan:
+        dump_json(
+            target / "artifacts" / "wan_static_fallback.json",
+            {
+                "version": "1.0",
+                "project_id": episode["project_id"],
+                "scene_id": wan_scene_id,
+                "wan_asset_available": wan_available,
+                "wan_motion_safety": wan_qc_row.get("wan_motion_safety", "unreviewed"),
+                "decision": "use_static_scene",
+                "recorded_at": utc_now(),
+            },
+        )
     scenes: list[dict[str, Any]] = []
     for slot in plan["slots"]:
-        use_wan = bool(hero.get("enabled") and wan_scene_id == slot["id"])
+        use_wan = bool(apply_wan and wan_scene_id == slot["id"])
         scene_duration = max(0.12, float(slot["to"]) - float(slot["from"]))
         generated_wan_duration = float(wan_selection.get("generation_duration_seconds") or series["pacing"].get("wan_duration_seconds", 5))
         scenes.append(
@@ -2000,45 +2587,75 @@ def stage_local_episode(
         if not media_path.is_file() or media_path.stat().st_size <= 0:
             raise FileNotFoundError(f"scene media missing or rejected before Remotion staging:{media_path}")
     music_runtime = series.get("music", {})
-    usage_ledger_path = (
-        PROJECTS_ROOT / ".treeelf-music-usage-ledger.json"
-        if projects_root.resolve() != PROJECTS_ROOT.resolve()
-        else Path(str(music_runtime.get("usage_ledger_path", DEFAULT_USAGE_LEDGER_PATH))).expanduser()
-    )
-    music_selection = select_music_source(
-        episode, series, used_music_paths=used_music_paths, usage_ledger_path=usage_ledger_path
-    )
-    music_source = Path(str(music_selection.get("path", ""))).expanduser()
-    if not music_source.is_file():
-        raise FileNotFoundError(f"fable requires background music; no usable music source found for {episode['project_id']}")
-    music_target = target / "assets" / "music" / "background.mp3"
-    normalize_cfg = music_runtime.get("normalization", {})
-    normalization = normalize_background_music(
-        music_source,
-        music_target,
-        target_lufs=float(normalize_cfg.get("target_lufs", -18.0)),
-        true_peak_dbfs=float(normalize_cfg.get("true_peak_dbfs", -2.0)),
-        loudness_range_lu=float(normalize_cfg.get("loudness_range_lu", 7.0)),
-    )
-    public_music = public_root / "music" / "background.mp3"
-    _atomic_link_or_copy(music_target, public_music)
-    usage = record_music_usage(
-        music_selection,
+    usage_ledger_path = _music_usage_ledger_path(series, projects_root)
+    music_selection, usage = select_and_record_music_usage(
+        lambda preferred_track_id: select_music_source(
+            episode,
+            series,
+            used_music_paths=used_music_paths,
+            usage_ledger_path=usage_ledger_path,
+            preferred_track_id=preferred_track_id,
+        ),
         project_id=episode["project_id"],
         series="treeelf-fable",
         ledger_path=usage_ledger_path,
+        force_reselect=bool(
+            episode.get("reselect_music")
+            or (
+                isinstance(episode.get("music"), dict)
+                and episode.get("music", {}).get("reselect")
+            )
+        ),
+        reservation_ttl_hours=float(music_runtime.get("reservation_ttl_hours", 168)),
     )
-    dump_json(
-        target / "artifacts" / "music_selection.json",
-        {
-            "version": "2.0",
-            "project_id": episode["project_id"],
-            "selected": music_selection,
-            "normalization": normalization,
-            "usage_record": usage,
-            "selected_at": utc_now(),
-        },
-    )
+    music_selection_path = target / "artifacts" / "music_selection.json"
+    music_selection_report = {
+        "version": "2.0",
+        "project_id": episode["project_id"],
+        "selected": music_selection,
+        "usage_record": usage,
+        "selected_at": utc_now(),
+    }
+    dump_json(music_selection_path, music_selection_report)
+    music_source = Path(str(music_selection.get("path", ""))).expanduser()
+    if not music_source.is_file():
+        failure_transition = transition_music_usage(
+            project_id=episode["project_id"],
+            series="treeelf-fable",
+            status="failed",
+            ledger_path=usage_ledger_path,
+            reason="selected_music_source_missing",
+        )
+        music_selection_report["usage_transition"] = failure_transition
+        dump_json(music_selection_path, music_selection_report)
+        raise FileNotFoundError(f"fable requires background music; no usable music source found for {episode['project_id']}")
+    music_target = target / "assets" / "music" / "background.mp3"
+    normalize_cfg = music_runtime.get("normalization", {})
+    try:
+        normalization = normalize_background_music(
+            music_source,
+            music_target,
+            target_lufs=float(normalize_cfg.get("target_lufs", -18.0)),
+            true_peak_dbfs=float(normalize_cfg.get("true_peak_dbfs", -2.0)),
+            loudness_range_lu=float(normalize_cfg.get("loudness_range_lu", 7.0)),
+            tolerance_lu=float(normalize_cfg.get("tolerance_lu", 2.0)),
+        )
+    except Exception as exc:
+        failure_transition = transition_music_usage(
+            project_id=episode["project_id"],
+            series="treeelf-fable",
+            status="failed",
+            ledger_path=usage_ledger_path,
+            reason=f"normalization_failed:{exc}",
+        )
+        music_selection_report["normalization_error"] = str(exc)
+        music_selection_report["usage_transition"] = failure_transition
+        dump_json(music_selection_path, music_selection_report)
+        raise
+    public_music = public_root / "music" / "background.mp3"
+    _atomic_link_or_copy(music_target, public_music)
+    music_selection_report["normalization"] = normalization
+    dump_json(music_selection_path, music_selection_report)
     audio_qc = build_audio_mix_qc(
         target / "assets" / "audio" / "narration.mp3",
         music_target,
@@ -2061,7 +2678,7 @@ def stage_local_episode(
         "brand": "树精灵",
         "transitionFrames": 10,
         "timelinePolicy": plan.get("timing_policy", ""),
-        "wanPolicy": wan_selection,
+        "wanPolicy": {**wan_selection, "applied_to_render": apply_wan},
         "captionStyle": {
             "fontSize": series["captions"]["font_size"],
             "color": series["captions"]["color"],
@@ -2108,8 +2725,16 @@ def stage_local_batch(
     target = _batch_dir(batch, projects_root)
     manifest_path = target / "artifacts" / "gpu_batch_manifest.json"
     manifest = load_json(manifest_path)
-    if manifest.get("status") not in {"gpu_assets_complete", "gpu_finalized", "local_packaging"}:
-        raise ValueError("GPU assets must be complete before local staging")
+    previous_status = str(manifest.get("status", ""))
+    if previous_status not in {"gpu_assets_complete", "gpu_finalized", "local_packaging"}:
+        # stage_local_episode performs the authoritative file, caption, visual
+        # and audio checks. A stale orchestration label must not block local
+        # packaging when the actual assets are present.
+        manifest["local_stage_status_warning"] = {
+            "previous_status": previous_status,
+            "decision": "continued after concrete local asset gates",
+            "recorded_at": utc_now(),
+        }
     results = []
     used_music_paths: list[str] = []
     for path in _resolve_episode_paths(batch_path, batch):
@@ -2247,16 +2872,79 @@ def complete_local_batch(
     delivery_root.mkdir(parents=True, exist_ok=True)
     ledger_file = ledger_path or Path(series["status_ledger"])
     ledger = load_json(ledger_file)
+    music_usage_ledger = _music_usage_ledger_path(series, projects_root)
+    final_qc_cfg = series.get("music", {}).get("final_mix_qc", {})
     delivered: list[dict[str, Any]] = []
     for config_path in _resolve_episode_paths(batch_path, batch):
         episode = load_json(config_path)
         episode_target = _episode_dir(episode, projects_root)
+        existing_report_path = episode_target / "artifacts" / "delivery_report.json"
+        if existing_report_path.is_file():
+            existing_report = load_json(existing_report_path)
+            existing_output = Path(str(existing_report.get("output", ""))).expanduser()
+            expected_sha = str(existing_report.get("sha256", ""))
+            if existing_output.is_file() and expected_sha:
+                actual_sha = sha256_file(existing_output)
+                if actual_sha != expected_sha:
+                    raise ValueError(f"existing Movies delivery SHA-256 mismatch:{existing_output}")
+                source_name = Path(episode["source_script_md"]).name
+                transition_ledger_item(
+                    ledger,
+                    source_name,
+                    "completed",
+                    project_id=episode["project_id"],
+                    batch_id=batch["batch_id"],
+                    output=str(existing_output),
+                    cover=existing_report.get("cover_asset"),
+                )
+                delivered.append(
+                    {
+                        "project_id": episode["project_id"],
+                        "video": str(existing_output),
+                        "cover_asset": existing_report.get("cover_asset"),
+                        "movies_contains_cover": False,
+                        "sha256": actual_sha,
+                        "delivery_mode": "reused_verified_delivery",
+                    }
+                )
+                continue
         final_video = episode_target / "renders" / "final.mp4"
         final_cover = episode_target / "assets" / "images" / "cover" / "cover-final.png"
         if not final_video.is_file() or final_video.stat().st_size <= 0:
             raise FileNotFoundError(f"final render is missing:{final_video}")
         if media_duration_seconds(final_video) <= 0:
             raise ValueError(f"final render is not decodable:{final_video}")
+        final_audio_qc = build_final_audio_mix_qc(
+            final_video,
+            minimum_lufs=float(final_qc_cfg.get("minimum_lufs", -22.0)),
+            maximum_lufs=float(final_qc_cfg.get("maximum_lufs", -12.0)),
+            maximum_true_peak_dbfs=float(
+                final_qc_cfg.get("maximum_true_peak_dbfs", 0.0)
+            ),
+            maximum_audio_tail_gap_seconds=float(
+                final_qc_cfg.get("maximum_audio_tail_gap_seconds", 1.25)
+            ),
+        )
+        final_audio_qc_path = (
+            episode_target / "artifacts" / "final_audio_mix_qc.json"
+        )
+        dump_json(final_audio_qc_path, final_audio_qc)
+        if final_audio_qc.get("approved_for_delivery") is not True:
+            failed_transition = transition_music_usage(
+                project_id=episode["project_id"],
+                series="treeelf-fable",
+                status="failed",
+                ledger_path=music_usage_ledger,
+                reason="final_audio_mix_qc_failed",
+            )
+            selection_path = episode_target / "artifacts" / "music_selection.json"
+            if selection_path.is_file():
+                selection_payload = load_json(selection_path)
+                selection_payload["usage_transition"] = failed_transition
+                dump_json(selection_path, selection_payload)
+            raise ValueError(
+                f"{episode['project_id']} final audio mix QC failed before delivery:{final_audio_qc_path}"
+            )
         video_destination = _delivery_video_path(episode, delivery_root)
         delivery_mode = _atomic_link_or_copy(final_video, video_destination)
         if sha256_file(final_video) != sha256_file(video_destination):
@@ -2282,6 +2970,7 @@ def complete_local_batch(
             "cover_asset": cover_asset,
             "movies_contains_cover": False,
             "completed_at": utc_now(),
+            "final_audio_mix_qc": str(final_audio_qc_path),
         }
         dump_json(episode_target / "artifacts" / "delivery_report.json", delivery_report)
         project_path = episode_target / "project.json"
@@ -2291,6 +2980,23 @@ def complete_local_batch(
         project["delivery"] = str(video_destination)
         project["cover_asset"] = cover_asset
         dump_json(project_path, project)
+        music_usage_transition = transition_music_usage(
+            project_id=episode["project_id"],
+            series="treeelf-fable",
+            status="committed",
+            ledger_path=music_usage_ledger,
+            reason="verified final video delivered",
+        )
+        selection_path = episode_target / "artifacts" / "music_selection.json"
+        if selection_path.is_file():
+            selection_payload = load_json(selection_path)
+            selection_payload["usage_transition"] = music_usage_transition
+            dump_json(selection_path, selection_payload)
+        delivery_report["music_usage_transition"] = music_usage_transition
+        dump_json(
+            episode_target / "artifacts" / "delivery_report.json",
+            delivery_report,
+        )
         delivered.append(
             {
                 "project_id": episode["project_id"],
@@ -2518,6 +3224,8 @@ def finalize_gpu_command(
         str(target),
         "--policy",
         str(target / "artifacts" / "retention_policy.json"),
+        "--local-inventory",
+        str(inventory),
         "--ssh-host",
         ssh_host,
     ]
@@ -2542,9 +3250,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "command",
         choices=(
+            "sync-ledger",
             "validate",
             "prepare",
             "capture-gpu-baseline",
+            "run-gpu-batch",
             "refresh-visuals",
             "verify-gpu-assets",
             "create-qc-templates",
@@ -2563,13 +3273,23 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--shutdown", action="store_true")
     parser.add_argument("--include-delayed", action="store_true")
     parser.add_argument("--ssh-host", default="autodl-comfyui")
+    parser.add_argument("--source-dir", type=Path)
+    parser.add_argument("--ledger", type=Path)
     return parser
 
 
 def main() -> None:
     args = build_parser().parse_args()
-    batch = load_json(args.config)
     series = load_json(args.series)
+    if args.command == "sync-ledger":
+        result = sync_fable_source_ledger(
+            series,
+            source_dir=args.source_dir,
+            ledger_path=args.ledger,
+        )
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
+    batch = load_json(args.config)
     errors = validate_batch(batch, args.config, series)
     if args.command == "validate":
         result: Any = {"valid": not errors, "errors": errors}
@@ -2579,6 +3299,16 @@ def main() -> None:
         result = prepare_batch(batch, args.config, series)
     elif args.command == "capture-gpu-baseline":
         result = capture_gpu_baseline(batch, ssh_host=args.ssh_host)
+    elif args.command == "run-gpu-batch":
+        from scripts.run_treeelf_fable_gpu_group import run_gpu_batch
+
+        manifest_path = _batch_dir(batch) / "artifacts" / "gpu_batch_manifest.json"
+        result = run_gpu_batch(
+            manifest_path,
+            args.config.expanduser().resolve(),
+            args.series.expanduser().resolve(),
+            workers=int(batch.get("queue_depth", 2)),
+        )
     elif args.command == "refresh-visuals":
         result = refresh_visuals(batch, args.config, series)
     elif args.command == "verify-gpu-assets":

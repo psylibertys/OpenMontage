@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-sincerity-after-absurdity-20260728",
+  "title": "荒谬不是真诚的反证",
+  "cover_title": "真诚未死",
+  "cover_english_title": "SINCERITY STILL STANDS",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-28_荒谬不是真诚的反证.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "philosophical",
+      "defiant",
+      "warm",
+      "cinematic",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "被荒唐伤害后的犬儒诱惑",
+      "不强行乐观的清醒",
+      "仍选择真诚与边界的坚定"
+    ],
+    "metaphor_candidates": [
+      "荒唐盖章员",
+      "死路",
+      "反抗",
+      "多收的手续费"
+    ],
+    "style_families": [
+      "cinematic existential photography",
+      "absurdist print collage",
+      "bold minimal geometry"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic existential photography",
+      "absurdist print collage",
+      "bold minimal geometry"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 荒唐盖章员, 死路, 反抗, 多收的手续费; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_only",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98101,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a clear warm flame standing upright beside an absurd stamping machine that cannot reach it; style_logic: cinematic existential photography and absurdist print collage compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, a clear warm flame standing upright beside an absurd stamping machine that cannot reach it, cinematic existential photography blended with absurdist print collage, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 98102,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an efficient clerk stamping trust, sincerity and fairness tokens after one bad event; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, an efficient clerk stamping trust, sincerity and fairness tokens after one bad event, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98103,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one betrayal casting an exaggerated shadow over an entire landscape; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one betrayal casting an exaggerated shadow over an entire landscape, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98104,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a mechanical stamp trying to turn a complex world into one cynical dark surface; style_logic: bold minimal geometry provides the scene structure while cinematic existential photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a mechanical stamp trying to turn a complex world into one cynical dark surface, bold minimal geometry blended with cinematic existential photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98105,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a lone figure facing an absurd broken intersection without pretending it is meaningful; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a lone figure facing an absurd broken intersection without pretending it is meaningful, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98106,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the dead end opening sideways into a path of principled resistance; style_logic: absurdist print collage provides the scene structure while bold minimal geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, the dead end opening sideways into a path of principled resistance, absurdist print collage blended with bold minimal geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98107,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: understanding, sincerity, freedom and justice represented as four sturdy lights carried together; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, understanding, sincerity, freedom and justice represented as four sturdy lights carried together, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 98108,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person standing calmly at a boundary while the surrounding scene remains unresolved; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person standing calmly at a boundary while the surrounding scene remains unresolved, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98109,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: honesty offered without any guarantee of reward or matching honesty; style_logic: absurdist print collage provides the scene structure while bold minimal geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, honesty offered without any guarantee of reward or matching honesty, absurdist print collage blended with bold minimal geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98110,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one bad event separated from the vast world it tried to represent; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one bad event separated from the vast world it tried to represent, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98111,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a harmful figure losing the power to choose how another person will live afterward; style_logic: cinematic existential photography provides the scene structure while absurdist print collage translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a harmful figure losing the power to choose how another person will live afterward, cinematic existential photography blended with absurdist print collage, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98112,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one plain truthful action placed in an otherwise absurd room; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one plain truthful action placed in an otherwise absurd room, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 98151,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens an efficient clerk stamping trust, sincerity and fairness tokens after one bad event without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P06.png",
+        "from": 36,
+        "to": 42,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "荒谬带来的不是死路",
+        "left": "看见荒谬",
+        "operator": "→",
+        "right": "选择反抗"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "comparison",
+        "eyebrow": "别让一件坏事替世界作证",
+        "left": "受过伤",
+        "operator": "≠",
+        "right": "以后必须犬儒"
+      }
+    ],
+    "captions": []
+  }
+}

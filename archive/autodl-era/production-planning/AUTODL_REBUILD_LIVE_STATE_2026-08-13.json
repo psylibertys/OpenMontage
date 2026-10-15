@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-13T19:08:00+08:00",
+  "instance_id": "916b4d8f93-484e4934",
+  "ssh_alias": "autodl-comfyui",
+  "mode": "powered_off",
+  "data_disk_gb": 73,
+  "file_storage_gb": 200,
+  "comfyui_system_image_present": true,
+  "custom_node_directories": 26,
+  "api_workflows_restored": 15,
+  "data_disk_model_files": 0,
+  "warm_sync": {
+    "state": "verified_complete",
+    "source": "duolaiduo:/media/data/ai-models/comfyui/models/",
+    "destination": "/root/autodl-fs/comfyui-models/",
+    "ordinary_files": 81,
+    "symbolic_links": 1,
+    "expected_bytes": 105695171441,
+    "excluded_cold_families": ["Z-Image", "SeedVR2", "Wan Animate", "SCAIL", "Nunchaku"],
+    "duolaiduo_pid_file": "/media/data/ai-models/comfyui/manifests/autodl-fs-hot-model-sync-20260813.pid",
+    "duolaiduo_status_file": "/media/data/ai-models/comfyui/manifests/autodl-fs-hot-model-sync-20260813.status",
+    "duolaiduo_log_file": "/media/data/ai-models/comfyui/manifests/autodl-fs-hot-model-sync-20260813.log",
+    "duolaiduo_report_file": "/media/data/ai-models/comfyui/manifests/autodl-fs-hot-model-sync-20260813.report",
+    "completion_gate": "passed: report state=verified, files=81, links=1, bytes=105695171441, temporary SSH key absent on both ends",
+    "completed_at": "2026-08-13T19:07:31+08:00"
+  },
+  "next_actions": [
+    "Select one profile from AUTODL_HOT_MODEL_PROFILES_73GB.json before copying models to the data disk.",
+    "Do not switch to GPU mode before the selected hot profile passes size, SHA-256 and workflow preflight."
+  ],
+  "shutdown": {
+    "method": "sync; shutdown -h now",
+    "completed": true,
+    "ssh_poll": "stopped",
+    "shutdown_at": "2026-08-13T19:08:00+08:00"
+  }
+}

@@ -76,6 +76,7 @@ assert ALL_MANIFESTS, "No pipeline manifests found"
 # an explicit reason. Everything else is required to follow the contract.
 _EXCLUDED_PIPELINES = {
     "framework-smoke": "minimal 2-stage smoke test, no compose stage",
+    "story-to-storyboard": "planning-terminal pipeline: story to script/scene_plan/storyboard.json export, no compose stage (rendering is a successor pipeline)",
 }
 
 

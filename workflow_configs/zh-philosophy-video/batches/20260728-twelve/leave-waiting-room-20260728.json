@@ -1,0 +1,369 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-leave-waiting-room-20260728",
+  "title": "别把人生过成候场",
+  "cover_title": "人生候场",
+  "cover_english_title": "LEAVE THE WAITING ROOM",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-28_别把人生过成候场_重写版.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "cinematic",
+      "awakening",
+      "patient",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "无限等待的安稳幻觉",
+      "错过正在发生之事的刺痛",
+      "用小动作开始生活"
+    ],
+    "metaphor_candidates": [
+      "候场室",
+      "会留人的椅子",
+      "丛林猛兽",
+      "空出来的座位"
+    ],
+    "style_families": [
+      "cinematic theatre photography",
+      "symbolist forest painting",
+      "minimal stage geometry"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic theatre photography",
+      "symbolist forest painting",
+      "minimal stage geometry"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 候场室, 会留人的椅子, 丛林猛兽, 空出来的座位; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_plus_longest_semantic_safe",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97501,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an empty theatre chair facing an open stage where ordinary daylight has already begun; style_logic: cinematic theatre photography and symbolist forest painting compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, an empty theatre chair facing an open stage where ordinary daylight has already begun, cinematic theatre photography blended with symbolist forest painting, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97502,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person sitting alone in a courteous waiting room with no visible clock or announcement; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person sitting alone in a courteous waiting room with no visible clock or announcement, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97503,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a comfortable chair subtly growing long roots into the floor; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a comfortable chair subtly growing long roots into the floor, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97504,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a distant dark forest shape imagined beyond a theatre curtain; style_logic: minimal stage geometry provides the scene structure while cinematic theatre photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a distant dark forest shape imagined beyond a theatre curtain, minimal stage geometry blended with cinematic theatre photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97505,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a man watching an empty horizon while a loving presence beside him gradually fades; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a man watching an empty horizon while a loving presence beside him gradually fades, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97506,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the feared beast revealed as a vast shadow cast by an unused chair; style_logic: symbolist forest painting provides the scene structure while minimal stage geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, the feared beast revealed as a vast shadow cast by an unused chair, symbolist forest painting blended with minimal stage geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97507,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: three legitimate reasons to wait shown as stable shelter, healing body and measured risk; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, three legitimate reasons to wait shown as stable shelter, healing body and measured risk, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97508,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person standing from the rooted chair and taking one small step toward an open door; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person standing from the rooted chair and taking one small step toward an open door, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97509,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an endless corridor with no date markers and identical future doors; style_logic: symbolist forest painting provides the scene structure while minimal stage geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, an endless corridor with no date markers and identical future doors, symbolist forest painting blended with minimal stage geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97510,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one message sent as a small pulse crossing a quiet room; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one message sent as a small pulse crossing a quiet room, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97511,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a rough first attempt entering daylight before it feels perfect; style_logic: cinematic theatre photography provides the scene structure while symbolist forest painting translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a rough first attempt entering daylight before it feels perfect, cinematic theatre photography blended with symbolist forest painting, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97512,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two people keeping an ordinary appointment while imagined destiny remains offstage; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, two people keeping an ordinary appointment while imagined destiny remains offstage, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P11",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97513,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a silent stage beginning without fanfare as one foot crosses the threshold; style_logic: minimal stage geometry provides the scene structure while cinematic theatre photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a silent stage beginning without fanfare as one foot crosses the threshold, minimal stage geometry blended with cinematic theatre photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P12",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97514,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the waiting chair left empty under fading indoor light; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, the waiting chair left empty under fading indoor light, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P13",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97515,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an everyday street already in motion, welcoming the person who finally stepped outside; style_logic: symbolist forest painting provides the scene structure while minimal stage geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, an everyday street already in motion, welcoming the person who finally stepped outside, symbolist forest painting blended with minimal stage geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 97551,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens a person sitting alone in a courteous waiting room with no visible clock or announcement without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      },
+      {
+        "id": "W02",
+        "selection_role": "longest_semantic_safe",
+        "reference": "P06",
+        "seed": 97552,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: core motion develops a person standing from the rooted chair and taking one small step toward an open door as the longest semantic-safe visual beat.",
+        "prompt": "One clear motivated action drawn from the reference scene, subtle camera movement, stable anatomy and structure, calm visual rhythm, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "video",
+        "src": "video/W02.mp4",
+        "from": 36,
+        "to": 42,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      },
+      {
+        "id": "S12",
+        "kind": "still",
+        "src": "images/P11.png",
+        "from": 65,
+        "to": 70,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S13",
+        "kind": "still",
+        "src": "images/P12.png",
+        "from": 70,
+        "to": 75,
+        "motion": "push-left"
+      },
+      {
+        "id": "S14",
+        "kind": "still",
+        "src": "images/P13.png",
+        "from": 75,
+        "to": 84,
+        "motion": "drift-up"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "分清两种等待",
+        "left": "有条件、有期限",
+        "operator": "vs",
+        "right": "永远等更适合"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "questions",
+        "eyebrow": "离开椅子的一个动作",
+        "items": [
+          "发出那条消息",
+          "让第一版见人",
+          "认真赴一个约"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

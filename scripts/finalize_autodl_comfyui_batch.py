@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Back up, verify, clean, and optionally shut down an AutoDL ComfyUI batch."""
+"""Verify local assets, clean, and optionally shut down an AutoDL batch."""
 
 from __future__ import annotations
 
@@ -84,14 +84,6 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _backup_path(backup_root: Path, remote_path: str) -> Path:
-    path = Path(remote_path)
-    runtime_prefix = str(REMOTE_RUNTIME) + "/"
-    if remote_path.startswith(runtime_prefix):
-        return backup_root / "runtime" / remote_path.removeprefix(runtime_prefix)
-    return backup_root / "extra" / path.name
-
-
 def _queue(host: str) -> dict[str, Any]:
     proc = _run(
         ["ssh", host, "curl -fsS http://127.0.0.1:8188/queue"],
@@ -148,22 +140,48 @@ def _retention_payload(policy: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _verify_local_backup(
-    backup_root: Path,
-    remote_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    verified = []
-    for row in remote_rows:
-        local = _backup_path(backup_root, row["path"])
-        if not local.is_file():
-            raise SystemExit(f"Missing local backup: {local}")
-        local_size = local.stat().st_size
-        local_sha = _sha256(local)
-        if local_size != row["size"] or local_sha != row["sha256"]:
-            raise SystemExit(f"Backup verification failed: {row['path']}")
+def _inventory_rows(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    if isinstance(payload.get("assets"), list):
+        return payload["assets"]
+    rows: list[dict[str, Any]] = []
+    for episode in payload.get("episodes", []):
+        rows.extend(episode.get("assets", []))
+    return rows
+
+
+def _verify_local_inventory(inventory_path: Path) -> list[dict[str, Any]]:
+    """Verify the project-owned asset copy used as the shutdown backup gate."""
+
+    payload = json.loads(inventory_path.read_text(encoding="utf-8"))
+    rows = _inventory_rows(payload)
+    if not rows:
+        raise SystemExit(f"Local asset inventory is empty: {inventory_path}")
+    projects_root = (PROJECT_ROOT / "projects").resolve()
+    verified: list[dict[str, Any]] = []
+    seen: set[Path] = set()
+    for row in rows:
+        if not row.get("path"):
+            raise SystemExit(f"Local inventory row has no path: {inventory_path}")
+        path = Path(row["path"]).expanduser().resolve()
+        if projects_root not in path.parents:
+            raise SystemExit(f"Local inventory path is outside projects/: {path}")
+        if path in seen:
+            continue
+        seen.add(path)
+        expected_size = row.get("size", row.get("size_bytes"))
+        expected_sha = row.get("sha256", row.get("sha256_local"))
+        if expected_size is None or not expected_sha:
+            raise SystemExit(f"Local inventory row lacks size/SHA-256: {path}")
+        if not path.is_file():
+            raise SystemExit(f"Missing project asset: {path}")
+        actual_size = path.stat().st_size
+        actual_sha = _sha256(path)
+        if actual_size != int(expected_size) or actual_sha != expected_sha:
+            raise SystemExit(f"Project asset verification failed: {path}")
         verified.append({
-            **row,
-            "local_path": str(local),
+            "path": str(path),
+            "size": actual_size,
+            "sha256": actual_sha,
             "verified": True,
         })
     return verified
@@ -179,6 +197,11 @@ def main() -> int:
         help="Reviewed batch-specific retention policy JSON",
     )
     parser.add_argument("--ssh-host", default="autodl-comfyui")
+    parser.add_argument(
+        "--local-inventory",
+        type=Path,
+        help="Project-owned GPU asset inventory; defaults to artifacts/gpu_asset_inventory.json or candidate_asset_manifest.json",
+    )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--shutdown", action="store_true")
     parser.add_argument("--yes", action="store_true")
@@ -191,6 +214,17 @@ def main() -> int:
     policy = json.loads(args.policy.read_text(encoding="utf-8"))
     if not (project_dir / "assets").is_dir():
         raise SystemExit(f"Project assets directory does not exist: {project_dir / 'assets'}")
+    inventory_path = args.local_inventory
+    if inventory_path is None:
+        candidates = (
+            project_dir / "artifacts" / "gpu_asset_inventory.json",
+            project_dir / "artifacts" / "candidate_asset_manifest.json",
+        )
+        inventory_path = next((path for path in candidates if path.is_file()), None)
+    if inventory_path is None:
+        raise SystemExit("No local asset inventory found; refusing remote cleanup")
+    inventory_path = inventory_path.expanduser().resolve()
+    local_verified = _verify_local_inventory(inventory_path)
 
     _require_empty_queue(args.ssh_host)
     payload = _retention_payload(policy)
@@ -201,54 +235,31 @@ def main() -> int:
     if not args.yes:
         raise SystemExit("Cleanup requires --yes after reviewing --dry-run")
 
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    backup_root = project_dir / "assets" / "remote-final-backup" / stamp
-    (backup_root / "runtime").mkdir(parents=True, exist_ok=True)
-    (backup_root / "extra").mkdir(parents=True, exist_ok=True)
-
-    for root in payload["roots"]:
-        destination = backup_root / "runtime" / Path(root).name
-        destination.mkdir(parents=True, exist_ok=True)
-        _run([
-            "rsync", "-a", "-e", "ssh",
-            f"{args.ssh_host}:{root}/",
-            f"{destination}/",
-        ])
-    runtime_prefix = str(REMOTE_RUNTIME) + "/"
-    existing_extra_files = [
-        row["path"]
-        for row in remote_rows
-        if not row["path"].startswith(runtime_prefix)
-    ]
-    for remote in existing_extra_files:
-        _run([
-            "rsync", "-a", "-e", "ssh",
-            f"{args.ssh_host}:{remote}",
-            f"{backup_root / 'extra'}/",
-        ])
-
-    verified = _verify_local_backup(backup_root, remote_rows)
     _require_empty_queue(args.ssh_host)
     delete_payload = {
         **payload,
-        "delete_paths": [row["path"] for row in verified],
+        "delete_paths": [row["path"] for row in remote_rows],
     }
     deleted = _ssh_json(args.ssh_host, REMOTE_DELETE_CODE, delete_payload)
-    if set(deleted) != {row["path"] for row in verified}:
+    if set(deleted) != {row["path"] for row in remote_rows}:
         raise SystemExit("Remote cleanup did not delete exactly the verified file set")
     remaining = _ssh_json(args.ssh_host, REMOTE_MANIFEST_CODE, payload)
     if remaining:
         raise SystemExit(f"Remote cleanup left {len(remaining)} non-retained file(s)")
     _require_empty_queue(args.ssh_host)
 
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     audit = {
         "finished_at": datetime.now(timezone.utc).isoformat(),
         "project_dir": str(project_dir),
         "policy": str(args.policy),
-        "backup_root": str(backup_root),
-        "files_verified_and_deleted": len(verified),
-        "bytes_verified_and_deleted": sum(row["size"] for row in verified),
-        "files": verified,
+        "local_inventory": str(inventory_path),
+        "local_assets_verified": len(local_verified),
+        "local_bytes_verified": sum(row["size"] for row in local_verified),
+        "remote_files_deleted": len(remote_rows),
+        "remote_bytes_deleted": sum(row["size"] for row in remote_rows),
+        "remote_files": remote_rows,
+        "independent_remote_final_backup_created": False,
         "queue_empty": True,
         "shutdown_requested": args.shutdown,
     }
@@ -282,7 +293,8 @@ def main() -> int:
 
     print(json.dumps({
         "audit": str(audit_path),
-        "files": len(verified),
+        "local_assets_verified": len(local_verified),
+        "remote_files_deleted": len(remote_rows),
         "shutdown": bool(audit.get("ssh_down")),
     }, ensure_ascii=False))
     return 0

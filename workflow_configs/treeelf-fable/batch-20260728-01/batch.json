@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "batch_id": "treeelf-fable-batch-20260728-01",
+  "queue_depth": 2,
+  "episode_configs": [
+    "episode-01-rusted-door.json",
+    "episode-02-new-footsteps.json"
+  ]
+}

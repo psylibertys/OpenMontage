@@ -5,9 +5,16 @@
   "cover_title": "替换封面标题",
   "source_script_md": "/absolute/path/to/fable.md",
   "estimated_duration_seconds": 90,
+  "narration_text": "在这里写入经过审核的完整生产旁白。",
   "protagonist": {
     "type": "成年女性",
-    "description": "按故事随机确定；本篇所有画面保持身份、外形标志、服装和配色一致"
+    "description": "按故事确定；本篇所有画面保持身份、外形标志、服装和配色一致",
+    "selection_rationale": "说明为什么这个角色设定适合本篇；性别两者都成立时优先女性，明显更适合男性时使用男性，不按原文代词机械决定。",
+    "appearance": {
+      "age_band": "具体年龄段",
+      "hair": "根据人物与故事选择的发型，并核对最近作品避免连续重复",
+      "silhouette": "体态、服装外轮廓和标志物"
+    }
   },
   "visual_brief": {
     "fable_law": "本篇超现实规则，例如：一被看见身体就会透明。",
@@ -20,18 +27,15 @@
   },
   "character_pack": {
     "enabled": true,
-    "master_prompt": "vertical 9:16 full-body character key art, replace with reviewed episode protagonist design, cinematic storybook, visible paper texture, light summer styling when clothing applies, bright rested eyes, gentle optimistic presence",
-    "reference_prompts": [
-      "front view of the exact same protagonist, neutral pose, plain softly lit background, bright rested eyes, gentle optimistic presence",
-      "left three-quarter view of the exact same protagonist, neutral pose, plain softly lit background, bright rested eyes, gentle optimistic presence",
-      "right profile view of the exact same protagonist, neutral pose, plain softly lit background, bright rested eyes, gentle optimistic presence",
-      "back three-quarter view of the exact same protagonist, neutral pose, plain softly lit background, consistent clothing and silhouette"
-    ]
+    "mode": "single_turnaround_sheet",
+    "turnaround_prompt": "vertical 9:16 single 2x2 character turnaround sheet, four equal clean panels showing one consistent reviewed protagonist exactly once in each panel: front view, left three-quarter view, right profile view, back three-quarter view, identical face hair clothing palette and signature object in every panel, full body, stable anatomy, plain warm studio background, clear panel separation through natural background spacing"
   },
   "semantic_beats": [
     {
       "id": "beat-01",
       "weight": 1,
+      "script_anchor": "在这里填写该事件在 narration_text 中按顺序出现的唯一短句",
+      "subject_mode": "protagonist",
       "summary": "建立寓言世界和主角",
       "workflow": "flux2_klein_4ref",
       "story_event": "主角在一个可信的日常空间里遇到本篇寓言事件。",
@@ -43,7 +47,7 @@
     }
   ],
   "character_reference_paths": [],
-  "cover_prompt": "vertical 9:16 human-free symbolic cover background, one story-derived object or environment detail expresses the central metaphor, refined material texture, generous clean negative space for later Remotion typography, calm editorial composition aligned with TreeElf philosophy covers",
+  "cover_prompt": "vertical 9:16 human-free symbolic artwork, one story-derived object or environment detail expresses the central metaphor, refined material texture, a calm naturally open upper field made of sky mist or paper grain, balanced symbolic composition",
   "hero_wan": {
     "enabled": true,
     "selection_policy": "opening_fable_event_only_or_none",

@@ -454,48 +454,40 @@ class TestCustomWorkflowContract:
         source.write_bytes(b"placeholder")
         result = tool.execute({
             "prompt": "move slowly",
-            "workflow_template": "wan22_i2v_q6",
+            "workflow_template": "minimax_fasth3_i2v",
             "aspect_preset": "landscape_16_9",
             "reference_image_path": str(source),
-            "num_frames": 49,
+            "duration_seconds": 6,
             "seed": 789,
             "output_path": str(tmp_path / "video.mp4"),
         })
 
         assert result.success is True
-        assert seen["output_node"] == "122"
-        assert seen["workflow"]["203"]["inputs"]["value"] == 1024
-        assert seen["workflow"]["204"]["inputs"]["value"] == 576
-        assert seen["workflow"]["205"]["inputs"]["value"] == 3
-        assert seen["workflow"]["113"]["inputs"]["image"] == "uploaded-source.png"
-        assert result.data["workflow_provenance"]["source"] == "bundled_first_batch"
+        assert seen["output_node"] == "228"
+        assert seen["workflow"]["236"]["inputs"]["image"] == "uploaded-source.png"
+        assert result.data["workflow_provenance"]["source"] == "bundled_production"
 
     @pytest.mark.parametrize(
-        ("requested", "expected_frames", "expected_bucket"),
-        [(1.0, 17, 1.0), (2.6, 49, 3.0), (4.8, 81, 5.0)],
+        ("requested", "accepted"),
+        [(4.0, True), (6.5, True), (15.0, True), (3.0, False), (20.0, False)],
     )
-    def test_wan_i2v_duration_seconds_selects_nearest_bucket(
-        self, requested, expected_frames, expected_bucket
-    ):
-        workflow, _, provenance = build_first_batch_workflow(
-            "wan22_i2v_q6",
-            {"prompt": "move", "duration_seconds": requested},
-            media="video",
-            source_image_name="source.png",
-        )
-        assert provenance["num_frames"] == expected_frames
-        assert provenance["requested_duration_seconds"] == requested
-        assert provenance["selected_duration_seconds"] == expected_bucket
-        assert workflow["205"]["inputs"]["value"] == (expected_frames - 1) // 16
-
-    def test_wan_i2v_rejects_ambiguous_seconds_and_frames(self):
-        with pytest.raises(ValueError, match="not both"):
-            build_first_batch_workflow(
-                "wan22_i2v_q6",
-                {"prompt": "move", "duration_seconds": 3, "num_frames": 49},
+    def test_fasth3_duration_seconds_bounds(self, requested, accepted):
+        if accepted:
+            workflow, _, provenance = build_production_workflow(
+                "minimax_fasth3_t2v",
+                {"prompt": "move", "duration_seconds": requested},
                 media="video",
-                source_image_name="source.png",
             )
+            assert provenance["selected_duration_seconds"] == requested
+            state = json.loads(workflow["234"]["inputs"]["DurationState"])
+            assert state["seconds"] == requested
+        else:
+            with pytest.raises(ValueError, match="duration_seconds"):
+                build_production_workflow(
+                    "minimax_fasth3_t2v",
+                    {"prompt": "move", "duration_seconds": requested},
+                    media="video",
+                )
 
     def test_flux_four_reference_template_uploads_all_inputs(self, tmp_path):
         tool = ComfyUIImage()
@@ -524,36 +516,96 @@ class TestCustomWorkflowContract:
         assert seen["output_node"] == "203"
         assert seen["workflow"]["163"]["inputs"]["seed"] == 0
 
-    def test_infinitetalk_template_uploads_image_and_audio(self, tmp_path):
+    def test_krea2_edit_lora_uploads_source_and_patches_boost(self, tmp_path):
+        tool = ComfyUIImage()
+        tool._client.is_available = lambda: True
+        tool._client.upload_image = lambda path, name: "person.png"
+        seen = {}
+        tool._client.generate = lambda workflow, output_node, dest, **kwargs: (
+            seen.update(workflow=workflow, output_node=output_node) or [Path(dest)]
+        )
+        source = tmp_path / "person.png"
+        source.write_bytes(b"placeholder")
+        result = tool.execute({
+            "prompt": "replace the red dress with a white t-shirt",
+            "workflow_template": "krea2_edit_lora",
+            "reference_image_path": str(source),
+            "reference_boost": 2.0,
+            "seed": 5,
+            "output_path": str(tmp_path / "edit.png"),
+        })
+        assert result.success is True
+        assert seen["output_node"] == "199"
+        assert seen["workflow"]["226"]["inputs"]["image"] == "person.png"
+        assert json.loads(seen["workflow"]["221"]["inputs"]["PromptState"])["text"] == (
+            "replace the red dress with a white t-shirt"
+        )
+        assert json.loads(seen["workflow"]["234"]["inputs"]["SlidersState"])["sliders"][0]["value"] == 2.0
+        assert seen["workflow"]["163"]["inputs"]["seed"] == 5
+        assert result.data["workflow_provenance"]["source"] == "bundled_production"
+
+    def test_krea2_outfit_transfer_patches_prompt_and_resolution(self, tmp_path):
+        tool = ComfyUIImage()
+        tool._client.is_available = lambda: True
+        tool._client.upload_image = lambda path, name: "outfit.png"
+        seen = {}
+        tool._client.generate = lambda workflow, output_node, dest, **kwargs: (
+            seen.update(workflow=workflow, output_node=output_node) or [Path(dest)]
+        )
+        outfit = tmp_path / "outfit.png"
+        outfit.write_bytes(b"placeholder")
+        result = tool.execute({
+            "prompt": "a woman with black hair posing in a studio",
+            "workflow_template": "krea2_outfit_transfer",
+            "reference_image_path": str(outfit),
+            "aspect_preset": "landscape_16_9",
+            "seed": 9,
+            "output_path": str(tmp_path / "outfit.png"),
+        })
+        assert result.success is True
+        assert seen["output_node"] == "199"
+        assert seen["workflow"]["236"]["inputs"]["text_1"] == (
+            "a woman with black hair posing in a studio"
+        )
+        assert "transfer the outfit" in seen["workflow"]["236"]["inputs"]["text_2"]
+        state = json.loads(seen["workflow"]["235"]["inputs"]["ResolutionState"])
+        assert (state["ratio"], state["w"], state["h"]) == ("16:9", 1280, 720)
+        assert json.loads(seen["workflow"]["231"]["inputs"]["LoraLoaderState"])["loras"][0]["name"] == (
+            "krea2/krea_outfittransfer.safetensors"
+        )
+
+    def test_audio_sync_template_uploads_image_and_audio(self, tmp_path):
         tool = ComfyUIVideo()
         tool._client.is_available = lambda: True
         tool._client.upload_image = lambda path, name: "person.png"
-        tool._client.upload_file = lambda path, name: "voice.mp3"
+        tool._client.upload_file = lambda path, name: "voice.wav"
         seen = {}
         tool._client.generate = lambda workflow, output_node, dest, **kwargs: (
             seen.update(workflow=workflow, output_node=output_node) or [Path(dest)]
         )
         image = tmp_path / "person.png"
-        audio = tmp_path / "voice.mp3"
+        audio = tmp_path / "voice.wav"
         image.write_bytes(b"image")
         audio.write_bytes(b"audio")
         result = tool.execute({
             "prompt": "the person speaks naturally",
-            "workflow_template": "wan_infinitetalk_short",
+            "workflow_template": "minimax_h3_audio_sync",
             "reference_image_path": str(image),
             "reference_audio_path": str(audio),
+            "duration_seconds": 8.5,
             "seed": 3,
             "output_path": str(tmp_path / "talk.mp4"),
         })
         assert result.success is True
-        assert seen["output_node"] == "182"
-        assert seen["workflow"]["32"]["inputs"]["image"] == "person.png"
-        assert seen["workflow"]["171"]["inputs"]["audio"] == "voice.mp3"
+        assert seen["output_node"] == "228"
+        assert seen["workflow"]["236"]["inputs"]["image"] == "person.png"
+        audio_state = json.loads(seen["workflow"]["247"]["inputs"]["LoadAudioState"])
+        assert audio_state["file"] == "voice.wav"
+        assert audio_state["length"] == 8.5
 
     @pytest.mark.parametrize(
         ("template", "requested", "expected_frames", "expected_duration"),
         [
-            ("wan_infinitetalk_short", 3.6, 49, 3.56),
             ("wan_infinitetalk_extend", 20.0, 49, 19.56),
         ],
     )
@@ -570,9 +622,7 @@ class TestCustomWorkflowContract:
         assert provenance["requested_duration_seconds"] == requested
         assert provenance["selected_duration_seconds"] == pytest.approx(expected_duration)
         spec_length_nodes = (
-            ("129", "130")
-            if template == "wan_infinitetalk_short"
-            else ("129", "130", "183", "193", "200", "206", "212", "218", "224", "228", "236", "242")
+            "129", "130", "183", "193", "200", "206", "212", "218", "224", "228", "236", "242"
         )
         assert all(workflow[node]["inputs"]["length"] == expected_frames for node in spec_length_nodes)
 
@@ -1047,20 +1097,3 @@ class TestProductionWorkflowTemplates:
         assert workflow["18"]["inputs"]["filename"] == "角色甲"
         assert workflow["8"]["inputs"]["filename_prefix"] == "audio/line"
         assert provenance["model"].startswith("Qwen3-TTS")
-
-    def test_inpaint_mask_is_packed_as_comfyui_alpha(self, tmp_path):
-        from PIL import Image
-
-        source = tmp_path / "source.jpg"
-        mask = tmp_path / "mask.png"
-        Image.new("RGB", (2, 1), "red").save(source)
-        mask_image = Image.new("L", (2, 1), 0)
-        mask_image.putpixel((1, 0), 255)
-        mask_image.save(mask)
-        packed = ComfyUIImage._prepare_inpaint_upload(
-            source, mask, tmp_path / "result.png", 7
-        )
-        with Image.open(packed) as image:
-            alpha = image.getchannel("A")
-            assert alpha.getpixel((0, 0)) == 255
-            assert alpha.getpixel((1, 0)) == 0

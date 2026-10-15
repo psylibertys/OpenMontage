@@ -14,6 +14,7 @@ You are the **Executive Producer (EP)** for a clip factory project. You orchestr
 | Skills | All 7 director skills + `meta/reviewer` | Stage execution |
 | Schemas | All artifact schemas | Validation |
 | Playbook | Active style playbook | Quality constraints |
+| Density standard | `skills/pipelines/clip-factory/information-density-standard.md` | Binding hook, trimming, boundary, and final-review rules |
 
 ## Cumulative State
 
@@ -61,6 +62,8 @@ CHECK: Transcript and ranking
   - At least N candidate clips where N >= clip_count_target?
   - Each candidate is self-contained (standalone test)?
   - Clips ranked by quality/engagement potential?
+  - Every selected clip classified keep / tighten / replace_or_drop?
+  - Transcript reviewed sentence by sentence for filler, repetition, and tangents?
 ```
 
 ### After SCENE_PLAN stage:
@@ -69,6 +72,9 @@ CHECK: Clip boundaries
   - Each clip has clean in/out points (no mid-sentence cuts)?
   - Platform-specific framing planned (vertical vs square vs landscape)?
   - No clip exceeds platform max duration?
+  - Spoken hook lands by 3s, independent of overlay text?
+  - Cold-open reorder and playback order explicitly documented?
+  - No non-contiguous join creates a sentence fragment?
 
 CHECK: Batch diversity
   - Clips cover different topics/moments from the source?
@@ -90,6 +96,8 @@ CHECK: Hook placement
   - Each clip has its hook within first 2-3 seconds?
   - Subtitle styling consistent across all clips?
   - Each edit is independent (no cross-clip dependencies)?
+  - Every retained 20-30s window adds new information?
+  - Non-essential pauses over 1.2s and post-payoff tails removed?
 
 CHECK: Completeness
   - Edit decisions exist for every planned clip?
@@ -102,6 +110,13 @@ CHECK: Batch render validation
   - Each clip meets target platform specs (resolution, aspect ratio)?
   - Audio levels consistent across clips?
   - No clip has rendering artifacts?
+  - Actual rendered opening, midpoint, and ending semantically inspected per clip?
+  - Spoken hook and payoff boundaries match the density audit?
+  - Exact frame n=0 shows the full expected persistent hook for every clip?
+  - A standalone cover exists for every clip and matches frame n=0?
+  - Final delivered MP4 audio was re-transcribed and aligned to captions?
+  - Every clip has matched-word ratio >= 0.70 and p90 timing error <= 0.30s?
+  - Schema-valid clip_delivery_audit has status=pass and covers the full batch?
 ```
 
 ## Quality Gates Summary
@@ -113,7 +128,7 @@ CHECK: Batch render validation
 | G3 | scene_plan | Clip boundaries, batch diversity | Revise |
 | G4 | assets | Batch consistency, audio normalization | Revise |
 | G5 | edit | Hook placement, completeness | Revise |
-| G6 | compose | Batch render probe, platform specs | Revise or send-back |
+| G6 | compose | Batch render probe, frame-zero covers, final-MP4 subtitle sync | Revise or send-back |
 | G7 | publish | Per-clip metadata, posting order | Revise |
 | FINAL | all | Clip quality, consistency, hooks | Send-back |
 
@@ -131,6 +146,9 @@ CHECK: Batch render validation
 
 - **Context-dependent clips**: Each clip must make sense alone. No "as I was saying" openings.
 - **Slow hooks**: Social clips need to hook in 2-3 seconds. Front-load the interesting part.
+- **Overlay-only hooks**: A strong title does not compensate for weak opening speech.
+- **Compliance/editorial conflation**: Keeping a viewpoint does not require keeping rambling around it.
+- **Broken EDL joins**: Read joined transcript ranges aloud; reject half-sentence transitions.
 - **Inconsistent audio levels**: Clips from different parts of the source have different audio levels. Normalize.
 - **Missing platform optimization**: A YouTube clip and a TikTok clip need different aspect ratios.
 - **All clips from one section**: Diverse clips from across the source perform better than 5 clips from the same 10 minutes.

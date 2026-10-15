@@ -1,12 +1,38 @@
 ---
 name: speech-to-text
-description: Transcribe audio to text using ElevenLabs Scribe v2. Use when converting audio/video to text, generating subtitles, transcribing meetings, or processing spoken content.
+description: Transcribe audio/video with local Qwen3-ASR + ForcedAligner or ElevenLabs Scribe. Use for accurate transcripts, word timestamps, subtitles, and video cutting.
 license: MIT
-compatibility: Requires internet access and an ElevenLabs API key (ELEVENLABS_API_KEY).
-metadata: {"openclaw": {"requires": {"env": ["ELEVENLABS_API_KEY"]}, "primaryEnv": "ELEVENLABS_API_KEY"}}
+metadata: {"openclaw": {}}
 ---
 
-# ElevenLabs Speech-to-Text
+# Speech-to-Text
+
+## OpenMontage 默认：本地 Qwen3-ASR + ForcedAligner
+
+涉及视频切片、字幕或逐字时间码时，优先调用注册工具 `transcriber`，并使用 `backend: qwen3-asr`。本机默认模型：
+
+- `/Users/treeelf/AI_Models/Qwen3-ASR-1.7B`
+- `/Users/treeelf/AI_Models/Qwen3-ForcedAligner-0.6B`
+
+运行时隔离在 Conda 环境 `qwen3-asr`，依赖由 `requirements-qwen-asr.txt` 固定。输出 JSON 包含 `text`、`segments`、`word_timestamps`、`language` 和 `duration_seconds`，可直接交给字幕与切片阶段。
+
+```python
+from tools.analysis.transcriber import Transcriber
+
+result = Transcriber().execute({
+    "input_path": "/absolute/path/video.mp4",
+    "backend": "qwen3-asr",
+    "language": "zh",  # 省略或 auto 时自动识别
+    "align_timestamps": True,
+    "output_dir": "/absolute/path/transcripts",
+})
+if not result.success:
+    raise RuntimeError(result.error)
+```
+
+强制对齐单块上限为 5 分钟；运行器会把长音频切成最多 280 秒的小块后分别对齐并回填全局时间。`backend: auto` 会先尝试 Qwen，再回退 `faster-whisper`；只有明确需要旧模型时才指定 `backend: faster-whisper`。说话人分离仍属于 WhisperX 路径，不应把 Qwen 字级时间戳误当成 speaker diarization。
+
+## 云端可选：ElevenLabs Speech-to-Text
 
 Transcribe audio to text with Scribe v2 - supports 90+ languages, speaker diarization, and word-level timestamps.
 

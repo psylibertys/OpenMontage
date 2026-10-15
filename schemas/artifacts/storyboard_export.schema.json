@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "openmontage/artifacts/storyboard_export",
+  "title": "Storyboard Export",
+  "description": "One-way down-transform of a scene_plan into t2i/i2v generation prompts. This is a RENDER-CONSTRAINED format (single shot <= 5s, 7-emotion enum, single-sentence English prompts); creative truth lives in scene_plan. Semantic lint (forbidden chars, i2v anchors, pause markers, narration/emotion line alignment) is enforced by lib/storyboard_export.py on top of this schema.",
+  "type": "object",
+  "required": ["version", "video_title", "video_theme", "scenes"],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "video_title": { "type": "string" },
+    "video_theme": {
+      "type": "string",
+      "description": "Kebab-case or short theme slug used as the export directory name."
+    },
+    "speech_model": {
+      "type": "string",
+      "description": "TTS model the narration text targets. Vocal tags are only allowed for speech-2.8-hd / speech-2.8-turbo (enforced in lib)."
+    },
+    "narration_all": {
+      "type": "string",
+      "description": "Full narration formed by concatenating scene narrations in order (enforced in lib)."
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "scene_id",
+          "scene_plan_scene_id",
+          "emotion",
+          "narration",
+          "t2i_prompt",
+          "i2v_prompt",
+          "duration_seconds"
+        ],
+        "properties": {
+          "scene_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Sequential export shot number starting at 1 (enforced in lib)."
+          },
+          "scene_plan_scene_id": {
+            "type": "string",
+            "description": "Traceability: the canonical scene_plan scene this shot was derived from."
+          },
+          "emotion": {
+            "type": "string",
+            "enum": ["happy", "sad", "angry", "fearful", "disgusted", "surprised", "calm"]
+          },
+          "narration": {
+            "type": "string",
+            "description": "TTS-facing narration text. May contain <#x#> pause markers and (optionally, per speech_model) vocal tags — both linted in lib."
+          },
+          "t2i_prompt": {
+            "type": "string",
+            "description": "Single-sentence English text-to-image prompt. No ':', '/', '[', ']' (linted in lib)."
+          },
+          "i2v_prompt": {
+            "type": "string",
+            "description": "Single-sentence English image-to-video prompt containing image-alignment, action, camera, and physics anchors (linted in lib)."
+          },
+          "duration_seconds": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 5,
+            "description": "Render cap: a single shot never exceeds 5 seconds."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "e.g. absorbed_from provenance, max_shot_seconds, scene_plan checkpoint reference, structure_template_ref."
+    }
+  },
+  "additionalProperties": false
+}

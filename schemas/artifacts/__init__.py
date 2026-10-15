@@ -29,8 +29,11 @@ ARTIFACT_NAMES = [
     "decision_log",
     "source_media_review",
     "final_review",
+    "clip_delivery_audit",
     "character_qa_report",
     "video_analysis_brief",
+    "story_brief",
+    "storyboard_export",
 ]
 
 

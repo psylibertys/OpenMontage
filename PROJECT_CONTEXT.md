@@ -29,7 +29,7 @@ Agent reads pipeline manifest (YAML) → reads stage director skill (MD)
 - **Stage director skills:** `skills/pipelines/<pipeline>/<stage>-director.md`
 - **Meta skills:** `skills/meta/*.md` (reviewer, checkpoint-protocol, skill-creator)
 - **Architecture deep-dive:** `docs/ARCHITECTURE.md`
-- **ComfyUI/AutoDL operational context:** `production-planning/COMFYUI_AGENT_CONTEXT.md`
+- **RunningHub production route:** `.agents/skills/runninghub/SKILL.md` (AutoDL era archived under `archive/autodl-era/`)
 
 ## Knowledge Architecture (3 Layers)
 

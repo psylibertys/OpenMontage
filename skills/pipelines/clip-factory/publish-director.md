@@ -9,7 +9,7 @@ This stage packages the clip batch into a distribution plan. The goal is not jus
 | Layer | Resource | Purpose |
 |-------|----------|---------|
 | Schema | `schemas/artifacts/publish_log.schema.json` | Artifact validation |
-| Prior artifacts | `state.artifacts["compose"]["render_report"]`, `state.artifacts["idea"]["brief"]`, `state.artifacts["script"]["script"]` | Outputs, rankings, and goals |
+| Prior artifacts | `state.artifacts["compose"]["render_report"]`, `state.artifacts["compose"]["clip_delivery_audit"]`, `state.artifacts["idea"]["brief"]`, `state.artifacts["script"]["script"]` | Outputs, hard QA, rankings, and goals |
 | Playbook | Active style playbook | Brand voice |
 
 ## Process
@@ -48,6 +48,10 @@ Store in `publish_log.metadata`:
 
 ### 5. Quality Gate
 
+- require `clip_delivery_audit.status == "pass"`,
+- require exactly one audit output and one existing standalone cover per delivered clip,
+- reject any audit that did not use exact frame `n=0`,
+- reject subtitle claims without final-MP4 re-transcription metrics,
 - strongest clips lead the rollout,
 - captions are platform-specific,
 - export folders are usable without extra cleanup,
@@ -58,6 +62,7 @@ Store in `publish_log.metadata`:
 - Publishing the whole batch on the same day.
 - Using one caption everywhere.
 - Losing the rank/order logic after rendering is complete.
+- Copying files to the delivery directory before the hard QA artifact passes.
 
 ---
 

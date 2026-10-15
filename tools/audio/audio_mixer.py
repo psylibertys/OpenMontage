@@ -84,7 +84,19 @@ class AudioMixer(BaseTool):
                         },
                         "start_seconds": {"type": "number", "minimum": 0},
                         "fade_in_seconds": {"type": "number", "minimum": 0},
-                        "fade_out_seconds": {"type": "number", "minimum": 0},
+                            "fade_out_seconds": {"type": "number", "minimum": 0},
+                            "mute_segments": {
+                                "type": "array",
+                                "description": "Timeline windows to mute on this track before mixing.",
+                                "items": {
+                                    "type": "object",
+                                    "required": ["start", "end"],
+                                    "properties": {
+                                        "start": {"type": "number", "minimum": 0},
+                                        "end": {"type": "number", "minimum": 0},
+                                    },
+                                },
+                            },
                     },
                 },
             },
@@ -115,6 +127,8 @@ class AudioMixer(BaseTool):
             },
             "input_path": {"type": "string", "description": "Input for extract operation"},
             "output_path": {"type": "string"},
+            "sample_rate": {"type": "integer", "default": 16000},
+            "channels": {"type": "integer", "enum": [1, 2], "default": 1},
             "ducking": {
                 "type": "object",
                 "description": (
@@ -241,6 +255,16 @@ class AudioMixer(BaseTool):
             duration = float(self.run_command(duration_cmd).stdout.strip().split("\n")[0])
             fade_start = max(0.0, duration - float(fade_out))
             filters.append(f"afade=t=out:st={fade_start}:d={fade_out}")
+        for segment in track.get("mute_segments", []):
+            try:
+                mute_start = max(0.0, float(segment["start"]))
+                mute_end = max(mute_start, float(segment["end"]))
+            except (KeyError, TypeError, ValueError):
+                continue
+            if mute_end > mute_start:
+                filters.append(
+                    f"volume=0:enable='between(t,{mute_start},{mute_end})'"
+                )
         if delay_ms > 0:
             filters.append(f"adelay={delay_ms}|{delay_ms}")
 
@@ -314,7 +338,12 @@ class AudioMixer(BaseTool):
         cmd = ["ffmpeg", "-y"]
         cmd.extend(input_args)
         cmd.extend(["-filter_complex", filter_complex])
-        cmd.extend(["-map", out_label, str(output_path)])
+        cmd.extend([
+            "-map", out_label,
+            "-ar", str(int(inputs.get("sample_rate", 48000))),
+            "-ac", str(int(inputs.get("channels", 1))),
+            str(output_path),
+        ])
 
         self.run_command(cmd)
 
@@ -445,14 +474,16 @@ class AudioMixer(BaseTool):
         output_path = Path(
             inputs.get("output_path", str(input_path.with_suffix(".wav")))
         )
+        sample_rate = int(inputs.get("sample_rate", 16000))
+        channels = int(inputs.get("channels", 1))
 
         cmd = [
             "ffmpeg", "-y",
             "-i", str(input_path),
             "-vn",
             "-acodec", "pcm_s16le",
-            "-ar", "16000",
-            "-ac", "1",
+            "-ar", str(sample_rate),
+            "-ac", str(channels),
             str(output_path),
         ]
 
@@ -464,6 +495,8 @@ class AudioMixer(BaseTool):
                 "operation": "extract",
                 "input": str(input_path),
                 "output": str(output_path),
+                "sample_rate": sample_rate,
+                "channels": channels,
             },
             artifacts=[str(output_path)],
         )

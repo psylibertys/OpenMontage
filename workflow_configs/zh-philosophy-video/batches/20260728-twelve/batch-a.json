@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "batch_id": "treeelf-batch-zh-20260728-a",
+  "queue_depth": 2,
+  "episode_configs": [
+    "specific-abilities-20260723.json",
+    "look-again-20260723.json",
+    "response-not-assumption-20260724.json",
+    "ai-feeling-question-20260728.json",
+    "leave-waiting-room-20260728.json",
+    "verbs-make-images-20260728.json"
+  ]
+}

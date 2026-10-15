@@ -41,6 +41,20 @@ Each approved clip needs its own subtitle asset, timed from clip start rather th
 
 Store clip-relative timing details in `asset_manifest.metadata.subtitle_map`.
 
+Use one canonical media-time mapping for video, audio, and subtitles:
+
+- freeze the ordered KEEP/BLEEP EDL before generating any of the three,
+- derive the normalized audio from the exact concatenated EDL intermediate,
+- generate caption times with the same KEEP order and the same removed ranges,
+- normalize discontinuous input PTS while extracting audio (FFmpeg
+  `aresample=48000:async=1000:first_pts=0` or the equivalent target rate),
+- record an EDL fingerprint, expected duration, audio path, and caption path in
+  `subtitle_map` so mismatched revisions cannot be paired silently.
+
+Do not independently trim an audio file and a caption JSON from the same raw
+source; two superficially identical range loops can collapse timestamp gaps
+differently. Do not repair variable drift with a single global subtitle offset.
+
 ### 3. Normalize Audio Consistently
 
 Use `audio_enhance` across the clip set so the batch feels like one series:

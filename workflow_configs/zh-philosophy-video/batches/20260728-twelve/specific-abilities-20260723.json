@@ -1,0 +1,368 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-specific-abilities-20260723",
+  "title": "别让总分代替你",
+  "cover_title": "打开工具",
+  "cover_english_title": "USE THE RIGHT TOOL",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-23_别让总分代替你.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "curious",
+      "precise",
+      "warm",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "被总分盖住的挫败",
+      "把问题缩小后的清醒",
+      "重新看见具体能力的踏实"
+    ],
+    "metaphor_candidates": [
+      "总分印章",
+      "多扇门",
+      "工具箱",
+      "螺丝与工具"
+    ],
+    "style_families": [
+      "cinematic documentary photography",
+      "constructivist paper collage",
+      "minimal geometric composition"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic documentary photography",
+      "constructivist paper collage",
+      "minimal geometric composition"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 总分印章, 多扇门, 工具箱, 螺丝与工具; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_plus_longest_semantic_safe",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97101,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an oversized brass score disk lifted away from an open toolbox whose varied tools catch warm light; style_logic: cinematic documentary photography and constructivist paper collage compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, an oversized brass score disk lifted away from an open toolbox whose varied tools catch warm light, cinematic documentary photography blended with constructivist paper collage, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97102,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person facing several closed workshop doors while one oversized brass score disk hangs above them; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person facing several closed workshop doors while one oversized brass score disk hangs above them, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97103,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a single dark seal spreading across many differently shaped doorways; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a single dark seal spreading across many differently shaped doorways, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97104,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: five distinct tools arranged around one ambiguous metal score disk; style_logic: minimal geometric composition provides the scene structure while cinematic documentary photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, five distinct tools arranged around one ambiguous metal score disk, minimal geometric composition blended with cinematic documentary photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97105,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a large crowd represented by many small lights splitting into two long observation paths; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a large crowd represented by many small lights splitting into two long observation paths, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97106,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: technical knowledge, speed, number sense and language shown as four different physical instruments; style_logic: constructivist paper collage provides the scene structure while minimal geometric composition translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, technical knowledge, speed, number sense and language shown as four different physical instruments, constructivist paper collage blended with minimal geometric composition, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97107,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: several transparent outcome columns receiving light from both a central disk and smaller tools; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, several transparent outcome columns receiving light from both a central disk and smaller tools, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97108,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person choosing the correct wrench for one visible bolt at a real workbench; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person choosing the correct wrench for one visible bolt at a real workbench, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97109,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a toolbox hidden beneath a heavy circular lid that claims to summarize everything; style_logic: constructivist paper collage provides the scene structure while minimal geometric composition translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a toolbox hidden beneath a heavy circular lid that claims to summarize everything, constructivist paper collage blended with minimal geometric composition, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97110,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: four workstations requiring different hand movements and materials; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, four workstations requiring different hand movements and materials, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97111,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a narrow beam revealing one successful task while the global score remains blurred; style_logic: cinematic documentary photography provides the scene structure while constructivist paper collage translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a narrow beam revealing one successful task while the global score remains blurred, cinematic documentary photography blended with constructivist paper collage, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97112,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a giant verdict shrinking into a small measurement token beside practical evidence; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a giant verdict shrinking into a small measurement token beside practical evidence, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P11",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97113,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: three real task traces converging into a clear ability map made of colored paths; style_logic: minimal geometric composition provides the scene structure while cinematic documentary photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, three real task traces converging into a clear ability map made of colored paths, minimal geometric composition blended with cinematic documentary photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P12",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97114,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the brass disk resting at the side instead of blocking the toolbox; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, the brass disk resting at the side instead of blocking the toolbox, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P13",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97115,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an open corridor of specific doors, each matched with its own useful tool; style_logic: constructivist paper collage provides the scene structure while minimal geometric composition translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, an open corridor of specific doors, each matched with its own useful tool, constructivist paper collage blended with minimal geometric composition, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 97151,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens a person facing several closed workshop doors while one oversized brass score disk hangs above them without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      },
+      {
+        "id": "W02",
+        "selection_role": "longest_semantic_safe",
+        "reference": "P06",
+        "seed": 97152,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: core motion develops a person choosing the correct wrench for one visible bolt at a real workbench as the longest semantic-safe visual beat.",
+        "prompt": "One clear motivated action drawn from the reference scene, subtle camera movement, stable anatomy and structure, calm visual rhythm, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "video",
+        "src": "video/W02.mp4",
+        "from": 36,
+        "to": 42,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      },
+      {
+        "id": "S12",
+        "kind": "still",
+        "src": "images/P11.png",
+        "from": 65,
+        "to": 70,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S13",
+        "kind": "still",
+        "src": "images/P12.png",
+        "from": 70,
+        "to": 75,
+        "motion": "push-left"
+      },
+      {
+        "id": "S14",
+        "kind": "still",
+        "src": "images/P13.png",
+        "from": 75,
+        "to": 84,
+        "motion": "drift-up"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "别让总分代替你",
+        "left": "总体评分",
+        "operator": "≠",
+        "right": "具体能力"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "questions",
+        "eyebrow": "把问题缩小",
+        "items": [
+          "这条路需要什么能力？",
+          "我在哪些真实任务上做得不错？"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

@@ -182,6 +182,34 @@ class MixkitSource:
                         download_url = src
                         break
 
+            # Current Mixkit detail pages expose the downloadable MP4 in
+            # schema.org VideoObject JSON-LD and sometimes directly on the
+            # <video src> element rather than a nested <source> tag.
+            if not download_url:
+                import json
+
+                for script in soup.select('script[type="application/ld+json"]'):
+                    try:
+                        payload = json.loads(script.string or script.get_text() or "{}")
+                    except (TypeError, ValueError):
+                        continue
+                    nodes = payload.get("@graph", []) if isinstance(payload, dict) else []
+                    for node in nodes:
+                        if isinstance(node, dict) and node.get("@type") == "VideoObject":
+                            url = node.get("contentUrl") or node.get("embedUrl") or ""
+                            if url and any(ext in url.lower() for ext in [".mp4", ".mov", ".webm"]):
+                                download_url = url
+                                break
+                    if download_url:
+                        break
+
+            if not download_url:
+                video = soup.select_one("video[src]")
+                if video:
+                    src = video.get("src", "")
+                    if src and any(ext in src.lower() for ext in [".mp4", ".mov", ".webm"]):
+                        download_url = src
+
             # Look for data attributes with video URLs
             if not download_url:
                 for el in soup.select("[data-video-url], [data-download-url], [data-src]"):

@@ -1,0 +1,369 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-response-not-assumption-20260724",
+  "title": "感觉被喜欢不等于收到回应",
+  "cover_title": "心动回执",
+  "cover_english_title": "WAIT FOR THE RESPONSE",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-24_感觉被喜欢不等于收到回应.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "tender",
+      "playful",
+      "uncertain",
+      "acoustic",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "心动后的迅速脑补",
+      "证据不足的悬空",
+      "给对方留出回应空间"
+    ],
+    "metaphor_candidates": [
+      "心动部门",
+      "双向印章",
+      "未签的回执",
+      "一半空位"
+    ],
+    "style_families": [
+      "cinematic romantic photography",
+      "surreal office-object collage",
+      "minimal color-field composition"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic romantic photography",
+      "surreal office-object collage",
+      "minimal color-field composition"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 心动部门, 双向印章, 未签的回执, 一半空位; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_plus_longest_semantic_safe",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97301,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two warm arcs almost meeting around an unsigned blank response token with one side intentionally open; style_logic: cinematic romantic photography and surreal office-object collage compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, two warm arcs almost meeting around an unsigned blank response token with one side intentionally open, cinematic romantic photography blended with surreal office-object collage, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97302,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two people leaving a quiet evening cafe after a warm but ambiguous conversation; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, two people leaving a quiet evening cafe after a warm but ambiguous conversation, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97303,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a playful inner office rapidly moving blank approval tokens through glowing stations; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a playful inner office rapidly moving blank approval tokens through glowing stations, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97304,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one bright double-sided seal hovering over a token that only one hand has touched; style_logic: minimal color-field composition provides the scene structure while cinematic romantic photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, one bright double-sided seal hovering over a token that only one hand has touched, minimal color-field composition blended with cinematic romantic photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97305,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: twelve small round tables arranged like a social constellation viewed from above; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, twelve small round tables arranged like a social constellation viewed from above, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97306,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one person's growing warm light reflected toward another whose light remains independent; style_logic: surreal office-object collage provides the scene structure while minimal color-field composition translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, one person's growing warm light reflected toward another whose light remains independent, surreal office-object collage blended with minimal color-field composition, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97307,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: accurate attention shown as two separate signal paths becoming clearer without merging; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, accurate attention shown as two separate signal paths becoming clearer without merging, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97308,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person walking home holding a warm feeling while leaving the other side of a small bridge open; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person walking home holding a warm feeling while leaving the other side of a small bridge open, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97309,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: smiles and eye contact appearing as faint clues rather than a completed shape; style_logic: surreal office-object collage provides the scene structure while minimal color-field composition translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, smiles and eye contact appearing as faint clues rather than a completed shape, surreal office-object collage blended with minimal color-field composition, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97310,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a sequence of three concrete gestures forming a steady path across time; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a sequence of three concrete gestures forming a steady path across time, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97311,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an invitation moving from vague glow into a specific shared calendar-like rhythm made only of shapes; style_logic: cinematic romantic photography provides the scene structure while surreal office-object collage translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, an invitation moving from vague glow into a specific shared calendar-like rhythm made only of shapes, cinematic romantic photography blended with surreal office-object collage, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97312,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one hand resisting the urge to press both halves of a paired seal; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one hand resisting the urge to press both halves of a paired seal, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P11",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97313,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two signatures represented by separate strokes that must arrive from opposite sides; style_logic: minimal color-field composition provides the scene structure while cinematic romantic photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, two signatures represented by separate strokes that must arrive from opposite sides, minimal color-field composition blended with cinematic romantic photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P12",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97314,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the heart remaining warm while the answer space stays calm and unfilled; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, the heart remaining warm while the answer space stays calm and unfilled, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P13",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97315,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two people approaching a shared midpoint at their own pace; style_logic: surreal office-object collage provides the scene structure while minimal color-field composition translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, two people approaching a shared midpoint at their own pace, surreal office-object collage blended with minimal color-field composition, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 97351,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens two people leaving a quiet evening cafe after a warm but ambiguous conversation without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      },
+      {
+        "id": "W02",
+        "selection_role": "longest_semantic_safe",
+        "reference": "P06",
+        "seed": 97352,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: core motion develops a person walking home holding a warm feeling while leaving the other side of a small bridge open as the longest semantic-safe visual beat.",
+        "prompt": "One clear motivated action drawn from the reference scene, subtle camera movement, stable anatomy and structure, calm visual rhythm, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "video",
+        "src": "video/W02.mp4",
+        "from": 36,
+        "to": 42,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      },
+      {
+        "id": "S12",
+        "kind": "still",
+        "src": "images/P11.png",
+        "from": 65,
+        "to": 70,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S13",
+        "kind": "still",
+        "src": "images/P12.png",
+        "from": 70,
+        "to": 75,
+        "motion": "push-left"
+      },
+      {
+        "id": "S14",
+        "kind": "still",
+        "src": "images/P13.png",
+        "from": 75,
+        "to": 84,
+        "motion": "drift-up"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "先分开两件事",
+        "left": "我更心动",
+        "operator": "≠",
+        "right": "对方更心动"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "questions",
+        "eyebrow": "更像回应的线索",
+        "items": [
+          "是否持续联系？",
+          "是否回应关心？",
+          "是否把下次变具体？"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

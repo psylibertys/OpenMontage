@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-13",
+  "purpose": "73GB AutoDL数据盘按制作阶段选择模型热集；文件存储保留105.70GB暖库",
+  "warm_root": "/root/autodl-fs/comfyui-models",
+  "hot_root": "/root/autodl-tmp/comfyui-models",
+  "rules": {
+    "comfyui_loads_from_hot_root_only": true,
+    "direct_inference_from_warm_root": false,
+    "minimum_runtime_free_gb": 20,
+    "copy_then_verify_before_delete_other_hot_models": true
+  },
+  "groups": {
+    "qwen_tts": {
+      "bytes": 14269926990,
+      "paths": ["qwen-tts/"]
+    },
+    "krea2": {
+      "bytes": 18638004998,
+      "paths": [
+        "diffusion_models/krea2/",
+        "text_encoders/qwen3vl_4b_fp8_scaled.safetensors",
+        "vae/qwen_image_vae.safetensors"
+      ]
+    },
+    "flux2_klein": {
+      "bytes": 18819996602,
+      "paths": [
+        "diffusion_models/flux2/",
+        "text_encoders/qwen_3_8b_fp8mixed.safetensors",
+        "vae/flux2-vae.safetensors"
+      ]
+    },
+    "wan22_i2v": {
+      "bytes": 31016707943,
+      "paths": [
+        "diffusion_models/wan2.2/wan2.2_i2v_A14b_high_noise_lightx2v_4step-Q6_K.gguf",
+        "diffusion_models/wan2.2/wan2.2_i2v_A14b_low_noise_lightx2v_4step-Q6_K.gguf",
+        "text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+        "vae/wan_2.1_vae.safetensors"
+      ]
+    },
+    "infinitetalk_without_shared_umt5": {
+      "bytes": 22950534908,
+      "paths": [
+        "diffusion_models/wan2.1/",
+        "model_patches/wan2.1_infiniteTalk_single_fp16.safetensors",
+        "audio_encoders/wav2vec2-chinese-base_fp16.safetensors",
+        "vae/Wan2_1_VAE_bf16.safetensors",
+        "loras/wan2.2/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors"
+      ]
+    },
+    "wan_shared_umt5": {
+      "bytes": 6735906897,
+      "paths": ["text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"]
+    }
+  },
+  "profiles": {
+    "character_assets": {
+      "groups": ["qwen_tts", "krea2", "flux2_klein"],
+      "bytes": 51727928590,
+      "decimal_gb": 51.728,
+      "estimated_free_gb_on_73gb_disk": 21.272,
+      "workflows": [
+        "qwen3_tts_custom_voice",
+        "qwen3_tts_voice_design",
+        "qwen3_tts_voice_clone_save",
+        "qwen3_tts_voice_clone_load",
+        "krea2_low_vram",
+        "krea2_extra_pass",
+        "flux2_klein_4ref",
+        "flux2_klein_inpaint"
+      ]
+    },
+    "motion": {
+      "groups": ["qwen_tts", "wan22_i2v"],
+      "bytes": 45285934933,
+      "decimal_gb": 45.286,
+      "estimated_free_gb_on_73gb_disk": 27.714,
+      "workflows": [
+        "qwen3_tts_custom_voice",
+        "qwen3_tts_voice_clone_load",
+        "wan22_i2v_q6"
+      ]
+    },
+    "lipsync": {
+      "groups": ["qwen_tts", "infinitetalk_without_shared_umt5", "wan_shared_umt5"],
+      "bytes": 43956368795,
+      "decimal_gb": 43.956,
+      "estimated_free_gb_on_73gb_disk": 29.044,
+      "workflows": [
+        "qwen3_tts_custom_voice",
+        "qwen3_tts_voice_clone_load",
+        "wan_infinitetalk_short",
+        "wan_infinitetalk_extend"
+      ]
+    }
+  },
+  "cold_workflows_require_explicit_restore": [
+    "z_image_turbo_gguf",
+    "seedvr2_upscale",
+    "wan22_animate_character",
+    "wan_scail_character"
+  ]
+}

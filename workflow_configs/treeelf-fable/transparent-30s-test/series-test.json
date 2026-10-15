@@ -95,16 +95,24 @@
   },
   "music": {
     "selected_mix_profile": "B3-narration-first-quieter",
-    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "library_env": "TREEELF_MUSIC_LIBRARY_DIR",
     "catalog_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/catalog-v1.json",
     "overrides_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/manual-overrides-v1.json",
     "usage_ledger_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/usage-ledger-v1.json",
     "selection_mode": "shared_catalog_by_fable_content",
-    "selection_policy": "Use the shared catalog, manual overrides, same-batch penalty and cross-series history; exclude lyric, watermark and unreadable files, then use deterministic weighted fallback when no keyword matches.",
+    "selection_policy": "Incrementally refresh the shared catalog, reuse the same project's active reservation, and rank by fable-semantic keywords plus same-batch and committed/reserved cross-series history; pure-music labels are qualifications rather than semantic matches.",
     "normalization": {
       "target_lufs": -18.0,
       "true_peak_dbfs": -2.0,
       "loudness_range_lu": 7.0
+    },
+    "duration_policy": "loop_to_composition_duration_with_final_fade",
+    "reservation_ttl_hours": 168,
+    "final_mix_qc": {
+      "minimum_lufs": -22.0,
+      "maximum_lufs": -12.0,
+      "maximum_true_peak_dbfs": 0.0,
+      "maximum_audio_tail_gap_seconds": 1.25
     },
     "remotion_volume": 0.3,
     "ducking": "speech-aware"

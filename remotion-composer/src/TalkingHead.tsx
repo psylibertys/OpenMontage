@@ -1,11 +1,15 @@
 import {
   AbsoluteFill,
+  CalculateMetadataFunction,
   OffthreadVideo,
   Sequence,
   interpolate,
+  spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import {Audio} from "@remotion/media";
 import { CaptionOverlay, WordCaption } from "./components/CaptionOverlay";
 import { TextCard } from "./components/TextCard";
 import { StatCard } from "./components/StatCard";
@@ -302,7 +306,67 @@ export interface TalkingHeadProps {
   wordsPerPage?: number;
   fontSize?: number;
   highlightColor?: string;
+  audioSrc?: string;
+  durationSeconds?: number;
+  hookTitle?: string;
+  hookDurationSeconds?: number;
+  hookDisplayMode?: "persistent" | "intro";
+  watermarkLines?: string[];
+  sourceLayout?: "cover" | "contain-blur";
+  captionBottomPx?: number;
+  captionOutlineWidth?: number;
+  captionBackgroundColor?: string;
+  captionFontFamily?: string;
+  hookFontFamily?: string;
+  hookFontSrc?: string;
 }
+
+const resolveMedia = (src: string): string => {
+  if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("data:") || src.startsWith("file://")) {
+    return src;
+  }
+  if (src.startsWith("/")) return `file://${src}`;
+  return staticFile(src);
+};
+
+const HookTitle: React.FC<{text: string; fadeAtEnd?: boolean; instant?: boolean; fontFamily?: string}> = ({
+  text,
+  fadeAtEnd = false,
+  instant = false,
+  fontFamily = '"Kaiti SC", "STKaiti", serif',
+}) => {
+  const frame = useCurrentFrame();
+  const {fps, durationInFrames} = useVideoConfig();
+  const enter = instant
+    ? 1
+    : spring({frame, fps, config: {damping: 18, stiffness: 110}});
+  const fadeOut = fadeAtEnd
+    ? interpolate(frame, [durationInFrames - 8, durationInFrames], [1, 0], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      })
+    : 1;
+  return (
+    <div style={{
+      position: "absolute",
+      top: 245,
+      left: 70,
+      right: 70,
+      textAlign: "center",
+      color: "#FFD34E",
+      fontFamily,
+      fontSize: 70,
+      fontWeight: 900,
+      lineHeight: 1.28,
+      WebkitTextStroke: "7px #000000",
+      paintOrder: "stroke fill",
+      textShadow: "0 3px 4px rgba(0,0,0,0.95)",
+      whiteSpace: "pre-wrap",
+      opacity: enter * fadeOut,
+      transform: `translateY(${interpolate(enter, [0, 1], [22, 0])}px)`,
+    }}>{text}</div>
+  );
+};
 
 export const TalkingHead: React.FC<TalkingHeadProps> = ({
   videoSrc,
@@ -310,17 +374,89 @@ export const TalkingHead: React.FC<TalkingHeadProps> = ({
   overlays,
   wordsPerPage = 4,
   fontSize = 52,
-  highlightColor = "#22D3EE",
+  highlightColor = "#FFD34E",
+  audioSrc,
+  hookTitle,
+  hookDurationSeconds = 2.2,
+  hookDisplayMode = "persistent",
+  watermarkLines = [
+    "九重天小熊猫版权所有｜用传统文化陪您过得更好",
+    "虚构演绎，仅供参考；相信科学，拒绝迷信！",
+  ],
+  sourceLayout = "cover",
+  captionBottomPx = 380,
+  captionOutlineWidth = 5,
+  captionBackgroundColor = "transparent",
+  captionFontFamily = '"Heiti SC", "STHeiti", sans-serif',
+  hookFontFamily = '"Kaiti SC", "STKaiti", serif',
+  hookFontSrc,
 }) => {
   const { fps } = useVideoConfig();
+  const resolvedVideo = resolveMedia(videoSrc);
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
+      {hookFontSrc ? (
+        <style>{`@font-face { font-family: "TreeElfHook"; src: url("${staticFile(hookFontSrc)}") format("truetype"); font-weight: 400 900; font-style: normal; font-display: block; }`}</style>
+      ) : null}
       {/* Layer 1: Video background */}
-      <OffthreadVideo
-        src={videoSrc}
-        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-      />
+      {sourceLayout === "contain-blur" ? (
+        <>
+          <OffthreadVideo
+            src={resolvedVideo}
+            muted
+            style={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              inset: 0,
+              objectFit: "cover",
+              filter: "blur(34px)",
+              transform: "scale(1.12)",
+              opacity: 0.82,
+            }}
+          />
+          <OffthreadVideo
+            src={resolvedVideo}
+            muted={Boolean(audioSrc)}
+            style={{ width: "100%", height: "100%", position: "absolute", inset: 0, objectFit: "contain" }}
+          />
+        </>
+      ) : (
+        <OffthreadVideo
+          src={resolvedVideo}
+          muted={Boolean(audioSrc)}
+          style={{ width: "100%", height: "100%", position: "absolute", inset: 0, objectFit: "cover" }}
+        />
+      )}
+
+      {audioSrc ? <Audio src={resolveMedia(audioSrc)} /> : null}
+
+      <div style={{
+        position: "absolute",
+        top: 78,
+        left: 38,
+        right: 38,
+        color: "#FFFFFF",
+        fontFamily: '"Heiti SC", "STHeiti", sans-serif',
+        fontSize: 28,
+        fontWeight: 700,
+        lineHeight: 1.55,
+        textAlign: "center",
+        WebkitTextStroke: "3px #000000",
+        paintOrder: "stroke fill",
+        textShadow: "0 2px 4px rgba(0,0,0,0.95)",
+      }}>
+        {watermarkLines.map((line, index) => <div key={index}>{line}</div>)}
+      </div>
+
+      {hookTitle && hookDisplayMode === "persistent" ? (
+        <HookTitle text={hookTitle} instant fontFamily={hookFontSrc ? '"TreeElfHook", serif' : hookFontFamily} />
+      ) : hookTitle ? (
+        <Sequence from={0} durationInFrames={Math.max(1, Math.round(hookDurationSeconds * fps))}>
+          <HookTitle text={hookTitle} fadeAtEnd fontFamily={hookFontSrc ? '"TreeElfHook", serif' : hookFontFamily} />
+        </Sequence>
+      ) : null}
 
       {/* Layer 2: Overlays (charts, stats, callouts, etc.) */}
       {overlays?.map((overlay, i) => {
@@ -345,9 +481,21 @@ export const TalkingHead: React.FC<TalkingHeadProps> = ({
         wordsPerPage={wordsPerPage}
         fontSize={fontSize}
         highlightColor={highlightColor}
-        backgroundColor="rgba(0, 0, 0, 0.65)"
+        backgroundColor={captionBackgroundColor}
         color="#FFFFFF"
+        outlineColor="#000000"
+        outlineWidth={captionOutlineWidth}
+        fontFamily={captionFontFamily}
+        bottomPx={captionBottomPx}
+        maxWidth="88%"
       />
     </AbsoluteFill>
   );
 };
+
+export const calculateTalkingHeadMetadata: CalculateMetadataFunction<TalkingHeadProps> = async ({props}) => ({
+  durationInFrames: Math.max(1, Math.round((props.durationSeconds || 300) * 30)),
+  fps: 30,
+  width: 1080,
+  height: 1920,
+});

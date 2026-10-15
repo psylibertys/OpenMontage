@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "batch_id": "memory-repair-shop-b1",
+  "project_id": "memory-repair-shop",
+  "pipeline": "story-to-storyboard",
+  "storyboard_export": "projects/memory-repair-shop/exports/storyboard/memory-repair-shop/memory-repair-shop.json",
+  "aspect_preset": "portrait_9_16",
+  "queue_depth": 2,
+  "ssh_host": "autodl-comfyui",
+  "voice": {
+    "workflow_template": "qwen3_tts_voice_clone_load",
+    "voice_name": "treeelf_cherry",
+    "language": "Chinese",
+    "instruct": "成年女性中文旁白，音色温暖安静，语速偏慢、从容，吐字轻而清晰。像深夜给一个人讲故事：克制、有耐心、有画面感。悲伤的句子语气下沉但不用哭腔，转折处轻轻一顿；引号里的对白保持自然口语，不刻意变声。结尾安静落地，留一点余温，不煽情。"
+  },
+  "gpu": {
+    "ordinary_image_workflow": "krea2_low_vram",
+    "character_image_workflow": "flux2_klein_4ref"
+  },
+  "character_packs": [
+    {
+      "character_id": "lin_wan",
+      "name": "林晚",
+      "appearance": "young woman shopkeeper, plain dark apron over a grey sweater, hair tied back, calm composed face, small dim shop lit by a single warm desk lamp",
+      "turnaround_prompt": "vertical 9:16 single 2x2 character turnaround sheet, four equal clean panels showing one consistent young woman shopkeeper exactly once in each panel: front view, left three-quarter view, right profile view, back three-quarter view, identical face hair clothing palette in every panel, plain dark apron over a grey sweater, hair tied back, calm composed face, full body, stable anatomy, plain warm dim studio background with a single desk lamp glow, clear panel separation through natural background spacing",
+      "binding_scenes": [
+        "scene-4"
+      ]
+    },
+    {
+      "character_id": "old_man",
+      "name": "白发老人",
+      "appearance": "elderly man with white hair, heavy dark coat, carries an old thermos with a cracked lid and faded mandarin-duck print",
+      "turnaround_prompt": "vertical 9:16 single 2x2 character turnaround sheet, four equal clean panels showing one consistent elderly man exactly once in each panel: front view, left three-quarter view, right profile view, back three-quarter view, identical face hair clothing palette and signature object in every panel, white hair, heavy dark coat, carries an old thermos with a cracked lid and faded mandarin-duck print, full body, stable anatomy, plain warm dim studio background, clear panel separation through natural background spacing",
+      "binding_scenes": [
+        "scene-7",
+        "scene-8",
+        "scene-16",
+        "scene-17",
+        "scene-18",
+        "scene-21"
+      ]
+    }
+  ],
+  "scene_routing": {
+    "scene-4": "flux2_klein_4ref",
+    "scene-7": "flux2_klein_4ref",
+    "scene-8": "flux2_klein_4ref",
+    "scene-16": "flux2_klein_4ref",
+    "scene-17": "flux2_klein_4ref",
+    "scene-18": "flux2_klein_4ref",
+    "scene-21": "flux2_klein_4ref"
+  },
+  "scene_routing_notes": {
+    "scene-14": "妻子仅一镜闪回（老电影滤镜+85mm 浅景），单镜无跨镜一致性需求，krea 直接生成不建参考包",
+    "scene-16/17/18": "年轻版老人与 old_man 同身份，复用 old_man 参考包；t2i_prompt 已自带 visibly younger 修饰"
+  },
+  "prompt_adaptations": {
+    "scene-24": {
+      "reason": "图/文分离架构：玻璃门上的旧字由 Remotion 叠加，生图只出擦拭动作与留白玻璃面，规避中文 pseudo text",
+      "from": "a hand wiping old words off a shop's glass door in golden hour light, fading letters in the cloth",
+      "to": "a hand wiping a soft cloth across a shop's glass door in golden hour light, faint smudge traces on the clear glass"
+    },
+    "scene-25": {
+      "reason": "图/文分离架构：新店训由 Remotion 叠加，生图只出书写动作构图，玻璃面留白给字幕层",
+      "from": "a hand writing a new line on a shop's glass door, golden hour sun across fresh ink letters",
+      "to": "a hand holding a white marker poised against a shop's glass door, golden hour sun across the clear glass, generous empty glass surface"
+    }
+  },
+  "metadata": {
+    "source_pipeline": "story-to-storyboard (4/4 gates human_approved)",
+    "shot_count": 25,
+    "total_duration_seconds": 66,
+    "max_shot_seconds": 3.0,
+    "narration_jobs": "25 per-shot + 1 full-track (narration_all verbatim)",
+    "batch_scope": "首帧 + 角色参考包 + 配音；视频镜(i2v)属于批次2，等 H3 模板 smoke test 后另配"
+  }
+}

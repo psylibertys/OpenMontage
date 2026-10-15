@@ -131,7 +131,7 @@ def prepare_batch(
         "batch_id": batch["batch_id"],
         "status": "prepared",
         "queue_depth": 2,
-        "model_group_order": ["qwen3_tts_voice_clone_load", "krea2_low_vram", "wan22_i2v_q6"],
+        "model_group_order": ["qwen3_tts_voice_clone_load", "krea2_low_vram", "minimax_fasth3_i2v"],
         "created_at": utc_now(),
         "episodes": episodes,
     }
@@ -313,6 +313,7 @@ def finalize_command(
         str(REPO_ROOT / "scripts" / "finalize_autodl_comfyui_batch.py"),
         "--project-dir", str(target),
         "--policy", str(target / "artifacts" / "retention_policy.json"),
+        "--local-inventory", str(inventory_path),
         "--ssh-host", ssh_host,
     ]
     if dry_run:

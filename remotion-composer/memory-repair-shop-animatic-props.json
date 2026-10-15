@@ -1,0 +1,575 @@
+{
+  "assetRoot": "memory-repair-shop/animatic",
+  "title": "memory-repair-shop-animatic",
+  "totalSeconds": 76.33,
+  "scenes": [
+    {
+      "id": "s01",
+      "kind": "still",
+      "src": "stills/scene-01.png",
+      "from": 0.0,
+      "to": 2.32,
+      "motion": "push-in",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s02",
+      "kind": "still",
+      "src": "stills/scene-02.png",
+      "from": 2.32,
+      "to": 4.88,
+      "motion": "pull-back",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s03",
+      "kind": "still",
+      "src": "stills/scene-03.png",
+      "from": 4.88,
+      "to": 8.57,
+      "motion": "drift-left",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s04",
+      "kind": "still",
+      "src": "stills/scene-04.png",
+      "from": 8.57,
+      "to": 12.5,
+      "motion": "drift-right",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s05",
+      "kind": "still",
+      "src": "stills/scene-05.png",
+      "from": 12.5,
+      "to": 14.19,
+      "motion": "drift-up",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s06",
+      "kind": "still",
+      "src": "stills/scene-06.png",
+      "from": 14.19,
+      "to": 17.8,
+      "motion": "push-in",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s07",
+      "kind": "still",
+      "src": "stills/scene-07.png",
+      "from": 17.8,
+      "to": 21.01,
+      "motion": "pull-back",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s08",
+      "kind": "still",
+      "src": "stills/scene-08.png",
+      "from": 21.01,
+      "to": 23.33,
+      "motion": "drift-left",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s09",
+      "kind": "still",
+      "src": "stills/scene-09.png",
+      "from": 23.33,
+      "to": 25.74,
+      "motion": "drift-right",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s10",
+      "kind": "still",
+      "src": "stills/scene-10.png",
+      "from": 25.74,
+      "to": 29.43,
+      "motion": "drift-up",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s11",
+      "kind": "still",
+      "src": "stills/scene-11.png",
+      "from": 29.43,
+      "to": 33.28,
+      "motion": "push-in",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s12",
+      "kind": "still",
+      "src": "stills/scene-12.png",
+      "from": 33.28,
+      "to": 36.25,
+      "motion": "pull-back",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s13",
+      "kind": "still",
+      "src": "stills/scene-13.png",
+      "from": 36.25,
+      "to": 38.18,
+      "motion": "drift-left",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s14",
+      "kind": "still",
+      "src": "stills/scene-14.png",
+      "from": 38.18,
+      "to": 41.22,
+      "motion": "drift-right",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s15",
+      "kind": "still",
+      "src": "stills/scene-15.png",
+      "from": 41.22,
+      "to": 45.87,
+      "motion": "drift-up",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s16",
+      "kind": "still",
+      "src": "stills/scene-16.png",
+      "from": 45.87,
+      "to": 48.43,
+      "motion": "push-in",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s17",
+      "kind": "still",
+      "src": "stills/scene-17.png",
+      "from": 48.43,
+      "to": 51.4,
+      "motion": "pull-back",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s18",
+      "kind": "still",
+      "src": "stills/scene-18.png",
+      "from": 51.4,
+      "to": 52.93,
+      "motion": "drift-left",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s19",
+      "kind": "still",
+      "src": "stills/scene-19.png",
+      "from": 52.93,
+      "to": 55.01,
+      "motion": "drift-right",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s20",
+      "kind": "still",
+      "src": "stills/scene-20.png",
+      "from": 55.01,
+      "to": 57.9,
+      "motion": "drift-up",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s21",
+      "kind": "still",
+      "src": "stills/scene-21.png",
+      "from": 57.9,
+      "to": 61.99,
+      "motion": "push-in",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s22",
+      "kind": "still",
+      "src": "stills/scene-22.png",
+      "from": 61.99,
+      "to": 64.07,
+      "motion": "pull-back",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s23",
+      "kind": "still",
+      "src": "stills/scene-23.png",
+      "from": 64.07,
+      "to": 66.72,
+      "motion": "drift-left",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s24",
+      "kind": "still",
+      "src": "stills/scene-24.png",
+      "from": 66.72,
+      "to": 68.8,
+      "motion": "drift-right",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "s25",
+      "kind": "still",
+      "src": "stills/scene-25.png",
+      "from": 68.8,
+      "to": 73.13,
+      "motion": "drift-up",
+      "focalPoint": {
+        "x": 50,
+        "y": 50
+      }
+    }
+  ],
+  "captions": [
+    {
+      "text": "巷尾小店没有招牌，",
+      "startMs": 50,
+      "endMs": 2020
+    },
+    {
+      "text": "只挂一只生锈的铜铃。",
+      "startMs": 2370,
+      "endMs": 4580
+    },
+    {
+      "text": "人们带着坏掉的记忆，来这里修理。",
+      "startMs": 4930,
+      "endMs": 8270
+    },
+    {
+      "text": "店主林晚用细线连上客人的记忆，",
+      "startMs": 8620,
+      "endMs": 12200
+    },
+    {
+      "text": "从不问理由。",
+      "startMs": 12550,
+      "endMs": 13890
+    },
+    {
+      "text": "忘掉后的空白，不一定比痛苦好受。",
+      "startMs": 14240,
+      "endMs": 17500
+    },
+    {
+      "text": "一个雪夜，老人推门进来，",
+      "startMs": 17850,
+      "endMs": 20710
+    },
+    {
+      "text": "放下那只鸳鸯保温杯：",
+      "startMs": 21060,
+      "endMs": 23030
+    },
+    {
+      "text": "「我想忘掉我的妻子。」",
+      "startMs": 23380,
+      "endMs": 25440
+    },
+    {
+      "text": "她走了三年，他做饭仍拿两副碗筷。",
+      "startMs": 25790,
+      "endMs": 29130
+    },
+    {
+      "text": "记忆像老电影展开：雨里共撑的伞，",
+      "startMs": 29480,
+      "endMs": 32980
+    },
+    {
+      "text": "病中替她戴上的毛线帽，",
+      "startMs": 33330,
+      "endMs": 35950
+    },
+    {
+      "text": "和最后那句——",
+      "startMs": 36300,
+      "endMs": 37880
+    },
+    {
+      "text": "「如果太难受，就把我忘了吧。」",
+      "startMs": 38230,
+      "endMs": 40920
+    },
+    {
+      "text": "屏幕深处，亮起一段老人三年前藏下的记忆。",
+      "startMs": 41270,
+      "endMs": 45570
+    },
+    {
+      "text": "那时的他红着眼眶——",
+      "startMs": 45920,
+      "endMs": 48130
+    },
+    {
+      "text": "「将来的我若要求忘掉她，",
+      "startMs": 48480,
+      "endMs": 51100
+    },
+    {
+      "text": "请别答应。」",
+      "startMs": 51450,
+      "endMs": 52630
+    },
+    {
+      "text": "林晚摘下细线，",
+      "startMs": 52980,
+      "endMs": 54710
+    },
+    {
+      "text": "推回保温杯：「设备坏了。」",
+      "startMs": 55060,
+      "endMs": 57600
+    },
+    {
+      "text": "老人怔住，笑了：「那我明天再来。」",
+      "startMs": 57950,
+      "endMs": 61690
+    },
+    {
+      "text": "后来他再没来。",
+      "startMs": 62039,
+      "endMs": 63769
+    },
+    {
+      "text": "春天，保温杯寄了回来。",
+      "startMs": 64119,
+      "endMs": 66419
+    },
+    {
+      "text": "她在门上写下——",
+      "startMs": 66770,
+      "endMs": 68500
+    },
+    {
+      "text": "有些痛苦不是伤口，是爱没有了去处。",
+      "startMs": 68850,
+      "endMs": 72830
+    }
+  ],
+  "narration": [
+    {
+      "src": "voice/scene-01.mp3",
+      "atMs": 50,
+      "durationMs": 1970
+    },
+    {
+      "src": "voice/scene-02.mp3",
+      "atMs": 2370,
+      "durationMs": 2210
+    },
+    {
+      "src": "voice/scene-03.mp3",
+      "atMs": 4930,
+      "durationMs": 3340
+    },
+    {
+      "src": "voice/scene-04.mp3",
+      "atMs": 8620,
+      "durationMs": 3580
+    },
+    {
+      "src": "voice/scene-05.mp3",
+      "atMs": 12550,
+      "durationMs": 1340
+    },
+    {
+      "src": "voice/scene-06.mp3",
+      "atMs": 14240,
+      "durationMs": 3260
+    },
+    {
+      "src": "voice/scene-07.mp3",
+      "atMs": 17850,
+      "durationMs": 2860
+    },
+    {
+      "src": "voice/scene-08.mp3",
+      "atMs": 21060,
+      "durationMs": 1970
+    },
+    {
+      "src": "voice/scene-09.mp3",
+      "atMs": 23380,
+      "durationMs": 2060
+    },
+    {
+      "src": "voice/scene-10.mp3",
+      "atMs": 25790,
+      "durationMs": 3340
+    },
+    {
+      "src": "voice/scene-11.mp3",
+      "atMs": 29480,
+      "durationMs": 3500
+    },
+    {
+      "src": "voice/scene-12.mp3",
+      "atMs": 33330,
+      "durationMs": 2620
+    },
+    {
+      "src": "voice/scene-13.mp3",
+      "atMs": 36300,
+      "durationMs": 1580
+    },
+    {
+      "src": "voice/scene-14.mp3",
+      "atMs": 38230,
+      "durationMs": 2690
+    },
+    {
+      "src": "voice/scene-15.mp3",
+      "atMs": 41270,
+      "durationMs": 4300
+    },
+    {
+      "src": "voice/scene-16.mp3",
+      "atMs": 45920,
+      "durationMs": 2210
+    },
+    {
+      "src": "voice/scene-17.mp3",
+      "atMs": 48480,
+      "durationMs": 2620
+    },
+    {
+      "src": "voice/scene-18.mp3",
+      "atMs": 51450,
+      "durationMs": 1180
+    },
+    {
+      "src": "voice/scene-19.mp3",
+      "atMs": 52980,
+      "durationMs": 1730
+    },
+    {
+      "src": "voice/scene-20.mp3",
+      "atMs": 55060,
+      "durationMs": 2540
+    },
+    {
+      "src": "voice/scene-21.mp3",
+      "atMs": 57950,
+      "durationMs": 3740
+    },
+    {
+      "src": "voice/scene-22.mp3",
+      "atMs": 62039,
+      "durationMs": 1730
+    },
+    {
+      "src": "voice/scene-23.mp3",
+      "atMs": 64119,
+      "durationMs": 2300
+    },
+    {
+      "src": "voice/scene-24.mp3",
+      "atMs": 66770,
+      "durationMs": 1730
+    },
+    {
+      "src": "voice/scene-25.mp3",
+      "atMs": 68850,
+      "durationMs": 3980
+    }
+  ],
+  "transitionFrames": 10,
+  "endCard": {
+    "fromMs": 73130,
+    "mainText": "记忆修理店",
+    "subText": "有些东西，修的不是坏，是忘。",
+    "footnote": "Animatic 工程预览 · 静帧+配音 · 内容由 AI 生成"
+  },
+  "captionStyle": {
+    "fontSize": 44,
+    "color": "#F5EFE3",
+    "outlineColor": "#241a10",
+    "outlineWidth": 4,
+    "safeBottom": 300
+  }
+}

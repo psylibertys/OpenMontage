@@ -15,7 +15,7 @@ orchestration:
   budget_default_usd: 1.00
   max_revisions_per_stage: 3
   max_send_backs: 3
-  max_wall_time_minutes: 12
+  max_wall_time_minutes: 120
 
 extensions:
   custom_scripts: true
@@ -25,6 +25,7 @@ extensions:
 
 required_skills:
   - pipelines/clip-factory/executive-producer
+  - pipelines/clip-factory/information-density-standard
   - pipelines/clip-factory/idea-director
   - pipelines/clip-factory/script-director
   - pipelines/clip-factory/scene-director
@@ -80,9 +81,12 @@ stages:
       - Full transcription with accurate timestamps
       - Clip-worthy segments identified and ranked
       - Each candidate clip is self-contained (makes sense without context)
+      - Every selected clip has a transcript-level information-density audit
+      - Spoken hook lands within 0-3 seconds; overlay text alone does not count
     success_criteria:
       - Schema-valid script artifact
       - At least N candidate clips identified (where N >= brief target)
+      - Each selected candidate is marked keep, tighten, or replace_or_drop with removed-range reasons
 
   - name: scene_plan
     skill: pipelines/clip-factory/scene-director
@@ -103,9 +107,13 @@ stages:
       - Each clip has clear in/out points with clean boundaries
       - Clips don't start or end mid-sentence
       - Platform-specific framing planned (vertical vs square vs landscape)
+      - Cold-open reorder and main-body playback order are explicit per clip
+      - Cold-open ranges are subtracted from the later body; ordered KEEP ranges have no accidental overlap
+      - No unrelated setup, repeated argument, or unsupported title remains
     success_criteria:
       - Schema-valid scene_plan artifact
       - Each clip scene has platform, aspect ratio, and duration specified
+      - Each clip records spoken hook source time, removed ranges, and density review result
 
   - name: assets
     skill: pipelines/clip-factory/asset-director
@@ -148,9 +156,13 @@ stages:
       - Each clip edit is independent and self-contained
       - Hook placement within first 2-3 seconds per clip
       - Subtitle styling consistent across all clips
+      - Joined EDL ranges read as complete sentences without fragment cuts
+      - Ordered KEEP ranges pass the no-duplicate-overlap audit
+      - Non-essential pauses over 1.2 seconds and post-payoff tails are removed
     success_criteria:
       - Schema-valid edit_decisions artifact
       - Edit decisions exist for every planned clip
+      - Every edit passes the information-density standard before compose
 
   - name: compose
     skill: pipelines/clip-factory/compose-director
@@ -162,10 +174,12 @@ stages:
     produces:
       - render_report
       - final_review
+      - clip_delivery_audit
     required_tools:
       - video_compose
       - video_trimmer
       - audio_mixer
+      - clip_delivery_audit
     optional_tools:
       - audio_enhance
       - color_grade
@@ -175,21 +189,31 @@ stages:
       - audio_mixer
       - audio_enhance
       - color_grade
+      - clip_delivery_audit
     checkpoint_required: true
     human_approval_default: false
     review_focus:
       - All clips rendered successfully
       - Each clip meets its target platform specs (resolution, aspect ratio)
       - Audio levels consistent across clips
+      - Frame zero is a usable cover and already shows the approved persistent hook/title at full opacity
+      - Every delivered clip has a matching standalone cover image
+      - Final rendered audio is re-transcribed and matched against subtitle JSON; p90 absolute word timing error is <= 0.3 seconds
+      - Actual rendered first 3 seconds, midpoint, and ending pass semantic review
+      - Spoken hook, sentence joins, pauses, and payoff ending match the approved density audit
     success_criteria:
       - Schema-valid render_report artifact
       - All clip output files exist and pass ffprobe validation
+      - Every clip passes frame-zero cover inspection and has a matching standalone cover image
+      - Every clip passes the rendered-audio subtitle synchronization audit
+      - clip_delivery_audit is schema-valid, has status=pass, and contains one output per delivered clip
 
   - name: publish
     skill: pipelines/clip-factory/publish-director
     required_artifacts_in:
       - render_report
       - final_review
+      - clip_delivery_audit
     optional_artifacts_in:
       - brief
     produces:
@@ -201,6 +225,8 @@ stages:
       - Per-clip metadata with platform-specific titles and descriptions
       - Clips numbered/ordered for posting schedule
       - Export package organized by platform
+      - clip_delivery_audit status is pass and every referenced cover exists
     success_criteria:
       - Schema-valid publish_log artifact
       - Export directory contains all clips with per-clip metadata
+      - Delivery is blocked unless clip_delivery_audit passed for every clip

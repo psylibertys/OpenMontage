@@ -14,7 +14,7 @@
 - 默认优先检索 `心哲灵/短视频文案/`。
 - 只读使用；原文案不因生产而改写。采用的版本应快照到 OpenMontage 项目工作区。
 
-## 2. StudioBinder：电影制作与摄影方法库
+## 2. StudioBinder：电影制作、导演与故事方法库
 
 Obsidian 根目录：
 
@@ -22,7 +22,7 @@ Obsidian 根目录：
 /Users/treeelf/Desktop/Psynaut/treeElfNotes/03资源/YouTube课程/StudioBinder/
 ```
 
-它是人类可读的课程学习区，包含课程档案、中文课名、学习顺序、逐课方法、案例、练习和来源定位。当前有三套课程：
+它是人类可读的课程学习区，包含课程档案、中文课名、学习顺序、逐课方法、案例、练习和来源定位。当前课程分成两类路由：摄影/导演/制作方法使用 `cinematography`，故事/编剧/剧本方法使用 `storytelling`。
 
 ### Skill Hub 与课程检索的分工
 
@@ -47,17 +47,27 @@ director 和审批门禁，并明确记录降级状态。
 | 摄影机运动终极指南 | `ytpl_PLEzQZpmbzckWUQALEX8UlbyH2GtRLMrSd` | 固定机位、推拉变焦、跟拍、横摇/俯仰、边走边谈等运镜选择，以及运动的叙事动机。 |
 | 电影制作终极指南 | `ytpl_PLEzQZpmbzckVQL5QNLv1XaJW4slV0CMZO` | 特写、全景、慢动作、延时、摄影机支撑、字幕和电影格式等制作语言。 |
 | 电影摄影技法 | `ytpl_PLEzQZpmbzckX3A_SopJ-krGsV6BERxdwb` | 灯光、镜头、构图、调度、景别、视觉叙事、摄影风格、镜头清单和现场制作方法。 |
+| 影视叙事与故事创作 | `ytpl_PLEzQZpmbzckX-T0iZDy0ZaZLGHbYpeJph` | 故事结构、人物、主题、叙事机制与案例。 |
+| 编剧软件操作教程 | `ytpl_PLEzQZpmbzckWlSyAbPoFVFq_nTlURCcq1` | 编剧软件、剧本格式和写作流程。 |
+| 导演风格解析 | `ytpl_PLEzQZpmbzckUl3P1gqpM5Awa9U-CxdhVy` | 导演美学、镜头、调度、声音、剪辑与风格迁移。 |
+| 影视制作剧本拆解教程 | `ytpl_PLEzQZpmbzckUSHM-c3bSmMpXSONweaneO` | 从剧本拆出场景、元素与制作需求。 |
+| 分镜设计精通课 | `ytpl_PLEzQZpmbzckVaRg_LDLTISRBF9qM5aaHZ` | 分镜构图、镜头连续性和视觉规划。 |
+| 电影剧本写作精通课 | `ytpl_PLEzQZpmbzckUKajpmx78kS66ipD6_4UfX` | 电影剧本写作与故事设计。 |
+| 成片之路：从剧本到银幕 | `ytpl_PLEzQZpmbzckX9umb1yTf-KGNT92u3W66I` | 从剧本、筹备、拍摄到成片的制作链路。 |
+| 镜头表：影视镜头制作全指南 | `ytpl_PLEzQZpmbzckV0_a2QCO2qF9Yfe-LKSDha` | 镜头表、景别、机位、覆盖与现场执行。 |
+| 剧本构成解析 | `ytpl_PLEzQZpmbzckVYZJOjysgVG6vqBcB7hX_I` | 剧本格式、构成元素和可制作表达。 |
+| 你最喜爱的电影人，他们最爱的电影 | `ytpl_PLEzQZpmbzckVCXIZSFl_Na8TA3Ov5tjaY` | 经典影片的导演方法、摄影、剪辑与声音案例。 |
 
-Qdrant 领域为 `cinematography`。它把三套课程的中文知识块、英文证据、时间码和视觉证据索引放在稳定 alias `course_cinematography_active` 下。Agent 不直接访问物理 collection，必须使用受控检索器：
+Qdrant 保存中文知识块与中文字幕段，并保留英文证据、时间码和视觉资产引用。摄影类稳定 alias 为 `course_cinematography_active`，故事类稳定 alias 为 `course_storytelling_active`。Agent 不直接访问物理 collection，必须使用受控检索器：
 
 ```bash
 conda run -n cyber_factory python \
   /Users/treeelf/Desktop/Psynaut/.claude/skills/treeelf-youtube-course-harvest/scripts/course_agent_retrieve.py \
-  "QUERY" --agent openmontage-project-agent --domain cinematography \
+ "QUERY" --agent openmontage-project-agent --domain cinematography \
   --intent knowledge
 ```
 
-只需要某一套课程时增加 `--course-id COURSE_ID`，避免其他课程干扰。
+故事或编剧问题把领域改为 `--domain storytelling`。只需要某一套课程时增加 `--course-id COURSE_ID`，避免其他课程干扰。
 
 ## 3. Pixaroma：ComfyUI 方法与 workflow 知识库
 
@@ -96,3 +106,34 @@ Qdrant 领域为 `ai_visual_tools`，用于查询模型、节点、依赖、参�
 - 生成结果出现视觉、运动或工作流问题，需要用课程方法诊断。
 
 如果课程没有足够证据，应明确说明；可以提出实机测试，但不能虚构课程结论。
+
+## 6. story-to-storyboard 管线的知识入口
+
+「故事→剧本→分镜」管线（`pipeline_defs/story-to-storyboard.yaml`）按阶段消费知识：
+
+- **story_intake**：故事蓝图来自 `07产出/`（默认优先 `心哲灵/短视频文案/`，小故事系列在 `小故事/`）；故事方法问题查 `--domain storytelling`（故事环、Master Scene 元素、故事结构）。
+- **script**：节拍与可观察化方法走 Skill Hub slug（见 `config/studiobinder-stage-routing.yaml` 的 `story-to-storyboard` 段）；案例证据查 `--domain storytelling`。
+- **scene_plan**：镜头设计方法走 Skill Hub slug；景别/运镜/灯光依据查 `--domain cinematography`。
+- **storyboard_export**：提示词与语音规则已内化为 `skills/pipelines/story-to-storyboard/references/`（不查课程）。
+- **reference 反向模式**：先跑 `skills/meta/video-reference-analyst.md` 本地分析栈，再按 `skills/meta/brief-to-beat-bridge.md` 确定性映射。
+
+### 用户级四件套吸收声明
+
+`t2i/i2v/voice` 生成规则与跨场景一致性规则吸收自用户级 skill：
+
+| 吸收源（`~/.claude/skills/`） | 吸收目标 | 权威性 |
+|---|---|---|
+| `copy-to-storyboard-json`（SKILL.md + references + 校验脚本） | `skills/pipelines/story-to-storyboard/references/{prompt-rules,i2v-prompt-rules,voice-rules,consistency-checklist}.md` + `lib/storyboard_export.py` | **OpenMontage 版为生产权威**（改动先进 OpenMontage，再选择性回移）；用户级本体保留独立可用 |
+| `script-blueprint-writer` | story-intake-director 的蓝图八字段映射表 | 同上 |
+| `script-team-orchestrator` | references/consistency-checklist.md 的跨场景一致性、局部重试策略 | 同上 |
+
+快照日期 2026-10；各吸收文件头部标注 `absorbed_from`。OpenMontage 运行时不依赖 `~/.claude/skills/`。
+
+### 对标文案分析库
+
+```text
+/Users/treeelf/Desktop/Psynaut/treeElfNotes/03资源/对标文案分析/
+```
+
+11 位博主的对标拆解，是 structure_template（结构模板）的提炼范本：反向模式产出的模板与正向创作采用的模板都应有可追溯来源；本库只读，提炼结果快照到项目工作区 `artifacts/structure_templates/`。
+

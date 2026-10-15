@@ -1,0 +1,75 @@
+{
+  "project_id": "work-freedom-weekend-20260812",
+  "title": "周末不是谁送给你的",
+  "cover_title": "周末来历",
+  "cover_lines": ["周末", "不是谁送给你的"],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {"cleanup_remotion_public": true, "cleanup_intermediate_renders": false},
+  "stock_library": {"enabled": false, "download_sources": ["pexels", "pixabay", "mixkit"], "rotate_download_sources": true},
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 105,
+  "tone": "克制、轻微讽刺、温暖",
+  "target_audience": "关注工作制度、休息权与时间自由的中文观众",
+  "key_points": ["两天周末并非天然存在", "劳工争取、企业计算与法律共同塑造制度", "休息时间不必证明用途"],
+  "core_message": "人应该拥有一块不向雇主解释用途的时间。",
+  "voice_style": "成年女性普通话声线，中速，清晰、自然、有轻微叙事感",
+  "speaker_directions": "开头像说出每个上班族熟悉的心声；历史段保持克制；结尾温暖、放慢。",
+  "tts": {"provider": "edge", "version": "7.2.7", "voice": "zh-CN-XiaoxiaoNeural", "rate": "+0%", "pitch": "+0Hz", "volume": "+0%", "generation_mode": "single_pass"},
+  "music": {"library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐", "preferred_keywords": ["warm", "ambient", "piano", "纯音乐"]},
+  "style": {"card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf", "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf", "black_overlay_opacity": 0.5, "cover_enabled": true, "cover_duration_frames": 1, "cover_font_size": 220, "card_title_font_size": 128, "card_subtitle_font_size": 50, "card_line_gap": 30, "title_color_rgb": [248, 246, 231], "accent_color_rgb": [214, 179, 90], "subtitle_color": "#FFFFFF", "subtitle_outline_color": "#000000", "subtitle_outline_width": 3, "subtitle_font_size": 52, "music_start_seconds": 0, "music_volume": 0.08},
+  "sections": [
+    {
+      "id": "s1", "label": "终于轮到我活了",
+      "text": "星期五下班时，我们会说：终于轮到我活了。可这个“终于”，在人类历史里来得很晚。",
+      "queries": [
+        {"query": "office workers leaving work friday evening", "description": "星期五下班的人群。"},
+        {"query": "happy friends weekend city evening", "description": "周末开始时的松弛感。"},
+        {"query": "weekend", "description": "Mixkit的周末城市氛围素材。"}
+      ]
+    },
+    {
+      "id": "s2", "label": "周末不是天然的",
+      "text": "周末不是日历自己长出来的。很长时间里，宗教传统可以给人一个礼拜日，但“两天连休”并不是普遍生活。",
+      "queries": [
+        {"query": "old calendar pages historical clock", "description": "日历与历史时间。"},
+        {"query": "church sunday people historical", "description": "传统礼拜日。"}
+      ],
+      "cards": [{"id": "calendar-card", "title_lines": ["两天周末"], "subtitle": "不是日历自己长出来的"}]
+    },
+    {
+      "id": "s3", "label": "逐渐形成",
+      "text": "工业时代的人争取更短工时，法律开始确认每七天至少应该有一段连续休息；企业也逐渐尝试五天工作制。不同力量拉扯了很久，星期六才慢慢从工作日退到周末。",
+      "queries": [
+        {"query": "factory workers historical labor movement", "description": "工业时代缩短工时的争取。"},
+        {"query": "calendar saturday weekend marking", "description": "星期六逐渐成为休息日。"},
+        {"query": "nature peaceful lake weekend", "description": "连续休息带来的开阔感。"}
+      ]
+    },
+    {
+      "id": "s4", "label": "不只是福特",
+      "text": "所以，也不能简单说是福特发明了周末。1926年，福特汽车确实采用了五天、四十小时工作周，对扩散这种制度很有影响；但企业也看见了生产率和消费的好处。",
+      "queries": [
+        {"query": "vintage automobile factory assembly line", "description": "早期汽车工厂。"},
+        {"query": "people shopping city consumer economy", "description": "休息日与消费经济。"}
+      ],
+      "cards": [{"id": "ford-card", "title_lines": ["1926"], "subtitle": "五天、四十小时工作周"}]
+    },
+    {
+      "id": "s5", "label": "争取与计算",
+      "text": "周末既有人的争取，也有商业的计算，后来还有法律把边界固定下来。有意思的是，前人争到了两天，我们又很擅长把它们还回去。一天补觉、洗衣、处理消息；另一天提前焦虑周一。身体离开公司，精神还在远程打卡。",
+      "queries": [
+        {"query": "tired person sleeping weekend bed", "description": "周末用来补觉。"},
+        {"query": "laundry chores phone messages weekend home", "description": "休息日被家务和消息占满。"},
+        {"query": "nature cloudy sky clearing", "description": "从周日焦虑转向清醒。"}
+      ]
+    },
+    {
+      "id": "s6", "label": "收束",
+      "text": "周末真正珍贵的，不只是不上班。它提醒我们：人的一生应该有一块时间，不需要向雇主解释用途，也不必证明自己正在进步。",
+      "queries": [{"query": "person relaxing alone park sunlight peaceful", "description": "无需证明用途的自由时间。"}],
+      "cards": [{"id": "landing-card", "title_lines": ["有一块时间"], "subtitle": "不必向雇主解释用途"}]
+    }
+  ]
+}

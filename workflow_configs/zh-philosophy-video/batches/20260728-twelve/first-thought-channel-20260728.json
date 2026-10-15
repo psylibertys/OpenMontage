@@ -1,0 +1,308 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-first-thought-channel-20260728",
+  "title": "别跟第一念较劲",
+  "cover_title": "念头换台",
+  "cover_english_title": "CHANGE THE CHANNEL",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-28_别跟第一念较劲_重写版.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "playful",
+      "mental",
+      "steady",
+      "electronic",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "第一念夸张播报的紧张",
+      "正负极端互相抢台",
+      "回到现场后的可行动感"
+    ],
+    "metaphor_candidates": [
+      "脑内电视",
+      "两个频道",
+      "遥控器",
+      "临时节目单"
+    ],
+    "style_families": [
+      "cinematic domestic photography",
+      "retro broadcast collage",
+      "minimal signal geometry"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic domestic photography",
+      "retro broadcast collage",
+      "minimal signal geometry"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 脑内电视, 两个频道, 遥控器, 临时节目单; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_only",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97701,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a calm hand holding a remote as an exaggerated broadcast shrinks back into one small real event; style_logic: cinematic domestic photography and retro broadcast collage compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, a calm hand holding a remote as an exaggerated broadcast shrinks back into one small real event, cinematic domestic photography blended with retro broadcast collage, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97702,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person staring at an unanswered message while an oversized dramatic broadcast glows nearby; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person staring at an unanswered message while an oversized dramatic broadcast glows nearby, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97703,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one small mistake expanding into a vast disaster scene on an old television; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one small mistake expanding into a vast disaster scene on an old television, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97704,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a positive channel and a condemning channel competing with opposite spotlights; style_logic: minimal signal geometry provides the scene structure while cinematic domestic photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a positive channel and a condemning channel competing with opposite spotlights, minimal signal geometry blended with cinematic domestic photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97705,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the actual small task sitting unattended on a quiet table between both broadcasts; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, the actual small task sitting unattended on a quiet table between both broadcasts, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97706,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: an automatic signal appearing before any conscious hand reaches the controls; style_logic: retro broadcast collage provides the scene structure while minimal signal geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, an automatic signal appearing before any conscious hand reaches the controls, retro broadcast collage blended with minimal signal geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97707,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: attention shown as a movable beam that can stay or travel elsewhere; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, attention shown as a movable beam that can stay or travel elsewhere, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97708,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person calmly using a remote to return focus to the real desk and one repairable task; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person calmly using a remote to return focus to the real desk and one repairable task, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97709,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a lifelong verdict collapsing into a brief local incident marker; style_logic: retro broadcast collage provides the scene structure while minimal signal geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a lifelong verdict collapsing into a brief local incident marker, retro broadcast collage blended with minimal signal geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97710,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one missed reply separated from the rest of a healthy relationship landscape; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one missed reply separated from the rest of a healthy relationship landscape, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97711,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one error divided into specific parts that can be corrected; style_logic: cinematic domestic photography provides the scene structure while retro broadcast collage translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, one error divided into specific parts that can be corrected, cinematic domestic photography blended with retro broadcast collage, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97712,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the remote refusing both total failure and total greatness channels; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, the remote refusing both total failure and total greatness channels, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 97751,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens a person staring at an unanswered message while an oversized dramatic broadcast glows nearby without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P06.png",
+        "from": 36,
+        "to": 42,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "遥控器真正管用的地方",
+        "left": "终身判决",
+        "operator": "→",
+        "right": "现场记录"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "questions",
+        "eyebrow": "把镜头拉回现场",
+        "items": [
+          "这次哪里没做好？",
+          "我能补哪一部分？"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

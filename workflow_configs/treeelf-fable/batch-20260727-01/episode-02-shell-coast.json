@@ -1,0 +1,293 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-shell-coast-20260727-b01",
+  "title": "空壳守岸",
+  "cover_title": "空壳守岸",
+  "cover_english_title": "The Shell Coast",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-27_空壳站岗的海岸.md",
+  "estimated_duration_seconds": 90,
+  "narration_text": "海边的村庄有条奇怪规矩：吃完牡蛎，壳不能丢，必须送回海边。\n\n新来的守岸人觉得这很麻烦。空壳既不能吃，也不能卖，却要一车车洗净，堆在海岸最容易被冲走的地方。\n\n第一次涨潮，浪头把壳堆冲得七零八落。她以为这些工夫全白费了。\n\n可退潮后，粗糙的壳没有被带走。它们卡在泥里，留住了海水带来的沙。几个月后，幼小的牡蛎附在旧壳上，原本松散的壳堆，慢慢长成一道低矮的牡蛎礁。\n\n每次涨潮，新送来的壳都会被浪推进旧壳的缝隙。每次退潮，壳后又会多留下一层泥沙。牡蛎礁越长越宽，它身后的海岸也终于不再后退。\n\n冬天，一场风暴正面扑向村庄。大浪先撞上牡蛎礁，被层层壳缝分散，到达岸边时，已经只剩下低矮的浪。\n\n天亮后，外层的老壳碎了许多，后面的湿地和房屋却还在原处。\n\n守岸人走回村里，把昨晚剩下的牡蛎壳一只只放上小车。\n\n这一次，她知道这些空壳要去哪里了。",
+  "protagonist": {
+    "type": "成年女性",
+    "description": "一位二十七岁左右的新任女性守岸人，黑色齐下颌直发并用深绿色布带束在耳后，晒成蜜色的皮肤，明亮专注的眼神，穿海绿色防风夹克、沙色长裤和深色橡胶靴，随身带旧帆布记录袋；本篇所有人物镜头保持相同面容、发型、服装与配色。",
+    "selection_rationale": "守岸工作是性别中性的长期户外劳动，女性角色在故事环境中自然成立，并符合中性角色优先女性的栏目偏好。",
+    "appearance": {
+      "age_band": "二十七岁左右",
+      "hair": "黑色齐下颌直发，用深绿色布带束在耳后",
+      "silhouette": "海绿色防风夹克、沙色长裤、深色橡胶靴和旧帆布记录袋构成轻便户外轮廓"
+    }
+  },
+  "visual_brief": {
+    "fable_law": "村民用过的牡蛎壳必须送回海岸；旧壳会留沙、承接幼牡蛎并长成替后来者挡浪的活礁。",
+    "central_metaphor": "生命离开后留下的空壳，仍能成为后来者附着、生长与抵挡风浪的结构。",
+    "emotional_core": [
+      "不解",
+      "观察",
+      "生长",
+      "守护",
+      "温柔传递"
+    ],
+    "symbolic_objects": [
+      "洗净的牡蛎壳",
+      "逐渐连成的壳带",
+      "幼牡蛎附着的旧壳",
+      "风暴后破碎的外层壳"
+    ],
+    "protagonist_identity": "一位二十七岁左右的新任女性守岸人，黑色齐下颌直发并用深绿色布带束在耳后，蜜色皮肤，海绿色防风夹克、沙色长裤、深色橡胶靴、旧帆布记录袋。",
+    "art_style_logic": "以海岸版画的清楚轮廓表现壳、沙与浪的因果结构，以水彩和水粉记录潮汐时间，再以贝壳浮雕和自然史图谱语言呈现旧壳如何成为活礁；海绿、沙金与珍珠白让守护感从风暴灰蓝中逐步生长。",
+    "technical_guardrails": [
+      "text-free generated image",
+      "no readable text",
+      "no letters",
+      "no logo",
+      "no watermark",
+      "no pseudo typography"
+    ]
+  },
+  "character_pack": {
+    "enabled": true,
+    "mode": "single_turnaround_sheet",
+    "turnaround_prompt": "one clean 2x2 character turnaround sheet showing the exact same twenty-seven-year-old woman coast guardian in four distinct views: front, left three-quarter, right profile, and back three-quarter; straight black jaw-length hair held behind the ears by a deep-green cloth band, sun-warmed honey skin, bright attentive eyes, sea-green windbreaker, sand-colored trousers, dark rubber boots and worn canvas field bag; consistent face, proportions, clothing and palette across all four panels, neutral grounded pose, softly lit plain studio backdrop, coastal woodcut contours blended with gouache and paper grain, balanced anatomy and natural hands"
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01",
+      "subject_mode": "protagonist",
+      "script_anchor": "海边的村庄有条奇怪规矩",
+      "weight": 1,
+      "summary": "村民把空壳送回潮线",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "清晨，新任女守岸人推着装满洗净牡蛎壳的小车来到潮线，村民把更多空壳放进车中。",
+      "fable_law": "每一只用过的牡蛎壳都必须回到海岸，规则作为真实日常第一次显现。",
+      "art_style_logic": "木刻般清楚的队列与潮线建立仪式感，水粉晨光让奇怪规则仍像可信的村庄劳动。",
+      "wan_candidate": true,
+      "fable_event_stage": "first_manifestation",
+      "prompt": "vertical 9:16 cinematic literary picturebook, a young woman coast guardian pushes a small cart filled with clean oyster shells toward the morning tide line while villagers gently add more shells, the returning-shell ritual reads clearly as ordinary coastal work, coastal woodcut contours blended with gouache and pearl paper relief, sea-green sand-gold and shell-white palette, stable body and natural hands"
+    },
+    {
+      "id": "beat-02",
+      "subject_mode": "protagonist",
+      "script_anchor": "新来的守岸人觉得",
+      "weight": 1,
+      "summary": "她觉得空壳没有价值",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "守岸人蹲在洗壳台旁端详一只空壳，身后是一车又一车等待运走的壳，她的神情带着实际的不解。",
+      "fable_law": "被视作废物的旧壳尚未显出它的后续作用。",
+      "art_style_logic": "自然史静物近景与人物表情并置，让价值判断集中在一个具体物件上。",
+      "prompt": "vertical 9:16 intimate storybook scene, the same woman coast guardian crouches beside a shell-washing table and studies one empty oyster shell in her open palm, several orderly carts of clean shells wait behind her, attentive practical puzzlement, natural-history illustration detail blended with coastal gouache and paper grain, coherent hand and shell"
+    },
+    {
+      "id": "beat-03",
+      "subject_mode": "protagonist",
+      "script_anchor": "却要一车车洗净",
+      "weight": 1,
+      "summary": "空壳被堆在最易冲走处",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "她把一车空壳倾倒在海岸受浪最强的位置，珍珠白壳带沿泥滩铺开。",
+      "fable_law": "规则要求旧壳进入看似最容易被浪夺走的地方。",
+      "art_style_logic": "倾斜海岸线与逆风动作表现劳动的反直觉，贝壳浮雕质感强化壳的物理重量。",
+      "prompt": "vertical 9:16 cinematic coastal picturebook, the same woman coast guardian tips a sturdy cart so clean oyster shells spread into a low pearl-white band along the most exposed muddy shore, incoming waves visible beyond, dynamic diagonal shoreline, shell-relief collage blended with gouache and woodcut contours, stable stance and natural hands"
+    },
+    {
+      "id": "beat-04",
+      "subject_mode": "environment",
+      "script_anchor": "第一次涨潮",
+      "weight": 1,
+      "summary": "第一次涨潮冲散壳堆",
+      "workflow": "krea2_low_vram",
+      "story_event": "涨潮浪头越过低矮壳带，外层壳被推得四散，在泡沫中翻转。",
+      "fable_law": "潮水不是把壳带简单抹去，而是在重新排列它。",
+      "art_style_logic": "日本木版浪形与透明水彩泡沫融合，表现力量同时保持壳体结构清楚。",
+      "prompt": "vertical 9:16 human-free exposed tidal flat, a strong incoming wave passes over a low oyster-shell band and tumbles the outer shells through white foam, physically coherent water and shell movement, Japanese woodblock wave rhythm blended with transparent watercolor and tactile shell relief, sea-green gray and pearl palette"
+    },
+    {
+      "id": "beat-05",
+      "subject_mode": "protagonist",
+      "script_anchor": "她以为这些工夫全白费了",
+      "weight": 1,
+      "summary": "她以为工作白费",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "潮水正高，守岸人站在湿岸上看着散开的壳带和空小车，肩膀微微下沉。",
+      "fable_law": "涨潮阶段只呈现混乱，使循环的意义暂时不可见。",
+      "art_style_logic": "广阔负空间与小人物尺度表达挫败，克制姿态避免情绪表演化。",
+      "prompt": "vertical 9:16 wide cinematic storybook, the same woman coast guardian stands on the wet shore beside an empty cart watching the shell band scattered under high tide, her shoulders settle with quiet disappointment, broad gray-green sea and reflective sand, coastal woodcut horizon blended with soft gouache atmosphere, stable silhouette"
+    },
+    {
+      "id": "beat-06",
+      "subject_mode": "macro",
+      "script_anchor": "可退潮后",
+      "weight": 1,
+      "summary": "退潮后粗糙壳卡进泥里",
+      "workflow": "krea2_low_vram",
+      "story_event": "退潮后的近景中，粗糙牡蛎壳彼此咬合并牢牢卡入湿泥，细小水道绕过它们。",
+      "fable_law": "壳的粗糙形状让它们在潮水重排后形成留得住的结构。",
+      "art_style_logic": "微距自然史图谱与浮雕摄影融合，把生态机制讲清楚而非只做氛围。",
+      "prompt": "vertical 9:16 human-free macro natural-history view after low tide, rough oyster shells interlock firmly in wet mud while tiny rivulets curve around their ridges, exact tactile structure, scientific illustration clarity blended with embossed paper relief and translucent watercolor, pearl white umber and muted sea green"
+    },
+    {
+      "id": "beat-07",
+      "subject_mode": "object",
+      "script_anchor": "留住了海水带来的沙",
+      "weight": 1,
+      "summary": "旧壳留住海水带来的沙",
+      "workflow": "krea2_low_vram",
+      "story_event": "一层新沙沉积在交错壳片背风侧，形成清楚可见的浅金色带。",
+      "fable_law": "旧壳改变水流并把原本会流走的沙留下。",
+      "art_style_logic": "流线与颗粒层析像地质版画，直观表现微小结构如何积累成海岸。",
+      "prompt": "vertical 9:16 human-free tidal process tableau, interlocked oyster shells redirect shallow water and collect a distinct ribbon of pale golden sand behind them, visible flow lines and sediment layers, geological printmaking blended with watercolor wash and shell relief, clear ecological causality"
+    },
+    {
+      "id": "beat-08",
+      "subject_mode": "macro",
+      "script_anchor": "几个月后",
+      "weight": 1,
+      "summary": "幼牡蛎附着在旧壳上",
+      "workflow": "krea2_low_vram",
+      "story_event": "微距水下画面中，许多幼小牡蛎牢牢附着在旧壳的沟槽上，周围有细小气泡和水草。",
+      "fable_law": "空壳成为新生命可以抓住的第一块地基。",
+      "art_style_logic": "自然史微观插画与珠光材质突出代际承接，生长感来自真实附着关系。",
+      "prompt": "vertical 9:16 human-free underwater macro, tiny young oysters attach securely along the grooves of weathered old shells, delicate bubbles and eelgrass move nearby, natural-history illustration blended with luminous watercolor and mother-of-pearl relief, tender precise ecological detail, sea-green and soft amber"
+    },
+    {
+      "id": "beat-09",
+      "subject_mode": "protagonist",
+      "script_anchor": "慢慢长成一道低矮的牡蛎礁",
+      "weight": 1,
+      "summary": "数月后壳堆长成低矮活礁",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "数月后的同一地点，守岸人站在潮池边观察连成一体的低矮牡蛎礁，记录袋垂在身侧。",
+      "fable_law": "旧壳、幼牡蛎和沉积物共同长成活的海岸结构。",
+      "art_style_logic": "季节性水彩层叠在版画轮廓中表现时间经过，人物只作为尺度与见证者。",
+      "prompt": "vertical 9:16 cinematic literary picturebook months later, the same woman coast guardian stands beside tidal pools observing a broad low living oyster reef grown from the former shell piles, her worn field bag at her side, layered seasonal watercolor blended with strong coastal woodcut contours and shell relief, warm attentive discovery, stable identity"
+    },
+    {
+      "id": "beat-10",
+      "subject_mode": "object",
+      "script_anchor": "每次涨潮",
+      "weight": 1,
+      "summary": "新壳不断进入旧壳缝隙",
+      "workflow": "krea2_low_vram",
+      "story_event": "涨潮时，新送来的浅色壳被柔和但有力的水流推进深色旧壳缝隙，形成新的层次。",
+      "fable_law": "每次潮汐都把新的遗留部分编入已有防线。",
+      "art_style_logic": "编织般构图将堆积转译为共同体结构，同时保持真实水动力。",
+      "prompt": "vertical 9:16 human-free close coastal process, pale newly returned oyster shells are guided by an incoming tide into the interlocking gaps of darker older shells, a woven reef structure forms layer by layer, physically coherent water, textile-like composition blended with woodcut lines watercolor and tactile relief"
+    },
+    {
+      "id": "beat-11",
+      "subject_mode": "environment",
+      "script_anchor": "每次退潮",
+      "weight": 1,
+      "summary": "壳后泥沙逐层增加",
+      "workflow": "krea2_low_vram",
+      "story_event": "退潮剖面显示牡蛎礁后方累积多层泥沙，第一簇盐沼草从浅滩长出。",
+      "fable_law": "壳带减慢水流，让海岸在它身后重新生长。",
+      "art_style_logic": "地层剖面与植物图谱结合，把看不见的长期积累变成可读的时间层。",
+      "prompt": "vertical 9:16 human-free ecological cutaway at low tide, a living oyster reef shelters layered bands of newly accumulated mud and sand behind it, first clusters of salt-marsh grass rise from the protected shallows, geological cross-section blended with botanical illustration watercolor and embossed shell texture, clear temporal layers"
+    },
+    {
+      "id": "beat-12",
+      "subject_mode": "protagonist",
+      "script_anchor": "牡蛎礁越长越宽",
+      "weight": 1,
+      "summary": "后退的海岸终于稳定",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "守岸人沿着新生湿地步行，身旁是稳定潮线、盐沼草和扩展的牡蛎礁。",
+      "fable_law": "无数空壳共同改变了海岸后退的方向。",
+      "art_style_logic": "横向展开的宁静长卷表现稳定与扩展，人物移动成为时间和尺度标尺。",
+      "prompt": "vertical 9:16 cinematic coastal storybook, the same woman coast guardian walks along a newly stable shoreline beside widening oyster reef and young salt-marsh grass, the tide line rests farther seaward, calm horizontal scroll composition blended with coastal woodcut gouache and watercolor, sea-green sand-gold and pearl palette, stable walking pose"
+    },
+    {
+      "id": "beat-13",
+      "subject_mode": "environment",
+      "script_anchor": "冬天",
+      "weight": 1,
+      "summary": "冬季风暴逼近村庄",
+      "workflow": "krea2_low_vram",
+      "story_event": "冬日灰蓝天空下，一面巨大的风暴云墙从海上逼近，低矮牡蛎礁横在村庄与外海之间。",
+      "fable_law": "此前积累的壳带即将接受真正的力量检验。",
+      "art_style_logic": "浪漫主义风暴尺度与版画式礁线对比，突出低矮结构的沉静而非英雄化人物。",
+      "prompt": "vertical 9:16 human-free winter coast, an immense blue-gray storm front advances from the open sea while a low broad oyster reef lies between the waves and a small village, sublime romantic atmosphere restrained by strong woodcut reef contours and tactile gouache, coherent geography, pearl-white foam"
+    },
+    {
+      "id": "beat-14",
+      "subject_mode": "environment",
+      "script_anchor": "大浪先撞上",
+      "weight": 1,
+      "summary": "大浪先撞上牡蛎礁",
+      "workflow": "krea2_low_vram",
+      "story_event": "大浪正面撞击外层牡蛎礁，水势在无数壳缝中分成细小水流和泡沫。",
+      "fable_law": "层层壳缝把单一巨浪的能量逐级分散。",
+      "art_style_logic": "流体剖面与木版浪纹融合，让防护机制具有视觉冲击同时保持科学可读。",
+      "prompt": "vertical 9:16 human-free dramatic wave impact on a living oyster reef, one large wave divides into many smaller streams and foam channels through layered shell gaps, physically coherent hydrodynamic cutaway blended with bold woodblock wave rhythm watercolor spray and shell relief, powerful yet structurally clear"
+    },
+    {
+      "id": "beat-15",
+      "subject_mode": "protagonist",
+      "script_anchor": "到达岸边时",
+      "weight": 1,
+      "summary": "岸边只剩低矮的浪",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "风暴中，守岸人站在村庄侧的高地，看见越过牡蛎礁的水势已变成低矮缓浪，湿地仍在。",
+      "fable_law": "活礁以自身结构替后方承担大部分冲击。",
+      "art_style_logic": "前后景浪高差完成因果证明，人物的稳定观察连接早先的不解与此刻的理解。",
+      "prompt": "vertical 9:16 cinematic storybook during a storm, the same woman coast guardian stands safely on elevated village ground and watches waves emerge low and softened after crossing the oyster reef, marsh grass and homes remain protected behind her, coastal realism blended with woodcut contours and rain-washed gouache, stable identity and grounded stance"
+    },
+    {
+      "id": "beat-16",
+      "subject_mode": "environment",
+      "script_anchor": "天亮后",
+      "weight": 1,
+      "summary": "老壳碎裂而房屋仍在",
+      "workflow": "krea2_low_vram",
+      "story_event": "天亮后的海岸近景，外层老壳碎裂散落，后方湿地、木屋和完整岸线都留在原处。",
+      "fable_law": "最外层旧壳以破碎承担冲击，守住了后来形成的生命与居所。",
+      "art_style_logic": "静物式碎壳前景与完整村庄远景构成含蓄纪念，避免将损耗浪漫化。",
+      "prompt": "vertical 9:16 human-free dawn after the storm, broken weathered outer oyster shells fill the foreground while intact marshland shoreline and wooden homes remain in the distance, quiet memorial still-life composition blended with coastal woodcut delicate watercolor and tactile shell relief, pale gold emerging through storm gray"
+    },
+    {
+      "id": "beat-17",
+      "subject_mode": "protagonist",
+      "script_anchor": "守岸人走回村里",
+      "weight": 1,
+      "summary": "她重新收集昨夜的空壳",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "守岸人回到村里，把昨夜留下的牡蛎壳一只只放入小车，动作平静而笃定。",
+      "fable_law": "新的空壳将接续外层老壳的工作，循环继续。",
+      "art_style_logic": "重复开头的小车动作但改变人物理解，以视觉回环完成寓言而非口号总结。",
+      "prompt": "vertical 9:16 intimate literary picturebook, the same woman coast guardian calmly places clean oyster shells one by one into the familiar small cart after the storm, her expression bright and certain, warm village doorway light, coastal woodcut contours blended with tactile gouache and pearl paper texture, natural hands and stable identity"
+    },
+    {
+      "id": "beat-18",
+      "subject_mode": "protagonist",
+      "script_anchor": "这一次",
+      "weight": 1,
+      "summary": "小车沿晨光走向海岸",
+      "workflow": "flux2_klein_4ref",
+      "story_event": "结尾，守岸人推着装满空壳的小车沿湿润小路走向晨光中的海岸，远处活礁露出潮面。",
+      "fable_law": "离开的生命以留下的结构继续替后来者守岸。",
+      "art_style_logic": "背向镜头的远行构图与珍珠白壳带形成接力线，水彩晨光留下温柔余韵。",
+      "prompt": "vertical 9:16 cinematic final storybook image, the same woman coast guardian seen from a consistent back three-quarter view pushes a cart of pearl-white oyster shells along a wet path toward the glowing morning coast, the living reef emerges at low tide in the distance, coastal woodcut and luminous watercolor fusion, sea-green sand-gold and pearl palette, calm hopeful continuity"
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 human-free symbolic artwork, a single weathered oyster shell in the foreground aligns with a low living reef that curves into a protective crescent around a quiet coast, mother-of-pearl relief blended with coastal woodcut and luminous watercolor, sea-green sand-gold and pearl palette, quiet open upper field of natural paper texture, refined balanced composition",
+  "hero_wan": {
+    "enabled": true,
+    "selection_policy": "opening_fable_event_only_or_none",
+    "scene_id": "",
+    "prompt": "the cart rolls slowly toward the tide line while a few clean oyster shells settle gently together, subtle sea breeze and calm camera drift, physically coherent shells and wheels, stable identity and structure"
+  },
+  "music": {
+    "preferred_keywords": [
+      "coastal",
+      "gentle wonder",
+      "warm",
+      "organic",
+      "hopeful",
+      "ambient",
+      "piano"
+    ]
+  },
+  "music_source": "",
+  "captions_path": ""
+}

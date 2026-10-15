@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "batch_id": "memory-repair-shop-b3",
+  "project_id": "memory-repair-shop",
+  "pipeline": "story-to-storyboard",
+  "status": "prepared_offline",
+  "storyboard_export": "projects/memory-repair-shop/exports/storyboard/memory-repair-shop/memory-repair-shop.json",
+  "aspect_preset": "portrait_9_16",
+  "queue_depth": 2,
+  "ssh_host": "autodl-comfyui",
+  "prerequisites": [
+    "storyboard v2（2026-10-13 对白驱动返工：无旁白、全中国人物、H3 提示词公式、镜头时长 ≥4s）；v1 备份在 projects/memory-repair-shop/history/",
+    "GPU 实例开机（用户保留使用中，勿关机）；models 软链与 voices 目录沿用 2026-10-13 修复状态"
+  ],
+  "rework_scope": {
+    "keyframes_reuse_from_v1": ["scene-1", "scene-2", "scene-6", "scene-9", "scene-10", "scene-15", "scene-20", "scene-22", "scene-23"],
+    "keyframes_regenerate": "16 个人物镜（中国面孔 prompt 重写）；空镜 9 个直接复用 v1 首帧，不重跑",
+    "narration_scrapped": "v1 的 26 条旁白 TTS 全部作废（短剧无旁白）；对白驱动替代"
+  },
+  "dialogue": {
+    "workflow_single": "qwen3_tts_voice_design",
+    "workflow_clone": "qwen3_tts_voice_clone_save",
+    "language": "Chinese",
+    "output_dir": "assets/audio/dialogue",
+    "characters": {
+      "old_man": {
+        "voice_prompt": "六十多岁中国老人的男声。低哑，有岁月的沙砾感，气息偏弱，语速慢，吐字含蓄，像深夜独自说话。",
+        "seed": 2026101301
+      },
+      "wife_memory": {
+        "voice_prompt": "五十多岁中国女性的声音。轻而温柔，身体虚弱但眼神含笑，像病床上最后一次安慰家人，气声很多。",
+        "seed": 2026101302
+      },
+      "young_husband_memory": {
+        "voice_prompt": "三十多岁中国男性的声音。年轻，但被巨大的悲痛压住，喉头常常哽住，句子中间有停顿，不肯哭出来。",
+        "seed": 2026101303
+      },
+      "lin_wan": {
+        "voice_prompt": "二十多岁中国年轻女性的声音。很轻、很稳，礼貌而有距离感，从不多解释一句，善意藏在平淡里。",
+        "seed": 2026101304
+      }
+    },
+    "voice_archive_local": "/Users/treeelf/Desktop/psynautCode/treeelfVoice/音色",
+    "voice_archive_note": "对白成品音频按角色下载存档到 treeelfVoice/音色（用户指定音色库）；old_man 音色另经 voice_clone_save 存入远端 voices 供复用"
+  },
+  "gpu": {
+    "ordinary_image_workflow": "krea2_low_vram",
+    "character_image_workflow": "flux2_klein_4ref"
+  },
+  "scene_routing": {
+    "scene-4": "flux2_klein_4ref",
+    "scene-7": "flux2_klein_4ref",
+    "scene-8": "flux2_klein_4ref",
+    "scene-16": "flux2_klein_4ref",
+    "scene-17": "flux2_klein_4ref",
+    "scene-18": "flux2_klein_4ref",
+    "scene-21": "flux2_klein_4ref"
+  },
+  "character_packs": [
+    {
+      "character_id": "lin_wan",
+      "binding_scenes": ["scene-4"],
+      "turnaround_prompt": "vertical 9:16 single 2x2 character turnaround sheet, four equal clean panels showing front view, three-quarter view, side view and back view of the SAME young Chinese woman shopkeeper: mid-twenties, black hair tied back in a low bun, a few loose strands, calm composed East Asian face, gentle level brows, plain dark apron over a grey sweater, quiet steady presence, soft warm studio lighting on a clean neutral background, identical identity across all four panels, natural proportions, no text, no watermark, no pseudo-text"
+    },
+    {
+      "character_id": "old_man",
+      "binding_scenes": ["scene-7", "scene-8", "scene-16", "scene-17", "scene-18", "scene-21"],
+      "turnaround_prompt": "vertical 9:16 single 2x2 character turnaround sheet, four equal clean panels showing front view, three-quarter view, side view and back view of the SAME elderly Chinese man: late sixties, short grey hair, weathered warm East Asian features, deep smile lines, tired kind eyes, dark padded cotton jacket over a knitted vest with a checkered shirt collar, holding an old thermos with a cracked lid, slightly stooped shoulders, soft warm studio lighting on a clean neutral background, identical identity across all four panels, natural proportions, no text, no watermark, no pseudo-text"
+    }
+  ],
+  "prompt_adaptations": {},
+  "metadata": {
+    "source_pipeline": "story-to-storyboard (v2 drama-form revision 2026-10-13)",
+    "shot_count": 25,
+    "total_duration_seconds": 106,
+    "batch_scope": "返工批：4 角色音色 voice_design + 5 句对白 TTS + 2 角色包重做（中国面孔）+ 16 人物镜首帧重生成；9 空镜复用 v1 首帧"
+  }
+}

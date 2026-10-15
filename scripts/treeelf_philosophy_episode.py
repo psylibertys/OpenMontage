@@ -30,9 +30,12 @@ from lib.treeelf_music import (
     DEFAULT_CATALOG_PATH,
     DEFAULT_OVERRIDES_PATH,
     DEFAULT_USAGE_LEDGER_PATH,
+    build_final_audio_mix_qc,
+    configured_music_library_dir,
     normalize_background_music,
-    record_music_usage,
+    select_and_record_music_usage,
     select_music_track,
+    transition_music_usage,
 )
 from scripts.treeelf_philosophy_brand_pilot import (
     _event_summary,
@@ -310,6 +313,7 @@ def select_music_source(
     script_body: str | None = None,
     used_music_paths: list[str] | None = None,
     usage_ledger_path: Path | None = None,
+    preferred_track_id: str | None = None,
 ) -> dict[str, Any]:
     if script_body is None:
         try:
@@ -327,6 +331,8 @@ def select_music_source(
     ):
         if raw:
             roots.append(Path(str(raw)).expanduser())
+    if not roots:
+        roots.append(configured_music_library_dir())
     if fallback.is_file() and fallback.parent not in roots:
         roots.append(fallback.parent)
     return select_music_track(
@@ -339,7 +345,16 @@ def select_music_source(
         catalog_path=Path(str(music_config.get("catalog_path", DEFAULT_CATALOG_PATH))).expanduser(),
         overrides_path=Path(str(music_config.get("overrides_path", DEFAULT_OVERRIDES_PATH))).expanduser(),
         usage_ledger_path=usage_ledger_path or Path(str(music_config.get("usage_ledger_path", DEFAULT_USAGE_LEDGER_PATH))).expanduser(),
+        preferred_track_id=preferred_track_id,
     )
+
+
+def _music_usage_ledger_path(series: dict[str, Any], projects_dir: Path) -> Path:
+    if projects_dir.resolve() != PROJECTS_DIR.resolve():
+        return projects_dir / ".treeelf-music-usage-ledger.json"
+    return Path(
+        str(series.get("music", {}).get("usage_ledger_path", DEFAULT_USAGE_LEDGER_PATH))
+    ).expanduser()
 
 
 def cleanup_local_storage(
@@ -491,13 +506,13 @@ def validate_episode(config: dict[str, Any], series: dict[str, Any]) -> list[str
         errors.append(f"article_visual_assets.videos must contain exactly {expected_videos} items")
     wan_policy = visuals.get("wan_policy", {})
     if wan_policy.get("enabled"):
-        if str(wan_policy.get("selection_policy")) != "opening_hook_plus_longest_semantic_safe":
-            errors.append("article_visual_assets.wan_policy.selection_policy must be opening_hook_plus_longest_semantic_safe")
+        if str(wan_policy.get("selection_policy")) != "opening_hook_only":
+            errors.append("article_visual_assets.wan_policy.selection_policy must be opening_hook_only")
         if float(wan_policy.get("max_generation_seconds", wan_max_seconds)) > wan_max_seconds:
             errors.append(f"article_visual_assets.wan_policy.max_generation_seconds must be <= {wan_max_seconds:g}")
         roles = [item.get("selection_role") for item in videos]
-        if "opening_hook" not in roles or "longest_semantic_safe" not in roles:
-            errors.append("Wan videos must include opening_hook and longest_semantic_safe selection roles")
+        if roles != ["opening_hook"]:
+            errors.append("Wan videos must contain one opening_hook selection role")
     for item in videos:
         if float(item.get("duration_seconds", 4)) > wan_max_seconds:
             errors.append(f"{item.get('id')}: Wan duration_seconds must be <= {wan_max_seconds:g}")
@@ -595,7 +610,11 @@ def prepare_episode(
     if not source.is_file():
         raise FileNotFoundError(source)
     metadata, body = parse_markdown(source)
-    if str(metadata.get("production_status", "")) in {"completed", "produced", "archived"}:
+    video_output = str(metadata.get("video_output") or "").strip()
+    if (
+        str(metadata.get("production_status", "")) in {"completed", "produced", "archived"}
+        or bool(video_output)
+    ):
         raise ValueError(f"Source is already completed: {source}")
 
     target = episode_dir(config, projects_dir)
@@ -949,44 +968,73 @@ def stage_remotion(
         shutil.rmtree(public_root)
     public_root.mkdir(parents=True, exist_ok=True)
     music_runtime = series.get("music", {})
-    usage_ledger_path = (
-        projects_dir / ".treeelf-music-usage-ledger.json"
-        if projects_dir.resolve() != PROJECTS_DIR.resolve()
-        else Path(str(music_runtime.get("usage_ledger_path", DEFAULT_USAGE_LEDGER_PATH))).expanduser()
+    usage_ledger_path = _music_usage_ledger_path(series, projects_dir)
+    music_selection, usage = select_and_record_music_usage(
+        lambda preferred_track_id: select_music_source(
+            config,
+            series,
+            used_music_paths=used_music_paths,
+            usage_ledger_path=usage_ledger_path,
+            preferred_track_id=preferred_track_id,
+        ),
+        project_id=config["project_id"],
+        series="zh-philosophy-video",
+        ledger_path=usage_ledger_path,
+        force_reselect=bool(
+            config.get("reselect_music")
+            or (
+                isinstance(config.get("music"), dict)
+                and config.get("music", {}).get("reselect")
+            )
+        ),
+        reservation_ttl_hours=float(music_runtime.get("reservation_ttl_hours", 168)),
     )
-    music_selection = select_music_source(
-        config, series, used_music_paths=used_music_paths, usage_ledger_path=usage_ledger_path
-    )
+    music_selection_path = target / "artifacts" / "music_selection.json"
+    music_selection_report = {
+        "version": "2.0",
+        "project_id": config["project_id"],
+        "selected": music_selection,
+        "usage_record": usage,
+        "selected_at": utc_now(),
+        "policy": "Shared catalog match with cross-series usage history; normalize only the project derivative and preserve the central source.",
+    }
+    dump_json(music_selection_path, music_selection_report)
     music_source = Path(music_selection["path"]).expanduser() if music_selection["path"] else Path("")
     if music_source.is_file():
         normalize_cfg = music_runtime.get("normalization", {})
-        normalization = normalize_background_music(
-            music_source,
-            target / "assets" / "audio" / "background.mp3",
-            target_lufs=float(normalize_cfg.get("target_lufs", -18.0)),
-            true_peak_dbfs=float(normalize_cfg.get("true_peak_dbfs", -2.0)),
-            loudness_range_lu=float(normalize_cfg.get("loudness_range_lu", 7.0)),
-        )
-        usage = record_music_usage(
-            music_selection,
+        try:
+            normalization = normalize_background_music(
+                music_source,
+                target / "assets" / "audio" / "background.mp3",
+                target_lufs=float(normalize_cfg.get("target_lufs", -18.0)),
+                true_peak_dbfs=float(normalize_cfg.get("true_peak_dbfs", -2.0)),
+                loudness_range_lu=float(normalize_cfg.get("loudness_range_lu", 7.0)),
+            )
+        except Exception as exc:
+            failure_transition = transition_music_usage(
+                project_id=config["project_id"],
+                series="zh-philosophy-video",
+                status="failed",
+                ledger_path=usage_ledger_path,
+                reason=f"normalization_failed:{exc}",
+            )
+            music_selection_report["normalization_error"] = str(exc)
+            music_selection_report["usage_transition"] = failure_transition
+            dump_json(music_selection_path, music_selection_report)
+            raise
+    else:
+        failure_transition = transition_music_usage(
             project_id=config["project_id"],
             series="zh-philosophy-video",
+            status="failed",
             ledger_path=usage_ledger_path,
+            reason="selected_music_source_missing",
         )
-    else:
+        music_selection_report["usage_transition"] = failure_transition
+        dump_json(music_selection_path, music_selection_report)
         raise FileNotFoundError(f"zh-philosophy-video requires background music; no usable music source found for {config['project_id']}")
-    dump_json(
-        target / "artifacts" / "music_selection.json",
-        {
-            "version": "2.0",
-            "project_id": config["project_id"],
-            "selected": music_selection,
-            "normalization": normalization,
-            "usage_record": usage,
-            "selected_at": utc_now(),
-            "policy": "Shared catalog match with cross-series usage history; normalize only the project derivative and preserve the central source.",
-        },
-    )
+    music_selection_report["normalization"] = normalization
+    dump_json(music_selection_path, music_selection_report)
     captions = config["edit"].get("captions", [])
     captions_path = config["edit"].get("captions_path")
     if not captions_path:
@@ -1097,10 +1145,42 @@ def deliver(
     if not render.is_file() or (media_duration_seconds(render) or 0) < 10:
         raise ValueError(f"Render is missing or not a playable final video: {render}")
     target = episode_dir(config, projects_dir)
+    active_series = series or load_json(DEFAULT_SERIES_CONFIG)
+    usage_ledger_path = _music_usage_ledger_path(active_series, projects_dir)
     source = Path(config["source_script_md"])
     project = load_json(target / "project.json")
     if sha256_file(source) != project["source_sha256"]:
         raise ValueError("Source changed after prepare; review the revision before delivery")
+    final_qc_cfg = active_series.get("music", {}).get("final_mix_qc", {})
+    final_audio_qc = build_final_audio_mix_qc(
+        render,
+        minimum_lufs=float(final_qc_cfg.get("minimum_lufs", -22.0)),
+        maximum_lufs=float(final_qc_cfg.get("maximum_lufs", -12.0)),
+        maximum_true_peak_dbfs=float(
+            final_qc_cfg.get("maximum_true_peak_dbfs", 0.0)
+        ),
+        maximum_audio_tail_gap_seconds=float(
+            final_qc_cfg.get("maximum_audio_tail_gap_seconds", 1.25)
+        ),
+    )
+    final_audio_qc_path = target / "artifacts" / "final_audio_mix_qc.json"
+    dump_json(final_audio_qc_path, final_audio_qc)
+    if final_audio_qc.get("approved_for_delivery") is not True:
+        failed_transition = transition_music_usage(
+            project_id=config["project_id"],
+            series="zh-philosophy-video",
+            status="failed",
+            ledger_path=usage_ledger_path,
+            reason="final_audio_mix_qc_failed",
+        )
+        selection_path = target / "artifacts" / "music_selection.json"
+        if selection_path.is_file():
+            selection_payload = load_json(selection_path)
+            selection_payload["usage_transition"] = failed_transition
+            dump_json(selection_path, selection_payload)
+        raise ValueError(
+            f"Final audio mix QC failed before delivery: {final_audio_qc_path}"
+        )
 
     delivery_dir = Path(config.get("final_output_dir", "/Users/treeelf/Movies/zh-philosophy-video"))
     delivery_dir.mkdir(parents=True, exist_ok=True)
@@ -1118,6 +1198,18 @@ def deliver(
             "video_generated": generated,
         },
     )
+    usage_transition = transition_music_usage(
+        project_id=config["project_id"],
+        series="zh-philosophy-video",
+        status="committed",
+        ledger_path=usage_ledger_path,
+        reason="verified final video delivered",
+    )
+    selection_path = target / "artifacts" / "music_selection.json"
+    if selection_path.is_file():
+        selection_payload = load_json(selection_path)
+        selection_payload["usage_transition"] = usage_transition
+        dump_json(selection_path, selection_payload)
     result = {
         "status": "delivered_and_source_marked_completed",
         "output": str(output),
@@ -1127,11 +1219,13 @@ def deliver(
         "completed_at": generated,
         "delivery_mode": delivery_mode,
         "delivery_filename_policy": "Chinese-readable title, optional YYYY-MM-DD prefix from project_id, collision-safe _vN suffix",
+        "final_audio_mix_qc": str(final_audio_qc_path),
+        "music_usage_transition": usage_transition,
     }
     dump_json(target / "artifacts" / "delivery_report.json", result)
     cleanup = cleanup_local_storage(
         config,
-        series or load_json(DEFAULT_SERIES_CONFIG),
+        active_series,
         projects_dir=projects_dir,
         dry_run=False,
         yes=True,
@@ -1167,7 +1261,10 @@ def _mark_batch_episode_delivered(
             ):
                 manifest["status"] = "delivered"
                 manifest["all_episodes_delivered_at"] = utc_now()
-                manifest["next_action"] = "retain remote-final-backup for grace period, then dry-run local batch cleanup"
+                manifest["next_action"] = (
+                    "delivery complete; project assets are the sole retained production copy; "
+                    "delayed local cleanup requires a separate dry-run"
+                )
             dump_json(manifest_path, manifest)
 
 

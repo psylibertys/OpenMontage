@@ -1,0 +1,308 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-resume-out-of-court-20260728",
+  "title": "简历不该进入育儿审判",
+  "cover_title": "简历退庭",
+  "cover_english_title": "RESUME OUT OF COURT",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-28_简历不该进入育儿审判.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "serious",
+      "social",
+      "measured",
+      "piano",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "双重标准带来的荒唐",
+      "身份先被定性的愤怒",
+      "把责任缩回具体行为的公正"
+    ],
+    "metaphor_candidates": [
+      "育儿审判庭",
+      "职业履历证物袋",
+      "父母位置互换",
+      "简历退庭"
+    ],
+    "style_families": [
+      "cinematic social realism",
+      "surreal courtroom collage",
+      "minimal balance geometry"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic social realism",
+      "surreal courtroom collage",
+      "minimal balance geometry"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 育儿审判庭, 职业履历证物袋, 父母位置互换, 简历退庭; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_only",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98001,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a clean professional portfolio being carried out of a symbolic family courtroom while one concrete missed action remains for review; style_logic: cinematic social realism and surreal courtroom collage compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, a clean professional portfolio being carried out of a symbolic family courtroom while one concrete missed action remains for review, cinematic social realism blended with surreal courtroom collage, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 98002,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a working mother arriving late at a childcare doorway while several judging silhouettes turn toward her; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a working mother arriving late at a childcare doorway while several judging silhouettes turn toward her, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98003,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a professional portfolio pulled into a symbolic evidence bag beside one missed pickup token; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a professional portfolio pulled into a symbolic evidence bag beside one missed pickup token, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98004,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the same portfolio quietly removed when a father stands in the identical scene; style_logic: minimal balance geometry provides the scene structure while cinematic social realism translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, the same portfolio quietly removed when a father stands in the identical scene, minimal balance geometry blended with cinematic social realism, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98005,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two matched experimental rooms differing only in the parent's identity and career height; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, two matched experimental rooms differing only in the parent's identity and career height, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98006,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a high office tower casting an unfair shadow over one small parenting mistake; style_logic: surreal courtroom collage provides the scene structure while minimal balance geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a high office tower casting an unfair shadow over one small parenting mistake, surreal courtroom collage blended with minimal balance geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98007,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the mother's ambition transformed into extra moral weight on an uneven scale; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, the mother's ambition transformed into extra moral weight on an uneven scale, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 98008,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a neutral observer swapping mother and father positions in the exact same grounded scene; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a neutral observer swapping mother and father positions in the exact same grounded scene, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98009,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the scale suddenly becoming lighter when the parent identity changes; style_logic: surreal courtroom collage provides the scene structure while minimal balance geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, the scale suddenly becoming lighter when the parent identity changes, surreal courtroom collage blended with minimal balance geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98010,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one concrete missed action isolated at the center without surrounding status symbols; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one concrete missed action isolated at the center without surrounding status symbols, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 98011,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person's whole identity being prematurely compressed into one dark silhouette; style_logic: cinematic social realism provides the scene structure while surreal courtroom collage translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a person's whole identity being prematurely compressed into one dark silhouette, cinematic social realism blended with surreal courtroom collage, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 98012,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a limited research frame shown inside clear geographic and situational boundaries; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a limited research frame shown inside clear geographic and situational boundaries, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 98051,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens a working mother arriving late at a childcare doorway while several judging silhouettes turn toward her without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "still",
+        "src": "images/P06.png",
+        "from": 36,
+        "to": 42,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "同一失误，不同审判",
+        "left": "高职位母亲",
+        "operator": "更苛刻",
+        "right": "同职位父亲"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "questions",
+        "eyebrow": "换位检查",
+        "items": [
+          "如果换成同职位父亲",
+          "我们的语气会不会轻一点？"
+        ]
+      }
+    ],
+    "captions": []
+  }
+}

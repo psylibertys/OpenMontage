@@ -178,16 +178,15 @@ def resolve_wan_generation_plan(
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Choose Wan references from the retimed edit timeline when enabled.
 
-    Policy: keep one clip for the opening hook and one for the longest
-    semantic-safe still scene.  The generated clip duration is capped; Remotion
-    stretches or tails the result when the scene remains on screen longer.
+    Policy: keep one clip for the opening hook. The generated clip duration is
+    capped; Remotion stretches or tails the result when the scene is longer.
     """
 
     visuals = config.get("article_visual_assets", {})
     policy = visuals.get("wan_policy", {})
     max_generation_seconds = float(policy.get("max_generation_seconds", 5))
     jobs = _base_video_jobs(config, max_generation_seconds)
-    if not policy.get("enabled") or len(jobs) < 2:
+    if not policy.get("enabled") or not jobs:
         return jobs, {
             "enabled": False,
             "reason": "wan_policy not enabled; using reviewed episode video references",
@@ -197,7 +196,6 @@ def resolve_wan_generation_plan(
     images = _image_lookup(config)
     original_references = {str(job.get("id")): str(job.get("reference", "")) for job in jobs}
     opening_job = next((job for job in jobs if job.get("selection_role") == "opening_hook"), jobs[0])
-    longest_job = next((job for job in jobs if job.get("selection_role") == "longest_semantic_safe"), jobs[1])
 
     opening_reference = str(opening_job.get("reference", ""))
     if scenes:
@@ -209,46 +207,16 @@ def resolve_wan_generation_plan(
         elif first_video in original_references:
             opening_reference = original_references[first_video]
 
-    candidates: list[dict[str, Any]] = []
-    for scene in scenes:
-        image_id = _image_id_from_scene(scene)
-        if not image_id or image_id == opening_reference:
-            continue
-        image = images.get(image_id)
-        if not image or image.get("role") == "cover":
-            continue
-        duration = max(0.0, float(scene.get("to", 0)) - float(scene.get("from", 0)))
-        review = str(image.get("prompt_review", "")).lower()
-        prompt = str(image.get("prompt", "")).lower()
-        safety_bonus = 0
-        if "suitable as wan" in review or "motion-ready" in prompt or "motion-ready" in review:
-            safety_bonus += 3
-        if any(term in prompt for term in ("water", "light", "wind", "drift", "dust", "curtain", "camera")):
-            safety_bonus += 1
-        candidates.append({
-            "image_id": image_id,
-            "duration": round(duration, 2),
-            "score": round(duration * 10 + safety_bonus, 2),
-            "scene_id": scene.get("id"),
-            "script_excerpt": scene.get("script_excerpt", ""),
-        })
-    best = max(candidates, key=lambda row: (row["score"], row["duration"], str(row["image_id"])), default=None)
-
     for job in jobs:
         if job.get("id") == opening_job.get("id"):
             job["reference"] = opening_reference
             job["selection_reason"] = "opening_hook"
-        elif best and job.get("id") == longest_job.get("id"):
-            job["reference"] = best["image_id"]
-            job["selection_reason"] = "longest_semantic_safe_scene"
 
     return jobs, {
         "enabled": True,
-        "selection_policy": policy.get("selection_policy", "opening_hook_plus_longest_semantic_safe"),
+        "selection_policy": policy.get("selection_policy", "opening_hook_only"),
         "max_generation_seconds": max_generation_seconds,
         "opening_reference": opening_reference,
-        "longest_reference": best["image_id"] if best else str(longest_job.get("reference", "")),
-        "longest_candidate": best,
         "original_references": original_references,
         "note": "Wan clips are generated for at most the configured cap; longer on-screen scene durations are handled in Remotion.",
     }

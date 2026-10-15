@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "comfy": {
+      "command": "/Users/treeelf/Desktop/psynautCode/ComfyDeck/.venv/bin/comfy-mcp",
+      "args": [],
+      "env": {
+        "COMFYUI_URL": "http://127.0.0.1:8188"
+      }
+    }
+  }
+}

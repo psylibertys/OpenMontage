@@ -43,18 +43,18 @@
     "rule": "Every abstract element and every art-style term must explain why it fits the script. Vary prominent motifs by re-extracting each episode's imagery rather than permanently banning motifs."
   },
   "production_defaults": {
-    "images_per_episode": 15,
-    "minimum_images_per_episode": 15,
+    "images_per_episode": 12,
+    "minimum_images_per_episode": 12,
     "cover_images_per_episode": 1,
-    "content_images_per_episode": 14,
-    "minimum_content_images_per_episode": 14,
-    "wan_clips_per_episode": 2,
+    "content_images_per_episode": 11,
+    "minimum_content_images_per_episode": 11,
+    "wan_clips_per_episode": 1,
     "wan_generation_seconds": 4,
     "wan_max_generation_seconds": 5,
-    "wan_selection_policy": "Generate two Wan clips by default: W01 serves the opening hook; W02 serves the longest retimed semantic-safe scene. Do not generate Wan for the full on-screen duration when a scene lasts longer than 5 seconds; extend the motion in Remotion instead.",
+    "wan_selection_policy": "Generate one Wan clip for the opening hook. Extend it in Remotion when the scene lasts longer than 5 seconds.",
     "remotion_info_cards_per_episode": [2, 3],
     "target_still_visible_seconds": [4.0, 6.0],
-    "image_count_policy": "Start with at least 14 content images. Increase the count when the reviewed timeline would leave ordinary stills visible for more than 6 seconds on average; do not reduce below 14 merely because the episode is shorter.",
+    "image_count_policy": "Use 11 content images for a standard 60–90 second episode; rely on restrained still motion and information cards instead of routine extra generation.",
     "reuse_policy": "Each content image is used exactly once, either as one animated still scene or as one Wan reference; never both.",
     "recommended_batch_size": [5, 8]
   },
@@ -64,22 +64,30 @@
     "outline_color": "rgba(0,0,0,0.92)",
     "outline_width": 3.5,
     "font_size": 42,
-    "safe_bottom": 360
+    "safe_bottom": 460
   },
   "music": {
     "selected_mix_profile": "B3-narration-first-quieter",
     "remotion_volume": 0.3,
     "ducking": "speech-aware",
-    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "library_env": "TREEELF_MUSIC_LIBRARY_DIR",
     "catalog_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/catalog-v1.json",
     "overrides_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/manual-overrides-v1.json",
     "usage_ledger_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/usage-ledger-v1.json",
     "selection_mode": "shared_catalog_by_script_keywords",
-    "selection_policy": "Use the shared catalog, manual overrides, same-batch penalty and cross-series history; exclude lyric, watermark and unreadable files, then use deterministic weighted fallback when no keyword matches.",
+    "selection_policy": "Incrementally refresh the shared catalog, reuse the same project's active reservation, and rank by semantic keywords plus same-batch and committed/reserved cross-series history; pure-music labels are qualifications rather than semantic matches.",
     "normalization": {
       "target_lufs": -18.0,
       "true_peak_dbfs": -2.0,
       "loudness_range_lu": 7.0
+    },
+    "duration_policy": "loop_to_composition_duration_with_final_fade",
+    "reservation_ttl_hours": 168,
+    "final_mix_qc": {
+      "minimum_lufs": -22.0,
+      "maximum_lufs": -12.0,
+      "maximum_true_peak_dbfs": 0.0,
+      "maximum_audio_tail_gap_seconds": 1.25
     },
     "qc": "judge audibility from the exported file, not the timeline alone"
   },
@@ -87,8 +95,8 @@
     "directory": "/Users/treeelf/Movies/zh-philosophy-video",
     "filename_policy": "Use a Chinese-readable title filename, optionally prefixed by YYYY-MM-DD from project_id; never overwrite an existing different file.",
     "require_ffprobe": true,
-    "require_contact_sheet": true,
-    "require_local_whisper": "/Users/treeelf/AI_Models/Whisper",
+    "require_contact_sheet": false,
+    "require_local_whisper": false,
     "require_project_movies_sha256_match": true,
     "mark_source_completed_only_after_delivery": true
   },
@@ -106,8 +114,7 @@
     "delayed_cleanup_days": 7,
     "delayed_cleanup": [
       "voice02_segments",
-      "visual review frame directories",
-      "batch remote-final-backup after every episode is delivered"
+      "visual review frame directories"
     ],
     "cross_episode_reuse": [
       "treeelf_voice02_v1",

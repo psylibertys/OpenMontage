@@ -1,0 +1,149 @@
+name: story-to-storyboard
+version: "1.0"
+description: >
+  Planning-terminal pipeline: turn a story (blueprint, SC story card, fable draft,
+  free text) — or a locally reverse-analyzed reference video — into a director's
+  script and a canonical scene_plan, then down-transform to a storyboard.json
+  export (t2i/i2v prompts) that feeds generation chains such as ComfyUI.
+  Produces NO media itself; hand off scene_plan to animation /
+  character-animation for final rendering (phase 3).
+category: generated
+stability: beta
+default_checkpoint_policy: guided
+
+# Reverse mode: a reference video enters here and is analyzed with the local
+# stack, then bridged via skills/meta/brief-to-beat-bridge.md.
+reference_input:
+  supported: true
+  analysis_depth: deep
+  analysis_tools:
+    - video_analyzer
+    - transcript_fetcher
+    - video_downloader
+    - scene_detect
+    - frame_sampler
+
+orchestration:
+  mode: executive-producer
+  skill: pipelines/story-to-storyboard/executive-producer
+  budget_default_usd: 0.50
+  max_revisions_per_stage: 3
+  max_send_backs: 3
+  max_wall_time_minutes: 12
+
+extensions:
+  custom_scripts: true
+  custom_playbooks: true
+  custom_skills: true
+  custom_tools: false
+
+required_skills:
+  - pipelines/story-to-storyboard/executive-producer
+  - pipelines/story-to-storyboard/story-intake-director
+  - pipelines/story-to-storyboard/script-director
+  - pipelines/story-to-storyboard/scene-director
+  - pipelines/story-to-storyboard/storyboard-export-director
+  - meta/reviewer
+  - meta/checkpoint-protocol
+  - meta/studiobinder-skill-hub
+  - meta/brief-to-beat-bridge
+  - meta/video-reference-analyst
+
+stages:
+  - name: story_intake
+    skill: pipelines/story-to-storyboard/story-intake-director
+    produces:
+      - story_brief
+      - decision_log
+    tools_available:
+      - video_analyzer
+      - transcript_fetcher
+      - video_downloader
+      - scene_detect
+      - frame_sampler
+    checkpoint_required: true
+    human_approval_default: true
+    review_focus:
+      - Premise says who wants what and what blocks it
+      - Characters have stable visual identities for downstream consistency
+      - Emotional arc phases are ordered and distinct
+      - Structure spine (hook / turning points / landing) is present
+      - Reverse mode briefs cite their video_analysis_brief evidence
+    success_criteria:
+      - Schema-valid story_brief artifact
+      - Source mode declared with document path or analysis brief reference
+      - story_brief validated against the schema before checkpointing
+    sub_stages:
+      - name: reference_reverse
+        description: "Reverse mode: analyze the reference video locally, run brief-to-beat-bridge, and reverse-derive the story_brief"
+        condition: "video_analysis_brief_exists"
+        human_approval_default: true
+        tools_available:
+          - video_analyzer
+          - transcript_fetcher
+          - scene_detect
+          - frame_sampler
+        review_focus:
+          - Bridged beat skeleton stays faithful to the analyzed structure
+          - No invented plot beats beyond what the analysis supports
+          - structure_template distilled from the reference is reusable
+
+  - name: script
+    skill: pipelines/story-to-storyboard/script-director
+    required_artifacts_in:
+      - story_brief
+    produces:
+      - script
+    checkpoint_required: true
+    human_approval_default: true
+    review_focus:
+      - beat_map escalates cleanly through hook, turn, and landing
+      - Sections carry visual_intent and emotion directions
+      - Narration text is speakable and rhythm-stable
+      - Character dialogue, when present, is sparse and purposeful
+    success_criteria:
+      - Schema-valid script artifact (with additive beat_map / visual_intent / emotion fields)
+      - Section timings sum to the story_brief target duration within tolerance
+      - Every beat_map entry references existing section ids
+
+  - name: scene_plan
+    skill: pipelines/story-to-storyboard/scene-director
+    required_artifacts_in:
+      - script
+    optional_artifacts_in:
+      - story_brief
+    produces:
+      - scene_plan
+    checkpoint_required: true
+    human_approval_default: true
+    review_focus:
+      - Every script section maps to at least one scene
+      - shot_language choices are motivated by the beat's emotional function
+      - Character appearance notes stay consistent across scenes
+      - Scene durations leave room for <=5s export shots without butchering beats
+    success_criteria:
+      - Schema-valid scene_plan artifact
+      - Every scene references its script_section_id
+      - narrative_role vocabulary used where applicable
+
+  - name: storyboard_export
+    skill: pipelines/story-to-storyboard/storyboard-export-director
+    required_artifacts_in:
+      - scene_plan
+    optional_artifacts_in:
+      - script
+    produces:
+      - storyboard_export
+    checkpoint_required: true
+    human_approval_default: true
+    review_focus:
+      - Every scene_plan scene is covered; every shot traces back
+      - Long scenes are split at semantic turns, not mechanically by seconds
+      - t2i prompts follow prompt-rules; i2v prompts carry all four anchor classes
+      - narration/emotion lines align; pause markers and vocal tags are legal
+      - Cross-shot continuity rules respected (no identity/axis/lighting jumps)
+    success_criteria:
+      - Schema-valid storyboard_export artifact
+      - lib/storyboard_export lint passes with zero errors
+      - Traceability check reports zero errors
+      - Export file written under projects/<id>/exports/storyboard/<theme>/<theme>.json

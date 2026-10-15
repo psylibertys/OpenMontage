@@ -1,0 +1,2 @@
+# Optional Apple Silicon runtime for tools.analysis.transcriber backend=qwen3-asr
+mlx-audio==0.4.7

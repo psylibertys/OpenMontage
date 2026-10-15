@@ -1,0 +1,301 @@
+{
+  "162": {
+    "inputs": {
+      "width": [
+        "227",
+        2
+      ],
+      "height": [
+        "227",
+        3
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "163": {
+    "inputs": {
+      "seed": 501307006652675,
+      "steps": 10,
+      "cfg": 1,
+      "sampler_name": "er_sde",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "232",
+        0
+      ],
+      "positive": [
+        "224",
+        0
+      ],
+      "negative": [
+        "228",
+        0
+      ],
+      "latent_image": [
+        "162",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "164": {
+    "inputs": {
+      "samples": [
+        "163",
+        0
+      ],
+      "vae": [
+        "196",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "194": {
+    "inputs": {
+      "unet_name": "krea2\\krea2_turbo_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "195": {
+    "inputs": {
+      "clip_name": "qwen3-vl-4b-heretic_int8.safetensors",
+      "type": "krea2",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "Load CLIP"
+    }
+  },
+  "196": {
+    "inputs": {
+      "vae_name": "qwen_image_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "198": {
+    "inputs": {
+      "label_json": "{\"text\":\"Krea 2 + Edit Lora\",\"fontSize\":31,\"fontFamily\":\"Arial\",\"fontColor\":\"#ffffff\",\"textAlign\":\"left\",\"backgroundColor\":\"#f66744\",\"padding\":10,\"borderRadius\":0,\"opacity\":1,\"fontWeight\":\"normal\",\"lineHeight\":1}"
+    },
+    "class_type": "PixaromaLabel",
+    "_meta": {
+      "title": "Label Pixaroma"
+    }
+  },
+  "199": {
+    "inputs": {
+      "filename_prefix": "img",
+      "save_mode": "save",
+      "pixaroma_buttons": null,
+      "pixaroma_strip": null,
+      "image": [
+        "164",
+        0
+      ],
+      "CivitaiMeta": "0"
+    },
+    "class_type": "PixaromaPreview",
+    "_meta": {
+      "title": "Preview Image Pixaroma"
+    }
+  },
+  "207": {
+    "inputs": {
+      "enabled": true,
+      "strength": 0.1,
+      "debug": false,
+      "model": [
+        "194",
+        0
+      ]
+    },
+    "class_type": "ComfyUI-Krea2T-Enhancer",
+    "_meta": {
+      "title": "ComfyUI-Krea2T-Enhancer"
+    }
+  },
+  "221": {
+    "inputs": {
+      "PromptState": "{\"text\":\"replace her red dress with a white blank tshirt and blue short jeans, keep everything else the same, same pose, same light\",\"order\":\"mine\",\"sep\":\", \"}"
+    },
+    "class_type": "PixaromaPrompt",
+    "_meta": {
+      "title": "Prompt Pixaroma"
+    }
+  },
+  "223": {
+    "inputs": {
+      "note_json": "{\"version\":1,\"content\":\"<h1>MODELS AND NODES USED IN THIS WORKFLOW</h1>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\">\\n\\n<h2><span data-ic=\\\"model-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load Diffusion Model</h2>\\n\\n<p>\\n<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/Krea-2/resolve/main/diffusion_models/krea2_turbo_int8_convrot.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download krea2_turbo_int8_convrot.safetensors<span class=\\\"pix-note-btnsize\\\">12.2 GB</span></a></span>&nbsp;\\n<br>OR<br>\\n<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/Krea-2/resolve/main/diffusion_models/krea2_turbo_fp8_scaled.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download krea2_turbo_fp8_scaled.safetensors<span class=\\\"pix-note-btnsize\\\">12.2 GB</span></a></span>&nbsp;\\n</p>\\n\\n<div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/diffusion_models/krea2</div>\\n\\n<p>Create the <code>krea2</code> folder if it does not exist.</p>\\n\\n<p>\\n<span class=\\\"pix-note-btnblock\\\">\\n<a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/Krea-2/tree/main/diffusion_models\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">More versions</a>\\n</span>&nbsp;\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\">\\n\\n<h2><span data-ic=\\\"CLIP\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load CLIP</h2>\\n\\n<p>\\n<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/DreamFast/Qwen3-VL-4b-Heretic-ComfyUI/resolve/main/qwen3-vl-4b-heretic_int8.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download qwen3-vl-4b-heretic_int8<span class=\\\"pix-note-btnsize\\\">4.5 GB</span></a></span>&nbsp;\\n</p>\\n\\n<div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/text_encoders</div>\\n\\n<p>\\n<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-vp\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/DreamFast/Qwen3-VL-4b-Heretic-ComfyUI/tree/main\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">More Versions</a></span>&nbsp;\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\">\\n\\n<h2><span data-ic=\\\"LORA\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;LoRA Loader</h2>\\n\\n<p>\\n<span class=\\\"pix-note-btnblock\\\">\\n<a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/conradlocke/krea2-identity-edit/resolve/main/krea2_identity_edit_v1_2.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download krea2_identity_edit_v1_2.safetensors<span class=\\\"pix-note-btnsize\\\">1.7 GB</span></a>\\n</span>&nbsp;\\n</p>\\n\\n<div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/loras/krea2</div>\\n\\n<p>Create the <code>krea2</code> folder if it does not exist.</p>\\n\\n<p>\\n<span class=\\\"pix-note-btnblock\\\">\\n<a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/conradlocke/krea2-identity-edit/tree/main\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">More LoRAs</a>\\n</span>&nbsp;\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\">\\n\\n<h2><span data-ic=\\\"VAE\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load VAE</h2>\\n\\n<p>\\n<span class=\\\"pix-note-btnblock\\\">\\n<a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/Krea-2/resolve/main/vae/qwen_image_vae.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download qwen_image_vae.safetensors<span class=\\\"pix-note-btnsize\\\">242 MB</span></a>\\n</span>&nbsp;\\n</p>\\n\\n<div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/vae</div>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\">\\n\\n<p><span data-ic=\\\"warning-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;After placing the files, restart ComfyUI or refresh model lists using the <b>R</b> shortcut.</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\">\\n\\n<h2><span data-ic=\\\"nodes-installed\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Nodes Installed from Manager</h2>\\n\\n<ul>\\n<li>Pixaroma</li>\\n<li>ComfyUI-Krea2T-Enhancer</li>\\n<li>Krea 2 Identity Edit</li>\\n</ul>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\">\\n\\n<h2><span data-ic=\\\"pixaroma\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Resources</h2>\\n\\n<p>\\n<a class=\\\"pix-note-discord\\\" href=\\\"https://discord.com/invite/gggpkVgBf3\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Join Discord</a>&nbsp;\\n<a class=\\\"pix-note-yt\\\" href=\\\"https://www.youtube.com/@pixaroma\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Pixaroma YouTube Channel</a>&nbsp;\\n</p>\",\"buttonColor\":\"#f66744\",\"lineColor\":\"#f66744\",\"width\":510.9698562411088,\"height\":790.0640443733356,\"backgroundColor\":\"#2a2a2a\"}"
+    },
+    "class_type": "PixaromaNote",
+    "_meta": {
+      "title": "Note Pixaroma"
+    }
+  },
+  "224": {
+    "inputs": {
+      "prompt": [
+        "221",
+        0
+      ],
+      "grounding_px": 768,
+      "system_prompt": "",
+      "clip": [
+        "195",
+        0
+      ],
+      "image": [
+        "227",
+        0
+      ]
+    },
+    "class_type": "Krea2EditGroundedEncode",
+    "_meta": {
+      "title": "Krea2 Edit (grounded encode)"
+    }
+  },
+  "226": {
+    "inputs": {
+      "image": "WomanPortraitRed.png",
+      "LoadImageMiniState": "{\"version\":1,\"mode\":\"max_mp\",\"max_mp\":1,\"longest_side\":1024,\"scale_factor\":1,\"fit_w\":1024,\"fit_h\":1024,\"cover_w\":1024,\"cover_h\":1024,\"ratio_preset\":\"1:1\",\"ratio_w\":1,\"ratio_h\":1,\"ratio_action\":\"crop\",\"pad_color\":\"#808080\",\"pad_top\":0,\"pad_bottom\":0,\"pad_left\":0,\"pad_right\":0,\"crop_anchor\":\"center\",\"crop_scale\":true,\"snap\":16,\"resample\":\"auto\",\"allow_upscale\":true,\"orig_name\":\"WomanPortraitRed.png\"}"
+    },
+    "class_type": "PixaromaLoadImageMini",
+    "_meta": {
+      "title": "Load Image Mini Pixaroma"
+    }
+  },
+  "227": {
+    "inputs": {
+      "image_info": [
+        "226",
+        1
+      ]
+    },
+    "class_type": "PixaromaImageInfo",
+    "_meta": {
+      "title": "Image Info Pixaroma"
+    }
+  },
+  "228": {
+    "inputs": {
+      "prompt": "",
+      "grounding_px": 768,
+      "system_prompt": "",
+      "clip": [
+        "195",
+        0
+      ],
+      "image": [
+        "227",
+        0
+      ]
+    },
+    "class_type": "Krea2EditGroundedEncode",
+    "_meta": {
+      "title": "Krea2 Edit - Negative - Empty"
+    }
+  },
+  "230": {
+    "inputs": {
+      "image1": [
+        "227",
+        0
+      ],
+      "image2": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "PixaromaCompare",
+    "_meta": {
+      "title": "Image Compare Pixaroma"
+    }
+  },
+  "231": {
+    "inputs": {
+      "model": [
+        "207",
+        0
+      ],
+      "LoraLoaderState": "{\"version\":1,\"sep\":\", \",\"cacheMode\":\"last\",\"loras\":[{\"name\":\"krea2\\\\krea2_identity_edit_v1_2.safetensors\",\"on\":true,\"sm\":1,\"sc\":1,\"triggers\":[]}]}"
+    },
+    "class_type": "PixaromaLoraLoader",
+    "_meta": {
+      "title": "LoRA Loader Pixaroma"
+    }
+  },
+  "232": {
+    "inputs": {
+      "ref_boost": [
+        "234",
+        0
+      ],
+      "ref_boost_a": 1,
+      "fit_mode": "fit",
+      "model": [
+        "231",
+        0
+      ],
+      "source_latent": [
+        "233",
+        0
+      ],
+      "vae": [
+        "196",
+        0
+      ],
+      "source_image": [
+        "227",
+        0
+      ]
+    },
+    "class_type": "Krea2EditModelPatch",
+    "_meta": {
+      "title": "Krea2 Edit (source patch)"
+    }
+  },
+  "233": {
+    "inputs": {
+      "pixels": [
+        "227",
+        0
+      ],
+      "vae": [
+        "196",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "234": {
+    "inputs": {
+      "SlidersState": "{\"version\":1,\"sliders\":[{\"type\":\"float\",\"value\":4}]}"
+    },
+    "class_type": "PixaromaSliders",
+    "_meta": {
+      "title": "Reference Boost (0 Creative, 4 Default, 10 More Similar)"
+    }
+  }
+}

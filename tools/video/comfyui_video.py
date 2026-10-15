@@ -160,13 +160,30 @@ class ComfyUIVideo(BaseTool):
                 "type": "string",
                 "description": "URL of reference image (for image_to_video, downloaded first)",
             },
+            "last_image_path": {
+                "type": "string",
+                "description": (
+                    "Local closing-frame image for minimax_fasth3_fflf "
+                    "(first frame comes from reference_image_path)."
+                ),
+            },
             "reference_audio_path": {
                 "type": "string",
-                "description": "Local narration/reference audio for InfiniteTalk templates.",
+                "description": (
+                    "Local narration/reference audio for lip-sync templates "
+                    "(minimax_h3_audio_sync, InfiniteTalk)."
+                ),
             },
             "driving_video_path": {
                 "type": "string",
                 "description": "Local motion-driving video for Animate/SCAIL templates.",
+            },
+            "longest_side": {
+                "type": "integer",
+                "description": (
+                    "Longest output edge in pixels for image-driven MiniMax templates "
+                    "(i2v/fflf/audio_sync); snapped to multiples of 32. Smaller is faster."
+                ),
             },
             "width": {"type": "integer", "default": 832, "description": "T2V default 832, I2V default 640"},
             "height": {"type": "integer", "default": 480, "description": "T2V default 480, I2V default 640"},
@@ -181,9 +198,12 @@ class ComfyUIVideo(BaseTool):
                 "type": "number",
                 "exclusiveMinimum": 0,
                 "description": (
-                    "Requested clip duration. Bundled Wan/InfiniteTalk templates choose "
-                    "the nearest supported frame bucket. Animate/SCAIL trim, but never "
-                    "loop or extend, the driving video."
+                    "Requested clip duration. MiniMax FastH3 templates accept 4-15 "
+                    "seconds and output that exact duration; minimax_h3_audio_sync "
+                    "accepts 1-15 seconds and should match the audio length. "
+                    "Wan/InfiniteTalk templates choose the nearest supported frame "
+                    "bucket. Animate/SCAIL trim, but never loop or extend, the "
+                    "driving video."
                 ),
             },
             "seed": {"type": "integer", "description": "Random if omitted"},
@@ -199,13 +219,15 @@ class ComfyUIVideo(BaseTool):
             "workflow_template": {
                 "type": "string",
                 "enum": [
-                    "wan22_i2v_q6",
-                    "wan_infinitetalk_short",
+                    "minimax_fasth3_t2v",
+                    "minimax_fasth3_i2v",
+                    "minimax_fasth3_fflf",
+                    "minimax_h3_audio_sync",
                     "wan_infinitetalk_extend",
                     "wan22_animate_character",
                     "wan_scail_character",
                 ],
-                "description": "Bundled, parameterized first-batch API workflow.",
+                "description": "Bundled, parameterized API workflow templates.",
             },
             "aspect_preset": {
                 "type": "string",
@@ -405,18 +427,30 @@ class ComfyUIVideo(BaseTool):
                     ref_path = str(output_path.with_suffix(".ref.png"))
                     Path(ref_path).parent.mkdir(parents=True, exist_ok=True)
                     Path(ref_path).write_bytes(resp.content)
-                if not ref_path:
-                    raise ComfyUIError(
-                        f"Workflow template {workflow_template!r} requires "
-                        "reference_image_path or reference_image_url"
+                uploads: dict[str, Any] = {}
+                if spec.get("source_image"):
+                    if not ref_path:
+                        raise ComfyUIError(
+                            f"Workflow template {workflow_template!r} requires "
+                            "reference_image_path or reference_image_url"
+                        )
+                    uploads["source_image"] = self._client.upload_image(
+                        Path(ref_path),
+                        f"om_{output_path.stem}_{seed}_source{Path(ref_path).suffix or '.png'}",
                     )
-                source_image_name = self._client.upload_image(
-                    Path(ref_path),
-                    f"om_{output_path.stem}_{seed}_source{Path(ref_path).suffix or '.png'}",
-                )
                 if is_production:
-                    uploads: dict[str, Any] = {"source_image": source_image_name}
-                    if spec.get("source_audio"):
+                    if spec.get("last_image"):
+                        last_path = inputs.get("last_image_path")
+                        if not last_path:
+                            raise ComfyUIError(
+                                f"Workflow template {workflow_template!r} requires last_image_path "
+                                "(the closing frame)"
+                            )
+                        uploads["last_image"] = self._client.upload_image(
+                            Path(last_path),
+                            f"om_{output_path.stem}_{seed}_last{Path(last_path).suffix or '.png'}",
+                        )
+                    if spec.get("source_audio") or spec.get("source_audio_state"):
                         audio_path = inputs.get("reference_audio_path")
                         if not audio_path:
                             raise ComfyUIError(

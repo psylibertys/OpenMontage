@@ -1,11 +1,11 @@
-import { Composition, CalculateMetadataFunction } from "remotion";
+import { Composition, CalculateMetadataFunction, Still } from "remotion";
 import { Explainer, ExplainerProps } from "./Explainer";
 import {
   CinematicRenderer,
   calculateCinematicMetadata,
 } from "./CinematicRenderer";
 import { signalFromTomorrowWithMusicFixture } from "./cinematic/fixtures";
-import { TalkingHead, TalkingHeadProps } from "./TalkingHead";
+import { TalkingHead, TalkingHeadProps, calculateTalkingHeadMetadata } from "./TalkingHead";
 import {
   TitledVideo,
   calculateTitledVideoMetadata,
@@ -23,6 +23,22 @@ import { TreeElfRankingVideo, TreeElfRankingVideoProps } from "./TreeElfRankingV
 import { TreeElfSharedAlarmVideo, TreeElfSharedAlarmVideoProps } from "./TreeElfSharedAlarmVideo";
 import { TreeElfPhilosophyEpisode, TreeElfPhilosophyEpisodeProps } from "./TreeElfPhilosophyEpisode";
 import { TreeElfFableEpisode, TreeElfFableEpisodeProps } from "./TreeElfFableEpisode";
+import {
+  TeachersDayClayBouquet,
+  TeachersDayClayBouquetProps,
+} from "./TeachersDayClayBouquet";
+
+// Memory-repair-shop animatic reuses the clay-bouquet stills engine
+// (audio-anchored stills + captions + narration); real props come from
+// remotion-composer/memory-repair-shop-animatic-props.json at render time.
+const EMPTY_ANIMATIC_PROPS = {
+  assetRoot: "memory-repair-shop/animatic",
+  title: "memory-repair-shop-animatic",
+  totalSeconds: 5,
+  scenes: [],
+  captions: [],
+  narration: [],
+} as TeachersDayClayBouquetProps;
 
 // ---------------------------------------------------------------------------
 // Theme System — prevents every video from looking like dark fintech
@@ -195,8 +211,22 @@ export const Root: React.FC = () => {
           overlays: [],
           wordsPerPage: 4,
           fontSize: 52,
-          highlightColor: "#22D3EE",
+          highlightColor: "#FFD34E",
+          audioSrc: undefined,
+          durationSeconds: 300,
+          hookTitle: "",
+          hookDurationSeconds: 2.2,
+          hookDisplayMode: "persistent",
+          watermarkLines: [
+            "九重天小熊猫版权所有｜用传统文化陪您过得更好",
+            "虚构演绎，仅供参考；相信科学，拒绝迷信！",
+          ],
+          sourceLayout: "cover",
+          captionBottomPx: 380,
+          captionOutlineWidth: 5,
+          captionBackgroundColor: "transparent",
         }}
+        calculateMetadata={calculateTalkingHeadMetadata}
       />
       <Composition
         id="TitledVideo"
@@ -357,6 +387,24 @@ export const Root: React.FC = () => {
           gradientDirection: "center",
         } as TreeElfCoverProps}
       />
+      <Still
+        id="TreeElfStoryCover"
+        component={TreeElfCover}
+        width={1800}
+        height={766}
+        defaultProps={{
+          backgroundSrc: "",
+          chineseTitle: "她叫孙梅兰",
+          englishTitle: "",
+          brand: "树精灵",
+          titlePosition: "center",
+          textAlign: "center",
+          textColor: "#F7F2E8",
+          accentColor: "#D9B56D",
+          overlayOpacity: 0.34,
+          gradientDirection: "center",
+        } as TreeElfCoverProps}
+      />
       <Composition
         id="TreeElfHabitVideo"
         component={TreeElfHabitVideo}
@@ -432,6 +480,76 @@ export const Root: React.FC = () => {
         calculateMetadata={async ({props}) => ({
           durationInFrames: Math.max(1, Math.ceil(props.totalSeconds * 30)),
           defaultOutName: `${props.title || "treeelf-fable"}.mp4`,
+        })}
+      />
+      <Composition
+        id="TeachersDayClayBouquet"
+        component={TeachersDayClayBouquet}
+        durationInFrames={900}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={
+          {
+            assetRoot: "teachers-day-clay-bouquet",
+            title: "teachers-day-clay-bouquet",
+            totalSeconds: 30,
+            scenes: [
+              {id: "s1", kind: "still", src: "stills/s1-clay-flatlay.png", from: 0, to: 3.5, motion: "push-in", focalPoint: {x: 50, y: 52}},
+              {id: "s2", kind: "video", src: "motion/s2-pinching.mp4", from: 3.5, to: 9, playbackRate: 0.92},
+              {id: "s3", kind: "video", src: "motion/s3-bloom.mp4", from: 9, to: 15, playbackRate: 0.845},
+              {id: "s4", kind: "video", src: "motion/s4-wrapping.mp4", from: 15, to: 18.5, playbackRate: 0.875},
+              {id: "s5", kind: "video", src: "motion/s5-reveal.mp4", from: 18.5, to: 22, playbackRate: 0.875},
+              {id: "s6", kind: "video", src: "motion/s6-handover-a.mp4", from: 22, to: 30, playbackRate: 1},
+            ],
+            captions: [
+              {text: "教师节，别急着买花了。", startMs: 0, endMs: 3200},
+              {text: "给孩子一捧粘土，压一压，卷一卷，", startMs: 3500, endMs: 6900},
+              {text: "花瓣一层一层叠上去，向日葵就开了。", startMs: 9000, endMs: 12400},
+              {text: "牛皮纸一包，麻绳一系，这束花，永远不会谢。", startMs: 15000, endMs: 19700},
+              {text: "最贵的心意，从来不用花钱。", startMs: 22000, endMs: 26500},
+            ],
+            narration: [
+              {src: "voice/beat-01-hook.mp3", atMs: 0, durationMs: 2520},
+              {src: "voice/beat-02-escalation1.mp3", atMs: 3500, durationMs: 3336},
+              {src: "voice/beat-03-escalation2.mp3", atMs: 9000, durationMs: 3264},
+              {src: "voice/beat-04-reveal.mp3", atMs: 15000, durationMs: 4608},
+              {src: "voice/beat-05-landing.mp3", atMs: 22000, durationMs: 4128},
+            ],
+            musicSrc: "music/bgm-warm-metal.mp3",
+            musicVolume: 0.2,
+            endCard: {
+              fromMs: 26800,
+              mainText: "教师节快乐",
+              subText: "最贵的心意，从来不用花钱",
+              footnote: "内容由 AI 生成",
+            },
+            transitionFrames: 10,
+            captionStyle: {
+              fontSize: 46,
+              color: "#FFFFFF",
+              outlineColor: "#4a3826",
+              outlineWidth: 3,
+              safeBottom: 330,
+            },
+          } as TeachersDayClayBouquetProps
+        }
+        calculateMetadata={async ({props}) => ({
+          durationInFrames: Math.max(1, Math.ceil(props.totalSeconds * 30)),
+          defaultOutName: `${props.title || "teachers-day-clay-bouquet"}.mp4`,
+        })}
+      />
+      <Composition
+        id="MemoryRepairAnimatic"
+        component={TeachersDayClayBouquet}
+        durationInFrames={150}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={EMPTY_ANIMATIC_PROPS}
+        calculateMetadata={async ({props}) => ({
+          durationInFrames: Math.max(1, Math.ceil(props.totalSeconds * 30)),
+          defaultOutName: `${props.title || "memory-repair-shop-animatic"}.mp4`,
         })}
       />
     </>

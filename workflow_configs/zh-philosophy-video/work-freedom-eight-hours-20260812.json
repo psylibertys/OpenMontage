@@ -1,0 +1,76 @@
+{
+  "project_id": "work-freedom-eight-hours-20260812",
+  "title": "八小时不是自然规律",
+  "cover_title": "八小时制",
+  "cover_lines": ["八小时", "不是自然规律"],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {"cleanup_remotion_public": true, "cleanup_intermediate_renders": false},
+  "stock_library": {"enabled": false, "download_sources": ["pexels", "pixabay", "mixkit"], "rotate_download_sources": true},
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 105,
+  "tone": "克制、有力量、历史感",
+  "target_audience": "关注工作制度、劳动史与生活边界的中文观众",
+  "key_points": ["八小时制不是自然刻度", "它来自长期争取", "真正应继承的是生活边界"],
+  "core_message": "人的一天必须有一部分不属于工作。",
+  "voice_style": "成年女性普通话声线，中速，清晰、平静而坚定",
+  "speaker_directions": "不要喊口号；像讲述一段被日常遮住的历史，在关键年份略作停顿，结尾坚定。",
+  "tts": {"provider": "edge", "version": "7.2.7", "voice": "zh-CN-XiaoxiaoNeural", "rate": "+0%", "pitch": "+0Hz", "volume": "+0%", "generation_mode": "single_pass"},
+  "music": {"library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐", "preferred_keywords": ["documentary", "ambient", "piano", "纯音乐"]},
+  "style": {"card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf", "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf", "black_overlay_opacity": 0.54, "cover_enabled": true, "cover_duration_frames": 1, "cover_font_size": 220, "card_title_font_size": 128, "card_subtitle_font_size": 50, "card_line_gap": 30, "title_color_rgb": [248, 246, 231], "accent_color_rgb": [190, 62, 52], "subtitle_color": "#FFFFFF", "subtitle_outline_color": "#000000", "subtitle_outline_width": 3, "subtitle_font_size": 52, "music_start_seconds": 0, "music_volume": 0.08},
+  "sections": [
+    {
+      "id": "s1", "label": "反常识",
+      "text": "一天工作八小时，听起来像人类经过精密测算，终于找到了最适合身体的刻度。其实不是。八小时不是自然规律，它更像一道被人硬生生推回来的边界。",
+      "queries": [
+        {"query": "office workers clock modern workplace", "description": "现代人习以为常的八小时工作日。"},
+        {"query": "factory workers industrial shift", "description": "工业劳动中的工时边界。"},
+        {"query": "nature ocean horizon sunrise", "description": "自然世界没有八小时刻度。"}
+      ],
+      "cards": [{"id": "not-natural-card", "title_lines": ["八小时", "不是自然规律"], "subtitle": "它是一道争回来的边界"}]
+    },
+    {
+      "id": "s2", "label": "工人运动",
+      "text": "十九世纪中期以后，缩短工时成为工人运动的重要诉求。1886年，美国各地的工人为八小时工作日罢工；芝加哥随后发生冲突、爆炸、审判和处决。",
+      "queries": [
+        {"query": "historic labor protest crowd black and white", "description": "劳工集会的历史氛围。"},
+        {"query": "industrial city smoke factory historical", "description": "十九世纪工业城市。"}
+      ],
+      "cards": [{"id": "year-card", "title_lines": ["1886"], "subtitle": "八小时工作日成为罢工诉求"}]
+    },
+    {
+      "id": "s3", "label": "成为标准",
+      "text": "三十多年后，国际劳工组织通过的第一项国际劳工公约，才把工业劳动每天八小时、每周四十八小时写成国际标准。",
+      "queries": [
+        {"query": "international conference documents signing", "description": "国际标准被写入文件。"},
+        {"query": "old document typewriter official paper", "description": "制度形成的文件质感。"},
+        {"query": "nature mountains morning landscape", "description": "历史边界打开后的呼吸感。"}
+      ],
+      "cards": [{"id": "ilo-card", "title_lines": ["每天八小时", "每周四十八小时"], "subtitle": "1919年写入国际劳工标准"}]
+    },
+    {
+      "id": "s4", "label": "为什么争取",
+      "text": "在那之前，每周工作六十多个小时并不少见。所以当年争八小时，不是因为八小时多么完美，而是人在说：一天不能全部拿去谋生，睡觉也不能算作生活的全部余款。",
+      "queries": [
+        {"query": "exhausted factory worker long shift", "description": "漫长工时后的疲惫。"},
+        {"query": "family dinner home evening together", "description": "工作之外的生活。"}
+      ]
+    },
+    {
+      "id": "s5", "label": "今天的反讽",
+      "text": "这段历史还有点扎心。前人拼命争来的终点，后来成了我们的起点；而我们又常常把起点活成没有边界。人在公司八小时，消息、焦虑和第二天的预演继续值夜班。",
+      "queries": [
+        {"query": "worker phone messages bed at night", "description": "下班后仍被工作消息占据。"},
+        {"query": "anxious employee awake bedroom night", "description": "第二天工作在脑内提前值班。"},
+        {"query": "nature dark forest dawn light", "description": "从无边界的黑暗走向清晨。"}
+      ]
+    },
+    {
+      "id": "s6", "label": "收束",
+      "text": "真正该继承的，也许不只是“八小时”这个数字，而是数字背后的那句话：人的一天，必须有一部分不属于工作。",
+      "queries": [{"query": "person walking outside after work sunset freedom", "description": "走出工作空间，回到自己的生活。"}],
+      "cards": [{"id": "landing-card", "title_lines": ["人的一天"], "subtitle": "必须有一部分不属于工作"}]
+    }
+  ]
+}

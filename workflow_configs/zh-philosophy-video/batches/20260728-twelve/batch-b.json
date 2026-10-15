@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "batch_id": "treeelf-batch-zh-20260728-b",
+  "queue_depth": 2,
+  "episode_configs": [
+    "first-thought-channel-20260728.json",
+    "scrolling-is-not-rest-20260728.json",
+    "feeling-without-confession-20260728.json",
+    "resume-out-of-court-20260728.json",
+    "sincerity-after-absurdity-20260728.json",
+    "watch-the-full-film-20260728.json"
+  ]
+}

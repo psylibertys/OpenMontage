@@ -1,0 +1,344 @@
+{
+ "194": {
+  "inputs": {
+   "unet_name": "h3\\minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+   "weight_dtype": "default"
+  },
+  "class_type": "UNETLoader",
+  "_meta": {
+   "title": "Load Diffusion Model"
+  }
+ },
+ "195": {
+  "inputs": {
+   "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+   "type": "minimax",
+   "device": "default"
+  },
+  "class_type": "CLIPLoader",
+  "_meta": {
+   "title": "Load CLIP"
+  }
+ },
+ "196": {
+  "inputs": {
+   "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "198": {
+  "inputs": {
+   "label_json": "{\"text\":\"Minimax H3 - Reference Image + Audio Sync - SPEAK + Speed Lora\",\"fontSize\":31,\"fontFamily\":\"Arial\",\"fontColor\":\"#ffffff\",\"textAlign\":\"left\",\"backgroundColor\":\"#f66744\",\"padding\":10,\"borderRadius\":0,\"opacity\":1,\"fontWeight\":\"normal\",\"lineHeight\":1}"
+  },
+  "class_type": "PixaromaLabel",
+  "_meta": {
+   "title": "Label Pixaroma"
+  }
+ },
+ "212": {
+  "inputs": {
+   "note_json": "{\"version\":1,\"content\":\"<h1>MODELS AND NODES USED IN THIS WORKFLOW</h1><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><h2><span data-ic=\\\"model-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load Diffusion Model</h2><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download minimax_h3_ref2va_pruned_int8_convrot.safetensors<span class=\\\"pix-note-btnsize\\\">19.5 GB</span></a></span>&nbsp;\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/diffusion_models/h3</div><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>Create the <code>h3</code> folder if it does not exist.</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/MiniMax-H3/tree/main/diffusion_models\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">More versions</a>\\n</span>&nbsp;<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">READ LICENSE</a></span>&nbsp;<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/QA-about-License.md\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">More About LICENSE</a></span>&nbsp;</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><h2><span data-ic=\\\"CLIP\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load CLIP</h2><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors<span class=\\\"pix-note-btnsize\\\">14.6 GB</span></a>\\n</span>&nbsp;\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/text_encoders</div><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><h2><span data-ic=\\\"VAE\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load VAE</h2><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download minimax_h3_video_vae_fp16.safetensors<span class=\\\"pix-note-btnsize\\\">4.9 GB</span></a>\\n</span>&nbsp;\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download minimax_h3_audio_vae_fp32.safetensors<span class=\\\"pix-note-btnsize\\\">577 MB</span></a>\\n</span>&nbsp;\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/vae<br></div><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #ffffff\\\"><h3>Custom Chat GPT</h3><p><span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-rm\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://chatgpt.com/g/g-6a71f08838cc8191994ae82634d5c4e4-h3-reference-model-prompts\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Custom ChatGPT for H3 for Reference Model Prompting (Beta)</a></span>&nbsp;</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p><span data-ic=\\\"warning-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;After placing the files, restart ComfyUI or refresh model lists using the <b>R</b> shortcut.</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><h2><span data-ic=\\\"nodes-installed\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Nodes Installed from Manager</h2><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><ul>\\n  <li>Pixaroma</li>\\n</ul><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #b8b8b8\\\"><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><h2><span data-ic=\\\"pixaroma\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Resources</h2><p>\\n\\n</p><p>\\n\\n</p><p>\\n\\n</p><p>\\n  <a class=\\\"pix-note-discord\\\" href=\\\"https://discord.com/invite/gggpkVgBf3\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Join Discord</a>&nbsp;\\n  <a class=\\\"pix-note-yt\\\" href=\\\"https://www.youtube.com/@pixaroma\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Pixaroma YouTube Channel</a>&nbsp;\\n</p>\",\"buttonColor\":\"#f66744\",\"lineColor\":\"#f66744\",\"width\":550.5611758382192,\"height\":768.8772678618772,\"backgroundColor\":\"#2a2a2a\"}"
+  },
+  "class_type": "PixaromaNote",
+  "_meta": {
+   "title": "Note Pixaroma"
+  }
+ },
+ "213": {
+  "inputs": {
+   "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "224": {
+  "inputs": {
+   "conditioning": [
+    "237",
+    0
+   ]
+  },
+  "class_type": "ConditioningZeroOut",
+  "_meta": {
+   "title": "Conditioning Zero Out"
+  }
+ },
+ "225": {
+  "inputs": {
+   "seed": 901679187340527,
+   "steps": [
+    "253",
+    2
+   ],
+   "cfg": 1,
+   "sampler_name": [
+    "253",
+    0
+   ],
+   "scheduler": [
+    "253",
+    1
+   ],
+   "denoise": 1,
+   "model": [
+    "248",
+    0
+   ],
+   "positive": [
+    "237",
+    0
+   ],
+   "negative": [
+    "224",
+    0
+   ],
+   "latent_image": [
+    "248",
+    1
+   ]
+  },
+  "class_type": "KSampler",
+  "_meta": {
+   "title": "KSampler"
+  }
+ },
+ "226": {
+  "inputs": {
+   "samples": [
+    "225",
+    0
+   ],
+   "vae": [
+    "196",
+    0
+   ]
+  },
+  "class_type": "VAEDecode",
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "228": {
+  "inputs": {
+   "fps": 24,
+   "filename_prefix": "Video",
+   "save_mode": "save",
+   "trim_to_audio": false,
+   "audio_fade_ms": 0,
+   "video_frames": [
+    "226",
+    0
+   ],
+   "audio": [
+    "248",
+    2
+   ],
+   "CivitaiMeta": "0"
+  },
+  "class_type": "PixaromaSaveMp4",
+  "_meta": {
+   "title": "Save Mp4 Pixaroma"
+  }
+ },
+ "234": {
+  "inputs": {
+   "DurationState": "{\"seconds\":5,\"fps\":24,\"step\":17,\"plus\":5,\"minFrames\":5,\"mode\":\"recipe\",\"formula\":\"\"}"
+  },
+  "class_type": "PixaromaDuration",
+  "_meta": {
+   "title": "1. Set Duration"
+  }
+ },
+ "235": {
+  "inputs": {},
+  "class_type": "PixaromaRunTimer",
+  "_meta": {
+   "title": "Run Timer Pixaroma"
+  }
+ },
+ "236": {
+  "inputs": {
+   "image": "BunnyMan.jpeg",
+   "LoadImageMiniState": "{\"version\":1,\"mode\":\"off\",\"max_mp\":1,\"longest_side\":1024,\"scale_factor\":1,\"fit_w\":1024,\"fit_h\":1024,\"cover_w\":1024,\"cover_h\":1024,\"ratio_preset\":\"1:1\",\"ratio_w\":1,\"ratio_h\":1,\"ratio_action\":\"crop\",\"pad_color\":\"#808080\",\"pad_top\":0,\"pad_bottom\":0,\"pad_left\":0,\"pad_right\":0,\"crop_anchor\":\"center\",\"crop_scale\":true,\"snap\":0,\"resample\":\"auto\",\"allow_upscale\":true,\"orig_name\":\"BunnyMan.jpeg\"}"
+  },
+  "class_type": "PixaromaLoadImageMini",
+  "_meta": {
+   "title": "3. Load Image"
+  }
+ },
+ "237": {
+  "inputs": {
+   "prompt": [
+    "239",
+    0
+   ],
+   "width": [
+    "243",
+    1
+   ],
+   "height": [
+    "243",
+    2
+   ],
+   "length": [
+    "234",
+    0
+   ],
+   "ref_image_size": "match",
+   "clip": [
+    "195",
+    0
+   ],
+   "vae": [
+    "196",
+    0
+   ],
+   "audio_vae": [
+    "213",
+    0
+   ],
+   "ref_images.ref_image_0": [
+    "243",
+    0
+   ],
+   "ref_audios.ref_audio_0": [
+    "247",
+    0
+   ]
+  },
+  "class_type": "MiniMaxH3ReferenceToVideo",
+  "_meta": {
+   "title": "MiniMax H3 Reference to Video"
+  }
+ },
+ "239": {
+  "inputs": {
+   "PromptState": "{\"text\":\"subject_definitions:\\n<Picture 1> is the first frame and composition anchor for [Shot 1], defining the complete visible image exactly as supplied, including the framing, camera viewpoint, subject placement, subject scale, crop, foreground-to-background relationship, whatever forms the area behind and around the subject, lighting, shadows, colors, gradients, depth cues, and overall scene composition. Its rendering style, whether photographic, illustrated, stylised, or three-dimensional, is part of what is preserved.\\n<Subject 1> is the main visible speaking figure defined by <Picture 1>, preserved exactly as it appears there. Whatever <Subject 1> already is remains unchanged: its form, proportions, head shape, facial structure, surface, colors, markings, and every visible garment, covering, accessory, and detail. Nothing is added that is not already visible in <Picture 1>, and nothing visible is removed, replaced, simplified, or reinterpreted.\\n<Subject 2> is the complete visible area behind, beneath, beside, and around <Subject 1> as defined by <Picture 1>, preserving its exact colors, surfaces, objects if any are present, spatial layout, lighting, shadows, gradients, and depth. Whatever that area looks like in <Picture 1> is exactly what it looks like in the target video, including its overall tone and brightness, and it is never exchanged for a different kind of surrounding. If objects are present, exactly those objects remain, and no further ones appear.\\n<Audio 1> is the complete supplied speech recording reused as the vocal performance for <Subject 1> (S1), preserving its original timing, pauses, cadence, delivery, and voice character.\\n\\nsummary:\\n[keyframe completion + audio reuse] The target video begins from <Picture 1> and animates <Subject 1> speaking in one continuous fixed-camera shot, preserving the supplied framing, the exact appearance of <Subject 1>, and the complete visible area represented by <Subject 2>, with <Audio 1> reused directly for synchronized speech.\\n\\nretention_analysis:\\n<Picture 1> ([Shot 1] first frame): fully_preserved - the supplied image remains the composition anchor, retaining its viewpoint, framing, crop, subject placement, subject scale, complete surroundings, lighting, and rendering style.\\n<Subject 1> (appears in [Shot 1]): fully_preserved - the appearance shown in the reference remains intact in every visible respect, with only natural speech-related motion permitted.\\n<Subject 2> (appears in [Shot 1]): fully_preserved - the referenced surroundings remain visually identical, with nothing substituted, added, or removed.\\n<Audio 1>: fully_copy - the supplied recording is reused directly with its original timing, pauses, cadence, delivery, and voice character.\\n\\ndetailed_description:\\nThe target video develops directly from the complete supplied image in <Picture 1>, preserving its rendering style, color treatment, lighting, composition, and full visible scene. <Picture 1> is the actual starting frame, not merely an appearance reference for the foreground.\\n[Shot 1] The shot begins from <Picture 1> and the camera holds completely still for the entire clip, keeping the exact viewpoint, framing, crop, subject scale, and placement of the reference image. <Subject 1> keeps the exact appearance established in <Picture 1> in every visible respect, and no feature, marking, covering, or accessory is introduced that is not already present there. <Subject 2> keeps the complete visible area exactly as referenced, including its colors, surfaces, tonal transitions, gradients, shadows, lighting direction, and depth. <Subject 1> is never lifted out of the supplied scene and placed into a newly generated one, and the surroundings are never exchanged for a different setting. The tone and brightness of the area around <Subject 1> match <Picture 1> exactly, neither darker nor lighter. The camera remains fixed, with no zoom, push in, pull out, pan, truck, tilt, arc, tracking movement, reframing, or composition drift. From the beginning of the reused vocal performance, <Subject 1> (S1) speaks using the directly reused <Audio 1> signal, and the mouth moves clearly through every audible syllable, staying synchronized with the original timing, pauses, rhythm, and cadence. During brief pauses the mouth relaxes naturally before resuming. Blinks, restrained expression changes, small head motion, and minimal upper-body movement support the delivery without altering the referenced composition. Flexible details such as clothing, hair, or other loose elements show only slight natural secondary motion. <Subject 2> remains stable throughout, with no transformation, replacement, recoloring, expansion, or change of location. When <Audio 1> ends, <Subject 1> closes the mouth, returns to a relaxed non-speaking expression, and settles naturally while the original framing and complete referenced scene remain recognizable.\\n\\noverall_soundscape:\\n<Audio 1> remains the directly reused primary audible layer. No additional environmental or physical-action sounds are added over the reused recording.\\n\\nnon_diegetic_music:\\nN/A\",\"order\":\"mine\",\"sep\":\", \"}"
+  },
+  "class_type": "PixaromaPrompt",
+  "_meta": {
+   "title": "4. The Prompt (Universal but you can adjust if you want)"
+  }
+ },
+ "243": {
+  "inputs": {
+   "image": [
+    "236",
+    0
+   ],
+   "LongestSideState": "{\"size\":864,\"ratio\":\"keep\",\"step\":32,\"anchor\":\"center\",\"allow_upscale\":true,\"resample\":\"auto\"}"
+  },
+  "class_type": "PixaromaLongestSide",
+  "_meta": {
+   "title": "5. Longest Side (Select the max size you want)"
+  }
+ },
+ "247": {
+  "inputs": {
+   "seconds": [
+    "234",
+    1
+   ],
+   "LoadAudioState": "{\"file\":\"Bunny 5 sec voice.wav\",\"start\":0,\"length\":5,\"whenUnwired\":\"whole\",\"whenShort\":\"silence\"}"
+  },
+  "class_type": "PixaromaLoadAudio",
+  "_meta": {
+   "title": "2. Upload Audio and adjust duration"
+  }
+ },
+ "248": {
+  "inputs": {
+   "model": [
+    "250",
+    0
+   ],
+   "latent": [
+    "237",
+    1
+   ],
+   "audio_vae": [
+    "213",
+    0
+   ],
+   "track": [
+    "247",
+    0
+   ],
+   "H3SyncState": "{\"limit\":15,\"overMode\":\"warn\",\"whenShort\":\"silence\"}"
+  },
+  "class_type": "PixaromaH3AudioSync",
+  "_meta": {
+   "title": "H3 Audio Sync Pixaroma"
+  }
+ },
+ "249": {
+  "inputs": {
+   "model": [
+    "194",
+    0
+   ],
+   "LoraLoaderState": "{\"version\":1,\"sep\":\", \",\"cacheMode\":\"last\",\"loras\":[{\"name\":\"h3\\\\minimax_h3_fl2v_turbo_4step_v1.1_768p_comfyui_bf16.safetensors\",\"on\":true,\"sm\":1,\"sc\":1,\"triggers\":[]}]}"
+  },
+  "class_type": "PixaromaLoraLoader",
+  "_meta": {
+   "title": "LoRA Loader Pixaroma"
+  }
+ },
+ "250": {
+  "inputs": {
+   "shift_video": 6,
+   "shift_audio": 3,
+   "model": [
+    "249",
+    0
+   ]
+  },
+  "class_type": "MiniMaxH3SigmaShift",
+  "_meta": {
+   "title": "Shift 6 (for the Speed LoRA)"
+  }
+ },
+ "251": {
+  "inputs": {
+   "value": [
+    "226",
+    0
+   ],
+   "FreeVramState": "{\"mode\":\"all\",\"gc\":true,\"everyRun\":true,\"useThreshold\":false,\"thresholdGb\":8}"
+  },
+  "class_type": "PixaromaFreeVram",
+  "_meta": {
+   "title": "Free VRAM Pixaroma"
+  }
+ },
+ "252": {
+  "inputs": {},
+  "class_type": "PixaromaMonitor",
+  "_meta": {
+   "title": "Monitor Pixaroma"
+  }
+ },
+ "253": {
+  "inputs": {
+   "DropdownState": "{\"version\":1,\"types\":[\"text\",\"text\",\"int\"],\"values\":[\"euler\",\"simple\",\"4\"]}"
+  },
+  "class_type": "PixaromaDropdown",
+  "_meta": {
+   "title": "Sampler + Scheduler + Steps (tested)"
+  }
+ },
+ "254": {
+  "inputs": {
+   "note_json": "{\"version\": 1, \"content\": \"<h1>SETTINGS FOR THIS WORKFLOW</h1><p>This is the <strong>ref2va</strong> model, which is a different model file from the first frame and text to video workflows. The settings were measured on <strong>this</strong> model, not copied across.</p><hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #f66744\\\"><h2>PICK ONE FROM THE DROPDOWN</h2><table class=\\\"pix-note-grid\\\" style=\\\"--pix-note-grid-border: #f66744; --pix-note-grid-header-bg: #1a1a1a\\\"><thead><tr><th>Combination</th><th>Steadiness</th><th>Grain</th><th>Time</th><th>Notes</th></tr></thead><tbody><tr><td><strong>euler + simple</strong></td><td><strong>5.21</strong></td><td><strong>14.51</strong></td><td>28s</td><td>The default here.</td></tr><tr><td>res_multistep + simple</td><td>5.18</td><td>14.92</td><td>28s</td><td>Tied with it. Nothing separates them.</td></tr><tr><td>euler + sgm_uniform</td><td>5.36</td><td>14.53</td><td>28s</td><td>Fine.</td></tr><tr><td>euler + beta</td><td>5.56</td><td>14.66</td><td>28s</td><td>Fine.</td></tr><tr><td>dpmpp_sde_gpu + sgm_uniform</td><td>7.50</td><td>14.58</td><td><strong>38s</strong></td><td><strong>Do not use here.</strong> It zooms in and crops the frame instead of keeping the reference framing, and it is slower.</td></tr></tbody></table><p><br></p><h2>NEVER USE ddim_uniform</h2><p>It does not just look worse, it <strong>replaces the scene</strong>. In testing on this exact workflow the background turned into a wall of sweet packet graphics and the cream onesie became a blue cartoon jumper. The character and the room, which are the whole point of this workflow, were gone.</p><p>The same thing happened on the first frame and the text to video models. Three different models, the same result.</p><p>Worth knowing: its steadiness score was 7.01, <strong>better</strong> than a pairing that actually works. A single number would have ranked the disaster higher. What exposed it was the grain figure (23.76 against 14.5) and looking at the frames.</p><p><br></p><h2>WHY 4 STEPS IS ENOUGH HERE</h2><p>The other workflows use 8 steps, because at 4 steps the <strong>generated</strong> sound is worse (found by blind listening, confirmed twice). Here the sound is <strong>yours</strong>, locked in by the Audio Sync node, so that reason disappears. The picture measured the same at 4 and 8, so 4 steps is the right choice and saves 10 seconds a clip.</p><p>The Dropdown has an 8 step option if you want to compare on a particular shot.</p><p><br></p><h2>OTHER SETTINGS</h2><p><strong>Shift 6 and 3</strong> on the node feeding the sampler. Leave them.</p><p><strong>Audio fade is 0 and should stay 0.</strong> The fade exists to hide a click that the model puts at the start of sound it generates itself. Your track is supplied, so there is no click to hide, and a fade would just quietly alter your audio.</p><p><strong>Control after generate</strong> under the seed: set it to <strong>fixed</strong> once you find a take you like, or the seed moves on the next run and you cannot get it back.</p>\", \"buttonColor\": \"#f66744\", \"lineColor\": \"#f66744\", \"width\": 650.0, \"height\": 1000.0, \"backgroundColor\": \"#2a2a2a\"}"
+  },
+  "class_type": "PixaromaNote",
+  "_meta": {
+   "title": "Settings (tested)"
+  }
+ }
+}

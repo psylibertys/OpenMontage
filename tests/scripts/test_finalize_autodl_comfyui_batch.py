@@ -1,29 +1,76 @@
+import hashlib
+import json
 from pathlib import Path
 
 import pytest
 
 from scripts.finalize_autodl_comfyui_batch import (
-    _backup_path,
+    _inventory_rows,
     _retention_payload,
+    _verify_local_inventory,
     remote_runtime_manifest,
 )
 import scripts.finalize_autodl_comfyui_batch as workflow
 
 
-def test_backup_path_preserves_runtime_subtree(tmp_path: Path):
-    result = _backup_path(
-        tmp_path,
-        "/root/autodl-tmp/comfyui-runtime/output/video/final.mp4",
-    )
-    assert result == tmp_path / "runtime" / "output" / "video" / "final.mp4"
+def test_inventory_rows_supports_batch_and_flat_schemas():
+    assert _inventory_rows({"assets": [{"path": "flat"}]}) == [
+        {"path": "flat"}
+    ]
+    assert _inventory_rows({
+        "episodes": [
+            {"assets": [{"path": "one"}]},
+            {"assets": [{"path": "two"}]},
+        ]
+    }) == [{"path": "one"}, {"path": "two"}]
 
 
-def test_backup_path_places_explicit_extra_file_separately(tmp_path: Path):
-    result = _backup_path(
-        tmp_path,
-        "/root/autodl-tmp/comfyui-models/qwen-tts/voices/voice.qvp",
-    )
-    assert result == tmp_path / "extra" / "voice.qvp"
+def test_verify_local_inventory_accepts_project_owned_asset(
+    monkeypatch, tmp_path: Path
+):
+    monkeypatch.setattr(workflow, "PROJECT_ROOT", tmp_path)
+    asset = tmp_path / "projects" / "episode" / "assets" / "image.png"
+    asset.parent.mkdir(parents=True)
+    asset.write_bytes(b"current-batch-asset")
+    inventory = tmp_path / "projects" / "batch" / "artifacts" / "gpu_asset_inventory.json"
+    inventory.parent.mkdir(parents=True)
+    inventory.write_text(json.dumps({
+        "assets": [{
+            "path": str(asset),
+            "size": asset.stat().st_size,
+            "sha256": hashlib.sha256(asset.read_bytes()).hexdigest(),
+        }]
+    }))
+
+    verified = _verify_local_inventory(inventory)
+
+    assert verified == [{
+        "path": str(asset.resolve()),
+        "size": asset.stat().st_size,
+        "sha256": hashlib.sha256(asset.read_bytes()).hexdigest(),
+        "verified": True,
+    }]
+
+
+def test_verify_local_inventory_rejects_hash_mismatch(
+    monkeypatch, tmp_path: Path
+):
+    monkeypatch.setattr(workflow, "PROJECT_ROOT", tmp_path)
+    asset = tmp_path / "projects" / "episode" / "assets" / "image.png"
+    asset.parent.mkdir(parents=True)
+    asset.write_bytes(b"changed")
+    inventory = tmp_path / "projects" / "batch" / "artifacts" / "gpu_asset_inventory.json"
+    inventory.parent.mkdir(parents=True)
+    inventory.write_text(json.dumps({
+        "assets": [{
+            "path": str(asset),
+            "size": asset.stat().st_size,
+            "sha256": "0" * 64,
+        }]
+    }))
+
+    with pytest.raises(SystemExit, match="verification failed"):
+        _verify_local_inventory(inventory)
 
 
 def test_retention_payload_only_selects_declared_cleanup_roots():

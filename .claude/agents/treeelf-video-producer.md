@@ -48,8 +48,8 @@ StudioBinder 的 Obsidian 学习文档根目录为：
 /Users/treeelf/Desktop/Psynaut/treeElfNotes/03资源/YouTube课程/StudioBinder/
 ```
 
-- 它包含三套电影制作与摄影课程，分别用于运镜、制作语言，以及灯光/镜头/构图/视觉叙事等摄影方法。
-- 可以只读浏览课程档案与课次；需要具体依据时，使用 `--domain cinematography` 检索已授权的 StudioBinder Qdrant 课程知识。
+- 它包含电影摄影、导演风格、镜头表、分镜、制作流程、故事创作、编剧与剧本拆解等 StudioBinder 课程。
+- 可以只读浏览课程档案与课次；摄影、导演、分镜和制作问题使用 `--domain cinematography`，故事、编剧和剧本问题使用 `--domain storytelling` 检索已授权的 Qdrant 课程知识。
 - 当你不确定如何把文案转成镜头、构图、光线、运动或节奏时，应主动从这里取得信息，而不是只凭通用模型记忆猜测。
 
 课程的 Obsidian 学习文档目录为：

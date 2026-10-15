@@ -1,0 +1,95 @@
+{
+  "project_id": "work-freedom-clock-time-20260812",
+  "title": "是谁把一天切成了小时",
+  "cover_title": "出售时间",
+  "cover_lines": ["是谁把一天", "切成了小时"],
+  "profile": "youtube_landscape",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "remotion_timeout_ms": 600000,
+  "retention": {"cleanup_remotion_public": true, "cleanup_intermediate_renders": false},
+  "stock_library": {
+    "enabled": false,
+    "download_sources": ["pexels", "pixabay", "mixkit"],
+    "rotate_download_sources": true
+  },
+  "target_platform": "16:9 landscape",
+  "target_duration_seconds": 105,
+  "tone": "克制、历史感、清醒",
+  "target_audience": "关注工作制度、时间自由与生活选择的中文观众",
+  "key_points": ["任务时间曾经比钟表时间重要", "工业化把时间变成可购买的商品", "时间也被用来审判人生"],
+  "core_message": "我们失去的不只是时间，而是决定一段时间怎样度过的权利。",
+  "voice_style": "成年女性普通话声线，中速，清晰、自然、带一点追问感",
+  "speaker_directions": "像向朋友讲一个反常识的历史故事；开头有轻微讽刺，中段客观，结尾放慢并留出思考。",
+  "tts": {"provider": "edge", "version": "7.2.7", "voice": "zh-CN-XiaoxiaoNeural", "rate": "+0%", "pitch": "+0Hz", "volume": "+0%", "generation_mode": "single_pass"},
+  "music": {"library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐", "preferred_keywords": ["ambient", "piano", "documentary", "纯音乐"]},
+  "style": {
+    "card_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "cover_font": "fronts/漓雨手书_100font/LiyuXingkai.ttf",
+    "black_overlay_opacity": 0.52,
+    "cover_enabled": true,
+    "cover_duration_frames": 1,
+    "cover_font_size": 220,
+    "card_title_font_size": 128,
+    "card_subtitle_font_size": 50,
+    "card_line_gap": 30,
+    "title_color_rgb": [248, 246, 231],
+    "accent_color_rgb": [214, 179, 90],
+    "subtitle_color": "#FFFFFF",
+    "subtitle_outline_color": "#000000",
+    "subtitle_outline_width": 3,
+    "subtitle_font_size": 52,
+    "music_start_seconds": 0,
+    "music_volume": 0.08
+  },
+  "sections": [
+    {
+      "id": "s1", "label": "迟到与加班",
+      "text": "如果你晚到公司十分钟，这十分钟像从公司保险柜里偷走的。可如果你晚上多回了半小时消息，它常常又轻得像没发生过。",
+      "queries": [
+        {"query": "office worker checking clock arriving late", "description": "上班族匆忙看表。"},
+        {"query": "employee answering messages late night office", "description": "夜里继续回复工作消息。"},
+        {"query": "nature morning sunlight landscape", "description": "自然光线与钟表时间形成对照。"}
+      ]
+    },
+    {
+      "id": "s2", "label": "格子化时间",
+      "text": "我们今天太习惯把时间看成一排整齐的格子：九点上班，十二点吃饭，六点下班。人要准时进入，最好还能自动对齐。",
+      "queries": [
+        {"query": "clock time lapse office building", "description": "办公楼与快速流逝的时间。"}
+      ],
+      "cards": [{"id": "grid-card", "title_lines": ["九点上班", "六点下班"], "subtitle": "人被塞进整齐的时间格子"}]
+    },
+    {
+      "id": "s3", "label": "任务时间",
+      "text": "但很长时间里，普通人的劳动不是这样组织的。很多农活和手艺活跟着事情走：牛挤完了，田收好了，布织到了该停的地方。衡量一天的，不只是钟走了几格，而是事情做到了哪里。",
+      "queries": [
+        {"query": "farmer working field harvest sunset", "description": "劳动跟着农事进度进行。"},
+        {"query": "artisan hands traditional weaving workshop", "description": "手艺人依据事情完成度工作。"}
+      ]
+    },
+    {
+      "id": "s4", "label": "工业化",
+      "text": "工业化改变的，不只是人们开始看表。工厂需要许多人同时到场，机器才能连续运转。于是时间被切得更细，也变得可以买卖：雇主买下几小时，迟到就不再只是来晚了，而像少交了一块货。",
+      "queries": [
+        {"query": "industrial factory machines workers assembly line", "description": "同步运转的工人与机器。"},
+        {"query": "factory time clock punching card", "description": "工时成为可计算的商品。"},
+        {"query": "nature river flowing landscape", "description": "自然连续流动与切割时间形成反差。"}
+      ],
+      "cards": [{"id": "commodity-card", "title_lines": ["时间", "变成商品"], "subtitle": "雇主买下你的几个小时"}]
+    },
+    {
+      "id": "s5", "label": "钟表的两面",
+      "text": "钟表当然没有发明压迫。它也让约会、交通和协作成为可能。真正值得留意的是，我们后来不只用钟表安排工作，还用它审判人生：发呆十分钟叫浪费，加班半小时却叫上进。",
+      "queries": [
+        {"query": "train station clock people commuting", "description": "钟表带来的现代协作。"},
+        {"query": "tired employee overtime empty office night", "description": "加班被包装成上进。"}
+      ]
+    },
+    {
+      "id": "s6", "label": "收束",
+      "text": "也许我们丢掉的不是时间，而是决定一段时间应该怎样度过的权利。",
+      "queries": [{"query": "person sitting quietly by window sunset", "description": "重新拥有时间的安静瞬间。"}],
+      "cards": [{"id": "landing-card", "title_lines": ["你丢掉的", "不只是时间"], "subtitle": "还有决定时间怎样度过的权利"}]
+    }
+  ]
+}

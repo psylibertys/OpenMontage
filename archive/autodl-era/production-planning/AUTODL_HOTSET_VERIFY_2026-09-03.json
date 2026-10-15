@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-03T11:05:00+08:00",
+  "instance_id": "916b4d8f93-484e4934",
+  "ssh_alias": "autodl-comfyui",
+  "mode": "powered_off",
+  "session": "teachers-day-clay-bouquet window 1 no-GPU verify session",
+  "findings": {
+    "data_disk_quota": "50G (XFS prjquota on /root/autodl-tmp via /dev/md0) — NOT 73G as assumed by AUTODL_HOT_MODEL_PROFILES_73GB.json",
+    "hot_root_state": "window-1 hot set already present (restored 2026-08-14 by an earlier session), not empty as AUTODL_REBUILD_LIVE_STATE_2026-08-13.json recorded",
+    "sha256_verification": {
+      "krea2_group": "exact match vs warm root (diffusion_models/krea2/ + qwen3vl_4b_fp8_scaled.safetensors + qwen_image_vae.safetensors)",
+      "qwen_tts": "all common files match by hash/size; 6 extra files on hot = preserved cat_machine voice assets (not in warm root)"
+    },
+    "preserved_extra_assets": [
+      "qwen-tts/voices/cat_machine_old_cat_v1.{json,qvp,wav}",
+      "qwen-tts/voices/cat_machine_robot_v1.{json,qvp,wav}"
+    ],
+    "local_voice_backup": "projects/teachers-day-clay-bouquet/assets/server-voice-backup/ (SHA-256 recorded)"
+  },
+  "disk_math_for_50g_quota": {
+    "current_used": "31G (krea2 18.6 + qwen-tts 14.3 + runtime)",
+    "window1": "ready as-is, ~20G free",
+    "window2_problem": "wan22_i2v 31G cannot coexist with 20GB-minimum-free rule on a 50G quota even after deleting krea2 (31+20>50); user decision required: expand data disk or relax rule for window 2"
+  },
+  "window1_readiness": {
+    "manifest": "projects/teachers-day-clay-bouquet/assets/window1_manifest.json (17 jobs, validated)",
+    "runner": "scripts/teachers_day_clay_gpu_batch.py (tests: tests/scripts/test_teachers_day_clay_gpu_batch.py, 5 passed)",
+    "retention": "projects/teachers-day-clay-bouquet/assets/retention-window1.json",
+    "first_gpu_command": "production-planning/scripts/with-autodl-comfyui-tunnel.sh -- .venv/bin/python scripts/teachers_day_clay_gpu_batch.py --manifest projects/teachers-day-clay-bouquet/assets/window1_manifest.json"
+  },
+  "shutdown": {
+    "method": "sync; shutdown -h now",
+    "reason": "no-GPU verify session complete; GPU-lifecycle discipline (user standing rule 2026-09-03)",
+    "completed_at": "2026-09-03T10:46:00+08:00"
+  },
+  "window2_no_gpu_prep_2026_09_03": {
+    "file_store_mount": "/autodl-fs (7T, user quota 200G at /autodl-fs/data)",
+    "warm_root": "/autodl-fs/data/comfyui-models",
+    "wan22_i2v_sha256": "4/4 exact match vs comfyui-models-manifest-20260813.tsv (umt5_xxl_fp8, wan_2.1_vae, high+low noise Q6_K GGUF)",
+    "approach": "Plan A as user selected: extra_model_paths.yaml at /root/ComfyUI-Easy-Install/ComfyUI/extra_model_paths.yaml points warm_store_nm_b1 -> base_path /autodl-fs/data/comfyui-models (text_encoders/vae/diffusion_models/loras); data disk untouched, krea2 not deleted",
+    "cpu_preflight": "ComfyUI 0.28.0 --cpu: wan22_i2v_q6 PASS, krea2_low_vram PASS (12/15 total; 3 fails = off-hot-set templates); startup scan over network mount adds ~90s",
+    "gpu_window2_ready": "window2_manifest.json (8 jobs: s6-repair x2 + wan-i2v x6) may run at next GPU boot via ensure script (env file with token persists; extra_model_paths persists on system disk)"
+  }
+}

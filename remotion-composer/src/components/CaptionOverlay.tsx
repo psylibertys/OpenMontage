@@ -1,8 +1,6 @@
 import {
   AbsoluteFill,
   Sequence,
-  interpolate,
-  spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -25,6 +23,8 @@ interface CaptionOverlayProps {
   outlineColor?: string;
   outlineWidth?: number;
   fontFamily?: string;
+  bottomPx?: number;
+  maxWidth?: string | number;
 }
 
 interface CaptionPage {
@@ -47,6 +47,9 @@ function buildPages(words: WordCaption[], wordsPerPage: number): CaptionPage[] {
   return pages;
 }
 
+const needsWordSpace = (current: string, next: string): boolean =>
+  /[A-Za-z0-9]$/.test(current) && /^[A-Za-z0-9]/.test(next);
+
 const PageRenderer: React.FC<{
   page: CaptionPage;
   fontSize: number;
@@ -56,6 +59,8 @@ const PageRenderer: React.FC<{
   outlineColor: string;
   outlineWidth: number;
   fontFamily: string;
+  bottomPx: number;
+  maxWidth: string | number;
 }> = ({
   page,
   fontSize,
@@ -65,35 +70,29 @@ const PageRenderer: React.FC<{
   outlineColor,
   outlineWidth,
   fontFamily,
+  bottomPx,
+  maxWidth,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
   const currentMs = page.startMs + (frame / fps) * 1000;
 
-  // Spring entrance
-  const entrance = spring({
-    frame,
-    fps,
-    config: { damping: 18, stiffness: 120 },
-  });
-
   return (
     <AbsoluteFill
       style={{
         justifyContent: "flex-end",
         alignItems: "center",
-        paddingBottom: 80,
+        paddingBottom: bottomPx,
       }}
     >
       <div
         style={{
-          opacity: entrance,
-          transform: `translateY(${interpolate(entrance, [0, 1], [20, 0])}px)`,
+          opacity: 1,
           backgroundColor,
           borderRadius: 12,
           padding: "14px 28px",
-          maxWidth: "80%",
+          maxWidth,
           textAlign: "center",
         }}
       >
@@ -122,7 +121,11 @@ const PageRenderer: React.FC<{
                     : `0 0 14px ${outlineColor}, 0 2px 5px ${outlineColor}`,
                 }}
               >
-                {w.word}{i < page.words.length - 1 ? " " : ""}
+                {w.word}
+                {i < page.words.length - 1 &&
+                needsWordSpace(w.word, page.words[i + 1].word)
+                  ? " "
+                  : ""}
               </span>
             );
           })}
@@ -142,6 +145,8 @@ export const CaptionOverlay: React.FC<CaptionOverlayProps> = ({
   outlineColor = "#000000",
   outlineWidth = 0,
   fontFamily = "Space Grotesk, Inter, system-ui, sans-serif",
+  bottomPx = 80,
+  maxWidth = "80%",
 }) => {
   const { fps } = useVideoConfig();
   const pages = buildPages(words, wordsPerPage);
@@ -167,6 +172,8 @@ export const CaptionOverlay: React.FC<CaptionOverlayProps> = ({
               outlineColor={outlineColor}
               outlineWidth={outlineWidth}
               fontFamily={fontFamily}
+              bottomPx={bottomPx}
+              maxWidth={maxWidth}
             />
           </Sequence>
         );

@@ -1,0 +1,323 @@
+{
+ "6": {
+  "inputs": {
+   "text": [
+    "247",
+    0
+   ],
+   "clip": [
+    "246",
+    1
+   ]
+  },
+  "class_type": "CLIPTextEncode",
+  "_meta": {
+   "title": "CLIP Text Encode (Positive Prompt)"
+  }
+ },
+ "163": {
+  "inputs": {
+   "seed": [
+    "243",
+    0
+   ],
+   "steps": 4,
+   "cfg": 1,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "denoise": 1,
+   "model": [
+    "246",
+    0
+   ],
+   "positive": [
+    "204",
+    0
+   ],
+   "negative": [
+    "205",
+    0
+   ],
+   "latent_image": [
+    "197",
+    0
+   ]
+  },
+  "class_type": "KSampler",
+  "_meta": {
+   "title": "KSampler"
+  }
+ },
+ "164": {
+  "inputs": {
+   "samples": [
+    "163",
+    0
+   ],
+   "vae": [
+    "196",
+    0
+   ]
+  },
+  "class_type": "VAEDecode",
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "190": {
+  "inputs": {
+   "conditioning": [
+    "6",
+    0
+   ]
+  },
+  "class_type": "ConditioningZeroOut",
+  "_meta": {
+   "title": "Conditioning Zero Out"
+  }
+ },
+ "194": {
+  "inputs": {
+   "unet_name": "flux2\\flux-2-klein-9b-int8-convrot.safetensors",
+   "weight_dtype": "default"
+  },
+  "class_type": "UNETLoader",
+  "_meta": {
+   "title": "Load Diffusion Model"
+  }
+ },
+ "195": {
+  "inputs": {
+   "clip_name": "qwen_3_8b_fp8mixed.safetensors",
+   "type": "flux2",
+   "device": "default"
+  },
+  "class_type": "CLIPLoader",
+  "_meta": {
+   "title": "Load CLIP"
+  }
+ },
+ "196": {
+  "inputs": {
+   "vae_name": "flux2-vae.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "197": {
+  "inputs": {
+   "width": [
+    "241",
+    1
+   ],
+   "height": [
+    "241",
+    2
+   ],
+   "batch_size": 1
+  },
+  "class_type": "EmptyFlux2LatentImage",
+  "_meta": {
+   "title": "Empty Flux 2 Latent"
+  }
+ },
+ "204": {
+  "inputs": {
+   "conditioning": [
+    "6",
+    0
+   ],
+   "latent": [
+    "206",
+    0
+   ]
+  },
+  "class_type": "ReferenceLatent",
+  "_meta": {
+   "title": "Set Reference Latent"
+  }
+ },
+ "205": {
+  "inputs": {
+   "conditioning": [
+    "190",
+    0
+   ],
+   "latent": [
+    "206",
+    0
+   ]
+  },
+  "class_type": "ReferenceLatent",
+  "_meta": {
+   "title": "Set Reference Latent"
+  }
+ },
+ "206": {
+  "inputs": {
+   "pixels": [
+    "241",
+    0
+   ],
+   "vae": [
+    "196",
+    0
+   ]
+  },
+  "class_type": "VAEEncode",
+  "_meta": {
+   "title": "VAE Encode"
+  }
+ },
+ "211": {
+  "inputs": {
+   "label_json": "{\"text\":\"Flux Klein 9b Outpaint\",\"fontSize\":36,\"fontFamily\":\"Arial\",\"fontColor\":\"#ffffff\",\"textAlign\":\"left\",\"backgroundColor\":\"#f66744\",\"padding\":10,\"borderRadius\":0,\"opacity\":1,\"fontWeight\":\"normal\",\"lineHeight\":1}"
+  },
+  "class_type": "PixaromaLabel",
+  "_meta": {
+   "title": "Label Pixaroma"
+  }
+ },
+ "215": {
+  "inputs": {
+   "image1": [
+    "241",
+    0
+   ],
+   "image2": [
+    "245",
+    0
+   ]
+  },
+  "class_type": "PixaromaCompare",
+  "_meta": {
+   "title": "Image Compare Pixaroma"
+  }
+ },
+ "226": {
+  "inputs": {
+   "filename_prefix": "img",
+   "save_mode": "save",
+   "pixaroma_buttons": null,
+   "pixaroma_strip": null,
+   "image": [
+    "245",
+    0
+   ],
+   "CivitaiMeta": "0"
+  },
+  "class_type": "PixaromaPreview",
+  "_meta": {
+   "title": "Preview Image Pixaroma"
+  }
+ },
+ "239": {
+  "inputs": {
+   "note_json": "{\"version\":1,\"content\":\"<h2>MODELS AND NODES USED IN THIS WORKFLOW</h2>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #777777\\\">\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<h3><span data-ic=\\\"model-v4\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load Diffusion Model</h3>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n<span class=\\\"pix-note-btnblock\\\"><a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Winnougan/Klein9b-Distilled-Base-INT8-Convrot/resolve/main/flux-2-klein-9b-int8-convrot.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download flux-2-klein-9b-int8-convrot.safetensors<span class=\\\"pix-note-btnsize\\\">9.4 GB</span></a></span>&nbsp;\\n\\n<br>OR</p>\\n\\n<p>\\n</p>\\n\\n<p>\\n\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/silveroxides/FLUX.2-dev-fp8_scaled/resolve/main/flux-2-klein-9b-fp8mixed.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download flux-2-klein-9b-fp8mixed.safetensors<span class=\\\"pix-note-btnsize\\\">9.4 GB</span></a>\\n</span>&nbsp;\\n\\n</p>\\n\\n<p>\\n</p>\\n\\n<div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/diffusion_models/flux2</div>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #777777\\\">\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<h3><span data-ic=\\\"CLIP\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load CLIP</h3>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/flux2-klein-9B/resolve/main/split_files/text_encoders/qwen_3_8b_fp8mixed.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download qwen_3_8b_fp8mixed.safetensors<span class=\\\"pix-note-btnsize\\\">8.06 GB</span></a>\\n</span>&nbsp;\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/text_encoders</div>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #777777\\\">\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<h3><span data-ic=\\\"LORA\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load LoRA</h3>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Pixaroma/experimental_loras/resolve/main/pixaoutpaint.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download pixaoutpaint.safetensors<span class=\\\"pix-note-btnsize\\\">127 MB</span></a>\\n</span>&nbsp;\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/loras/klein9b</div>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #777777\\\">\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<h3><span data-ic=\\\"VAE\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Load VAE</h3>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-dl\\\" style=\\\"background-color: #f66744\\\" href=\\\"https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Download flux2-vae.safetensors<span class=\\\"pix-note-btnsize\\\">320 MB</span></a>\\n</span>&nbsp;\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<div class=\\\"pix-note-folderhint\\\" style=\\\"color: #f66744\\\">Place in: ComfyUI/models/vae</div>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #777777\\\">\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p><span data-ic=\\\"warning-v1\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;After placing the files, <span style=\\\"color: #f66744\\\">restart</span> ComfyUI or refresh model lists using <span style=\\\"color: #f66744\\\">R</span> shortcut.</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #777777\\\">\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<h3><span data-ic=\\\"nodes-installed\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Custom Nodes</h3>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<ul>\\n  <li>Pixaroma</li>\\n</ul>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<hr class=\\\"pix-note-hr-solid\\\" style=\\\"color: #777777\\\">\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n</p>\\n\\n<h3><span data-ic=\\\"pixaroma\\\" class=\\\"pix-note-ic\\\" contenteditable=\\\"false\\\" style=\\\"color: #f66744\\\"></span>&nbsp;Resources</h3>\\n\\n<p>\\n\\n</p>\\n\\n<p>\\n\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-discord\\\" href=\\\"https://discord.com/invite/gggpkVgBf3\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Join Discord</a>\\n</span>&nbsp;\\n\\n<span class=\\\"pix-note-btnblock\\\">\\n  <a class=\\\"pix-note-yt\\\" href=\\\"https://www.youtube.com/@pixaroma\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Pixaroma YouTube Channel</a>\\n</span>&nbsp;</p>\",\"buttonColor\":\"#f66744\",\"lineColor\":\"#f66744\",\"width\":513.4321221443181,\"height\":657.6775632655513,\"backgroundColor\":\"#2a2a2a\"}"
+  },
+  "class_type": "PixaromaNote",
+  "_meta": {
+   "title": "Note Pixaroma"
+  }
+ },
+ "240": {
+  "inputs": {
+   "image": "Architecture.png",
+   "LoadImageMiniState": "{\"version\":1,\"mode\":\"off\",\"max_mp\":1,\"longest_side\":1024,\"scale_factor\":1,\"fit_w\":1024,\"fit_h\":1024,\"cover_w\":1024,\"cover_h\":1024,\"ratio_preset\":\"1:1\",\"ratio_w\":1,\"ratio_h\":1,\"ratio_action\":\"crop\",\"pad_color\":\"#808080\",\"pad_top\":0,\"pad_bottom\":0,\"pad_left\":0,\"pad_right\":0,\"crop_anchor\":\"center\",\"crop_scale\":true,\"snap\":0,\"resample\":\"auto\",\"allow_upscale\":true,\"orig_name\":\"Architecture.png\"}"
+  },
+  "class_type": "PixaromaLoadImageMini",
+  "_meta": {
+   "title": "Load Image Mini Pixaroma"
+  }
+ },
+ "241": {
+  "inputs": {
+   "image": [
+    "240",
+    0
+   ],
+   "OutpaintState": "{\"version\":1,\"mode\":\"ratio\",\"ratio\":\"3:2\",\"anchor\":\"centre\",\"top\":0,\"bottom\":0,\"left\":0,\"right\":0,\"limit\":1.5,\"color\":\"#808080\",\"snap\":16,\"collapsed\":false}"
+  },
+  "class_type": "PixaromaOutpaint",
+  "_meta": {
+   "title": "Outpaint Pixaroma"
+  }
+ },
+ "242": {
+  "inputs": {},
+  "class_type": "PixaromaRunTimer",
+  "_meta": {
+   "title": "Run Timer Pixaroma"
+  }
+ },
+ "243": {
+  "inputs": {
+   "SeedState": "{\"runSeed\":976771647159643}",
+   "seed": 976771647159643
+  },
+  "class_type": "PixaromaSeed",
+  "_meta": {
+   "title": "Seed Pixaroma"
+  }
+ },
+ "245": {
+  "inputs": {
+   "feather": 64,
+   "color_match": 100,
+   "image": [
+    "164",
+    0
+   ],
+   "outpaint_info": [
+    "241",
+    3
+   ]
+  },
+  "class_type": "PixaromaOutpaintStitch",
+  "_meta": {
+   "title": "Outpaint Stitch Pixaroma"
+  }
+ },
+ "246": {
+  "inputs": {
+   "model": [
+    "194",
+    0
+   ],
+   "clip": [
+    "195",
+    0
+   ],
+   "LoraLoaderState": "{\"version\":1,\"sep\":\", \",\"cacheMode\":\"last\",\"loras\":[{\"name\":\"klein9b\\\\pixaoutpaint.safetensors\",\"on\":true,\"sm\":1,\"sc\":1,\"triggers\":[]}]}"
+  },
+  "class_type": "PixaromaLoraLoader",
+  "_meta": {
+   "title": "LoRA Loader Pixaroma"
+  }
+ },
+ "247": {
+  "inputs": {
+   "text_1": "pixaoutpaint, replace the solid gray area by naturally extending the surrounding scene\n",
+   "text_2": "",
+   "JoinState": "{\"sep\":\"comma\",\"customSep\":\"\",\"skipEmpty\":true}"
+  },
+  "class_type": "PixaromaTextJoinTwo",
+  "_meta": {
+   "title": "Trigger Words + Prompt"
+  }
+ },
+ "249": {
+  "inputs": {
+   "input_1": [
+    "245",
+    0
+   ]
+  },
+  "class_type": "PixaromaMuteSwitch",
+  "_meta": {
+   "title": "Outpaint Stitch Switch"
+  }
+ }
+}

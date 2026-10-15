@@ -48,6 +48,16 @@
           "description": "Sample frames inspected from opening, middle, climax, ending",
           "properties": {
             "frames_sampled": { "type": "integer", "minimum": 4 },
+            "exact_frame_zero_reviewed": { "type": "boolean" },
+            "frame_zero_paths": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "frame_zero_title_visible": { "type": "boolean" },
+            "standalone_cover_paths": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
             "frame_paths": {
               "type": "array",
               "items": { "type": "string" }
@@ -112,6 +122,13 @@
             "subtitles_present": { "type": "boolean" },
             "coverage_ratio": { "type": "number", "minimum": 0, "maximum": 1 },
             "timing_drift_detected": { "type": "boolean" },
+            "verification_method": {
+              "type": "string",
+              "enum": ["visual_spotcheck", "final_audio_retranscription_word_alignment"]
+            },
+            "matched_word_ratio": { "type": "number", "minimum": 0, "maximum": 1 },
+            "p90_absolute_error_seconds": { "type": "number", "minimum": 0 },
+            "audit_artifact": { "type": "string" },
             "issues": {
               "type": "array",
               "items": { "type": "string" }

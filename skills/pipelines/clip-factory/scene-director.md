@@ -12,6 +12,7 @@ You are planning how each selected clip will be framed and packaged for its dest
 | Prior artifacts | `state.artifacts["script"]["script"]`, `state.artifacts["idea"]["brief"]` | Selected clips and platform goals |
 | Tools | `frame_sampler`, `scene_detect` | Visual checks and boundary inspection |
 | Playbook | Active style playbook | Layout language and safe zones |
+| Density standard | `skills/pipelines/clip-factory/information-density-standard.md` | Binding spoken-hook, playback-order, and boundary rules |
 
 ## Process
 
@@ -35,6 +36,19 @@ For each clip, define:
 - where hook text can safely appear,
 - where subtitles can live,
 - whether the speaker needs a punch-in or whether the original framing is already good.
+
+Also define the audio opening. Hook text alone is insufficient: record the exact first spoken line, its source time, and whether a cold-open reorder is used.
+
+### 2b. Prove The Edit Boundaries
+
+For every clip:
+
+- list source ranges in playback order,
+- list removed ranges and reasons,
+- read all non-contiguous joins as a single transcript,
+- reject starts/ends on fragments or unresolved references,
+- record any intentionally retained pause over 1.2 seconds and its visual reason,
+- confirm the ending stops immediately after the payoff.
 
 ### 3. Standardize The Batch
 
@@ -67,6 +81,8 @@ Each scene should map to one clip variant or one clip family deliverable. Keep `
 - hook and subtitle zones do not collide,
 - weak vertical crops are downgraded honestly,
 - the batch will feel visually consistent when rendered together.
+- spoken hooks land by 3 seconds and every clip passes the density review,
+- no EDL join creates a broken sentence.
 
 ## Common Pitfalls
 

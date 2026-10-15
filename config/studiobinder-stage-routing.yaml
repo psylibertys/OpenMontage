@@ -9,6 +9,37 @@ max_skills_per_stage: 3
 # selects only the smallest applicable set (normally one, never more than
 # max_skills_per_stage) and invokes each skill explicitly by slug.
 pipelines:
+  story-to-storyboard:
+    story_intake:
+      - slug: cinematic-intent-system
+        applicability: core
+        when: The story's premise and emotional arc must become a shared decision principle for script, scene, and export stages.
+      - slug: constraint-driven-rewrite
+        applicability: conditional
+        when: Duration, cast, or art-style limits require reshaping the story spine without losing the dramatic goal.
+
+    script:
+      - slug: screenplay-observable-interface
+        applicability: core
+        when: Abstract internal states in the story must become actions, images, or sounds the export can render.
+      - slug: narrative-time-scaling
+        applicability: core
+        when: The beat map compresses long story spans or expands decisive moments.
+      - slug: visual-motif-arc
+        applicability: conditional
+        when: A recurring object, color, or image needs a planned meaning change across beats.
+
+    scene_plan:
+      - slug: viewer-attention-relay
+        applicability: core
+        when: Attention must move deliberately between subject, clue, and action across shots.
+      - slug: motivated-camera-movement
+        applicability: core
+        when: Camera motion needs a narrative trigger rather than decoration.
+      - slug: lens-distance-viewer-position
+        applicability: core
+        when: Lens and camera distance determine intimacy, pressure, or emotional separation in a beat.
+
   cinematic:
     research:
       - slug: visual-reference-decomposition

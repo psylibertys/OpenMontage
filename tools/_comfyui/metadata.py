@@ -25,15 +25,15 @@ BUNDLED_MODEL_STACKS: dict[str, list[dict[str, Any]]] = {
     "krea2-low-vram": [
         {
             "role": "diffusion_model",
-            "name": "krea2_turbo_fp8_scaled.safetensors",
-            "quantization": "FP8 scaled",
+            "name": "krea2_turbo_int8_convrot.safetensors",
+            "quantization": "INT8 convrot",
             "destination_hint": "ComfyUI/models/diffusion_models/krea2/",
             "download_url": "https://huggingface.co/Comfy-Org/Krea-2",
         },
         {
             "role": "text_encoder",
-            "name": "qwen3vl_4b_fp8_scaled.safetensors",
-            "quantization": "FP8 scaled",
+            "name": "qwen3-vl-4b-heretic_int8.safetensors",
+            "quantization": "INT8",
             "destination_hint": "ComfyUI/models/text_encoders/",
             "download_url": "https://huggingface.co/Comfy-Org/Krea-2",
         },

@@ -3,6 +3,12 @@
   "series": "treeelf-fable",
   "source_dir": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言",
   "status_ledger": "/Users/treeelf/Desktop/psynautCode/OpenMontage/production-planning/treeelf-fable-series-status.json",
+  "source_selection": {
+    "rule": "unproduced_work_only",
+    "ignored_editorial_fields": ["status", "review_status"],
+    "exclude_when": ["completed_video_exists", "active_batch_reservation"],
+    "same_work_suffixes": ["精简版", "短版", "30秒版"]
+  },
   "delivery_dir": "/Users/treeelf/Movies/treeelf-fable",
   "delivery_policy": {
     "movies_contains": ["final_video_mp4"],
@@ -27,9 +33,11 @@
     "wan_selection_policy": "opening_fable_event_only_or_none"
   },
   "character": {
-    "selection": "story_compatible_random",
-    "allowed_protagonists": ["成年女性", "女孩", "动物", "植物", "物品", "其他非人存在"],
-    "forbidden_protagonists": ["成年男性", "中年男人", "男孩"],
+    "selection": "story_compatible_prefer_female",
+    "allowed_protagonists": ["成年女性", "成年男性", "女孩", "男孩", "动物", "植物", "物品", "其他非人存在"],
+    "forbidden_protagonists": [],
+    "gender_policy": "性别是创意选择而不是原文代词的机械映射。角色在两种性别都成立时优先女性；当人物关系、角色设定或叙事情境明显更适合男性时使用男性，并在 protagonist.selection_rationale 中说明。",
+    "appearance_policy": "根据人物身份、年代、职业和寓言气质设计年龄、脸型、发型、体态与服装；检查最近作品，避免连续复用卷发、相同年龄段、相同脸型或相同服装轮廓。",
     "episode_consistency": true,
     "cross_episode_reuse": false
   },
@@ -53,7 +61,7 @@
     "background_generator": "ComfyUI Krea 2 extra pass",
     "typography": "Remotion",
     "human_free": true,
-    "style": "symbolic object/environment cover aligned with zh-philosophy visual language: generous negative space, refined material metaphor, no character portrait",
+    "style": "symbolic object/environment artwork aligned with zh-philosophy visual language: a calm naturally open upper field, refined material metaphor, no character portrait; generation prompts describe only visible artwork and never mention typography, titles, editorial layout, posters, brands, or later text placement",
     "technical_guardrails": [
       "text-free generated image",
       "no readable text",
@@ -79,14 +87,25 @@
     "model_group_order": [
       "qwen3_tts_voice_clone_load",
       "krea2_low_vram",
-      "flux2_klein_4ref",
       "krea2_extra_pass",
+      "flux2_klein_4ref",
+      "mixed_explicit_repair",
       "wan22_i2v_q6"
     ],
     "ordinary_image_workflow": "krea2_low_vram",
     "character_consistency_workflow": "flux2_klein_4ref",
     "cover_workflow": "krea2_extra_pass",
     "wan_workflow": "wan22_i2v_q6",
+    "scheduler": {
+      "command": "run-gpu-batch",
+      "worker_limit": 2,
+      "target_queue_state": "one_running_plus_one_pending",
+      "watchdog_interval_seconds": 15,
+      "queue_idle_alert_seconds": 60,
+      "first_prompt_target_seconds": 90,
+      "target_avoidable_idle_ratio": 0.1,
+      "maximum_online_repair_attempts_per_asset": 1
+    },
     "shutdown_after_verified_batch": true
   },
   "captions": {
@@ -95,27 +114,39 @@
     "outline_color": "#000000",
     "outline_width": 3,
     "background": "transparent",
-    "safe_bottom": 360,
+    "safe_bottom": 460,
     "require_local_whisper": "/Users/treeelf/AI_Models/Whisper"
   },
   "music": {
     "selected_mix_profile": "B3-narration-first-quieter",
-    "library_dir": "/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐",
+    "library_env": "TREEELF_MUSIC_LIBRARY_DIR",
     "catalog_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/catalog-v1.json",
     "overrides_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/manual-overrides-v1.json",
     "usage_ledger_path": "/Users/treeelf/Desktop/psynautCode/OpenMontage/workflow_configs/treeelf-music/usage-ledger-v1.json",
     "selection_mode": "shared_catalog_by_fable_content",
-    "selection_policy": "Use the shared catalog, manual overrides, same-batch penalty and cross-series history; exclude lyric, watermark and unreadable files, then use deterministic weighted fallback when no keyword matches.",
+    "selection_policy": "Incrementally refresh the shared catalog, reuse the same project's active reservation, and rank by fable-semantic keywords plus same-batch and committed/reserved cross-series history; pure-music labels are qualifications rather than semantic matches.",
     "normalization": {
       "target_lufs": -18.0,
       "true_peak_dbfs": -2.0,
-      "loudness_range_lu": 7.0
+      "loudness_range_lu": 7.0,
+      "tolerance_lu": 2.0
+    },
+    "duration_policy": "loop_to_composition_duration_with_final_fade",
+    "reservation_ttl_hours": 168,
+    "final_mix_qc": {
+      "minimum_lufs": -22.0,
+      "maximum_lufs": -12.0,
+      "maximum_true_peak_dbfs": 0.0,
+      "maximum_audio_tail_gap_seconds": 1.25
     },
     "remotion_volume": 0.3,
     "ducking": "speech-aware"
   },
   "quality_gates": {
-    "strict_aesthetic_prompt_review": true,
+    "strict_aesthetic_prompt_review": false,
+    "require_script_anchors": true,
+    "require_cover_ocr": false,
+    "cover_ocr_mode": "warning",
     "require_character_review": true,
     "require_visual_qc_for_stage": true,
     "require_calibrated_captions_for_stage": true,

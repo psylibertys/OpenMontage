@@ -25,6 +25,8 @@ from tools.audio.edge_tts import EdgeTTS
 from tools.video.clip_cache import default_cache_dir, get_default_cache
 from tools.video.pexels_video import PexelsVideo
 from tools.video.pixabay_video import PixabayVideo
+from tools.video.stock_sources.base import SearchFilters
+from tools.video.stock_sources.mixkit import MixkitSource
 from tools.video.video_compose import VideoCompose
 
 
@@ -1136,14 +1138,28 @@ class ZhPhilosophyVideoWorkflow:
         self.video_dir.mkdir(parents=True, exist_ok=True)
         pexels = PexelsVideo()
         pixabay = PixabayVideo()
+        mixkit = MixkitSource()
+        configured_sources = self.stock_library.get("download_sources", ["pexels", "pixabay", "mixkit"])
+        download_sources = [str(source).lower() for source in configured_sources]
+        if not download_sources:
+            download_sources = ["pexels", "pixabay", "mixkit"]
+        rotate_sources = bool(self.stock_library.get("rotate_download_sources", False))
+        broll_index = 0
         library_enabled = bool(self.stock_library.get("enabled", True))
         library_min_score = float(self.stock_library.get("min_match_score", 0.3))
+        broll_total = sum(1 for scene in scene_plan["scenes"] if scene["type"] == "broll")
+        max_reuse_ratio = float(self.stock_library.get("max_reuse_ratio", 1.0))
+        max_library_hits = max(0, min(broll_total, int(broll_total * max_reuse_ratio)))
+        library_hit_count = 0
         library = get_default_cache() if library_enabled else None
         used_library_ids: set[str] = set()
         assets: list[dict[str, Any]] = []
         for scene in scene_plan["scenes"]:
             if scene["type"] != "broll":
                 continue
+            source_offset = broll_index % len(download_sources) if rotate_sources else 0
+            source_order = download_sources[source_offset:] + download_sources[:source_offset]
+            broll_index += 1
             query = scene["metadata"]["visual"]["query"]
             out = self.video_dir / f"{scene['id']}.mp4"
             source_tool = "pexels_video"
@@ -1155,6 +1171,7 @@ class ZhPhilosophyVideoWorkflow:
             library_status = "project_existing" if out.exists() else "disabled"
             library_match_score = 0.0
             result = None
+            stock_data: dict[str, Any] = {}
             if not out.exists():
                 library_match = (
                     library.link_best(
@@ -1164,7 +1181,7 @@ class ZhPhilosophyVideoWorkflow:
                         exclude_clip_ids=used_library_ids,
                         min_score=library_min_score,
                     )
-                    if library is not None
+                    if library is not None and library_hit_count < max_library_hits
                     else None
                 )
                 if library_match is not None:
@@ -1177,40 +1194,90 @@ class ZhPhilosophyVideoWorkflow:
                     original_url = entry.source_url
                     creator = entry.creator
                     library_status = "hit"
+                    library_hit_count += 1
                     print(f"[stock-library] hit {entry.clip_id} score={library_match_score:.3f} for {scene['id']}")
                 else:
                     library_status = "miss"
-                    result = pexels.execute(
-                        {
-                            "query": query,
-                            "orientation": self.orientation,
-                            "size": "medium",
-                            "min_duration": 4,
-                            "per_page": 12,
-                            "preferred_quality": "hd",
-                            "output_path": str(out),
-                        }
-                    )
-                    if not result.success:
-                        result = pixabay.execute(
-                            {
-                                "query": query,
-                                "category": "people" if any(w in query for w in ["person", "worker", "phone"]) else "backgrounds",
-                                "min_duration": 4,
-                                "per_page": 20,
-                                "preferred_quality": "large",
-                                "output_path": str(out),
-                            }
-                        )
-                        source_tool = "pixabay_video"
-                        provider = "pixabay"
-                        license_text = "Pixabay Content License"
-                    if not result.success:
+                    for source_name in source_order:
+                        if source_name == "pexels":
+                            result = pexels.execute(
+                                {
+                                    "query": query,
+                                    "orientation": self.orientation,
+                                    "size": "medium",
+                                    "min_duration": 4,
+                                    "per_page": 12,
+                                    "preferred_quality": "hd",
+                                    "output_path": str(out),
+                                }
+                            )
+                            if result.success:
+                                source_tool = "pexels_video"
+                                provider = "pexels"
+                                license_text = "Pexels License"
+                                stock_data = result.data
+                                break
+                        elif source_name == "pixabay":
+                            result = pixabay.execute(
+                                {
+                                    "query": query,
+                                    "category": "people" if any(w in query for w in ["person", "worker", "phone"]) else "backgrounds",
+                                    "min_duration": 4,
+                                    "per_page": 20,
+                                    "preferred_quality": "large",
+                                    "output_path": str(out),
+                                }
+                            )
+                            if result.success:
+                                source_tool = "pixabay_video"
+                                provider = "pixabay"
+                                license_text = "Pixabay Content License"
+                                stock_data = result.data
+                                break
+                        elif source_name == "mixkit":
+                            source_tool = "mixkit_video"
+                            provider = "mixkit"
+                            license_text = "Mixkit License (free for commercial and personal use, no attribution required)"
+                            try:
+                                candidates = mixkit.search(
+                                    query,
+                                    SearchFilters(
+                                        kind="video",
+                                        min_duration=4,
+                                        orientation=self.orientation,
+                                        min_width=1280,
+                                        per_page=12,
+                                    ),
+                                )
+                            except Exception as exc:
+                                print(f"[warn] Mixkit search failed for {scene['id']}: {exc}")
+                                candidates = []
+                            downloaded_candidate = None
+                            for candidate in candidates:
+                                try:
+                                    mixkit.download(candidate, out)
+                                    downloaded_candidate = candidate
+                                    break
+                                except Exception as exc:
+                                    print(f"[warn] Mixkit candidate failed for {scene['id']}: {exc}")
+                            if downloaded_candidate is not None:
+                                stock_data = {
+                                    "video_id": downloaded_candidate.source_id,
+                                    "page_url": downloaded_candidate.source_url,
+                                    "user": downloaded_candidate.creator,
+                                    "license": downloaded_candidate.license,
+                                    "tags": downloaded_candidate.source_tags,
+                                    "width": downloaded_candidate.width,
+                                    "height": downloaded_candidate.height,
+                                    "duration_seconds": downloaded_candidate.duration,
+                                }
+                                break
+                    if not stock_data:
                         print(f"[warn] stock unavailable for {scene['id']}: {query}")
                         continue
-                    original_url = result.data.get("pexels_url") or result.data.get("page_url") or ""
-                    creator = result.data.get("user", "")
-                    library_clip_id = f"{provider}_{result.data['video_id']}"
+                    original_url = stock_data.get("pexels_url") or stock_data.get("page_url") or ""
+                    creator = stock_data.get("user", "")
+                    library_clip_id = f"{provider}_{stock_data['video_id']}"
                     used_library_ids.add(library_clip_id)
                     if library is not None:
                         library.ingest(
@@ -1218,20 +1285,20 @@ class ZhPhilosophyVideoWorkflow:
                             out,
                             {
                                 "source": provider,
-                                "source_id": str(result.data["video_id"]),
+                                "source_id": str(stock_data["video_id"]),
                                 "source_url": original_url,
-                                "license": result.data.get("license", license_text),
+                                "license": stock_data.get("license", license_text),
                                 "creator": creator,
-                                "source_tags": result.data.get("tags", ""),
+                                "source_tags": stock_data.get("tags", ""),
                                 "query": query,
-                                "width": result.data.get("width", 0),
-                                "height": result.data.get("height", 0),
-                                "duration_seconds": result.data.get("duration_seconds", 0),
+                                "width": stock_data.get("width", 0),
+                                "height": stock_data.get("height", 0),
+                                "duration_seconds": stock_data.get("duration_seconds", 0),
                                 "last_project_id": self.project_id,
                             },
                         )
                         library_status = "added"
-            duration = float(probe_duration(out) or (result.data.get("duration_seconds") if result else 0) or 0)
+            duration = float(probe_duration(out) or stock_data.get("duration_seconds", 0) or 0)
             assets.append(
                 {
                     "id": f"video-{scene['id']}",

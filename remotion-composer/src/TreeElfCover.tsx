@@ -1,11 +1,12 @@
-import React from "react";
-import {AbsoluteFill, Img, staticFile} from "remotion";
+import React, {useEffect, useState} from "react";
+import {AbsoluteFill, cancelRender, continueRender, delayRender, Img, staticFile, useVideoConfig} from "remotion";
+import defaultChineseFontUrl from "../../fronts/漓雨手书_100font/LiyuXingkai.ttf";
 
 export type TreeElfCoverProps = {
   backgroundSrc: string;
   chineseTitle: string;
-  englishTitle: string;
-  brand: string;
+  englishTitle?: string;
+  brand?: string;
   titlePosition?: "top" | "center" | "bottom";
   textAlign?: "left" | "center" | "right";
   textColor?: string;
@@ -22,10 +23,38 @@ const resolveAsset = (src: string): string => {
   return staticFile(src.replace(/^\/+/, "").replace(/^public\//, ""));
 };
 
-const verticalPosition = (position: TreeElfCoverProps["titlePosition"]): React.CSSProperties => {
-  if (position === "top") return {justifyContent: "flex-start", paddingTop: 220};
-  if (position === "bottom") return {justifyContent: "flex-end", paddingBottom: 300};
+const CoverFont: React.FC<{url: string}> = ({url}) => {
+  const [handle] = useState(() => delayRender("Loading TreeElf cover font"));
+
+  useEffect(() => {
+    const font = new FontFace("TreeElfCoverCN", `url('${url}')`, {
+      style: "normal",
+      weight: "400",
+    });
+    font.load()
+      .then((loaded) => {
+        document.fonts.add(loaded);
+        continueRender(handle);
+      })
+      .catch((error) => cancelRender(error));
+  }, [handle, url]);
+
+  return null;
+};
+
+const verticalPosition = (
+  position: TreeElfCoverProps["titlePosition"],
+  landscape: boolean,
+): React.CSSProperties => {
+  if (position === "top") return {justifyContent: "flex-start", paddingTop: landscape ? 92 : 220};
+  if (position === "bottom") return {justifyContent: "flex-end", paddingBottom: landscape ? 92 : 300};
   return {justifyContent: "center"};
+};
+
+const splitChineseTitle = (title: string, landscape: boolean): string => {
+  if (!landscape || title.includes("\n") || title.length <= 9) return title;
+  const midpoint = Math.ceil(title.length / 2);
+  return `${title.slice(0, midpoint)}\n${title.slice(midpoint)}`;
 };
 
 const gradient = (
@@ -43,7 +72,7 @@ export const TreeElfCover: React.FC<TreeElfCoverProps> = ({
   backgroundSrc,
   chineseTitle,
   englishTitle,
-  brand,
+  brand = "树精灵",
   titlePosition = "center",
   textAlign = "center",
   textColor = "#F7F2E8",
@@ -52,15 +81,24 @@ export const TreeElfCover: React.FC<TreeElfCoverProps> = ({
   gradientDirection = "center",
   chineseFontSrc,
 }) => {
+  const {width, height} = useVideoConfig();
+  const landscape = width / height > 1.4;
   const alignItems = textAlign === "left" ? "flex-start" : textAlign === "right" ? "flex-end" : "center";
-  const titleWidth = textAlign === "center" ? 850 : 760;
-  const fontUrl = chineseFontSrc ? resolveAsset(chineseFontSrc) : undefined;
+  const titleWidth = landscape
+    ? Math.round(width * (textAlign === "center" ? 0.74 : 0.58))
+    : textAlign === "center" ? 850 : 760;
+  // 漓雨手书是树精灵封面的默认中文字体；显式传参时才覆盖。
+  const fontUrl = chineseFontSrc ? resolveAsset(chineseFontSrc) : defaultChineseFontUrl;
+  const displayTitle = splitChineseTitle(chineseTitle, landscape);
+  const longestLine = Math.max(...displayTitle.split("\n").map((line) => line.length), 1);
+  const landscapeTitleSize = Math.max(82, Math.min(174, Math.floor(titleWidth / (longestLine * 1.04))));
+  const portraitTitleSize = chineseTitle.length <= 3 ? 214 : chineseTitle.length === 4 ? 172 : 150;
+  const titleSize = landscape ? landscapeTitleSize : portraitTitleSize;
+  const horizontalPadding = landscape ? 138 : 112;
 
   return (
     <AbsoluteFill style={{backgroundColor: "#090B0D", overflow: "hidden"}}>
-      {fontUrl ? (
-        <style>{`@font-face { font-family: 'TreeElfCoverCN'; src: url('${fontUrl}'); font-weight: 400; font-style: normal; }`}</style>
-      ) : null}
+      <CoverFont url={fontUrl} />
       <Img
         src={resolveAsset(backgroundSrc)}
         style={{width: "100%", height: "100%", objectFit: "cover"}}
@@ -68,11 +106,11 @@ export const TreeElfCover: React.FC<TreeElfCoverProps> = ({
       <AbsoluteFill style={{background: gradient(gradientDirection, overlayOpacity)}} />
       <AbsoluteFill
         style={{
-          paddingLeft: 112,
-          paddingRight: 112,
+          paddingLeft: horizontalPadding,
+          paddingRight: horizontalPadding,
           display: "flex",
           alignItems,
-          ...verticalPosition(titlePosition),
+          ...verticalPosition(titlePosition, landscape),
         }}
       >
         <div style={{width: titleWidth, textAlign}}>
@@ -81,10 +119,10 @@ export const TreeElfCover: React.FC<TreeElfCoverProps> = ({
               display: "inline-flex",
               alignItems: "center",
               gap: 18,
-              marginBottom: 34,
+              marginBottom: landscape ? 20 : 34,
               color: accentColor,
               fontFamily: "Inter, PingFang SC, sans-serif",
-              fontSize: 30,
+              fontSize: landscape ? 24 : 30,
               fontWeight: 600,
               letterSpacing: 14,
             }}
@@ -95,25 +133,24 @@ export const TreeElfCover: React.FC<TreeElfCoverProps> = ({
           <div
             style={{
               color: textColor,
-              fontFamily: fontUrl ? "TreeElfCoverCN, STKaiti, serif" : "STKaiti, serif",
-              fontSize: chineseTitle.length <= 3 ? 214 : chineseTitle.length === 4 ? 172 : 150,
-              fontWeight: 400,
-              letterSpacing: chineseTitle.length <= 3 ? 26 : chineseTitle.length === 4 ? 18 : 10,
+              fontFamily: "TreeElfCoverCN, STKaiti, serif",
+              fontSize: titleSize,
+              fontWeight: 700,
+              letterSpacing: landscape ? Math.max(6, Math.round(titleSize * 0.08)) : chineseTitle.length <= 3 ? 26 : chineseTitle.length === 4 ? 18 : 10,
               lineHeight: 1.08,
               textShadow: "0 10px 34px rgba(0,0,0,0.48)",
               whiteSpace: "pre-line",
             }}
           >
-            {chineseTitle}
+            {displayTitle}
           </div>
-          <div
+          {englishTitle ? <div
             style={{
-              marginTop: 34,
-              color: textColor,
-              opacity: 0.9,
-              fontFamily: "Georgia, Times New Roman, serif",
-              fontSize: 35,
-              fontWeight: 400,
+              marginTop: landscape ? 64 : 96,
+              color: "#FFD34E",
+              fontFamily: "TreeElfCoverCN, Georgia, serif",
+              fontSize: landscape ? 30 : 40,
+              fontWeight: 700,
               letterSpacing: 7,
               lineHeight: 1.3,
               textTransform: "uppercase",
@@ -121,7 +158,7 @@ export const TreeElfCover: React.FC<TreeElfCoverProps> = ({
             }}
           >
             {englishTitle}
-          </div>
+          </div> : null}
         </div>
       </AbsoluteFill>
     </AbsoluteFill>

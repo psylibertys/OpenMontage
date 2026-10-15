@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 """Small, guarded client for the official AutoDL Container Instance Pro API.
 
+Supports two product lines that share one developer token:
+  com  api.autodl.com   container Pro instances (/api/v1/dev/instance/pro/*)
+  art  www.autodl.art   app instances deployed from the AutoDL.Art community
+                        (/api/v1/adl_dev/dev/instance/pro/*)
+
+Both gateways silently drop GET request bodies (the docs' GET-with-body
+examples do not work), so GET endpoints pass parameters via query string
+(verified 2026-09-03 against the art platform).  Neither platform supports
+API power-on without GPU.
+
 The script intentionally omits the irreversible release endpoint.  Power-off
 requires --yes so an agent cannot stop a paid job because of a typo.
 """
@@ -12,16 +22,26 @@ import json
 import os
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 
-HOST = "https://api.autodl.com"
+PLATFORMS = {
+    "com": {
+        "host": "https://api.autodl.com",
+        "prefix": "/api/v1/dev/instance/pro",
+    },
+    "art": {
+        "host": "https://www.autodl.art",
+        "prefix": "/api/v1/adl_dev/dev/instance/pro",
+    },
+}
 ENDPOINTS = {
-    "list": ("POST", "/api/v1/dev/instance/pro/list"),
-    "status": ("GET", "/api/v1/dev/instance/pro/status"),
-    "snapshot": ("GET", "/api/v1/dev/instance/pro/snapshot"),
-    "power-on-gpu": ("POST", "/api/v1/dev/instance/pro/power_on"),
-    "power-off": ("POST", "/api/v1/dev/instance/pro/power_off"),
+    "list": ("POST", "/list"),
+    "status": ("GET", "/status"),
+    "snapshot": ("GET", "/snapshot"),
+    "power-on-gpu": ("POST", "/power_on"),
+    "power-off": ("POST", "/power_off"),
 }
 
 
@@ -40,15 +60,24 @@ def _load_project_env() -> None:
             os.environ.setdefault(key.strip(), value.strip().strip("'\""))
 
 
-def call(command: str, body: dict) -> dict:
+def call(command: str, body: dict, platform: str = "com") -> dict:
     _load_project_env()
     token = os.environ.get("AutoDL_token") or os.environ.get("AUTODL_TOKEN")
     if not token:
         raise SystemExit("Missing AutoDL_token (or AUTODL_TOKEN) in environment/.env")
-    method, path = ENDPOINTS[command]
+    if platform not in PLATFORMS:
+        raise SystemExit(f"Unknown platform: {platform} (choose from {', '.join(PLATFORMS)})")
+    spec = PLATFORMS[platform]
+    method, suffix = ENDPOINTS[command]
+    url = spec["host"] + spec["prefix"] + suffix
+    data = None
+    if method == "GET":
+        url += "?" + urllib.parse.urlencode(body)
+    else:
+        data = json.dumps(body).encode()
     request = urllib.request.Request(
-        HOST + path,
-        data=json.dumps(body).encode(),
+        url,
+        data=data,
         method=method,
         headers={"Authorization": token, "Content-Type": "application/json"},
     )
@@ -67,6 +96,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=ENDPOINTS)
     parser.add_argument("instance_uuid", nargs="?")
+    parser.add_argument("--platform", choices=PLATFORMS, default="com",
+                        help="com=api.autodl.com Pro instances, art=www.autodl.art app instances")
     parser.add_argument("--yes", action="store_true", help="confirm power-off")
     parser.add_argument("--page-size", type=int, default=20)
     args = parser.parse_args()
@@ -81,7 +112,7 @@ def main() -> int:
             body["payload"] = "gpu"
         if args.command == "power-off" and not args.yes:
             parser.error("power-off requires --yes")
-    payload = call(args.command, body)
+    payload = call(args.command, body, platform=args.platform)
     print(json.dumps(payload["data"], ensure_ascii=False, indent=2))
     return 0
 

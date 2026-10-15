@@ -8,20 +8,34 @@ import json
 import os
 import random
 import re
-import shutil
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
+
+from lib.env_loader import load_env
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_LIBRARY_DIR = Path("/Users/treeelf/Desktop/crewai/music/music-sucai/纯音乐")
+load_env(REPO_ROOT)
+DEFAULT_LIBRARY_DIR = Path(
+    os.environ.get(
+        "TREEELF_MUSIC_LIBRARY_DIR",
+        str(REPO_ROOT / "music_library"),
+    )
+).expanduser()
 DEFAULT_CATALOG_DIR = REPO_ROOT / "workflow_configs" / "treeelf-music"
 DEFAULT_CATALOG_PATH = DEFAULT_CATALOG_DIR / "catalog-v1.json"
 DEFAULT_OVERRIDES_PATH = DEFAULT_CATALOG_DIR / "manual-overrides-v1.json"
 DEFAULT_USAGE_LEDGER_PATH = DEFAULT_CATALOG_DIR / "usage-ledger-v1.json"
 AUDIO_EXTENSIONS = {".mp3", ".wav", ".m4a", ".aac", ".flac", ".ogg", ".opus", ".aiff", ".aif"}
+GENERIC_QUALIFICATION_KEYWORDS = {"纯音乐", "instrumental"}
+
+
+def configured_music_library_dir() -> Path:
+    """Resolve the movable TreeElf music root from the project environment."""
+
+    return Path(os.environ.get("TREEELF_MUSIC_LIBRARY_DIR", str(DEFAULT_LIBRARY_DIR))).expanduser()
 
 
 def utc_now() -> str:
@@ -56,6 +70,34 @@ def list_audio_files(library_dir: Path) -> list[Path]:
         (path for path in library_dir.rglob("*") if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS),
         key=lambda path: path.as_posix().lower(),
     )
+
+
+def _library_source_rows(library_dir: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for path in list_audio_files(library_dir):
+        stat = path.stat()
+        rows.append(
+            {
+                "relative_path": path.relative_to(library_dir).as_posix(),
+                "size_bytes": stat.st_size,
+                "mtime_ns": stat.st_mtime_ns,
+            }
+        )
+    return rows
+
+
+def _source_fingerprint(rows: list[dict[str, Any]]) -> str:
+    stable = [
+        {
+            "relative_path": row["relative_path"],
+            "size_bytes": int(row["size_bytes"]),
+            "mtime_ns": int(row["mtime_ns"]),
+        }
+        for row in rows
+    ]
+    return hashlib.sha256(
+        json.dumps(stable, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    ).hexdigest()
 
 
 _TAG_TERMS: dict[str, tuple[str, ...]] = {
@@ -181,9 +223,27 @@ def build_catalog(
     library_dir = library_dir.expanduser().resolve()
     previous = load_json(catalog_path, {}) or {}
     previous_by_sha = {row.get("sha256"): row for row in previous.get("tracks", []) if row.get("sha256")}
+    previous_sources = {
+        row.get("relative_path"): row
+        for row in previous.get("source_files", [])
+        if row.get("relative_path") and row.get("sha256")
+    }
+    source_rows = _library_source_rows(library_dir)
     grouped: dict[str, list[Path]] = {}
-    for path in list_audio_files(library_dir):
-        grouped.setdefault(sha256_file(path), []).append(path)
+    source_files: list[dict[str, Any]] = []
+    for source_row in source_rows:
+        path = library_dir / source_row["relative_path"]
+        old_source = previous_sources.get(source_row["relative_path"], {})
+        if (
+            old_source.get("size_bytes") == source_row["size_bytes"]
+            and old_source.get("mtime_ns") == source_row["mtime_ns"]
+            and old_source.get("sha256")
+        ):
+            digest = str(old_source["sha256"])
+        else:
+            digest = sha256_file(path)
+        source_files.append({**source_row, "sha256": digest})
+        grouped.setdefault(digest, []).append(path)
 
     tracks: list[dict[str, Any]] = []
     for digest, paths in sorted(grouped.items(), key=lambda item: item[1][0].as_posix().lower()):
@@ -229,6 +289,8 @@ def build_catalog(
         "schema_version": "1.0",
         "library_root": str(library_dir),
         "generated_at": utc_now(),
+        "source_fingerprint": _source_fingerprint(source_rows),
+        "source_files": source_files,
         "file_count": sum(1 + len(row["aliases"]) for row in tracks),
         "track_count": len(tracks),
         "duplicate_file_count": sum(len(row["aliases"]) for row in tracks),
@@ -237,6 +299,72 @@ def build_catalog(
     }
     atomic_dump_json(catalog_path, payload)
     return payload
+
+
+def ensure_catalog_fresh(
+    library_dir: Path,
+    catalog_path: Path = DEFAULT_CATALOG_PATH,
+    *,
+    analyze_loudness: bool = True,
+) -> dict[str, Any]:
+    """Incrementally rebuild a stale catalog under a cross-process lock."""
+
+    library_dir = library_dir.expanduser().resolve()
+    if not library_dir.is_dir():
+        return {
+            "status": "library_missing",
+            "library_root": str(library_dir),
+            "catalog_path": str(catalog_path),
+        }
+    lock_path = catalog_path.with_suffix(catalog_path.suffix + ".lock")
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    with lock_path.open("a+", encoding="utf-8") as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        current_rows = _library_source_rows(library_dir)
+        current_fingerprint = _source_fingerprint(current_rows)
+        catalog = load_json(catalog_path, {}) or {}
+        catalog_root = str(catalog.get("library_root", ""))
+        if (
+            catalog.get("tracks")
+            and catalog_root
+            and catalog_root != str(library_dir)
+            and catalog.get("source_fingerprint") != current_fingerprint
+        ):
+            return {
+                "status": "root_mismatch_transient_scan",
+                "library_root": str(library_dir),
+                "catalog_library_root": catalog_root,
+                "catalog_path": str(catalog_path),
+            }
+        if catalog.get("source_fingerprint") != current_fingerprint:
+            rebuilt = build_catalog(
+                library_dir,
+                catalog_path,
+                analyze_loudness=analyze_loudness,
+            )
+            return {
+                "status": "rebuilt",
+                "library_root": str(library_dir),
+                "catalog_path": str(catalog_path),
+                "file_count": rebuilt["file_count"],
+                "track_count": rebuilt["track_count"],
+            }
+        if catalog.get("library_root") != str(library_dir):
+            catalog["library_root"] = str(library_dir)
+            catalog["relocated_at"] = utc_now()
+            atomic_dump_json(catalog_path, catalog)
+            return {
+                "status": "root_relocated",
+                "library_root": str(library_dir),
+                "catalog_path": str(catalog_path),
+            }
+        return {
+            "status": "fresh",
+            "library_root": str(library_dir),
+            "catalog_path": str(catalog_path),
+            "file_count": catalog.get("file_count", 0),
+            "track_count": catalog.get("track_count", 0),
+        }
 
 
 def _manual_overrides(path: Path) -> dict[str, dict[str, Any]]:
@@ -254,6 +382,7 @@ def _catalog_candidates(
     *,
     catalog_path: Path,
     overrides_path: Path,
+    use_catalog: bool = True,
 ) -> list[dict[str, Any]]:
     roots = [root.expanduser().resolve() for root in roots if root]
     catalog = load_json(catalog_path, {}) or {}
@@ -261,8 +390,21 @@ def _catalog_candidates(
     rows: list[dict[str, Any]] = []
     catalog_root_raw = catalog.get("library_root")
     catalog_root = Path(catalog_root_raw).expanduser().resolve() if catalog_root_raw else None
-    selected_root = next((root for root in roots if root.is_dir() and (catalog_root is None or root == catalog_root)), None)
-    if selected_root and catalog.get("tracks"):
+    catalog_relatives = [str(row.get("relative_path", "")) for row in catalog.get("tracks", [])]
+    selected_root = next(
+        (
+            root
+            for root in roots
+            if root.is_dir()
+            and (
+                catalog_root is None
+                or root == catalog_root
+                or any(relative and (root / relative).is_file() for relative in catalog_relatives[:10])
+            )
+        ),
+        None,
+    )
+    if use_catalog and selected_root and catalog.get("tracks"):
         for source in catalog["tracks"]:
             row = dict(source)
             override = overrides.get(row["id"], {})
@@ -328,8 +470,23 @@ def select_music_track(
     catalog_path: Path = DEFAULT_CATALOG_PATH,
     overrides_path: Path = DEFAULT_OVERRIDES_PATH,
     usage_ledger_path: Path = DEFAULT_USAGE_LEDGER_PATH,
+    preferred_track_id: str | None = None,
 ) -> dict[str, Any]:
-    candidates = _catalog_candidates(library_dirs, catalog_path=catalog_path, overrides_path=overrides_path)
+    primary_root = next(
+        (root.expanduser() for root in library_dirs if root and root.expanduser().is_dir()),
+        None,
+    )
+    catalog_refresh = (
+        ensure_catalog_fresh(primary_root, catalog_path)
+        if primary_root is not None
+        else {"status": "no_library_root"}
+    )
+    candidates = _catalog_candidates(
+        library_dirs,
+        catalog_path=catalog_path,
+        overrides_path=overrides_path,
+        use_catalog=catalog_refresh.get("status") != "root_mismatch_transient_scan",
+    )
     fallback = fallback_source.expanduser().resolve() if fallback_source and fallback_source.is_file() else None
     if fallback and all(Path(row["path"]).resolve() != fallback for row in candidates):
         digest = sha256_file(fallback)
@@ -342,7 +499,23 @@ def select_music_track(
             "duration_seconds": None, "integrated_lufs": None, "true_peak_dbfs": None,
         })
     used = {str(Path(value).expanduser().resolve()) for value in (used_music_paths or [])}
-    events = _usage_events(usage_ledger_path)
+    all_events = _usage_events(usage_ledger_path)
+    events = [
+        row
+        for row in all_events
+        if row.get("status", "committed") in {"reserved", "committed"}
+    ]
+    # A track that already failed for this exact project must not be selected
+    # again by deterministic ranking. Failed tracks remain eligible for other
+    # projects, so one source-specific normalization problem does not poison
+    # the shared library.
+    failed_for_project = {
+        str(row.get("track_id", ""))
+        for row in all_events
+        if row.get("project_id") == project_id
+        and row.get("series") == series
+        and row.get("status") == "failed"
+    }
     usage_counts: dict[str, int] = {}
     recent_ids = [str(row.get("track_id", "")) for row in events[-24:]]
     for event in events:
@@ -350,13 +523,21 @@ def select_music_track(
         usage_counts[track_id] = usage_counts.get(track_id, 0) + 1
 
     requested = list(dict.fromkeys(str(value).strip().lower() for value in keywords if str(value).strip()))
+    semantic_keywords = [
+        keyword for keyword in requested if keyword not in GENERIC_QUALIFICATION_KEYWORDS
+    ]
+    ignored_generic_keywords = [
+        keyword for keyword in requested if keyword in GENERIC_QUALIFICATION_KEYWORDS
+    ]
     scored: list[dict[str, Any]] = []
     for row in candidates:
         path = Path(row["path"])
+        if row.get("id") in failed_for_project:
+            continue
         if row.get("selection_status") != "eligible" or not row.get("available", path.is_file()) or not path.is_file():
             continue
         haystack = " ".join([row.get("filename", ""), *row.get("tags", [])]).lower()
-        matched = [keyword for keyword in requested if keyword in haystack]
+        matched = [keyword for keyword in semantic_keywords if keyword in haystack]
         score = float(len(matched) * 10 + 1)
         tags = set(row.get("tags", []))
         risks = set(row.get("risk_flags", []))
@@ -382,11 +563,13 @@ def select_music_track(
         score += _stable_jitter(project_id, row["id"])
         scored.append({
             "track_id": row["id"], "path": str(path), "source_sha256": row["sha256"],
+            "relative_path": row.get("relative_path"),
             "score": round(score, 6), "matched_keywords": matched,
             "risk_flags": sorted(risks), "risk_penalty": risk_penalty,
             "same_batch_penalty": same_batch_penalty, "history_penalty": history_penalty,
             "historical_use_count": use_count, "rights_status": row.get("rights_status"),
             "integrated_lufs": row.get("integrated_lufs"), "true_peak_dbfs": row.get("true_peak_dbfs"),
+            "duration_seconds": row.get("duration_seconds"),
         })
     scored.sort(key=lambda row: (-row["score"], row["path"]))
     if not scored:
@@ -394,21 +577,38 @@ def select_music_track(
             "mode": "no_music_source_found", "path": "", "track_id": "", "source_sha256": "",
             "requested_keywords": requested, "candidate_count": len(candidates), "top_candidates": [],
             "fallback_reason": "no eligible and available track",
+            "semantic_keywords": semantic_keywords,
+            "ignored_generic_keywords": ignored_generic_keywords,
+            "catalog_refresh": catalog_refresh,
         }
+    preferred = next(
+        (row for row in scored if row["track_id"] == preferred_track_id),
+        None,
+    )
     has_content_match = any(row["matched_keywords"] for row in scored)
-    selected = scored[0]
+    selected = preferred or scored[0]
     return {
-        "mode": "content_based_catalog_match" if has_content_match else "weighted_deterministic_fallback",
+        "mode": (
+            "existing_project_reuse"
+            if preferred
+            else "content_based_catalog_match"
+            if has_content_match
+            else "weighted_deterministic_fallback"
+        ),
         **selected,
         "requested_keywords": requested,
+        "semantic_keywords": semantic_keywords,
+        "ignored_generic_keywords": ignored_generic_keywords,
         "candidate_count": len(candidates),
         "eligible_candidate_count": len(scored),
         "used_music_paths_penalized": sorted(used),
         "fallback_reason": None if has_content_match else "no candidate matched requested keywords",
         "diversity_policy": "Shared cross-series history penalty, same-batch penalty, and deterministic project-specific tie breaking.",
         "catalog_path": str(catalog_path),
+        "catalog_refresh": catalog_refresh,
         "usage_ledger_path": str(usage_ledger_path),
         "series": series,
+        "failed_project_tracks_excluded": sorted(failed_for_project),
         "top_candidates": scored[:5],
     }
 
@@ -440,11 +640,140 @@ def record_music_usage(
             "selected_at": utc_now(), "series": series, "project_id": project_id,
             "track_id": track_id, "source_sha256": selection.get("source_sha256"),
             "relative_or_absolute_path": selection.get("path"), "selection_mode": selection.get("mode"),
+            "status": "committed",
+            "committed_at": utc_now(),
+            "selection": selection,
         }
         events.append(event)
         payload["updated_at"] = event["selected_at"]
         atomic_dump_json(ledger_path, payload)
         return {"recorded": True, "event": event}
+
+
+def select_and_record_music_usage(
+    selection_factory: Callable[[str | None], dict[str, Any]],
+    *,
+    project_id: str,
+    series: str,
+    ledger_path: Path = DEFAULT_USAGE_LEDGER_PATH,
+    force_reselect: bool = False,
+    reservation_ttl_hours: float = 168.0,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Atomically select against history and reserve the chosen track.
+
+    The lock covers only catalog ranking and the small ledger write. Audio
+    normalization happens after this function returns, outside the lock.
+    """
+
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    lock_path = ledger_path.with_suffix(ledger_path.suffix + ".lock")
+    with lock_path.open("a+", encoding="utf-8") as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        payload = load_json(ledger_path, {}) or {"schema_version": "1.0", "events": []}
+        events = payload.setdefault("events", [])
+        now = datetime.now(timezone.utc)
+        expired = False
+        for event in events:
+            if event.get("status") != "reserved":
+                continue
+            reserved_at = event.get("reserved_at") or event.get("selected_at")
+            try:
+                reserved_time = datetime.fromisoformat(str(reserved_at))
+                if reserved_time.tzinfo is None:
+                    reserved_time = reserved_time.replace(tzinfo=timezone.utc)
+            except (TypeError, ValueError):
+                continue
+            age_hours = (now - reserved_time.astimezone(timezone.utc)).total_seconds() / 3600
+            if age_hours > reservation_ttl_hours:
+                event["status"] = "failed"
+                event["failed_at"] = utc_now()
+                event["failure_reason"] = "reservation_expired"
+                expired = True
+        if expired:
+            payload["updated_at"] = utc_now()
+            atomic_dump_json(ledger_path, payload)
+        existing = next(
+            (
+                row
+                for row in reversed(events)
+                if row.get("project_id") == project_id
+                and row.get("series") == series
+                and row.get("status", "committed") in {"reserved", "committed"}
+            ),
+            None,
+        )
+        if existing and force_reselect:
+            existing["status"] = "failed"
+            existing["failed_at"] = utc_now()
+            existing["failure_reason"] = "explicit_reselection"
+            existing = None
+        preferred_track_id = str(existing.get("track_id")) if existing else None
+        selection = selection_factory(preferred_track_id)
+        if existing and selection.get("track_id") == preferred_track_id:
+            return selection, {
+                "recorded": False,
+                "reason": "existing project music reused",
+                "event": existing,
+            }
+        if existing:
+            existing["status"] = "failed"
+            existing["failed_at"] = utc_now()
+            existing["failure_reason"] = "previous selected track is no longer available"
+        track_id = str(selection.get("track_id", ""))
+        if not track_id:
+            atomic_dump_json(ledger_path, payload)
+            return selection, {"recorded": False, "reason": "selection has no track_id"}
+        event = {
+            "event_id": hashlib.sha256(f"{series}|{project_id}|{track_id}".encode("utf-8")).hexdigest()[:20],
+            "selected_at": utc_now(), "reserved_at": utc_now(),
+            "series": series, "project_id": project_id,
+            "track_id": track_id, "source_sha256": selection.get("source_sha256"),
+            "relative_or_absolute_path": selection.get("path"), "selection_mode": selection.get("mode"),
+            "status": "reserved",
+            "selection": selection,
+        }
+        events.append(event)
+        payload["updated_at"] = event["selected_at"]
+        atomic_dump_json(ledger_path, payload)
+        return selection, {"recorded": True, "event": event}
+
+
+def transition_music_usage(
+    *,
+    project_id: str,
+    series: str,
+    status: str,
+    ledger_path: Path = DEFAULT_USAGE_LEDGER_PATH,
+    reason: str | None = None,
+) -> dict[str, Any]:
+    if status not in {"committed", "failed"}:
+        raise ValueError("Music usage status must be committed or failed")
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    lock_path = ledger_path.with_suffix(ledger_path.suffix + ".lock")
+    with lock_path.open("a+", encoding="utf-8") as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        payload = load_json(ledger_path, {}) or {"schema_version": "1.0", "events": []}
+        event = next(
+            (
+                row
+                for row in reversed(payload.setdefault("events", []))
+                if row.get("project_id") == project_id
+                and row.get("series") == series
+                and row.get("status", "committed") in {"reserved", "committed"}
+            ),
+            None,
+        )
+        if not event:
+            return {"updated": False, "reason": "active reservation not found"}
+        if status == "committed" and event.get("status", "committed") == "committed":
+            return {"updated": False, "reason": "already committed", "event": event}
+        event["status"] = status
+        event[f"{status}_at"] = utc_now()
+        if reason:
+            event["failure_reason" if status == "failed" else "commit_note"] = reason
+        payload["updated_at"] = utc_now()
+        atomic_dump_json(ledger_path, payload)
+        return {"updated": True, "event": event}
 
 
 def normalize_background_music(
@@ -454,6 +783,7 @@ def normalize_background_music(
     target_lufs: float = -18.0,
     true_peak_dbfs: float = -2.0,
     loudness_range_lu: float = 7.0,
+    tolerance_lu: float = 1.0,
 ) -> dict[str, Any]:
     target.parent.mkdir(parents=True, exist_ok=True)
     temporary = target.with_suffix(".normalized.tmp.mp3")
@@ -465,21 +795,115 @@ def normalize_background_music(
     try:
         result = subprocess.run(command, check=True, capture_output=True, text=True, timeout=600)
         metrics = _extract_loudnorm_json(result.stderr) or {}
+        verification = measure_loudness(temporary)
+        measured_lufs = verification.get("integrated_lufs")
+        measured_peak = verification.get("true_peak_dbfs")
+        if measured_lufs is None or measured_peak is None:
+            raise ValueError(f"normalized music verification failed: {verification}")
+        if abs(float(measured_lufs) - target_lufs) > tolerance_lu:
+            raise ValueError(
+                f"normalized music LUFS outside tolerance: {measured_lufs} vs {target_lufs}"
+            )
+        if float(measured_peak) > true_peak_dbfs + 0.5:
+            raise ValueError(
+                f"normalized music true peak exceeds tolerance: {measured_peak}"
+            )
         temporary.replace(target)
         return {
             "mode": "ffmpeg_loudnorm", "path": str(target), "source_path": str(source),
             "source_sha256": sha256_file(source), "output_sha256": sha256_file(target),
             "target_lufs": target_lufs, "target_true_peak_dbfs": true_peak_dbfs,
-            "measured_output_lufs": float(metrics["output_i"]) if metrics.get("output_i") else None,
-            "measured_output_true_peak_dbfs": float(metrics["output_tp"]) if metrics.get("output_tp") else None,
+            "measured_output_lufs": measured_lufs,
+            "measured_output_true_peak_dbfs": measured_peak,
+            "filter_reported_output_lufs": float(metrics["output_i"]) if metrics.get("output_i") else None,
+            "filter_reported_output_true_peak_dbfs": float(metrics["output_tp"]) if metrics.get("output_tp") else None,
+            "verified": True,
         }
     except (OSError, subprocess.SubprocessError, ValueError) as exc:
         if temporary.exists():
             temporary.unlink()
-        shutil.copy2(source, target)
+        raise RuntimeError(f"Background music normalization failed for {source}: {exc}") from exc
+
+
+def _media_audio_durations(path: Path) -> dict[str, Any]:
+    command = [
+        "ffprobe",
+        "-v",
+        "error",
+        "-show_entries",
+        "format=duration:stream=codec_type,duration",
+        "-of",
+        "json",
+        str(path),
+    ]
+    try:
+        result = subprocess.run(command, check=True, capture_output=True, text=True, timeout=30)
+        payload = json.loads(result.stdout)
+        format_duration = float(payload.get("format", {}).get("duration") or 0)
+        audio_streams = [
+            row for row in payload.get("streams", []) if row.get("codec_type") == "audio"
+        ]
+        audio_duration = (
+            float(audio_streams[0].get("duration") or 0) if audio_streams else 0.0
+        )
         return {
-            "mode": "source_passthrough", "path": str(target), "source_path": str(source),
-            "source_sha256": sha256_file(source), "output_sha256": sha256_file(target),
-            "target_lufs": target_lufs, "target_true_peak_dbfs": true_peak_dbfs,
-            "warning": f"loudness normalization failed: {exc}",
+            "ok": bool(format_duration > 0 and audio_streams),
+            "video_duration_seconds": round(format_duration, 3),
+            "audio_duration_seconds": round(audio_duration, 3),
+            "audio_stream_present": bool(audio_streams),
+            "error": None,
         }
+    except (OSError, subprocess.SubprocessError, ValueError, json.JSONDecodeError) as exc:
+        return {
+            "ok": False,
+            "video_duration_seconds": 0.0,
+            "audio_duration_seconds": 0.0,
+            "audio_stream_present": False,
+            "error": str(exc),
+        }
+
+
+def build_final_audio_mix_qc(
+    render: Path,
+    *,
+    minimum_lufs: float = -22.0,
+    maximum_lufs: float = -12.0,
+    maximum_true_peak_dbfs: float = 0.0,
+    maximum_audio_tail_gap_seconds: float = 1.25,
+) -> dict[str, Any]:
+    durations = _media_audio_durations(render)
+    loudness = measure_loudness(render) if durations.get("audio_stream_present") else {
+        "integrated_lufs": None,
+        "true_peak_dbfs": None,
+        "loudness_range_lu": None,
+        "loudness_error": "audio stream missing",
+    }
+    audio_duration = float(durations.get("audio_duration_seconds") or 0)
+    video_duration = float(durations.get("video_duration_seconds") or 0)
+    tail_gap = max(0.0, video_duration - audio_duration)
+    integrated = loudness.get("integrated_lufs")
+    peak = loudness.get("true_peak_dbfs")
+    checks = {
+        "audio_stream_present": bool(durations.get("audio_stream_present")),
+        "audio_covers_video_tail": tail_gap <= maximum_audio_tail_gap_seconds,
+        "integrated_loudness_in_range": (
+            integrated is not None and minimum_lufs <= float(integrated) <= maximum_lufs
+        ),
+        "true_peak_safe": peak is not None and float(peak) <= maximum_true_peak_dbfs,
+    }
+    return {
+        "version": "1.0",
+        "checked_at": utc_now(),
+        "render": str(render),
+        "durations": durations,
+        "loudness": loudness,
+        "audio_tail_gap_seconds": round(tail_gap, 3),
+        "thresholds": {
+            "minimum_lufs": minimum_lufs,
+            "maximum_lufs": maximum_lufs,
+            "maximum_true_peak_dbfs": maximum_true_peak_dbfs,
+            "maximum_audio_tail_gap_seconds": maximum_audio_tail_gap_seconds,
+        },
+        "checks": checks,
+        "approved_for_delivery": all(checks.values()),
+    }

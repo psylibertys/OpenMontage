@@ -1,0 +1,155 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-fable-rusted-door-20260728-b01",
+  "title": "刀把门锁住以后",
+  "cover_title": "锈住的门",
+  "cover_english_title": "The Rusted Door",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/寓言/2026-07-28_刀把门锁住以后.md",
+  "estimated_duration_seconds": 105,
+  "narration_text": "他磨刀的第一百天，门钥匙锈得插不进锁孔。那把刀却亮得能照见他的眼睛。\n\n他在等一个多年前骗走他店铺的人。那个人离开时留下一张车票，日期就在今天。他准备等对方下车时，把这把刀摆到面前。\n\n可这间屋子有一条古怪的规矩：他每磨一次刀，家里另一件日用器具就会生出一点锈。\n\n最先坏的是剪刀，接着是水壶和自行车链。他知道原因，却觉得这些都可以以后再修。只要刀在约定那天足够锋利，别的东西暂时不能用也没关系。\n\n中午，远处传来火车进站的声音。他抓起刀跑到门边，钥匙却怎么也插不进锁孔。越用力，锈屑掉得越多，锁还是一动不动。\n\n他本想用刀撬门，刀尖刚碰到锁，忽然停住了。随后，他坐到窗边，用准备了多年的刀，一点点刮去钥匙上的锈。钥匙露出齿纹时，刀刃也崩开了几处缺口。\n\n门终于打开，那班火车早已离站。他没有追，只去街角买了一瓶机油。\n\n傍晚，他先修好水壶，又给自行车链上了油。磨刀石仍放在原处，只是再也没有湿过。",
+  "protagonist": {
+    "type": "成年男性",
+    "description": "一位四十二岁左右的男性旧店主，灰黑色贴头短直发，窄长脸，深褐肤色，穿靛蓝棉布工作衬衫、烟灰长裤和磨旧棕色皮围裙，动作长期克制而紧绷；本篇所有人物镜头保持相同面容、发型、服装与配色。",
+    "selection_rationale": "故事核心是一个长期准备以刀具对峙旧仇人的旧店主，男性形象更贴合这篇寓言的具体生活史、压抑方式和危险张力，因此采用男性。",
+    "appearance": {
+      "age_band": "四十二岁左右",
+      "hair": "灰黑色贴头短直发",
+      "silhouette": "靛蓝工作衬衫、烟灰长裤和磨旧棕色皮围裙形成窄长而紧绷的旧店主轮廓"
+    }
+  },
+  "visual_brief": {
+    "fable_law": "他每磨一次用于复仇的刀，家中另一件维持日常生活的器具便真实生出一点锈。",
+    "central_metaphor": "为了未来反击而反复磨亮的刀，正在把当下生活赖以运转的钥匙、水壶和自行车逐件锈死。",
+    "emotional_core": ["执念", "自我侵蚀", "临门停顿", "修复", "松开"],
+    "symbolic_objects": ["镜面般明亮的刀", "锈住的钥匙和门锁", "失去光泽的日用器具", "缺口斑驳的刀刃", "干燥的磨刀石"],
+    "protagonist_identity": "一位四十二岁左右的男性旧店主，灰黑贴头短直发、窄长脸、深褐肤色，靛蓝棉布工作衬衫、烟灰长裤、磨旧棕色皮围裙。",
+    "art_style_logic": "以德国表现主义木刻的硬边阴影表现执念，以氧化铜绿、铁锈赭红和冷钢蓝构成物件因果，再融入克制的蛋彩画与微距静物摄影，让刀的锋利、锈的蔓延和生活修复都像可触摸的真实事件。",
+    "technical_guardrails": ["text-free generated image", "no readable text", "no letters", "no logo", "no watermark", "no pseudo typography"]
+  },
+  "character_pack": {
+    "enabled": true,
+    "mode": "single_turnaround_sheet",
+    "turnaround_prompt": "one clean 2x2 character turnaround image showing the exact same forty-two-year-old male former shopkeeper in four distinct views: front, left three-quarter, right profile, and back three-quarter; close-cropped salt-and-pepper straight hair, narrow face, deep brown skin, indigo cotton work shirt, charcoal trousers and worn brown leather apron; consistent identity proportions clothing and palette across all four panels, neutral grounded pose, softly lit plain warm-gray studio backdrop, German expressionist woodcut edges blended with restrained egg tempera and tactile paper grain, balanced anatomy and natural relaxed hands"
+  },
+  "semantic_beats": [
+    {
+      "id": "beat-01", "subject_mode": "object", "script_anchor": "他磨刀的第一百天", "weight": 1, "summary": "刀亮而钥匙锈死", "workflow": "krea2_low_vram", "wan_candidate": true, "fable_event_stage": "first_manifestation",
+      "story_event": "木桌上，镜面般明亮的刀与布满新锈的门钥匙并排，钥匙齿被锈层堵住，远处门锁处在同一视线轴上。",
+      "fable_law": "被反复磨亮的刀与正在失去功能的钥匙第一次形成一对一的代价关系。",
+      "art_style_logic": "微距静物摄影提供材质可信度，表现主义硬影把两件物品切成相反方向，冷钢蓝与锈赭红直接建立冲突。",
+      "prompt": "vertical 9:16 macro still life on a scarred wooden table, a mirror-bright sharpened kitchen knife lies beside a house key thick with fresh rust that clogs its teeth, the distant door lock aligned in the background, cold steel blue against oxidized rust red, German expressionist hard-edged shadow blended with restrained egg tempera and tactile macro photography, exact coherent objects"
+    },
+    {
+      "id": "beat-02", "subject_mode": "protagonist", "script_anchor": "他在等一个多年前", "weight": 1, "summary": "旧店主守着约定", "workflow": "flux2_klein_4ref",
+      "story_event": "旧店主坐在昏暗屋内的窗边，桌上放着刀和一张褪色车票，远处铁路钟楼被窗框切成狭窄一角。",
+      "fable_law": "未来的对峙占据他的注意力，日常空间开始围绕那把刀收缩。",
+      "art_style_logic": "门框与窗框切割画面集中威胁感，蛋彩画的静止空气让等待显得沉重而真实。",
+      "prompt_variants": [
+        "vertical 9:16 intimate literary fable scene, the former shopkeeper sits rigidly beside a narrow window, a polished knife and one faded blank train ticket resting on the table, a distant railway clock tower cut into a slim slice by the window frame, fixed-camera composition, hard woodcut shadows blended with muted egg tempera, oxidized teal rust-red and indigo palette, stable seated anatomy",
+        "vertical 9:16 over-the-shoulder literary fable composition from behind the single former shopkeeper, his head and one shoulder occupy the lower side of frame while the polished knife and one plain unmarked faded paper stub with a punched hole and torn edge dominate the tabletop foreground, a distant railway clock tower held within the narrow window, strong depth separation, hard woodcut shadows blended with muted egg tempera, oxidized teal rust-red and indigo palette, stable seated anatomy"
+      ]
+    },
+    {
+      "id": "beat-03", "subject_mode": "object", "script_anchor": "可这间屋子有一条古怪的规矩", "weight": 1, "summary": "每磨一次便锈一件", "workflow": "krea2_low_vram",
+      "story_event": "刀刃沿磨刀石移动的轨迹被分解为三层物件剖面：剪刀铰链、水壶壶嘴和自行车链各生出一圈新锈。",
+      "fable_law": "每一次磨刀动作都会把等量腐蚀转移到另一件日用器具上。",
+      "art_style_logic": "机械图谱与木刻序列融合，把不可见交换变成清楚的材料变化。",
+      "prompt": "vertical 9:16 human-free mechanical fable tableau, one sharpening stroke across a whetstone corresponds to three clearly separated material studies: rust blooming around a pair of scissors hinge, a kettle spout, and one bicycle chain link, precise cause-and-effect geometry, natural-history plate structure blended with German woodcut marks, oxidized pigment and tactile metal relief"
+    },
+    {
+      "id": "beat-04", "subject_mode": "object", "script_anchor": "最先坏的是剪刀", "weight": 1, "summary": "日用器具逐件失效", "workflow": "krea2_low_vram",
+      "story_event": "剪刀、水壶和自行车链按时间顺序排列在工作台上，锈蚀程度逐件加重，刀在画面尽头保持明亮。",
+      "fable_law": "刀的锋利由生活器具逐步失去功能来支付。",
+      "art_style_logic": "重复构图中的材料渐变表现积累，静物秩序比抽象符号更清楚。",
+      "prompt": "vertical 9:16 human-free chronological still-life arrangement, household scissors, metal kettle and bicycle chain progress from light oxidation to heavy rust across a workbench while a polished knife remains bright at the far end, exact material progression, austere museum-display composition blended with egg tempera, woodcut contour and macro metal texture"
+    },
+    {
+      "id": "beat-05", "subject_mode": "protagonist", "script_anchor": "他知道原因", "weight": 1, "summary": "他继续忽略代价", "workflow": "flux2_klein_4ref",
+      "story_event": "旧店主在桌边继续磨刀，锈住的水壶和松垮自行车链近在手边，他只注视刀口反光。",
+      "fable_law": "规则已经被理解，但执念让他把当下损失推迟到以后。",
+      "art_style_logic": "固定机位让物件关系承担叙事，窄束冷光把注意力锁在刀口。",
+      "prompt": "vertical 9:16 fixed-frame literary fable scene, the former shopkeeper continues a measured sharpening motion at the table, a rusted kettle and slack bicycle chain clearly visible within reach while his gaze stays on the blade reflection, rigid triangular composition, indigo dusk light with rust-red material accents, German expressionist woodcut edges blended with restrained tempera, coherent arms and hands"
+    },
+    {
+      "id": "beat-06", "subject_mode": "environment", "script_anchor": "中午", "weight": 1, "summary": "火车抵达而屋内停滞", "workflow": "krea2_low_vram",
+      "story_event": "正午的旧屋与远处车站处于同一纵深，蒸汽越过屋顶，门内阴影像凝固的锈层。",
+      "fable_law": "约定时刻真正到来，而被侵蚀的生活空间即将成为阻挡。",
+      "art_style_logic": "建立镜头同时交代车站距离和房屋封闭感，空间本身成为命运结构。",
+      "prompt": "vertical 9:16 human-free establishing view, a weathered row house interior doorway frames a distant small railway station at noon, pale steam rises beyond rooftops while the house threshold sits in dense oxidized shadow, coherent geography, fixed architectural composition with woodcut planes, dusty egg tempera and cold steel-blue daylight"
+    },
+    {
+      "id": "beat-07", "subject_mode": "protagonist", "script_anchor": "他抓起刀跑到门边", "weight": 1, "summary": "他冲向锈住的门", "workflow": "flux2_klein_4ref",
+      "story_event": "旧店主握住包裹好的刀柄冲到门边，另一只手把锈钥匙对准锁孔，动作停在尚未用力的瞬间。",
+      "fable_law": "他为反击准备的速度撞上了自己累积的腐蚀。",
+      "art_style_logic": "门框切割与斜向动势制造冲突，清楚的双手分工降低肢体歧义。",
+      "prompt": "vertical 9:16 tense literary fable frame, the former shopkeeper arrives at the door holding a safely wrapped knife handle close to his torso while his other clearly visible hand aligns a rusted key with the lock, motion arrested just before pressure, doorway cutting the frame into sharp planes, expressionist woodcut geometry blended with tactile tempera, coherent two-arm anatomy"
+    },
+    {
+      "id": "beat-08", "subject_mode": "macro", "script_anchor": "越用力", "weight": 1, "summary": "锈屑越落门越不动", "workflow": "krea2_low_vram",
+      "story_event": "钥匙齿抵住锁孔边缘，细碎锈屑沿门板落下，锁芯内部被层层氧化物堵塞。",
+      "fable_law": "过去每次磨刀积累的锈在此刻汇成真正无法通过的门。",
+      "art_style_logic": "机械剖面和微距材质结合，让失败来自可理解的物理结构。",
+      "prompt": "vertical 9:16 human-free extreme macro of a rusted house key meeting a seized lock, fine rust flakes falling down the wooden door while a precise cutaway reveals oxidized layers jamming the lock pins, tactile metal realism blended with scientific engraving and expressionist shadow, coherent mechanism and crisp material detail"
+    },
+    {
+      "id": "beat-09", "subject_mode": "protagonist", "script_anchor": "他本想用刀撬门", "weight": 1, "summary": "刀尖在锁前停住", "workflow": "flux2_klein_4ref",
+      "story_event": "旧店主半蹲在门边，刀尖停在锁旁一指距离，他从刀面倒影里看见自己的紧绷眼睛。",
+      "fable_law": "原本为伤害准备的工具第一次被他的主动停顿改变用途。",
+      "art_style_logic": "刀面倒影承载自我看见，姿态保持静止以避免将转折拍成动作奇观。",
+      "prompt": "vertical 9:16 intimate turning-point frame, the former shopkeeper crouches beside the door with the knife tip held one finger-width from the lock, his tense eyes reflected in the flat blade surface, a deliberate still pause, compact side profile and clear grounded posture, dark woodcut planes opening into soft tempera light, stable anatomy and coherent tool"
+    },
+    {
+      "id": "beat-10", "subject_mode": "protagonist", "script_anchor": "随后", "weight": 1, "summary": "他用刀刮去钥匙锈层", "workflow": "flux2_klein_4ref",
+      "story_event": "窗边桌上，旧店主把钥匙固定在小木夹具中，以刀背缓慢刮除锈层，双手动作简单而清楚。",
+      "fable_law": "多年磨出的锋利开始被用于修复进入生活的通道。",
+      "art_style_logic": "工匠式近景把伦理转折落实为具体维修动作，暖光第一次进入冷色画面。",
+      "prompt": "vertical 9:16 close craft scene by a window, the former shopkeeper secures the rusted key in a small wooden bench clamp and carefully scrapes oxidation with the back edge of the knife, simple separated hand positions, warm afternoon light beginning to enter the indigo room, tactile workshop realism fused with egg tempera and restrained woodcut contour, coherent hands and tools"
+    },
+    {
+      "id": "beat-11", "subject_mode": "macro", "script_anchor": "钥匙露出齿纹时", "weight": 1, "summary": "钥匙复原而刀刃崩口", "workflow": "krea2_low_vram",
+      "story_event": "清理后的钥匙齿重新清楚，旁边刀刃出现数个真实细小缺口，两件物品形成反向变化。",
+      "fable_law": "生活功能恢复的同时，复仇工具失去部分锋利。",
+      "art_style_logic": "双物件微距以材质变化完成价值交换，柔和侧光取代硬影。",
+      "prompt": "vertical 9:16 human-free paired macro study, a cleaned house key reveals crisp functional teeth beside a formerly polished knife blade now carrying several small realistic chips, opposite material transformations shown at equal scale, warm side light, museum-quality metal photography blended with delicate engraving and restrained tempera"
+    },
+    {
+      "id": "beat-12", "subject_mode": "environment", "script_anchor": "门终于打开", "weight": 1, "summary": "门打开而列车离站", "workflow": "krea2_low_vram",
+      "story_event": "锈门向外打开，空街尽头只剩逐渐散去的列车蒸汽和安静铁轨。",
+      "fable_law": "他终于能离开房间，但为复仇准备的那个时刻已经过去。",
+      "art_style_logic": "无人建立镜头让错过通过空间呈现，开放门框把压迫构图转为深远透视。",
+      "prompt": "vertical 9:16 human-free open doorway looking toward an empty street and distant railway tracks, the last pale train steam dissolves beyond the houses, the repaired lock visible on the near door edge, deep calm perspective, expressionist frame geometry softening into luminous egg tempera, rust red fading toward pale blue afternoon"
+    },
+    {
+      "id": "beat-13", "subject_mode": "protagonist", "script_anchor": "他没有追", "weight": 1, "summary": "他转向街角机油店", "workflow": "flux2_klein_4ref",
+      "story_event": "旧店主站在路口，铁路在一侧远去，另一侧街角店橱窗里摆着一瓶无标签机油，他转身走向后者。",
+      "fable_law": "被错过的复仇不再追赶，注意力转向恢复日常运转。",
+      "art_style_logic": "分叉构图把选择变成身体方向，低饱和街景让动作保持日常尺度。",
+      "prompt": "vertical 9:16 quiet street-corner fable scene, the former shopkeeper stands at a fork with receding railway tracks on one side and a small repair shop window displaying a plain unlabeled oil bottle on the other, his body turns toward the repair shop, calm full silhouette, woodcut street geometry blended with soft tempera afternoon haze, stable walking transition"
+    },
+    {
+      "id": "beat-14", "subject_mode": "protagonist", "script_anchor": "傍晚", "weight": 1, "summary": "生活器具重新运转", "workflow": "flux2_klein_4ref",
+      "story_event": "傍晚工作台上，旧店主先让水壶重新冒出蒸汽，再给自行车链逐节上油，屋内恢复温暖。",
+      "fable_law": "此前被执念侵蚀的日常能力开始被逐件修复。",
+      "art_style_logic": "固定机位中的物件重新活动，蒸汽和链条光泽让修复成为可见进程。",
+      "prompt": "vertical 9:16 warm fixed-frame workshop scene at dusk, the former shopkeeper repairs ordinary life at a wooden bench, a restored kettle releases a gentle column of steam while he oils one clearly supported bicycle chain, amber practical light spreading through the room, tactile domestic realism fused with restrained egg tempera and softened woodcut lines, coherent hands"
+    },
+    {
+      "id": "beat-15", "subject_mode": "object", "script_anchor": "磨刀石仍放在原处", "weight": 1, "summary": "磨刀石从此保持干燥", "workflow": "krea2_low_vram",
+      "story_event": "清晨的空工作台上，干燥磨刀石安静留在旧位置，旁边是能正常转动的钥匙、水壶和自行车链。",
+      "fable_law": "规则仍然存在，但他停止了喂养那条侵蚀生活的交换链。",
+      "art_style_logic": "静物结尾以干燥材质和恢复秩序留下克制余韵，硬影完全转为漫射晨光。",
+      "prompt": "vertical 9:16 human-free final still life in soft morning light, a completely dry whetstone remains untouched on the old workbench beside a functional clean key, restored kettle and smoothly aligned bicycle chain, quiet domestic order, diffuse amber-gray light, tactile egg tempera blended with precise still-life photography and gentle woodcut contour"
+    }
+  ],
+  "character_reference_paths": [],
+  "cover_prompt": "vertical 9:16 human-free symbolic artwork, a mirror-bright knife lies horizontally before a heavily rusted closed door lock while a clean key slowly emerges from a field of oxidized red particles, cold steel blue meeting rust red and one thin line of warm amber light, German expressionist woodcut geometry blended with tactile egg tempera and metal relief, strong readable central metaphor, quiet naturally open upper field",
+  "hero_wan": {
+    "enabled": false,
+    "selection_policy": "opening_fable_event_only_or_none",
+    "scene_id": "",
+    "prompt": "a soft glint travels once along the stationary polished blade while a few fine rust particles release from the key and settle on the wood, locked camera, subtle physically coherent material motion, stable objects and structure"
+  },
+  "music": {"preferred_keywords": ["restrained tension", "metallic", "introspective", "warm release", "minimal piano", "ambient"]},
+  "music_source": "",
+  "captions_path": ""
+}

@@ -44,6 +44,7 @@ CANONICAL_STAGE_ARTIFACTS = {
 SUPPLEMENTARY_ARTIFACTS = {
     "source_media_review",  # Required before first planning stage when user media exists
     "final_review",         # Required by compose stage before presenting to user
+    "clip_delivery_audit",  # Hard clip-factory gate: final MP4 sync + exact frame-zero cover
     "video_analysis_brief", # Reference-video grounding artifact carried alongside stages
 }
 
@@ -105,6 +106,7 @@ def _validate_artifacts_for_stage(
     stage: str,
     status: str,
     artifacts: dict[str, Any],
+    pipeline_type: str | None = None,
 ) -> None:
     # Valid stages come from the pipeline manifest (get_pipeline_stages), which
     # can declare stages beyond the 9 canonical ones (e.g. character-animation's
@@ -136,6 +138,29 @@ def _validate_artifacts_for_stage(
                 f"Artifact {artifact_name!r} failed schema validation: {exc}"
             ) from exc
 
+    if (
+        pipeline_type == "clip-factory"
+        and stage == "compose"
+        and status in {"completed", "awaiting_human"}
+    ):
+        audit = artifacts.get("clip_delivery_audit")
+        if not isinstance(audit, dict):
+            raise CheckpointValidationError(
+                "clip-factory compose cannot complete without clip_delivery_audit"
+            )
+        if audit.get("status") != "pass" or audit.get("failed_clip_ids"):
+            raise CheckpointValidationError(
+                "clip-factory compose cannot complete with a failed clip_delivery_audit"
+            )
+        render_report = artifacts.get("render_report")
+        rendered = render_report.get("outputs", []) if isinstance(render_report, dict) else []
+        audited = audit.get("outputs", [])
+        if len(rendered) != len(audited):
+            raise CheckpointValidationError(
+                "clip-factory compose render/audit output counts do not match: "
+                f"{len(rendered)} rendered vs {len(audited)} audited"
+            )
+
 
 def validate_checkpoint(checkpoint: dict[str, Any]) -> None:
     """Validate checkpoint structure and canonical artifact payloads.
@@ -163,7 +188,7 @@ def validate_checkpoint(checkpoint: dict[str, Any]) -> None:
     if not isinstance(artifacts, dict):
         raise CheckpointValidationError("Checkpoint artifacts must be a dictionary")
 
-    _validate_artifacts_for_stage(stage, status, artifacts)
+    _validate_artifacts_for_stage(stage, status, artifacts, pipeline_type)
 
     try:
         jsonschema.validate(instance=checkpoint, schema=_load_checkpoint_schema())

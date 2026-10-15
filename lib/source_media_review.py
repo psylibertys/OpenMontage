@@ -38,7 +38,9 @@ def detect_media_type(path: Path) -> Optional[str]:
     return None
 
 
-def _probe_video(path: Path, tool_registry: Any) -> dict[str, Any]:
+def _probe_video(
+    path: Path, tool_registry: Any, review_output_dir: Optional[Path] = None
+) -> dict[str, Any]:
     """Probe a video file using audio_probe (ffprobe wrapper) and frame_sampler."""
     result: dict[str, Any] = {"technical_probe": {}, "representative_frames": [], "quality_risks": []}
 
@@ -53,7 +55,7 @@ def _probe_video(path: Path, tool_registry: Any) -> dict[str, Any]:
         logger.warning("audio_probe failed for %s: %s", path, e)
 
     # If audio_probe didn't work, try ffprobe directly
-    if not result["technical_probe"]:
+    if not result["technical_probe"] or not result["technical_probe"].get("resolution"):
         try:
             import subprocess
             cmd = [
@@ -90,11 +92,16 @@ def _probe_video(path: Path, tool_registry: Any) -> dict[str, Any]:
             timestamps = _sample_timestamps(duration, count=4)
             sample_result = frame_sampler.execute({
                 "input_path": str(path),
+                "strategy": "timestamps",
                 "timestamps": timestamps,
-                "output_dir": str(path.parent / ".source_review_frames"),
+                "output_dir": str(review_output_dir or path.parent / ".source_review_frames"),
             })
             if sample_result.success:
-                result["representative_frames"] = sample_result.data.get("frame_paths", [])
+                result["representative_frames"] = [
+                    frame["path"]
+                    for frame in sample_result.data.get("frames", [])
+                    if frame.get("path")
+                ]
     except Exception as e:
         logger.warning("frame_sampler failed for %s: %s", path, e)
 
@@ -259,7 +266,12 @@ def review_source_media(
 
         # Probe based on media type
         if media_type == "video":
-            probe_data = _probe_video(file_path, tool_registry)
+            project_dir = context.get("project_dir")
+            review_dir = (
+                Path(project_dir) / "assets" / "source-review" / file_path.stem
+                if project_dir else None
+            )
+            probe_data = _probe_video(file_path, tool_registry, review_dir)
         elif media_type == "audio":
             probe_data = _probe_audio(file_path, tool_registry)
         else:

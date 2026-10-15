@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "batch_id": "memory-repair-shop-b2",
+  "project_id": "memory-repair-shop",
+  "pipeline": "story-to-storyboard",
+  "status": "skeleton_awaiting_h3_smoke",
+  "storyboard_export": "projects/memory-repair-shop/exports/storyboard/memory-repair-shop/memory-repair-shop.json",
+  "aspect_preset": "portrait_9_16",
+  "queue_depth": 2,
+  "ssh_host": "autodl-comfyui",
+  "prerequisites": [
+    "H3 模板 smoke：✅ 2026-10-12 五条新模板已过 GPU smoke 并注册（AGENT_CONTEXT 换代记录）；2026-10-13 preflight 实测 fasth3_i2v / h3_audio_sync / fasth3_fflf 全 OK——无需等待，可直接生产",
+    "批次 1 首帧 + 角色包人审通过（2026-10-13 已过）"
+  ],
+  "video": {
+    "workflow_template": "minimax_fasth3_i2v",
+    "keyframe_source": "assets/images/scenes/scene-{nn}.png（批次 1 产物，reference_image_path）",
+    "two_stage": {
+      "seed_pass": {
+        "longest_side": 480,
+        "duration_seconds": 5,
+        "purpose": "选种轮：25 镜小尺寸快出（约 1 分钟/镜），人工星标合格镜头、标记废片重抽（换 seed）"
+      },
+      "hd_pass": {
+        "longest_side": 1920,
+        "duration_seconds": 4,
+        "purpose": "重跑轮：入选镜头以同 seed 升 Full HD（1080x1920），废片换 seed 重抽后再升"
+      }
+    },
+    "duration_strategy": "镜头计划 2-3s 低于 H3 最短档 4s：一律生成 4-5s，Remotion 截取最佳段；成片每镜时长以批次 1 逐镜 TTS 音频轨为锚（audio anchoring）",
+    "native_audio": "H3 原生音频白送环境音轨，Remotion 与旁白混音时压低作氛围层"
+  },
+  "shot_enhancements": [
+    {
+      "scenes": ["scene-17", "scene-18"],
+      "replace_with": "minimax_h3_audio_sync",
+      "audio_source": "assets/audio/scene-{nn}.mp3",
+      "duration_seconds": {"scene-17": 3, "scene-18": 2},
+      "audio_actual_seconds": {"scene-17": 2.62, "scene-18": 1.18},
+      "reason": "台词口型镜头（s17 老人开口恳求 ECU / s18 拇指按下停止键）；audio_sync 时长须含音频余量"
+    },
+    {
+      "transition": {"from": "scene-21", "to": "scene-22"},
+      "workflow": "minimax_fasth3_fflf",
+      "frames": "两镜批次 1 首帧（reference_image_path=s21 / last_image_path=s22）",
+      "duration_seconds": 4,
+      "reason": "雪夜凝视→春天小巷的情绪转场；s21/s22 本镜 i2v 照常生成，fflf 片段作为转场插入备选"
+    }
+  ],
+  "prompt_adaptations": {},
+  "prompt_adaptations_note": "i2v_prompt 为 Wan 时代锚点格式（Based on the provided image, the same X remain consistent, ...）；H3 smoke 验证提示遵循度后按需在此加投喂层适配（from/to 精确子串，同批次 1 机制），storyboard 原件不动",
+  "runner_note": "批次 2 runner 扩展（i2v 组 + 选种/升清两段 + 星标人审门）待 H3 smoke 契约确认后实现，避免参数名返工",
+  "metadata": {
+    "source_pipeline": "story-to-storyboard (4/4 gates human_approved)",
+    "shot_count": 25,
+    "total_duration_seconds": 66,
+    "per_shot_audio_total_seconds": 64.4,
+    "batch_scope": "25 镜 i2v 两段式 + s17/18 口型 + s21→22 转场备选；完成后 Remotion 拼成片交付验收①最终关门"
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "version": "1.0",
+  "project_id": "treeelf-ai-feeling-question-20260728",
+  "title": "会整理信息不等于会感受",
+  "cover_title": "意识问号",
+  "cover_english_title": "THE FEELING QUESTION",
+  "source_script_md": "/Users/treeelf/Desktop/Psynaut/treeElfNotes/07产出/心哲灵/短视频文案/2026-07-28_会整理信息不等于会感受.md",
+  "final_output_dir": "/Users/treeelf/Movies/zh-philosophy-video",
+  "music_source": "",
+  "music": {
+    "selection_mode": "auto_by_script_keywords",
+    "preferred_keywords": [
+      "technology",
+      "mysterious",
+      "thoughtful",
+      "ambient",
+      "纯音乐"
+    ]
+  },
+  "visual_brief": {
+    "emotional_core": [
+      "被AI理解时的惊讶",
+      "功能证据带来的兴奋",
+      "主观体验仍未知的克制"
+    ],
+    "metaphor_candidates": [
+      "灵魂身份证",
+      "中央工作台",
+      "两张问题单",
+      "空着的一栏"
+    ],
+    "style_families": [
+      "cinematic technology photography",
+      "translucent data sculpture",
+      "minimal speculative geometry"
+    ]
+  },
+  "duration_seconds": 84,
+  "article_visual_assets": {
+    "text_policy": "ComfyUI generates text-free media only; Remotion adds all readable text.",
+    "technical_guardrails": [
+      "text-free visual media",
+      "no generated logos",
+      "no generated watermarks",
+      "no pseudo typography"
+    ],
+    "style_source": "art-Styles.md",
+    "style_families": [
+      "cinematic technology photography",
+      "translucent data sculpture",
+      "minimal speculative geometry"
+    ],
+    "target_ratios": {
+      "narrative_concrete": 0.15,
+      "abstract_imagery": 0.4,
+      "style_fusion_translation": 0.45
+    },
+    "prompt_policy": "Creative prompts describe what the image should express: semantic anchor, emotion, metaphor, material, light, composition and art language. Symbols appear when they grow from the script's imagery and can explain their meaning. Text-bearing subject terms such as phrase, note, notebook, page, document, tag, label, typography, editorial layout or idea table require prompt_review text_risk_mitigation and should be translated into blank cards, pure material surfaces, color fields, light paths, object arrays or geometric hierarchy before GPU generation.",
+    "cross_episode_repeat_policy": "Extract fresh imagery from this script using: 灵魂身份证, 中央工作台, 两张问题单, 空着的一栏; do not mechanically copy prominent motifs from recent episodes.",
+    "wan_policy": {
+      "enabled": true,
+      "selection_policy": "opening_hook_plus_longest_semantic_safe",
+      "generation_seconds": 4,
+      "max_generation_seconds": 5,
+      "extension_policy": "If the chosen scene stays on screen longer than the generated Wan clip, Remotion extends the motion with playbackRate, tail hold and subtle still motion rather than requesting a longer Wan generation."
+    },
+    "images": [
+      {
+        "id": "C01",
+        "role": "cover",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97401,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a luminous central workspace organizing many signals while a quiet human-shaped question remains outside it; style_logic: cinematic technology photography and translucent data sculpture compress the episode's core metaphor into a calm cover image.",
+        "prompt": "Vertical 9:16 refined cover artwork, a luminous central workspace organizing many signals while a quiet human-shaped question remains outside it, cinematic technology photography blended with translucent data sculpture, generous calm negative space for later title layers, clear focal hierarchy, text-free visual field"
+      },
+      {
+        "id": "P00",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97402,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a person in a dim room surprised as a conversational machine anticipates an unfinished thought; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a person in a dim room surprised as a conversational machine anticipates an unfinished thought, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P01",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97403,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a blank identity token floating near a polished machine silhouette before any hand approves it; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a blank identity token floating near a polished machine silhouette before any hand approves it, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P02",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97404,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: many concepts converging on one luminous central work surface inside a transparent structure; style_logic: minimal speculative geometry provides the scene structure while cinematic technology photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, many concepts converging on one luminous central work surface inside a transparent structure, minimal speculative geometry blended with cinematic technology photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P03",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97405,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: one concept moving from the central surface into several reasoning pathways; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, one concept moving from the central surface into several reasoning pathways, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P04",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97406,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the central surface dimmed while simple conversation channels continue around it; style_logic: translucent data sculpture provides the scene structure while minimal speculative geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, the central surface dimmed while simple conversation channels continue around it, translucent data sculpture blended with minimal speculative geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P05",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97407,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a functional workspace mirrored against an unknown dark interior with no visible occupant; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, a functional workspace mirrored against an unknown dark interior with no visible occupant, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P06",
+        "role": "narrative_concrete",
+        "visual_mode": "narrative_concrete",
+        "seed": 97408,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a researcher comparing two separate transparent panels, one illuminated and one unresolved; grounded human or object action makes this script beat concrete and motion-safe.",
+        "prompt": "Vertical 9:16 cinematic documentary scene, a researcher comparing two separate transparent panels, one illuminated and one unresolved, natural motivated light, grounded spatial context, believable physical detail, restrained emotion, text-free visual field"
+      },
+      {
+        "id": "P07",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97409,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: context, adjustment and reasoning represented by three connected moving mechanisms; style_logic: translucent data sculpture provides the scene structure while minimal speculative geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, context, adjustment and reasoning represented by three connected moving mechanisms, translucent data sculpture blended with minimal speculative geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P08",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97410,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: care, effort and sadness represented as three sealed chambers whose interiors cannot be observed; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, care, effort and sadness represented as three sealed chambers whose interiors cannot be observed, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P09",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97411,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: a machine efficiently routing files while a nearby human hand feels the weight of overtime; style_logic: cinematic technology photography provides the scene structure while translucent data sculpture translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, a machine efficiently routing files while a nearby human hand feels the weight of overtime, cinematic technology photography blended with translucent data sculpture, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P10",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97412,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: several experts standing around a luminous question-shaped void without forcing an answer; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, several experts standing around a luminous question-shaped void without forcing an answer, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P11",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97413,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the experience of being understood shown as warm light reaching a seated person; style_logic: minimal speculative geometry provides the scene structure while cinematic technology photography translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, the experience of being understood shown as warm light reaching a seated person, minimal speculative geometry blended with cinematic technology photography, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      },
+      {
+        "id": "P12",
+        "role": "abstract_imagery",
+        "visual_mode": "abstract_imagery",
+        "seed": 97414,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: the warm connection preserved while the blank identity token remains on the table; every object, material and spatial relation maps to this script concept.",
+        "prompt": "Vertical 9:16 symbolic mixed-media artwork, the warm connection preserved while the blank identity token remains on the table, tactile materials, deliberate negative space, precise emotional atmosphere, readable visual hierarchy, text-free visual field"
+      },
+      {
+        "id": "P13",
+        "role": "style_fusion_translation",
+        "visual_mode": "style_fusion_translation",
+        "seed": 97415,
+        "steps": 8,
+        "prompt_review": "semantic_anchor: two parallel inquiry paths continuing forward, one mapped and one still disappearing into mist; style_logic: translucent data sculpture provides the scene structure while minimal speculative geometry translates the episode's cognitive or emotional movement.",
+        "prompt": "Vertical 9:16 style-fusion artwork, two parallel inquiry paths continuing forward, one mapped and one still disappearing into mist, translucent data sculpture blended with minimal speculative geometry, coherent material rhythm, sophisticated composition, emotionally precise light, text-free visual field"
+      }
+    ],
+    "videos": [
+      {
+        "id": "W01",
+        "selection_role": "opening_hook",
+        "reference": "P00",
+        "seed": 97451,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: opening motion deepens a person in a dim room surprised as a conversational machine anticipates an unfinished thought without changing its meaning.",
+        "prompt": "Slow natural camera drift, one small motivated movement from the visible scene, stable subject structure, restrained cinematic motion, text-free visual field"
+      },
+      {
+        "id": "W02",
+        "selection_role": "longest_semantic_safe",
+        "reference": "P06",
+        "seed": 97452,
+        "duration_seconds": 4,
+        "prompt_review": "semantic_anchor: core motion develops a researcher comparing two separate transparent panels, one illuminated and one unresolved as the longest semantic-safe visual beat.",
+        "prompt": "One clear motivated action drawn from the reference scene, subtle camera movement, stable anatomy and structure, calm visual rhythm, text-free visual field"
+      }
+    ]
+  },
+  "edit": {
+    "narration_src": "audio/narration.wav",
+    "music_src": "audio/background.mp3",
+    "captions_path": "",
+    "scenes": [
+      {
+        "id": "S01",
+        "kind": "video",
+        "src": "video/W01.mp4",
+        "from": 0,
+        "to": 6,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S02",
+        "kind": "still",
+        "src": "images/P01.png",
+        "from": 6,
+        "to": 12,
+        "motion": "push-left"
+      },
+      {
+        "id": "S03",
+        "kind": "still",
+        "src": "images/P02.png",
+        "from": 12,
+        "to": 18,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S04",
+        "kind": "still",
+        "src": "images/P03.png",
+        "from": 18,
+        "to": 24,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S05",
+        "kind": "still",
+        "src": "images/P04.png",
+        "from": 24,
+        "to": 30,
+        "motion": "push-right"
+      },
+      {
+        "id": "S06",
+        "kind": "still",
+        "src": "images/P05.png",
+        "from": 30,
+        "to": 36,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S07",
+        "kind": "video",
+        "src": "video/W02.mp4",
+        "from": 36,
+        "to": 42,
+        "playbackRate": 0.67
+      },
+      {
+        "id": "S08",
+        "kind": "still",
+        "src": "images/P07.png",
+        "from": 42,
+        "to": 48,
+        "motion": "push-left"
+      },
+      {
+        "id": "S09",
+        "kind": "still",
+        "src": "images/P08.png",
+        "from": 48,
+        "to": 54,
+        "motion": "drift-up"
+      },
+      {
+        "id": "S10",
+        "kind": "still",
+        "src": "images/P09.png",
+        "from": 54,
+        "to": 60,
+        "motion": "pull-back"
+      },
+      {
+        "id": "S11",
+        "kind": "still",
+        "src": "images/P10.png",
+        "from": 60,
+        "to": 65,
+        "motion": "push-right"
+      },
+      {
+        "id": "S12",
+        "kind": "still",
+        "src": "images/P11.png",
+        "from": 65,
+        "to": 70,
+        "motion": "drift-down"
+      },
+      {
+        "id": "S13",
+        "kind": "still",
+        "src": "images/P12.png",
+        "from": 70,
+        "to": 75,
+        "motion": "push-left"
+      },
+      {
+        "id": "S14",
+        "kind": "still",
+        "src": "images/P13.png",
+        "from": 75,
+        "to": 84,
+        "motion": "drift-up"
+      }
+    ],
+    "info_cards": [
+      {
+        "id": "I01",
+        "from": 28,
+        "to": 36,
+        "type": "comparison",
+        "eyebrow": "两张问题单",
+        "left": "会整合信息",
+        "operator": "≠",
+        "right": "会主观感受"
+      },
+      {
+        "id": "I02",
+        "from": 61,
+        "to": 70,
+        "type": "comparison",
+        "eyebrow": "当前证据",
+        "left": "功能机制",
+        "operator": "已有进展",
+        "right": "体验问题仍开放"
+      }
+    ],
+    "captions": []
+  }
+}

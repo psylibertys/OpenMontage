@@ -45,8 +45,8 @@ def test_template_and_locked_series_profile_are_valid(tmp_path: Path) -> None:
     assert series_profile()["caption"]["safe_bottom"] >= 330
     assert series_profile()["production_defaults"]["wan_max_generation_seconds"] == 5
     assert config["article_visual_assets"]["wan_policy"]["enabled"] is True
-    assert len(config["article_visual_assets"]["images"]) == 15
-    assert len(config["article_visual_assets"]["videos"]) == 2
+    assert len(config["article_visual_assets"]["images"]) == 12
+    assert len(config["article_visual_assets"]["videos"]) == 1
 
 
 def test_music_selection_penalizes_already_used_track(tmp_path: Path) -> None:
@@ -119,7 +119,7 @@ def test_validation_rejects_overlong_wan_generation(tmp_path: Path) -> None:
     assert any("Wan duration_seconds must be <= 5" in error for error in errors)
 
 
-def test_wan_policy_selects_opening_and_longest_safe_scene(tmp_path: Path) -> None:
+def test_wan_policy_selects_opening_scene_only(tmp_path: Path) -> None:
     source = tmp_path / "source.md"
     make_source(source)
     config = episode_config(source)
@@ -127,21 +127,17 @@ def test_wan_policy_selects_opening_and_longest_safe_scene(tmp_path: Path) -> No
         {"id": "S01", "kind": "video", "src": "video/W01.mp4", "from": 0, "to": 6},
         {"id": "S02", "kind": "still", "src": "images/P01.png", "from": 6, "to": 10, "motion": "push-left"},
         {"id": "S03", "kind": "still", "src": "images/P02.png", "from": 10, "to": 21, "motion": "drift-up", "script_excerpt": "最长的核心隐喻"},
-        {"id": "S04", "kind": "video", "src": "video/W02.mp4", "from": 21, "to": 26},
+        {"id": "S04", "kind": "still", "src": "images/P03.png", "from": 21, "to": 26},
     ]
 
     jobs, policy = timeline.resolve_wan_generation_plan(config, scenes)
     updated = timeline.apply_wan_scene_policy(config, scenes, jobs)
 
     assert policy["opening_reference"] == "P00"
-    assert policy["longest_reference"] == "P02"
-    assert {job["id"]: job["reference"] for job in jobs} == {"W01": "P00", "W02": "P02"}
+    assert {job["id"]: job["reference"] for job in jobs} == {"W01": "P00"}
     assert max(job["duration_seconds"] for job in jobs) <= 5
-    assert updated[2]["kind"] == "video"
-    assert updated[2]["src"] == "video/W02.mp4"
-    assert updated[2]["wan_reference"] == "P02"
+    assert updated[2]["kind"] == "still"
     assert updated[3]["kind"] == "still"
-    assert updated[3]["src"] == "images/P06.png"
 
 
 def test_validation_rejects_text_bearing_prompt_without_mitigation(tmp_path: Path) -> None:
@@ -174,19 +170,19 @@ def test_validation_allows_text_risk_when_review_documents_visual_substitute(tmp
     assert workflow.validate_episode(config, series_profile()) == []
 
 
-def test_validation_allows_more_than_fourteen_content_images(tmp_path: Path) -> None:
+def test_validation_allows_more_than_eleven_content_images(tmp_path: Path) -> None:
     source = tmp_path / "source.md"
     make_source(source)
     config = episode_config(source)
     extra = dict(config["article_visual_assets"]["images"][-1])
-    extra.update({"id": "P14", "seed": 91016})
+    extra.update({"id": "P11", "seed": 91016})
     config["article_visual_assets"]["images"].append(extra)
     config["edit"]["scenes"].append({
-        "id": "S15",
+        "id": "S12",
         "kind": "still",
-        "src": "images/P14.png",
-        "from": 80,
-        "to": 85,
+        "src": "images/P11.png",
+        "from": 65,
+        "to": 70,
         "motion": "pull-back",
     })
 
@@ -264,6 +260,11 @@ def test_delivery_copies_then_marks_source_completed(tmp_path: Path, monkeypatch
     render = tmp_path / "final.mp4"
     render.write_bytes(b"verified-render-content")
     monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 72.5)
+    monkeypatch.setattr(
+        workflow,
+        "build_final_audio_mix_qc",
+        lambda *_args, **_kwargs: {"approved_for_delivery": True},
+    )
 
     result = workflow.deliver(config, render, projects_dir=projects)
 
@@ -294,6 +295,45 @@ def test_delivery_refuses_source_changed_after_prepare(tmp_path: Path, monkeypat
         raise AssertionError("delivery should refuse a changed source")
 
 
+def test_delivery_refuses_failed_final_audio_qc(tmp_path: Path, monkeypatch) -> None:
+    source = tmp_path / "source.md"
+    make_source(source)
+    config = episode_config(source)
+    config["final_output_dir"] = str(tmp_path / "Movies")
+    projects = tmp_path / "projects"
+    workflow.prepare_episode(config, series_profile(), projects_dir=projects)
+    render = tmp_path / "final.mp4"
+    render.write_bytes(b"render-with-bad-audio")
+    monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 72.5)
+    monkeypatch.setattr(
+        workflow,
+        "build_final_audio_mix_qc",
+        lambda *_args, **_kwargs: {
+            "approved_for_delivery": False,
+            "checks": {"true_peak_safe": False},
+        },
+    )
+
+    try:
+        workflow.deliver(config, render, projects_dir=projects)
+    except ValueError as exc:
+        assert "Final audio mix QC failed" in str(exc)
+    else:
+        raise AssertionError("delivery must stop when final audio QC fails")
+    assert "production_status: completed" not in source.read_text(encoding="utf-8")
+    assert not list((tmp_path / "Movies").glob("*.mp4")) if (tmp_path / "Movies").exists() else True
+
+
+def test_philosophy_music_loops_to_cover_full_composition() -> None:
+    component = (
+        workflow.REPO_ROOT
+        / "remotion-composer"
+        / "src"
+        / "TreeElfPhilosophyEpisode.tsx"
+    ).read_text(encoding="utf-8")
+    assert '<Audio src={source(props.musicSrc)} loop volume={music} />' in component
+
+
 def test_stage_and_delivery_use_hardlinks_then_remove_derivative_copies(
     tmp_path: Path,
     monkeypatch,
@@ -316,6 +356,11 @@ def test_stage_and_delivery_use_hardlinks_then_remove_derivative_copies(
     narration.write_bytes(b"narration")
     raw = target / "assets" / "audio" / "narration_raw.mp3"
     raw.write_bytes(b"raw")
+    def fake_normalize(source_path, target_path, **_kwargs):
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        target_path.write_bytes(source_path.read_bytes())
+        return {"mode": "test", "verified": True, "path": str(target_path)}
+    monkeypatch.setattr(workflow, "normalize_background_music", fake_normalize)
 
     staged = workflow.stage_remotion(config, series_profile(), projects_dir=projects)
     staged_cover = Path(staged["public_dir"]) / "images" / "C01.png"
@@ -327,6 +372,11 @@ def test_stage_and_delivery_use_hardlinks_then_remove_derivative_copies(
     render = target / "renders" / "final.mp4"
     render.write_bytes(b"verified-render")
     monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 72.5)
+    monkeypatch.setattr(
+        workflow,
+        "build_final_audio_mix_qc",
+        lambda *_args, **_kwargs: {"approved_for_delivery": True},
+    )
     result = workflow.deliver(
         config,
         render,
@@ -382,6 +432,11 @@ def test_stage_remotion_retimes_scenes_to_caption_semantic_boundaries(
     captions_path = target / "artifacts" / "exact_captions.json"
     captions_path.write_text(json.dumps(captions, ensure_ascii=False), encoding="utf-8")
     monkeypatch.setattr(workflow, "media_duration_seconds", lambda _path: 24.0)
+    def fake_normalize(source_path, target_path, **_kwargs):
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        target_path.write_bytes(source_path.read_bytes())
+        return {"mode": "test", "verified": True, "path": str(target_path)}
+    monkeypatch.setattr(workflow, "normalize_background_music", fake_normalize)
 
     staged = workflow.stage_remotion(config, series_profile(), projects_dir=projects)
     props = json.loads(Path(staged["props"]).read_text(encoding="utf-8"))

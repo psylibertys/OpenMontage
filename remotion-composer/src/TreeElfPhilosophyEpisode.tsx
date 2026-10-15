@@ -160,7 +160,7 @@ export const TreeElfPhilosophyEpisode: React.FC<TreeElfPhilosophyEpisodeProps> =
         </Sequence>
       ))}
       {props.narrationSrc ? <Audio src={source(props.narrationSrc)} /> : null}
-      {props.musicSrc ? <Audio src={source(props.musicSrc)} volume={music} /> : null}
+      {props.musicSrc ? <Audio src={source(props.musicSrc)} loop volume={music} /> : null}
       <div style={{position: "absolute", right: 68, top: 88, display: "flex", alignItems: "center", gap: 13, fontSize: 24, letterSpacing: 7, color: "rgba(255,255,255,.8)", textShadow: "0 2px 5px rgba(0,0,0,.8)"}}><span style={{width: 30, height: 2, background: "#78DDD4"}} />{props.brand || "树精灵"}</div>
       {props.captions.map((caption, index) => (
         <Sequence key={`${index}-${caption.start}`} from={seconds(caption.start)} durationInFrames={Math.max(1, seconds(caption.end - caption.start))}>

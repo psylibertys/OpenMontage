@@ -14,24 +14,32 @@ This skill teaches you to run discovery, classify the user's setup, present capa
 
 **Skip onboarding** when the user arrives with a specific, actionable request (e.g., "Make a 60-second explainer about black holes"). Go directly to Rule Zero.
 
-## ComfyUI and AutoDL Entry Point
+## Video Generation Entry Point (RunningHub route)
 
-When a request mentions ComfyUI, AutoDL, Qwen3-TTS, Krea, Z-Image, Flux character consistency, SeedVR2, Wan image-to-video, InfiniteTalk, Wan Animate, SCAIL, LoRA, voice cloning, lip sync, or the course workflows, the agent MUST read both of these files completely before inspecting, planning, installing, downloading, starting an instance, or generating assets:
+**历史路线变更（2026-10-15）**：AutoDL 租卡 ComfyUI 生产路线已废弃，全部相关资料归档于 `archive/autodl-era/`（含原 `production-planning/COMFYUI_AGENT_CONTEXT.md`，已不再是 source of truth）。视频/图像生成统一走 **RunningHub（币多多，自定义工作流 API）**。
 
-1. `production-planning/COMFYUI_AGENT_CONTEXT.md` — project-specific source of truth for the active workflow catalog, approved routing decisions, AutoDL connection, deployment state, asset lifecycle, validation status, and next action;
-2. `.agents/skills/comfyui/SKILL.md` — generic ComfyUI API-format, node, model, output, and provenance rules.
+When a request mentions video/image generation, ComfyUI workflows, RunningHub, 币多多, workflowId, nodeInfoList, Qwen3-TTS, Krea, Flux character consistency, SeedVR2, Wan image-to-video, InfiniteTalk, Wan Animate, voice cloning, lip sync, or the course workflows, the agent MUST read `.agents/skills/runninghub/SKILL.md` completely before planning or generating assets:
 
-Do not infer live instance state from an old conversation or historical planning document. After reading the context, perform the documented read-only live checks before any consequential action. The Python registries remain authoritative for the exact active template set; the context document explains how this project has chosen to use them.
+1. `.agents/skills/runninghub/SKILL.md` — RunningHub 任务全流程（上传素材 → 创建任务 → 轮询 → 下载）与本项目产线路由的 source of truth；
+2. `.agents/skills/comfyui/SKILL.md` — 通用 ComfyUI API 格式、节点、模型与 provenance 规则（写 nodeInfoList 时仍适用）。
 
-### AutoDL batch asset lifecycle (HARD RULE)
+### RunningHub HARD RULES
 
-- Never delete server assets during an active generation batch.
-- Reusable server assets — models, custom nodes, voice packs, approved character/reference packs, and reusable input caches — remain on AutoDL across batches.
-- Before shutdown, copy every non-reusable deliverable needed by the project to the Mac project workspace, verify size and SHA-256, then delete only the corresponding non-reusable remote inputs, outputs, and temporary files.
-- After every batch finishes successfully and the backup/verification/cleanup audit passes, proactively shut down the AutoDL instance. If any transfer, hash, cleanup, or queue check fails, do not shut down; report the blocker.
-- For the current AutoDL instance documented in `production-planning/COMFYUI_AGENT_CONTEXT.md`, the user has granted standing approval to shut it down with `ssh autodl-comfyui 'sync; shutdown -h now'` after all gates pass. Treat the resulting SSH disconnect as expected, verify SSH is down, and report the result. This method was confirmed by the user to put the AutoDL console into the powered-off state; do not substitute a Pro API that does not manage this instance.
-- After the user starts the current instance in GPU mode, use `production-planning/scripts/start-autodl-comfyui-session.sh` to keep ComfyUI in a monitored SSH foreground session, expose it only through local port `18188`, and require the health check before production.
-- Before each production batch, create and review a project-specific retention policy from `production-planning/AUTODL_BATCH_RETENTION_TEMPLATE.json`. At batch end, preview `scripts/finalize_autodl_comfyui_batch.py` with `--dry-run`; only after the list is reviewed may it be run with `--yes --shutdown`. Never reuse another project's retention decision.
+- **付费即询问**：RunningHub 按任务运行时长扣 RH 币（模型加载计时、排队不计时、扣费事后才显示）。任何真实任务（非 dry-run/连通性检查）创建前必须向用户报预计成本并获批准；单批生产同样先批后跑。
+- **API key**：从 `.env` 的 `RUNNINGHUB_API_KEY` 读取，绝不写入代码或提交仓库。
+- **工作流注册只能在网页端完成**（粘贴 API JSON → 映射节点 → 得 workflowId）。本仓库 `tools/_comfyui/workflows/` 的 19 个 API 模板是上传素材，要点见 `docs/pixaroma-comfyui-course-workflows.md`。
+- **产物落地**：生成资产放入对应 `projects/<id>/assets/`，并在 run 的 `decision_log` 记一行 provenance（workflowId、nodeInfoList 摘要、taskId）。
+
+### ComfyUI MCP tools (comfy-mcp) — local Mac only
+
+The project `.mcp.json` registers the official `comfy` MCP server (Comfy-Org/comfy-mcp, installed in the sibling ComfyDeck project's venv — do NOT install comfy-cli into OpenMontage's production venv). It targets the **local Mac ComfyUI at `127.0.0.1:8188`**（封面链路之外的本地实验用）. Full tool access (user-approved 2026-10-14), `mcp__comfy` allowlisted in `.claude/settings.local.json`.
+
+Guardrails:
+
+1. **Paid cloud actions ask first**: `partner_generate` / `auth_login` / anything spending Comfy Cloud credits follows the global "ask before spending money" rule.
+2. **Lifecycle tools act on the Mac only**: `launch_comfyui` / `stop_comfyui` / `restart_comfyui` / `install_node` / `download_model` — no remote instance is managed anymore (AutoDL retired). The GPU lifecycle iron law (power on → produce → power off) still applies to any local GPU session.
+
+Backup CLI with the same full access: `/Users/treeelf/Desktop/psynautCode/ComfyDeck/.venv/bin/comfyui-skill` (run with `--dir /Users/treeelf/Desktop/psynautCode/ComfyDeck`). Coordination contract with ComfyDeck: `../ComfyDeck/docs/with-openmontage.md`.
 
 ## TreeElf Project Knowledge Access
 
@@ -39,7 +47,7 @@ When a TreeElf task reads scripts from `treeElfNotes/07产出/`, uses the Pixaro
 
 Course access is a project capability, not a delegation requirement. The current OpenMontage agent and stage agents may directly read the authorized Obsidian directories and query course knowledge with the shared route identity `openmontage-project-agent`. Do not spawn or call `treeelf-video-producer` merely to obtain course information; that Agent is an optional user-facing production role.
 
-The project identity is restricted to the `cinematography` and `ai_visual_tools` course domains. It must use the controlled retrieval script and stable aliases documented in the knowledge map, never a physical Qdrant collection or another Agent's identity. Obsidian course directories are read-only, and visual evidence is verified only after the current Agent actually opens the referenced asset.
+The project identity is restricted to the `cinematography`, `storytelling`, and `ai_visual_tools` course domains. It must use the controlled retrieval script and stable aliases documented in the knowledge map, never a physical Qdrant collection or another Agent's identity. Obsidian course directories are read-only, and visual evidence is verified only after the current Agent actually opens the referenced asset.
 
 For governed StudioBinder methods, read `skills/meta/studiobinder-skill-hub.md`
 and use the explicit stage mapping in
@@ -199,6 +207,18 @@ When asking the user to choose, do not just list options. The agent should:
 - explain the tradeoffs briefly,
 - recommend one option,
 - wait for approval before proceeding.
+
+### Independent Judgment Over Agreement (HARD RULE)
+
+Do not optimize for agreeing with the user or preserving the user's prior assumption. Optimize for an accurate, evidence-based production decision.
+
+- Treat "do not just agree with me; be objective" as a standing project requirement, whether or not the user repeats it in the current conversation.
+- Verify current capabilities, costs, provider constraints, and project state before recommending a path when those facts can change.
+- Separate verified facts, reasonable inferences, subjective taste judgments, and unknowns. Never present one category as another.
+- If evidence contradicts the user's assumption or preferred option, say so directly and explain why. Respectful disagreement is required; silent accommodation is a defect.
+- Present material counterarguments, failure modes, and switching criteria for the recommended option. Do not hide drawbacks merely because the user appears to favor it.
+- When evidence is incomplete, propose the smallest representative test and define its acceptance criteria instead of asserting certainty.
+- User approval controls the production choice, but it does not change the agent's independent assessment. Record the approved choice and any unresolved professional disagreement in the decision log.
 
 ### No Unilateral Substitutions
 

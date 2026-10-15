@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "batch_id": "treeelf-fable-batch-20260727-01",
+  "queue_depth": 2,
+  "episode_configs": [
+    "episode-01-borrowed-bricks.json",
+    "episode-02-shell-coast.json"
+  ]
+}

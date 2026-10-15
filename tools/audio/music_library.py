@@ -96,7 +96,7 @@ class MusicLibrary(BaseTool):
                 "type": "string",
                 "description": (
                     "Optional override for the library folder. Defaults to the "
-                    "MUSIC_LIBRARY_DIR env var, then '<project root>/music_library'."
+                    "TREEELF_MUSIC_LIBRARY_DIR (or legacy MUSIC_LIBRARY_DIR), then '<project root>/music_library'."
                 ),
             },
         },
@@ -144,7 +144,9 @@ class MusicLibrary(BaseTool):
     def _library_dir(self, inputs: Optional[dict[str, Any]] = None) -> Path:
         if inputs and inputs.get("library_dir"):
             return Path(inputs["library_dir"]).expanduser()
-        env_dir = os.environ.get("MUSIC_LIBRARY_DIR")
+        # Preserve the tool's legacy per-process override while using the
+        # TreeElf project variable as the normal shared-library default.
+        env_dir = os.environ.get("MUSIC_LIBRARY_DIR") or os.environ.get("TREEELF_MUSIC_LIBRARY_DIR")
         if env_dir:
             return Path(env_dir).expanduser()
         return _PROJECT_ROOT / "music_library"
